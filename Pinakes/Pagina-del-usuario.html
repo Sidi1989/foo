@@ -8,69 +8,88 @@
   <link rel="stylesheet" href="./Pagina-del-usuario.css">
 </head>
 
-<body>
 
+
+<body>
+  <!-- Header-->
   <div class="container">
     <div class="row">
+      <div class="col-8">
+        Logo
+      </div>
       <div class="col">
-        Logo y Menu
+        Menú
       </div>
     </div>
 
     <div class="row">
-      <div class="col">
-        Perfil, Biblioteca y Ayudas
+      <!-- Columna de Usuarios y Políticas-->
+      <div id="sidebar" class="col-3">
+        <!-- Perfil de usuario-->
+        <div id="profile" class="row">
+          <div class="col">
+            Foto del usuario
+          </div>
+          <div class="col">
+            Información del usuario
+          </div>
+        </div>
+
+        <!-- Mi Biblioteca-->
+        <div id="library" class="row">
+          <h2>Mi Biblioteca</h2>
+        </div>
+
+        <!-- Políticas-->
+        <div id="policies" class="row">
+          <h2>Políticas</h2>
+        </div>
       </div>
+
       <div class="col-9">
-        Listas de Libros
-            <div class="row row-cols-1">
-              <div class="col">Columna del Libro seleccionado</div>
+        <!--Sobre el Libro seleccionado-->
+        <div class="row">
+        </div>
 
-              <div class="col">Columna de "Lecturas en curso"</div>
-                <div class="container">
-                  <div class="row">
-                    <div class="col-7">
-                      Título "Lectura en curso"
-                    </div>
-                    <div class="col">
-                      Modo de Vista
-                    </div>
-                    <div class="col">
-                      Ordenar por
-                    </div>
-                  </div>
-                </div>
+        <!--Sobre las Lecturas en curso-->
+        <div class="row">
+          <div class="col-10">
+            Título "Lectura en curso"
+          </div>
+          <div class="col">
+            Modo de Vista
+          </div>
+          <div class="col">
+            Ordenar por
+          </div>
+        </div>
 
-              <div class="col">Columna de "Libros valorados"</div>
-                <div class="container">
-                  <div class="row">
-                    <div class="col-7">
-                      Título "Libros valorados"
-                    </div>
-                    <div class="col">
-                      Modo de Vista
-                    </div>
-                    <div class="col">
-                      Ordenar por
-                    </div>
-                  </div>
-                </div>
+        <!--Sobre las Libros valorados-->
+        <div class="row">
+          <div class="col-10">
+            Título "Libros valorados"
+          </div>
+          <div class="col">
+            Modo de Vista
+          </div>
+          <div class="col">
+            Ordenar por
+          </div>
+        </div>
 
-              <div class="col">Columna de "Libros sugeridos"</div>
-                <div class="container">
-                  <div class="row">
-                    <div class="col-7">
-                      Título "Libros sugeridos"
-                    </div>
-                    <div class="col">
-                      Modo de Vista
-                    </div>
-                    <div class="col">
-                      Ordenar por
-                    </div>
-                  </div>
-                </div>
-            </div>
+        <!--Sobre los Libros sugeridos-->
+        <div class="row">
+          <div class="col-10">
+            Título "Libros sugeridos"
+          </div>
+          <div class="col">
+            Modo de Vista
+          </div>
+          <div class="col">
+            Ordenar por
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
