@@ -37,7 +37,7 @@
 
         <!-- Mi Biblioteca-->
         <div id="library" class="row">
-          <h2>Mi Biblioteca</h2>
+          <h4 id="foo">Mi Biblioteca</h4>
         </div>
 
         <!-- Políticas-->
@@ -52,41 +52,55 @@
         </div>
 
         <!--Sobre las Lecturas en curso-->
-        <div class="row">
-          <div class="col-10">
-            Título "Lectura en curso"
-          </div>
+        <div id="ongoingreadings" class="row">
           <div class="col">
-            Modo de Vista
-          </div>
-          <div class="col">
-            Ordenar por
+            <!--Cinta de opciones-->
+            <div class="row">
+              <div class="col-9">
+                <h4>Lectura en curso</h4>
+              </div>
+              <div class="col-3">
+                <i class="fa-solid fa-grip"></i>
+                <i class="fa-solid fa-arrow-down-wide-short"></i>
+              </div>
+            </div>
+            <!--Contenido-->
+            <div class="row">
+              <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!--Sobre las Libros valorados-->
-        <div class="row">
-          <div class="col-10">
-            Título "Libros valorados"
+        <div class="row otherreadings">
+          <div class="col-9">
+            <h4>Libros valorados</h4>
           </div>
           <div class="col">
-            Modo de Vista
+            <i class="fa-solid fa-grip"></i>
           </div>
           <div class="col">
-            Ordenar por
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
           </div>
         </div>
 
         <!--Sobre los Libros sugeridos-->
-        <div class="row">
-          <div class="col-10">
-            Título "Libros sugeridos"
+        <div class="row otherreadings">
+          <div class="col-9">
+            <h4>Libros sugeridos</h4>
           </div>
           <div class="col">
-            Modo de Vista
+            <i class="fa-solid fa-grip"></i>
           </div>
           <div class="col">
-            Ordenar por
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
           </div>
         </div>
 
