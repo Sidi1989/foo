@@ -2,10 +2,10 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pinakes/Página del usuario</title>
+  <title>Pinakes/userhome</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="./Pagina-del-usuario.css">
+  <link rel="stylesheet" href="./userhome.css">
 </head>
 
 
@@ -26,7 +26,7 @@
       <!-- Columna de Usuarios y Políticas-->
       <div id="sidebar" class="col-3">
         <!-- Perfil de usuario-->
-        <div id="profile" class="row">
+        <div class="row">
           <div class="col">
             Foto del usuario
           </div>
@@ -36,34 +36,75 @@
         </div>
 
         <!-- Mi Biblioteca-->
-        <div id="library" class="row">
-          <h4 id="foo">Mi Biblioteca</h4>
+        <div class="row">
+          Mi Biblioteca
+
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary">Literatura española</button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Novela</a></li>
+              <li><a class="dropdown-item" href="#">Poesía</a></li>
+              <li><a class="dropdown-item" href="#">Teatro</a></li>
+              <li><a class="dropdown-item" href="#">Ensayo</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Cambiar nombre</a></li>
+              <li><a class="dropdown-item" href="#">Borrar libros</a></li>
+            </ul>
+          </div>
+
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary">Literatura extranjera</button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Novela</a></li>
+              <li><a class="dropdown-item" href="#">Poesía</a></li>
+              <li><a class="dropdown-item" href="#">Teatro</a></li>
+              <li><a class="dropdown-item" href="#">Ensayo</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Cambiar nombre</a></li>
+              <li><a class="dropdown-item" href="#">Borrar libros</a></li>
+            </ul>
+          </div>
+
         </div>
 
         <!-- Políticas-->
-        <div id="policies" class="row">
-          <h2>Políticas</h2>
+        <div class="row">
+          Políticas
+
+          <div class="list-group-flush">
+            <button type="button" class="list-group-item list-group-item-action">Sobre nosotros</button>
+            <button type="button" class="list-group-item list-group-item-action">Contacto</button>
+            <button type="button" class="list-group-item list-group-item-action">Política de privacidad</button>
+            <button type="button" class="list-group-item list-group-item-action">Ayuda</button>
+          </div>
+
         </div>
       </div>
 
-      <div class="col-9">
+      <div id="maincontent" class="col-9">
         <!--Sobre el Libro seleccionado-->
         <div class="row">
         </div>
 
         <!--Sobre las Lecturas en curso-->
-        <div id="ongoingreadings" class="row">
+        <div class="row">
           <div class="col">
             <!--Cinta de opciones-->
             <div class="row">
               <div class="col-9">
-                <h4>Lectura en curso</h4>
+                Lectura en curso
               </div>
-              <div class="col-3">
-                <i class="fa-solid fa-grip"></i>
-                <i class="fa-solid fa-arrow-down-wide-short"></i>
-              </div>
+            <div class="col">
+              <i class="fa-solid fa-grip"></i>
             </div>
+            <div class="col">
+              <i class="fa-solid fa-arrow-down-wide-short"></i>
+            </div>
+          </div>
             <!--Contenido-->
             <div class="row">
               <div class="card" style="width: 18rem;">
@@ -79,36 +120,65 @@
         </div>
 
         <!--Sobre las Libros valorados-->
-        <div class="row otherreadings">
-          <div class="col-9">
-            <h4>Libros valorados</h4>
-          </div>
+        <div class="row">
           <div class="col">
-            <i class="fa-solid fa-grip"></i>
+            <!--Cinta de opciones-->
+            <div class="row">
+              <div class="col-9">
+                Libros valorados
+              </div>
+            <div class="col">
+              <i class="fa-solid fa-grip"></i>
+            </div>
+            <div class="col">
+              <i class="fa-solid fa-arrow-down-wide-short"></i>
+            </div>
           </div>
-          <div class="col">
-            <i class="fa-solid fa-arrow-down-wide-short"></i>
+            <!--Contenido-->
+            <div class="row">
+              <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!--Sobre los Libros sugeridos-->
-        <div class="row otherreadings">
-          <div class="col-9">
-            <h4>Libros sugeridos</h4>
-          </div>
+        <div class="row">
           <div class="col">
-            <i class="fa-solid fa-grip"></i>
+            <!--Cinta de opciones-->
+            <div class="row">
+              <div class="col-9">
+                Libros sugeridos
+              </div>
+            <div class="col">
+              <i class="fa-solid fa-grip"></i>
+            </div>
+            <div class="col">
+              <i class="fa-solid fa-arrow-down-wide-short"></i>
+            </div>
           </div>
-          <div class="col">
-            <i class="fa-solid fa-arrow-down-wide-short"></i>
+            <!--Contenido-->
+            <div class="row">
+              <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-      </div>
-    </div>
-  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="./Pagina-del-usuario.js"></script>
+  <script type="text/javascript" src="./userhome.js"></script>
 
 </body>
