@@ -15,48 +15,190 @@
     <!-- Fila sobre datos del libro-->
     <div class="row">
       <!-- Columna de la Foto-->
-      <div class="col-4">
+      <div class="col-3">
         <div class="row">
-          Poner la Foto
+          <img class="img-fluid" alt="200x280" src="https://pictures.abebooks.com/isbn/9788481097085-es.jpg">
         </div>
         <div class="row">
-          Poner las miniaturas
+          <div class="col-4">
+            <img class="img-thumbnail" alt="75%x200" src="https://pictures.abebooks.com/isbn/9788481097085-es.jpg">
+          </div>
+          <div class="col-4">
+            <img class="img-thumbnail" alt="75%x200" src="https://images-na.ssl-images-amazon.com/images/I/719Kd5q78uL.jpg">
+          </div>
+          <div class="col-4">
+            <img class="img-thumbnail" alt="75%x200" src="https://librosdelzorrorojo.com/wp-content/uploads/2017/05/ElCorazo%CC%81nDeLasTinieblas_Interior04-01.png">
+          </div>
         </div>
       </div>
+
       <!--Columna de la Información-->
-      <div class="col-8">
+      <div class="col-9">
         <div class="row">
           <div class="col">
-          <p>El corazón de las tinieblas</p>
-          <p>Joseph Conrad</p>
+          <h5>El corazón de las tinieblas</h5>
+          <h7>Joseph Conrad</h7>
           </div>
-          <div class="col">
-          Acciones sobre el libro
+
+          <div class="col-9">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+              <button type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-angle-left"></i> </button>
+              <button type="button" class="btn btn-outline-primary"disabled> <i class="fa-solid fa-eye"></i></button>
+              <button type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-angle-right"></i> </button>
+
+              <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-user-gear"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <li><a class="dropdown-item" href="#">Añadir a Mi Biblioteca</a></li>
+                  <li><a class="dropdown-item" href="#">Añadir a Lecturas en curso</a></li>
+                  <li><a class="dropdown-item" href="#">Valorar Libro</a></li>
+                  <li><a class="dropdown-item" href="#">Valorar Ejemplar</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <p>Sinopsis:</p>
-          <p>Jósef Teodor Konrad Karzeniovski (1857-1924), más conocido como Joseph Conrad, nació en Polonia cuando ésta pertenecía a Rusia.
-          Víctima de la diáspora de aquellos pueblos, se enroló en la marina inglesa, pasando así casi toda su vida embarcado, hasta comenzar a escribir.
-          "El corazón de las tinieblas" (1902), es un resumen magnífico de toda su obra: el río de África que remonta el capitán Marlow, un río que no lleva a ninguna parte, un lento fluir de aguas que se confunde con el discurrir de la conciencia del protagonista.
-          </p>
+
+      <div class="row">
+        <div class="d-grid gap-3">
+          <div class="p-2 bg-light border">
+            <div class="row">
+              <h5>Sinopsis:</h5>
+              <p>Jósef Teodor Konrad Karzeniovski (1857-1924), más conocido como Joseph Conrad, nació en Polonia cuando ésta pertenecía a Rusia.
+                Víctima de la diáspora de aquellos pueblos, se enroló en la marina inglesa, pasando así casi toda su vida embarcado, hasta comenzar a escribir.</p>
+              <p>"El corazón de las tinieblas" (1902), es un resumen magnífico de toda su obra: el río de África que remonta el capitán Marlow, un río que no lleva a ninguna parte, un lento fluir de aguas que se confunde con el discurrir de la conciencia del protagonista.</p>
+            </div>
+          </div>
         </div>
-        <div class="row">
-          Iconos sobre el libro
+      </div>
+
+      <div class="row">
+        <div class="col-5">
+
+            <div class="d-grid gap-3">
+              <div class="p-2 bg-light border">
+                <div class="row">
+                  <div class="col"><i class="fa-solid fa-copy"></i></div>
+                  <div class="col-10">126 pgs</div>
+                </div>
+                <div class="row">
+                  <div class="col"><i class="fa-solid fa-ruler-combined"></i></div>
+                  <div class="col-10">20 x 12 cms</div>
+                </div>
+                <div class="row">
+                  <div class="col"><i class="fa-solid fa-book"></i></div>
+                  <div class="col-10">Tapa blanda</div>
+                </div>
+                <div class="row">
+                  <div class="col"><i class="fa-solid fa-language"></i></div>
+                  <div class="col-10">Castellano</div>
+                </div>
+                <div class="row">
+                  <div class="col"><i class="fa-solid fa-building"></i></div>
+                  <div class="col-10">Fontana- Clásicos Universales</div>
+                </div>
+                <div class="row">
+                  <div class="col"><i class="fa-solid fa-calendar-days"></i></div>
+                  <div class="col-10">1994</div>
+                </div>
+                <div class="row">
+                  <div class="col"><i class="fa-solid fa-barcode"></i></div>
+                  <div class="col-10">84-7672-625-2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <div class="col-7">
+          <div class="row">
+
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                  <div class="review-block">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <img src="https://pbs.twimg.com/profile_images/1358887760/quevedo_reasonably_small.gif" class="img-thumbnail">
+                        <div class="review-block-name"><p class="text-primary">Quevedín</p></div>
+                        <div class="review-block-date">3 de abril de 2022,<br/>hace 2 días</div>
+                      </div>
+                      <div class="col-sm-9">
+                        <div class="review-block-rate">
+                          <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
+                            <i class="fa-solid fa-star"></i>
+                          </button>
+                          <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
+                            <i class="fa-solid fa-star"></i>
+                          </button>
+                          <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
+                            <i class="fa-solid fa-star"></i>
+                          </button>
+                          <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" disabled>
+                            <i class="fa-solid fa-star"></i>
+                          </button>
+                          <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" disabled>
+                            <i class="fa-solid fa-star"></i>
+                          </button>
+                        </div>
+                        <div class="review-block-title"><h5>Ahí va mi opinión</h5></div>
+                        <div class="review-block-description">El libro me gustó; pero en cuanto al ejemplar que me prestó la Biblioteca de Villanueva, diré que no me dejó tan satisfecho</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                  <div class="carousel-item">
+                    <div class="review-block">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <img src="https://pbs.twimg.com/profile_images/606155435205398528/5JaAG-S5_400x400.jpg" class="img-thumbnail">
+                          <div class="review-block-name"><p class="text-primary">Gongorín</p></div>
+                          <div class="review-block-date">4 de abril de 2022,<br/>hace 1 día</div>
+                        </div>
+                        <div class="col-sm-9">
+                          <div class="review-block-rate">
+                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
+                              <i class="fa-solid fa-star"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
+                              <i class="fa-solid fa-star"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
+                              <i class="fa-solid fa-star"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
+                              <i class="fa-solid fa-star"></i>
+                            </button>
+                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" disabled>
+                              <i class="fa-solid fa-star"></i>
+                            </button>
+                          </div>
+                          <div class="review-block-title"><h5>Otra opinión distinta</h5></div>
+                          <div class="review-block-description">El libro me encantó; pero el anterior propietario se dedicó a doblar las páginas como marcapáginas, y eso estropea el libro</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                     <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                     <span class="visually-hidden">Siguiente</span>
+                    </button>
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- Fila sobre valoraciones del libro-->
-    <div class="row">
-      <div class="col">
-        Valoración Libro
-      </div>
-
-      <div class="col">
-        Valoración Ejemplar
-      </div>
-    </div>
+  </div>
 
     <!-- Fila de Sugerencias-->
     <div class="row">

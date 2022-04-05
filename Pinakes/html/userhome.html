@@ -15,10 +15,10 @@
   <div class="container">
     <div class="row">
       <div class="col-8">
-        Logo
+        <div class="bg-success p-2 text-white">Logo y Nombre</div>
       </div>
       <div class="col">
-        Menú
+        <div class="bg-success p-2 text-dark bg-opacity-50">Menú (Navbar)</div>
       </div>
     </div>
 
@@ -28,19 +28,27 @@
         <!-- Perfil de usuario-->
         <div class="row">
           <div class="col">
-            Foto del usuario
+            <img class="img-thumbnail" alt="200x280" src="https://static.wikia.nocookie.net/dkami/images/f/f5/Imp_Design_by_PRDart.jpg/revision/latest?cb=20130124071338">
           </div>
           <div class="col">
-            Información del usuario
+            <div class="row"><i class="fa-solid fa-user-pen"></i>
+              <p class="text-primary">Sidi</p>
+            </div>
+            <div class="row"><i class="fa-solid fa-hourglass"></i>
+              <p class="text-primary">1 año y 4 meses</p>
+            </div>
+            <div class="row"><i class="fa-solid fa-book-open"></i>
+              <p class="text-primary">32</p>
+            </div>
           </div>
         </div>
 
         <!-- Mi Biblioteca-->
         <div class="row">
-          Mi Biblioteca
+          <div class="p-3 mb-2 bg-secondary text-white">Mi Biblioteca</div>
 
           <div class="btn-group">
-            <button type="button" class="btn btn-primary">Literatura española</button>
+            <button type="button" class="btn btn-outline-primary" disabled>Literatura española</button>
             <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
             </button>
             <ul class="dropdown-menu">
@@ -55,7 +63,7 @@
           </div>
 
           <div class="btn-group">
-            <button type="button" class="btn btn-primary">Literatura extranjera</button>
+            <button type="button" class="btn btn-outline-primary" disabled>Literatura extranjera</button>
             <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
             </button>
             <ul class="dropdown-menu">
@@ -73,7 +81,7 @@
 
         <!-- Políticas-->
         <div class="row">
-          Políticas
+          <div class="p-3 mb-2 bg-secondary text-white">Políticas</div>
 
           <div class="list-group-flush">
             <button type="button" class="list-group-item list-group-item-action">Sobre nosotros</button>
@@ -88,6 +96,52 @@
       <div id="maincontent" class="col-9">
         <!--Sobre el Libro seleccionado-->
         <div class="row">
+          <div class="col">
+            <div class="row">
+            <img src="https://pictures.abebooks.com/isbn/9788481097085-es.jpg"><div class="img-fluid"></div>
+            </div>
+            <div class="row">
+            <span class="name mb-1 fw-500">El corazón de las tinieblas</span> <small class="text-black-50">Joseph Conrad</small>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card">
+              <div class="row">
+                <div class="col">
+                    <div class="comment-box ml-2">
+                        <h4>Añadir un comentario</h4>
+                        <div class="rating">
+                          <input type="radio" name="bookrating" value="5" id="5"><label for="5">☆</label>
+                          <input type="radio" name="bookrating" value="4" id="4"><label for="4">☆</label>
+                          <input type="radio" name="bookrating" value="3" id="3"><label for="3">☆</label>
+                          <input type="radio" name="bookrating" value="2" id="2"><label for="2">☆</label>
+                          <input type="radio" name="bookrating" value="1" id="1"><label for="1">☆</label>
+                        </div>
+                        <span class="name mb-1 fw-500">Valoración del Libro</span>
+                        <div class="rating">
+                          <input type="radio" name="issuerating" value="5" id="5"><label for="5">☆</label>
+                          <input type="radio" name="issuerating" value="4" id="4"><label for="4">☆</label>
+                          <input type="radio" name="issuerating" value="3" id="3"><label for="3">☆</label>
+                          <input type="radio" name="issuerating" value="2" id="2"><label for="2">☆</label>
+                          <input type="radio" name="issuerating" value="1" id="1"><label for="1">☆</label>
+                        </div>
+                        <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
+                        <div class="comment-area">
+                          <textarea class="form-control" placeholder="¿Qué opinas?" rows="5"></textarea>
+                        </div>
+                        <div class="comment-btns mt-2">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="pull-right"> <button class="btn btn-success send btn-sm">Enviar <i class="fa fa-long-arrow-right ml-1"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
         </div>
 
         <!--Sobre las Lecturas en curso-->
@@ -96,52 +150,134 @@
             <!--Cinta de opciones-->
             <div class="row">
               <div class="col-9">
-                Lectura en curso
+                <div class="bg-success p-2 text-dark bg-opacity-25">Lecturas en curso</div>
               </div>
             <div class="col">
-              <i class="fa-solid fa-grip"></i>
-            </div>
-            <div class="col">
-              <i class="fa-solid fa-arrow-down-wide-short"></i>
+              <div class="btn-group" role="group">
+                  <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-grip"></i>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <li><a class="dropdown-item" href="#">Imágenes grandes</a></li>
+                    <li><a class="dropdown-item" href="#">Imágenes pequeñas</a></li>
+                    <li><a class="dropdown-item" href="#">Lista grande</a></li>
+                    <li><a class="dropdown-item" href="#">Lista pequeña</a></li>
+                  </ul>
+              </div>
+              <div class="btn-group" role="group">
+                  <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-arrow-down-wide-short"></i>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
+                    <li><a class="dropdown-item" href="#">Más recientes</a></li>
+                    <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
+                    <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
+                  </ul>
+              </div>
+              <button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-plus"></i></button>
             </div>
           </div>
             <!--Contenido-->
             <div class="row">
-              <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+              <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!--Sobre las Libros valorados-->
+        <!--Sobre los Libros valorados-->
         <div class="row">
           <div class="col">
             <!--Cinta de opciones-->
             <div class="row">
               <div class="col-9">
-                Libros valorados
+                <div class="bg-success p-2 text-dark bg-opacity-25">Libros valorados</div>
               </div>
-            <div class="col">
-              <i class="fa-solid fa-grip"></i>
-            </div>
-            <div class="col">
-              <i class="fa-solid fa-arrow-down-wide-short"></i>
-            </div>
+              <div class="col">
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-grip"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                      <li><a class="dropdown-item" href="#">Imágenes grandes</a></li>
+                      <li><a class="dropdown-item" href="#">Imágenes pequeñas</a></li>
+                      <li><a class="dropdown-item" href="#">Lista grande</a></li>
+                      <li><a class="dropdown-item" href="#">Lista pequeña</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-arrow-down-wide-short"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                      <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
+                      <li><a class="dropdown-item" href="#">Más recientes</a></li>
+                      <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
+                      <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-plus"></i></button>
+              </div>
           </div>
             <!--Contenido-->
             <div class="row">
-              <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+              <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -154,23 +290,65 @@
             <!--Cinta de opciones-->
             <div class="row">
               <div class="col-9">
-                Libros sugeridos
+                <div class="bg-success p-2 text-dark bg-opacity-25">Libros sugeridos</div>
               </div>
-            <div class="col">
-              <i class="fa-solid fa-grip"></i>
-            </div>
-            <div class="col">
-              <i class="fa-solid fa-arrow-down-wide-short"></i>
-            </div>
+              <div class="col">
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-grip"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                      <li><a class="dropdown-item" href="#">Imágenes grandes</a></li>
+                      <li><a class="dropdown-item" href="#">Imágenes pequeñas</a></li>
+                      <li><a class="dropdown-item" href="#">Lista grande</a></li>
+                      <li><a class="dropdown-item" href="#">Lista pequeña</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-arrow-down-wide-short"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                      <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
+                      <li><a class="dropdown-item" href="#">Más recientes</a></li>
+                      <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
+                      <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
+                    </ul>
+                </div>
+                <a href="./newbookform.html" button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-plus"></i></button>
+                </a>
+              </div>
           </div>
             <!--Contenido-->
             <div class="row">
-              <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+              <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
                 </div>
               </div>
             </div>
