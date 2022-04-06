@@ -18,13 +18,19 @@
           <div class="bg-success p-2 text-white"><h4>Registro básico</h4></div>
         </div>
 
-        <div class="col-12">
-          <label for="inputAddress" class="form-label">Título</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="Título del libro">
+        <div class="input-group">
+          <span class="input-group-text">Título</span>
+            <input type="text" aria-label="First name" class="form-control">
         </div>
-        <div class="col-12">
-          <label for="inputAddress" class="form-label">Autor</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="Autor del libro">
+
+        <div class="input-group mb-3">
+          <span class="input-group-text">Autor</span>
+            <select id="inputState" class="form-select">
+              <option selected>Nombre</option>
+              <option>Anónimo</option>
+              <option>VV.AA.</option>
+            </select>
+            <input type="text" aria-label="Author name" class="form-control">
         </div>
 
       <div class="row">
@@ -93,14 +99,12 @@
         <input type="text" class="form-control" aria-describedby="basic-addon3">
       </div>
       <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon3">Fecha de publicación</span>
-        <input type="text" aria-label="Amount" class="form-control">
-        <input type="text" aria-label="Amount" class="form-control">
-        <input type="text" aria-label="Amount" class="form-control">
+        <span class="input-group-text">Fecha de Publicación</span>
+        <input type="number" class="form-control" aria-label="Amount">
         <span class="input-group-text">Nº de Edición</span>
-        <input type="text" class="form-control" aria-label="Amount"
+        <input type="number" class="form-control" aria-label="Amount">
         <span class="input-group-text">Nº de Páginas</span>
-        <input type="text" class="form-control" aria-label="Amount"
+        <input type="number" class="form-control" aria-label="Amount">
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon3">Formato</span>
