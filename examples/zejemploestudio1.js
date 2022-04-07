@@ -1,48 +1,38 @@
 const _ = require('lodash');
-//const booklist = require('./books');
+
 const {
-  libro1: book1,
-  libro2: book2
+  libro1: book1
 } = require('./books');
 
-const {libro1, libro2} = require('./books');
-//Esto ahora mismo no funcionaría, porque crearía dos variables llamadas "libro" y no "book"
-
-//Parsing de los parámetros de entrada al programa
-var limit = parseInt(process.argv[2]);
-var name = process.argv[3];
-
+const {libro1} = require('./books');
 
 //var book1 = booklist.book1;
-//var book2 = booklist.book2;
-
 
 var books = [];
 books.push(book1);
-books.push(book2);
-
 
 book1.saludar();
 book1.presentarse();
 book1.presentarseAnte(name);
 
 
+//Parsing de los parámetros de entrada al programa. Mirar el bucle de abajo
+var limit = parseInt(process.argv[2]);
+var name = process.argv[3];
 
+//Función Map
 var titles = books.map(function (e, i, a) {
     return e.title;
   }
-)
-
+);
 console.log(`Los títulos son: ${titles}`);
 
-
+//Función Filter
 var availableBooks = books.filter(function (e, i, a) {
     return e.isAvailable;
   }
-)
+);
 availableBooks = books.filter(e => e.isAvailable)
-availableBooks = books.filter((e) => {return e.isAvailable})
-
 
 var availableTitles = availableBooks.map(function (e) {
     return {
@@ -50,11 +40,12 @@ var availableTitles = availableBooks.map(function (e) {
       author: e.author
     };
   }
-)
-
+);
 console.log(availableTitles);
 
 
+
+//Bucle en console.log
 for (var a=1; a<limit; a++) {
   if (a<5) {
     console.log("Hola Mundo", name);
@@ -63,4 +54,4 @@ for (var a=1; a<limit; a++) {
   } else {
     console.log("Hola Madrid", name);
   }
-}
+};
