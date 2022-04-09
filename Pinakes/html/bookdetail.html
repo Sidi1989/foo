@@ -52,7 +52,7 @@
                 <i class="fa-solid fa-user-gear"></i>
               </button>
               <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <li><a class="dropdown-item" href="#">Añadir a Mi Biblioteca</a></li>
+                <li><a class="dropdown-item" href="#">Añadir a Mis Colecciones</a></li>
                 <li><a class="dropdown-item" href="#">Añadir a Lecturas en curso</a></li>
                 <li><a class="dropdown-item" href="#">Valorar Libro</a></li>
                 <li><a class="dropdown-item" href="#">Valorar Ejemplar</a></li>
@@ -66,9 +66,7 @@
           <div class="p-2 bg-light border">
             <div class="row">
               <h5>Sinopsis:</h5>
-              <p>Jósef Teodor Konrad Karzeniovski (1857-1924), más conocido como Joseph Conrad, nació en Polonia cuando ésta pertenecía a Rusia.
-                Víctima de la diáspora de aquellos pueblos, se enroló en la marina inglesa, pasando así casi toda su vida embarcado, hasta comenzar a escribir.</p>
-              <p>"El corazón de las tinieblas" (1902), es un resumen magnífico de toda su obra: el río de África que remonta el capitán Marlow, un río que no lleva a ninguna parte, un lento fluir de aguas que se confunde con el discurrir de la conciencia del protagonista.</p>
+              <p><%=sinopsis%></p>
             </div>
           </div>
         </div>
@@ -81,31 +79,31 @@
               <div class="p-2 bg-light border">
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-copy"></i></div>
-                  <div class="col-10">126 pgs</div>
+                  <div class="col-10"><%=pages%> Pgs</div>
                 </div>
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-ruler-combined"></i></div>
-                  <div class="col-10">20 x 12 cms</div>
+                  <div class="col-10"><%=dimensions.length%> x <%=dimensions.width%> Cms</div>
                 </div>
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-book"></i></div>
-                  <div class="col-10">Tapa blanda</div>
+                  <div class="col-10"><%=format%></div>
                 </div>
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-language"></i></div>
-                  <div class="col-10">Castellano</div>
+                  <div class="col-10"><%=language%></div>
                 </div>
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-building"></i></div>
-                  <div class="col-10">Fontana- Clásicos Universales</div>
+                  <div class="col-10"><%=editorial%></div>
                 </div>
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-calendar-days"></i></div>
-                  <div class="col-10">1994</div>
+                  <div class="col-10"><%=publishDate%></div>
                 </div>
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-barcode"></i></div>
-                  <div class="col-10">84-7672-625-2</div>
+                  <div class="col-10"><%=isbn || 'No disponible'%></div>
                 </div>
               </div>
             </div>
@@ -127,24 +125,15 @@
                       </div>
                       <div class="col-sm-9">
                         <div class="review-block-rate">
-                          <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
-                            <i class="fa-solid fa-star"></i>
-                          </button>
-                          <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
-                            <i class="fa-solid fa-star"></i>
-                          </button>
-                          <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
-                            <i class="fa-solid fa-star"></i>
-                          </button>
-                          <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" disabled>
-                            <i class="fa-solid fa-star"></i>
-                          </button>
-                          <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" disabled>
-                            <i class="fa-solid fa-star"></i>
-                          </button>
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="<%=rating.general%>" aria-valuemin="0" aria-valuemax="10">Libro - <%=rating.general%></div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="<%=rating.copy%>" aria-valuemin="0" aria-valuemax="10">Ejemplar - <%=rating.copy%></div>
+                          </div>
                         </div>
                         <div class="review-block-title"><h5>Ahí va mi opinión</h5></div>
-                        <div class="review-block-description">El libro me gustó; pero en cuanto al ejemplar que me prestó la Biblioteca de Villanueva, diré que no me dejó tan satisfecho</div>
+                        <div class="review-block-description"><%=comments%></div>
                       </div>
                     </div>
                   </div>
@@ -160,24 +149,15 @@
                         </div>
                         <div class="col-sm-9">
                           <div class="review-block-rate">
-                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
-                              <i class="fa-solid fa-star"></i>
-                            </button>
-                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
-                              <i class="fa-solid fa-star"></i>
-                            </button>
-                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
-                              <i class="fa-solid fa-star"></i>
-                            </button>
-                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" disabled>
-                              <i class="fa-solid fa-star"></i>
-                            </button>
-                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" disabled>
-                              <i class="fa-solid fa-star"></i>
-                            </button>
+                            <div class="progress">
+                              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="<%=rating.general%>" aria-valuemin="0" aria-valuemax="10">Libro - <%=rating.general%></div>
+                            </div>
+                            <div class="progress">
+                              <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="<%=rating.copy%>" aria-valuemin="0" aria-valuemax="10">Ejemplar - <%=rating.copy%></div>
+                            </div>
                           </div>
                           <div class="review-block-title"><h5>Otra opinión distinta</h5></div>
-                          <div class="review-block-description">El libro me encantó; pero el anterior propietario se dedicó a doblar las páginas como marcapáginas, y eso estropea el libro</div>
+                          <div class="review-block-description"><%=comments%></div>
                         </div>
                       </div>
                     </div>
