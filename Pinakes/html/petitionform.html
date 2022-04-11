@@ -2,12 +2,11 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pinakes/bookform</title>
+  <title>Pinakes/petitionform</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="./../css/bookform.css">
+  <link rel="stylesheet" href="./../css/petitionform.css">
 </head>
-
 
 
 <body>
@@ -20,8 +19,9 @@
 
         <div class="input-group">
           <span class="input-group-text">Título</span>
-            <input type="text" aria-label="First name" class="form-control">
+            <input type="text" class="form-control">
         </div>
+
         <div class="input-group mb-3">
           <span class="input-group-text">Autor</span>
             <select id="inputState" class="form-select">
@@ -29,16 +29,7 @@
               <option>Anónimo</option>
               <option>VV.AA.</option>
             </select>
-            <input type="text" aria-label="Author name" class="form-control">
-        </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupSelect01">Sede de depósito</label>
-          <select class="form-select" id="inputGroupSelect01">
-            <option selected>Madrid</option>
-            <option value="1">Chalet</option>
-            <option value="2">Enguera</option>
-            <option value="3">Calpe</option>
-          </select>
+            <input type="text" class="form-control">
         </div>
 
       <div class="row">
@@ -54,8 +45,8 @@
           <option>Literatura española</option>
           <option>Literatura extranjera</option>
           <option>Literatura infantil y/o juvenil</option>
-          <option>Guías y Catálogos</option>
-          <option>Enciclopedias y Diccionarios</option>
+          <option>Guías y catálogos</option>
+          <option>Enciclopedias y diccionarios</option>
         </select>
       </div>
 
@@ -83,6 +74,7 @@
           <option value="3">Roma Clásica</option>
           <option value="3">Grecia Clásica</option>
         </select>
+
         <label class="input-group-text" for="inputGroupSelect01">Idioma</label>
         <select class="form-select" id="inputGroupSelect01">
           <option selected>Castellano</option>
@@ -126,39 +118,24 @@
         </select>
       </div>
 
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon3">ISBN</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon3">
-      </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon3">Editorial</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon3">
-        <span class="input-group-text" id="basic-addon3">Formato</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon3">
-      </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text">Fecha de Publicación</span>
-        <input type="number" class="form-control" aria-label="Amount">
-        <span class="input-group-text">Nº de Edición</span>
-        <input type="number" class="form-control" aria-label="Amount">
-        <span class="input-group-text">Nº de Páginas</span>
-        <input type="number" class="form-control" aria-label="Amount">
-      </div>
-
       <div class="mb-3">
-        <label for="formFileMultiple" class="form-label">Imágenes del Libro</label>
-        <input class="form-control" type="file" id="formFileMultiple" multiple>
+        <label for="basic-url" class="form-label"><i class="fa-brands fa-markdown"></i> Me lo pido</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon3">URL de la tienda</span>
+          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
       </div>
 
       <div class="col-12">
-        <button type="submit" class="btn btn-primary">Añadir Libro</button>
+        <button type="submit" class="btn btn-primary">Añadir Petición</button>
       </div>
     </form>
 
   </div>
 </div>
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-      <script type="text/javascript" src="./../js/bookform.js"></script>
 
-    </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./../js/petitionform.js"></script>
+
+</body>

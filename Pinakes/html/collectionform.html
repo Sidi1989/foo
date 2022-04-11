@@ -19,10 +19,6 @@
         </div>
 
         <div class="input-group">
-          <span class="input-group-text">Nombre del Usuario</span>
-            <input type="text" aria-label="First name" class="form-control">
-        </div>
-        <div class="input-group">
           <span class="input-group-text">Nombre de la Colección</span>
             <input type="text" aria-label="First name" class="form-control">
         </div>
@@ -30,65 +26,29 @@
           <label for="formFileMultiple" class="form-label">Logo de la Colección</label>
           <input class="form-control" type="file" id="formFileMultiple" multiple>
         </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text">Antigüedad de la Colección</span>
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-          <span class="input-group-text">Días</span>
-        </div>
-        <div class="input-group">
-          <span class="input-group-text">Nº de Libros</span>
-            <input type="number" aria-label="First name" class="form-control">
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-          <label class="form-check-label" for="inlineCheckbox1">Enguera</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-          <label class="form-check-label" for="inlineCheckbox2">Calpe</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-          <label class="form-check-label" for="inlineCheckbox3">Madrid</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-          <label class="form-check-label" for="inlineCheckbox3">Chalet</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-          <label class="form-check-label" for="inlineCheckbox3">Otras</label>
-        </div>
-
-        <div class="input-group">
-          <span class="input-group-text">Nº Libros por Sede (dropdown)</span>
-            <input type="text" aria-label="First name" class="form-control">
-        </div>
-        <div class="input-group">
-          <span class="input-group-text">Nº de Libros por Categoría (dropdown)</span>
-            <input type="text" aria-label="First name" class="form-control">
-        </div>
-        <div class="input-group">
-          <span class="input-group-text">Nº de Libros por Subcategoría (dropdown)</span>
-            <input type="text" aria-label="First name" class="form-control">
-        </div>
-        <div class="input-group">
-          <span class="input-group-text">Nº de Libros por Idioma (dropdown)</span>
-            <input type="text" aria-label="First name" class="form-control">
-        </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text">Autor</span>
+          <span class="input-group-text">¿Quieres añadir un primer libro?</span>
             <select id="inputState" class="form-select">
-              <option selected>Nombre</option>
-              <option>Anónimo</option>
-              <option>VV.AA.</option>
+              <option selected></option>
+              <option>Sin Colección</option>
+              <option>Colección X</option>
+              <option>Colección Y</option>
+              <option>Colección Z</option>
             </select>
-            <input type="text" aria-label="Author name" class="form-control">
+            <select id="inputState" class="form-select">
+              <option selected></option>
+              <option>Libro 001</option>
+              <option>Libro 002</option>
+              <option>Libro 003</option>
+              <option>Libro 004</option>
+              <option>Libro 005</option>
+              <option>Libro 006</option>
+            </select>
         </div>
 
       <div class="col-12">
-        <button type="submit" class="btn btn-primary">Enviar petición</button>
+        <button type="submit" class="btn btn-primary">Crear Colección</button>
       </div>
     </form>
   </div>
