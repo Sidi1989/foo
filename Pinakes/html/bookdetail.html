@@ -39,24 +39,26 @@
           <h5><%=title%></h5>
           <h7><%=author.name%></h7>
           </div>
-
-          <div class="col-6">
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-              <button type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-angle-left"></i> <p>Anterior</p></button>
-              <button type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-angle-right"></i> <p>Siguiente</p></button>
-            </div>
+          <div class="col-4">
+          <h5><i class="fa-solid fa-location-dot"></i><%=location%></h5>
           </div>
+
           <div class="col">
             <div class="btn-group" role="group">
-              <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-user-gear"></i>
+              <button type="button" class="btn btn-secondary btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-light fa-plus"></i><i class="fa-solid fa-bookmark"></i>
               </button>
-              <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <li><a class="dropdown-item" href="#">Añadir a Mis Colecciones</a></li>
-                <li><a class="dropdown-item" href="#">Añadir a Lecturas en curso</a></li>
-                <li><a class="dropdown-item" href="#">Valorar Libro</a></li>
-                <li><a class="dropdown-item" href="#">Valorar Ejemplar</a></li>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item disabled"><h5>Actualmente en tu "Colección X"</h5></a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Libros sin Colección</a></li>
+                <li><a class="dropdown-item" href="#">Colección Y</a></li>
+                <li><a class="dropdown-item" href="#">Colección Z</a></li>
               </ul>
+              <p> </p>
+              <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary btn-lg">
+              <i class="fa-solid fa-eraser"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -120,58 +122,62 @@
                     <div class="row">
                       <div class="col-sm-3">
                         <img src="https://pbs.twimg.com/profile_images/1358887760/quevedo_reasonably_small.gif" class="img-thumbnail">
-                        <div class="review-block-name"><p class="text-primary">Quevedín</p></div>
-                        <div class="review-block-date">3 de abril de 2022,<br/>hace 2 días</div>
+                        <div class="review-block-name"><p class="text-primary">Sidi</p></div>
+                        <div class="review-block-date">3 de abril de 2022,<br/>hace 9 días</div>
                       </div>
                       <div class="col-sm-9">
                         <div class="review-block-rate">
-                          <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="<%=rating.general%>" aria-valuemin="0" aria-valuemax="10">Libro - <%=rating.general%></div>
+                          <span class="name mb-1 fw-500">Valoración del Libro</span>
+                          <div class="rating">
+                            <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
+                            <output>1</output><i class="fa-solid fa-star"></i>
                           </div>
-                          <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="<%=rating.copy%>" aria-valuemin="0" aria-valuemax="10">Ejemplar - <%=rating.copy%></div>
+                          <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
+                          <div class="rating">
+                            <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
+                            <output>1</output><i class="fa-solid fa-star"></i>
                           </div>
-                        </div>
-                        <div class="review-block-title"><h5>Ahí va mi opinión</h5></div>
                         <div class="review-block-description"><%=comments%></div>
                       </div>
                     </div>
                   </div>
                 </div>
-
+              </div>
                   <div class="carousel-item">
                     <div class="review-block">
                       <div class="row">
                         <div class="col-sm-3">
                           <img src="https://pbs.twimg.com/profile_images/606155435205398528/5JaAG-S5_400x400.jpg" class="img-thumbnail">
-                          <div class="review-block-name"><p class="text-primary">Gongorín</p></div>
-                          <div class="review-block-date">4 de abril de 2022,<br/>hace 1 día</div>
+                          <div class="review-block-name"><p class="text-primary">Esqueleto</p></div>
+                          <div class="review-block-date">4 de abril de 2022,<br/>hace 8 día</div>
                         </div>
                         <div class="col-sm-9">
                           <div class="review-block-rate">
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="<%=rating.general%>" aria-valuemin="0" aria-valuemax="10">Libro - <%=rating.general%></div>
+                            <span class="name mb-1 fw-500">Valoración del Libro</span>
+                            <div class="rating">
+                              <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
+                              <output>1</output><i class="fa-solid fa-star"></i>
                             </div>
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="<%=rating.copy%>" aria-valuemin="0" aria-valuemax="10">Ejemplar - <%=rating.copy%></div>
+                            <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
+                            <div class="rating">
+                              <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
+                              <output>1</output><i class="fa-solid fa-star"></i>
                             </div>
-                          </div>
-                          <div class="review-block-title"><h5>Otra opinión distinta</h5></div>
                           <div class="review-block-description"><%=comments%></div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                     <span class="visually-hidden">Anterior</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                     <span class="visually-hidden">Siguiente</span>
-                    </button>
-
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                 <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                 <span class="visually-hidden">Siguiente</span>
+                </button>
               </div>
             </div>
           </div>
@@ -187,7 +193,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h3 class="mb-3">Otros similares</h3>
+                    <h3 class="mb-3">Otros similares <button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-filter-circle-xmark"></i></button></h3>
                 </div>
             </div>
               <div class="row">

@@ -15,15 +15,46 @@
   <div class="container">
     <div class="row">
       <div class="col-8">
-        <div class="bg-success p-2 text-white">Logo y Nombre</div>
+        <div class="bg-success p-2 text-white">Logo de la Aplicación</div>
       </div>
       <div class="col">
-        <div class="bg-success p-2 text-dark bg-opacity-50">Menú (Navbar)</div>
+
+
+
+        <nav class="navbar navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Menú de Opciones</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">  <i class="fa-solid fa-user-gear"></i> Configuración</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Busca por título, autor, ISBN,...">
+                  <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </nav>
+
       </div>
     </div>
 
     <div class="row">
-      <!-- Columna de Usuarios y Políticas-->
+      <!-- Columna Lateral-->
       <div id="sidebar" class="col-3">
         <!-- Perfil de usuario-->
         <div class="row">
@@ -35,59 +66,196 @@
               <p class="text-primary">Sidi</p>
             </div>
             <div class="row"><i class="fa-solid fa-hourglass"></i>
-              <p class="text-primary">1 año y 4 meses</p>
+              <p class="text-primary">46 días</p>
             </div>
-            <div class="row"><i class="fa-solid fa-book-open"></i>
-              <p class="text-primary">32</p>
+            <div class="row">
+              <div class="col"><i class="fa-solid fa-book-open"></i>
+              <p class="text-primary">8</p>
+              </div>
+              <div class="col"><i class="fa-solid fa-map-pin"></i>
+              <p class="text-primary">2</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Mi Biblioteca-->
+        <!-- Mis Colecciones-->
         <div class="row">
-          <div class="p-3 mb-2 bg-secondary text-white">Mis Colecciones</div>
-
-          <div class="btn-group">
-            <button type="button" class="btn btn-outline-primary" disabled>Literatura española</button>
-            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Novela</a></li>
-              <li><a class="dropdown-item" href="#">Poesía</a></li>
-              <li><a class="dropdown-item" href="#">Teatro</a></li>
-              <li><a class="dropdown-item" href="#">Ensayo</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Cambiar nombre</a></li>
-              <li><a class="dropdown-item" href="#">Borrar libros</a></li>
-            </ul>
+          <div class="p-3 mb-2 bg-secondary text-white">Mis Colecciones
+            <button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-filter-circle-xmark"></i></button>
+            <button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-plus"></i></button>
           </div>
+          <div class="accordion" id="accordionPanelsStayOpenExample">
 
-          <div class="btn-group">
-            <button type="button" class="btn btn-outline-primary" disabled>Literatura extranjera</button>
-            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Novela</a></li>
-              <li><a class="dropdown-item" href="#">Poesía</a></li>
-              <li><a class="dropdown-item" href="#">Teatro</a></li>
-              <li><a class="dropdown-item" href="#">Ensayo</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Cambiar nombre</a></li>
-              <li><a class="dropdown-item" href="#">Borrar libros</a></li>
-            </ul>
+            <div class="accordion-item">
+              <div class="col-9">
+              <div class="accordion-header" id="panelsStayOpen-headingOne">
+              </div>
+              </div>
+              <div class="col">
+                <div class="btn-group" role="group">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                  Horror cósmico<span class="badge bg-secondary rounded-pill">3</span></button>
+                  <div class="btn-group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-arrow-down-wide-short"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                      <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
+                      <li><a class="dropdown-item" href="#">Más recientes</a></li>
+                      <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
+                      <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
+                    </ul>
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-file-signature"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Cambiar nombre</a></li>
+                      <li><a class="dropdown-item" href="#">Eliminar colección</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                  <a href="..." class="list-group-item list-group-item-action"><strong>La llamada de Ctulhu</strong> (H.P.Lovecraft) <i class="fa-solid fa-star"></i></a>
+                  <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
+                  <button type="button" class="btn btn-light"><i class="fa-solid fa-indent"></i></button>
+                  <a href="..." class="list-group-item list-group-item-action"><strong>The colour out of space</strong> (H.P.Lovecraft) </a>
+                  <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
+                  <button type="button" class="btn btn-light"><i class="fa-solid fa-indent"></i></button>
+                  <a href="..." class="list-group-item list-group-item-action"><strong>Las aventuras de Arthur Gordon Pym</strong> (Edgar Allan Poe) </a>
+                  <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
+                  <button type="button" class="btn btn-light"><i class="fa-solid fa-indent"></i></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="col-9">
+              <div class="accordion-header" id="panelsStayOpen-headingTwo">
+              </div>
+              </div>
+              <div class="col">
+                <div class="btn-group" role="group">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+                  Aventuras clásicas<span class="badge bg-secondary rounded-pill">3</span></button>
+                  <div class="btn-group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-arrow-down-wide-short"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                      <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
+                      <li><a class="dropdown-item" href="#">Más recientes</a></li>
+                      <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
+                      <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
+                    </ul>
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-file-signature"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="...">Cambiar nombre</a></li>
+                      <li><a class="dropdown-item" href="...">Eliminar colección</a></li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+                  <a href="..." class="list-group-item list-group-item-action"><strong>La llamada de la selva</strong> (Jack London) <i class="fa-solid fa-star"></i></a>
+                  <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
+                  <button type="button" class="btn btn-light"><i class="fa-solid fa-indent"></i></button>
+                  <a href="..." class="list-group-item list-group-item-action"><strong>El libro de las tierras vírgenes</strong> (Rudyard Kipling) </a>
+                  <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
+                  <button type="button" class="btn btn-light"><i class="fa-solid fa-indent"></i></button>
+                  <a href="..." class="list-group-item list-group-item-action"><strong>La isla misteriosa</strong> (JUlio Verne) <i class="fa-solid fa-star"></i></a>
+                  <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
+                  <button type="button" class="btn btn-light"><i class="fa-solid fa-indent"></i></button>
+                </div>
+              </div>
+            </div>
           </div>
-
         </div>
 
-        <!-- Políticas-->
+        <!-- Libros sin Colección-->
         <div class="row">
-          <div class="p-3 mb-2 bg-secondary text-white">Políticas</div>
+          <div class="p-3 mb-2 bg-secondary text-white">
+
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+              <div class="accordion-item">
+                <div class="accordion-header" id="panelsStayOpen-headingThree"></div>
+                <div class="btn-group" role="group">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
+                  Libros sin Colección<span class="badge bg-secondary rounded-pill">2</span></button>
+                  <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-arrow-down-wide-short"></i>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
+                    <li><a class="dropdown-item" href="#">Más recientes</a></li>
+                    <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
+                    <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
+                  </ul>
+                </div>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                  <div class="accordion-body">
+                    <a href="..." class="list-group-item list-group-item-action"><strong>El corazón de las tinieblas</strong> (Joseph Conrad) </a>
+                    <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
+                    <button type="button" class="btn btn-light"><i class="fa-solid fa-indent"></i></button>
+                    <a href="..." class="list-group-item list-group-item-action"><strong>El talismán</strong> (Walter Scott) <i class="fa-solid fa-star"></i></a>
+                    <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
+                    <button type="button" class="btn btn-light"><i class="fa-solid fa-indent"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Peticiones de Libros-->
+        <div class="row">
+          <div class="p-3 mb-2 bg-dark text-white">
+
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+              <div class="accordion-item">
+                <div class="accordion-header" id="panelsStayOpen-headingFour"></div>
+                <div class="btn-group" role="group">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
+                  Libros en Petición<span class="badge bg-dark rounded-pill">2</span></button>
+                  <button id="btnGroupDrop1" type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-arrow-down-wide-short"></i>
+                  </button>
+                    <button type="button" class="btn btn-dark btn-lg"><i class="fa-solid fa-plus"></i></button>
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
+                    <li><a class="dropdown-item" href="#">Más recientes</a></li>
+                    <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
+                    <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
+                  </ul>
+                </div>
+                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+                  <div class="accordion-body">
+                    <a href="..." class="list-group-item list-group-item-action"><strong>El arenal de Sevilla</strong> (Lope de Vega) </a>
+                    <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
+                    <a href="..." class="list-group-item list-group-item-action"><strong>La Austríada</strong> (Juan Rufo) </a>
+                    <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Términos y Condiciones-->
+        <div class="row">
+          <div class="p-3 mb-2 bg-secondary text-white">Términos y Condiciones</div>
 
           <div class="list-group-flush">
-            <button type="button" class="list-group-item list-group-item-action">Sobre nosotros</button>
-            <button type="button" class="list-group-item list-group-item-action">Contacto</button>
+            <button type="button" class="list-group-item list-group-item-action">Condiciones del servicio</button>
             <button type="button" class="list-group-item list-group-item-action">Política de privacidad</button>
-            <button type="button" class="list-group-item list-group-item-action">Ayuda</button>
+            <button type="button" class="list-group-item list-group-item-action">Sobre Pinakes</button>
+            <button type="button" class="list-group-item list-group-item-action">Contacto</button>
           </div>
 
         </div>
@@ -97,63 +265,53 @@
         <!--Sobre el Libro seleccionado-->
         <div class="row">
           <div class="col">
-            <div class="row">
-            <a href="/bookdetail">
-              <img src="https://pictures.abebooks.com/isbn/9788481097085-es.jpg">
-              <div class="img-fluid"></div>
-            </a>
-            </div>
-            <div class="row">
-            <span class="name mb-1 fw-500">El corazón de las tinieblas</span> <small class="text-black-50">Joseph Conrad</small>
-            </div>
+            <span class="name mb-1 fw-500">El corazón de las tinieblas</span>
+            <p><small class="text-black-50">Joseph Conrad</small></p>
+              <a href="/bookdetail">
+                <img src="https://pictures.abebooks.com/isbn/9788481097085-es.jpg" class="img-fluid" alt="...">
+              </a>
           </div>
 
           <div class="col">
-            <div class="card">
-              <div class="row">
-                <div class="col">
-                    <div class="comment-box ml-2">
-                        <h4>Añadir un comentario</h4>
-                        <div class="rating">
-                          <input type="radio" name="bookrating" value="5" id="5"><label for="5">☆</label>
-                          <input type="radio" name="bookrating" value="4" id="4"><label for="4">☆</label>
-                          <input type="radio" name="bookrating" value="3" id="3"><label for="3">☆</label>
-                          <input type="radio" name="bookrating" value="2" id="2"><label for="2">☆</label>
-                          <input type="radio" name="bookrating" value="1" id="1"><label for="1">☆</label>
-                        </div>
-                        <span class="name mb-1 fw-500">Valoración del Libro</span>
-                        <div class="rating">
-                          <input type="radio" name="issuerating" value="5" id="5"><label for="5">☆</label>
-                          <input type="radio" name="issuerating" value="4" id="4"><label for="4">☆</label>
-                          <input type="radio" name="issuerating" value="3" id="3"><label for="3">☆</label>
-                          <input type="radio" name="issuerating" value="2" id="2"><label for="2">☆</label>
-                          <input type="radio" name="issuerating" value="1" id="1"><label for="1">☆</label>
-                        </div>
-                        <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
-                        <div class="comment-area">
-                          <textarea class="form-control" placeholder="¿Qué opinas?" rows="5"></textarea>
-                        </div>
-                        <div class="comment-btns mt-2">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="pull-right"> <button class="btn btn-success send btn-sm">Enviar <i class="fa fa-long-arrow-right ml-1"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row">
+              <div class="comment-box ml-2">
+
+                <span class="name mb-1 fw-500">Valoración del Libro</span>
+                <div class="rating">
+                  <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
+                  <output>1</output><i class="fa-solid fa-star"></i>
                 </div>
+                <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
+                <div class="rating">
+                  <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
+                  <output>1</output><i class="fa-solid fa-star"></i>
+                </div>
+
+                <div class="comment-area">
+                  <h4>Añadir un comentario</h4>
+                  <textarea class="form-control" placeholder="¿Qué opinas?" rows="5"></textarea>
+                </div>
+
+                <div class="row">
+                  <div class="col"> <button class="btn btn-success send btn-sm">Modificar Valoración
+                    <i class="fa fa-long-arrow-right ml-1"></i></button>
+                  </div>
+                  <div class="col"> <button class="btn btn-success send btn-sm">Guardar Valoración
+                    <i class="fa fa-long-arrow-right ml-1"></i></button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!--Sobre las Lecturas en curso-->
+        <!--Sobre los Libros de la Colección-->
         <div class="row">
           <div class="col">
             <!--Cinta de opciones-->
             <div class="row">
               <div class="col-9">
-                <div class="bg-success p-2 text-dark bg-opacity-25">Lecturas en curso</div>
+                <div class="bg-success p-2 text-dark bg-opacity-25">Otros Libros de la Colección</div>
               </div>
             <div class="col">
               <div class="btn-group" role="group">
@@ -178,7 +336,6 @@
                     <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
                   </ul>
               </div>
-              <button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-plus"></i></button>
             </div>
           </div>
             <!--Contenido-->
@@ -187,9 +344,7 @@
                 <div class="card" style="width: 18rem;">
                   <img src="..." class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <span class="name mb-1 fw-500">Título</span> <small class="text-black-50">Autor <i class="fa-solid fa-star"></i></small>
                   </div>
                 </div>
               </div>
@@ -197,9 +352,7 @@
                 <div class="card" style="width: 18rem;">
                   <img src="..." class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <span class="name mb-1 fw-500">Título</span> <small class="text-black-50">Autor</small>
                   </div>
                 </div>
               </div>
@@ -207,79 +360,7 @@
                 <div class="card" style="width: 18rem;">
                   <img src="..." class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Sobre los Libros valorados-->
-        <div class="row">
-          <div class="col">
-            <!--Cinta de opciones-->
-            <div class="row">
-              <div class="col-9">
-                <div class="bg-success p-2 text-dark bg-opacity-25">Libros valorados</div>
-              </div>
-              <div class="col">
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fa-solid fa-grip"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                      <li><a class="dropdown-item" href="#">Imágenes grandes</a></li>
-                      <li><a class="dropdown-item" href="#">Imágenes pequeñas</a></li>
-                      <li><a class="dropdown-item" href="#">Lista grande</a></li>
-                      <li><a class="dropdown-item" href="#">Lista pequeña</a></li>
-                    </ul>
-                </div>
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fa-solid fa-arrow-down-wide-short"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                      <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
-                      <li><a class="dropdown-item" href="#">Más recientes</a></li>
-                      <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
-                      <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
-                    </ul>
-                </div>
-                <button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-plus"></i></button>
-              </div>
-          </div>
-            <!--Contenido-->
-            <div class="row">
-              <div class="col-4">
-                <div class="card" style="width: 18rem;">
-                  <img src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="card" style="width: 18rem;">
-                  <img src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="card" style="width: 18rem;">
-                  <img src="..." class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <span class="name mb-1 fw-500">Título</span> <small class="text-black-50">Autor <i class="fa-solid fa-star"></i></small>
                   </div>
                 </div>
               </div>
@@ -318,7 +399,6 @@
                       <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
                     </ul>
                   </div>
-                  <button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-plus"></i></button>
                 </div>
           </div>
             <!--Contenido-->
@@ -327,9 +407,7 @@
                 <div class="card" style="width: 18rem;">
                   <img src="..." class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <span class="name mb-1 fw-500">Título</span> <small class="text-black-50">Autor</small>
                   </div>
                 </div>
               </div>
@@ -337,9 +415,7 @@
                 <div class="card" style="width: 18rem;">
                   <img src="..." class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <span class="name mb-1 fw-500">Título</span> <small class="text-black-50">Autor</small>
                   </div>
                 </div>
               </div>
@@ -347,9 +423,7 @@
                 <div class="card" style="width: 18rem;">
                   <img src="..." class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <span class="name mb-1 fw-500">Título</span> <small class="text-black-50">Autor</small>
                   </div>
                 </div>
               </div>
