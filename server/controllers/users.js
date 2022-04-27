@@ -3,17 +3,26 @@ const users = require('./../runtime/db/users.json');
 
 
 
-var userhomeHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/userhome.html`;
 
-  var filteredUsers = users.filter( (e) => {
+var userformHandler= function (req, res) {
+  var pathname = `${__dirname}/../../Pinakes/html/userform.html`;
+  var info;
+
+  res.render(pathname, info);
+};
+
+var userprofileHandler = function (req, res) {
+  var pathname = `${__dirname}/../../Pinakes/html/userprofile.html`;
+
+  var filteredUsers = users.filter(function (e) {
     return (req.params.user == e.id)
   });
 
+  var info;
   if (filteredUsers.length == 0) {
-    var info = {};
+    info = {};
   } else {
-    var info = filteredUsers[0];
+    info = filteredUsers[0];
   };
 
   res.render(pathname, info);
@@ -22,4 +31,6 @@ var userhomeHandler = function (req, res) {
 
 
 
-exports.userhomeHandler = userhomeHandler;
+
+exports.userformHandler = userformHandler;
+exports.userprofileHandler = userprofileHandler;

@@ -3,17 +3,26 @@ const books = require('./../runtime/db/books.json');
 
 
 
-var bookdetailHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/bookdetail.html`;
 
-  var filteredBooks = books.filter( (e) => {
+var bookformHandler= function (req, res) {
+  var pathname = `${__dirname}/../../Pinakes/html/bookform.html`;
+  var info;
+
+  res.render(pathname, info);
+};
+
+var bookprofileHandler = function (req, res) {
+  var pathname = `${__dirname}/../../Pinakes/html/bookprofile.html`;
+
+  var filteredBooks = books.filter(function (e) {
     return (req.params.book == e.id)
   });
 
+  var info;
   if (filteredBooks.length == 0) {
-    var info = {};
+    info = {};
   } else {
-    var info = filteredBooks[0];
+    info = filteredBooks[0];
   };
 
   res.render(pathname, info);
@@ -22,4 +31,6 @@ var bookdetailHandler = function (req, res) {
 
 
 
-exports.bookdetailHandler = bookdetailHandler;
+
+exports.bookformHandler = bookformHandler;
+exports.bookprofileHandler = bookprofileHandler;
