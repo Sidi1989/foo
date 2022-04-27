@@ -1,9 +1,14 @@
-const books = require('./../runtime/db/books.json');
+const books = require('../../runtime/db/books.json');
 
 
 
 
-
+/**
+ * @description
+ * Una función destinada a...
+ *
+ * @param req String. Parámetro que contiene la información de la petición
+ */
 var bookformHandler= function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/bookform.html`;
   var info;
@@ -11,6 +16,10 @@ var bookformHandler= function (req, res) {
   res.render(pathname, info);
 };
 
+
+/**
+ * @description
+ */
 var bookprofileHandler = function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/bookprofile.html`;
 

@@ -1,4 +1,4 @@
-const users = require('./../runtime/db/users.json');
+const users = require('../../runtime/db/users.json');
 
 
 

@@ -1,12 +1,12 @@
 const fs = require('fs');
 const express = require('express');
 const {renderFile} = require('ejs');
-const {bookformHandler}= require('./controllers/books.js');
-const {bookprofilelHandler}= require('./controllers/books.js');
-const {collectionformHandler}= require('./controllers/collections.js');
-const {petitionformHandler}= require('./controllers/petitions.js');
-const {userformHandler}= require('./controllers/users.js');
-const {userprofileHandler}= require('./controllers/users.js');
+const {bookformHandler} = require('./controllers/books.js');
+const {bookprofileHandler} = require('./controllers/books.js');
+const {collectionformHandler} = require('./controllers/collections.js');
+const {petitionformHandler} = require('./controllers/petitions.js');
+const {userformHandler} = require('./controllers/users.js');
+const {userprofileHandler} = require('./controllers/users.js');
 
 
 

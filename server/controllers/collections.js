@@ -1,4 +1,4 @@
-const collections = require('./../runtime/db/collections.json');
+const collections = require('../../runtime/db/collections.json');
 
 
 
