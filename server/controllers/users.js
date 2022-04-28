@@ -1,4 +1,4 @@
-const users = require('../../runtime/db/users.json');
+const {getUserById} = require('../models/books.js');
 
 
 
@@ -43,15 +43,13 @@ var userloginHandler= function (req, res) {
 var userprofileHandler = function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/userprofile.html`;
 
-  var filteredUsers = users.filter(function (e) {
-    return (req.params.user == e.id)
-  });
+  var user = getUserById(req.params.user);
 
   var info = {};
-  if (filteredUsers.length == 0) {
+  if (user == null) {
     info.user = {};
   } else {
-    info.user = filteredUsers[0];
+    info.user = user;
   };
 
   res.render(pathname, info);

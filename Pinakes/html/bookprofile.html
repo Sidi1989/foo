@@ -2,7 +2,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pinakes - <%=title%></title>
+  <title>Pinakes - <%=book.title%></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <link rel="stylesheet" href="./../css/bookprofile.css">
@@ -17,17 +17,17 @@
       <!-- Columna de la Foto-->
       <div class="col-3">
         <div class="row">
-          <img class="img-fluid" alt="200x280" src="<%=pictures%>">
+          <img class="img-fluid" alt="200x280" src="<%=book.picture.main%>">
         </div>
         <div class="row">
           <div class="col-4">
-            <img class="img-thumbnail" alt="75%x200" src="https://pictures.abebooks.com/isbn/9788481097085-es.jpg">
+            <img class="img-thumbnail" alt="75%x200" src="<%=book.picture.others[0]%>">
           </div>
           <div class="col-4">
-            <img class="img-thumbnail" alt="75%x200" src="https://images-na.ssl-images-amazon.com/images/I/719Kd5q78uL.jpg">
+            <img class="img-thumbnail" alt="75%x200" src="<%=book.picture.others[1]%>">
           </div>
           <div class="col-4">
-            <img class="img-thumbnail" alt="75%x200" src="https://librosdelzorrorojo.com/wp-content/uploads/2017/05/ElCorazo%CC%81nDeLasTinieblas_Interior04-01.png">
+            <img class="img-thumbnail" alt="75%x200" src="<%=book.picture.others[2]%>">
           </div>
         </div>
       </div>
@@ -35,15 +35,15 @@
       <!--Columna de la Información-->
       <div class="col-9">
         <div class="row">
-          <div class="col-4">
-          <h5><%=title%></h5>
-          <h7><%=author.name%></h7>
+          <div class="col-5">
+          <h4><%=book.title%></h4>
+          <h6><%=book.author.name%></h6>
           </div>
-          <div class="col-4">
-          <h5><i class="fa-solid fa-location-dot"></i><%=location%></h5>
+          <div class="col-5">
+          <h5><i class="fa-solid fa-location-dot"></i><%=book.location%></h5>
           </div>
 
-          <div class="col">
+          <div class="col-2">
             <div class="btn-group" role="group">
               <button type="button" class="btn btn-secondary btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-light fa-plus"></i><i class="fa-solid fa-bookmark"></i>
@@ -68,7 +68,7 @@
           <div class="p-2 bg-light border">
             <div class="row">
               <h5>Sinopsis:</h5>
-              <p><%=sinopsis%></p>
+              <p><%=book.synopsis%></p>
             </div>
           </div>
         </div>
@@ -81,31 +81,31 @@
               <div class="p-2 bg-light border">
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-copy"></i></div>
-                  <div class="col-10"><%=pages%> Pgs</div>
+                  <div class="col-10"><%=book.pages%> Pgs</div>
                 </div>
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-ruler-combined"></i></div>
-                  <div class="col-10"><%=dimensions.length%> x <%=dimensions.width%> Cms</div>
+                  <div class="col-10"><%=book.dimensions.length%> x <%=book.dimensions.width%> Cms</div>
                 </div>
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-book"></i></div>
-                  <div class="col-10"><%=format%></div>
+                  <div class="col-10"><%=book.format%></div>
                 </div>
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-language"></i></div>
-                  <div class="col-10"><%=language%></div>
+                  <div class="col-10"><%=book.language%></div>
                 </div>
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-building"></i></div>
-                  <div class="col-10"><%=editorial%></div>
+                  <div class="col-10"><%=book.editorial%></div>
                 </div>
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-calendar-days"></i></div>
-                  <div class="col-10"><%=publishDate%></div>
+                  <div class="col-10"><%=book.publishDate%></div>
                 </div>
                 <div class="row">
                   <div class="col"><i class="fa-solid fa-barcode"></i></div>
-                  <div class="col-10"><%=isbn || 'No disponible'%></div>
+                  <div class="col-10"><%=book.isbn || 'No disponible'%></div>
                 </div>
               </div>
             </div>
@@ -114,76 +114,111 @@
         <div class="col-7">
           <div class="row">
 
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <!-- CAROUSEL DE REVIEWS -->
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Review 01"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Review 02"></button>
+              </div>
               <div class="carousel-inner">
 
-                <div class="carousel-item active">
+              <% book.reviews.forEach(function(e,i){ %>
+                <div class="carousel-item <% if (i==0) { %>active<% } %>">
                   <div class="review-block">
                     <div class="row">
                       <div class="col-sm-3">
-                        <img src="https://pbs.twimg.com/profile_images/1358887760/quevedo_reasonably_small.gif" class="img-thumbnail">
-                        <div class="review-block-name"><p class="text-primary">Sidi</p></div>
-                        <div class="review-block-date">3 de abril de 2022,<br/>hace 9 días</div>
+                        <img src="<%=e.reviewerPic%>" class="img-thumbnail">
+                        <div class="review-block-name"><p class="text-primary"><%=e.reviewerNickname%></p></div>
+                        <div class="review-block-date"><%=e.age%></div>
                       </div>
                       <div class="col-sm-9">
                         <div class="review-block-rate">
                           <span class="name mb-1 fw-500">Valoración del Libro</span>
                           <div class="rating">
-                            <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
-                            <output>1</output><i class="fa-solid fa-star"></i>
+                            <input type="range" value="<%=e.bookRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value">
+                            <output><%=e.bookRate%></output><i class="fa-solid fa-star"></i>
                           </div>
                           <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
                           <div class="rating">
-                            <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
-                            <output>1</output><i class="fa-solid fa-star"></i>
+                            <input type="range" value="<%=e.copyRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value">
+                            <output><%=e.copyRate%></output><i class="fa-solid fa-star"></i>
                           </div>
-                        <div class="review-block-description"><%=comments%></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-                  <div class="carousel-item">
-                    <div class="review-block">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <img src="https://pbs.twimg.com/profile_images/606155435205398528/5JaAG-S5_400x400.jpg" class="img-thumbnail">
-                          <div class="review-block-name"><p class="text-primary">Esqueleto</p></div>
-                          <div class="review-block-date">4 de abril de 2022,<br/>hace 8 día</div>
-                        </div>
-                        <div class="col-sm-9">
-                          <div class="review-block-rate">
-                            <span class="name mb-1 fw-500">Valoración del Libro</span>
-                            <div class="rating">
-                              <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
-                              <output>1</output><i class="fa-solid fa-star"></i>
-                            </div>
-                            <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
-                            <div class="rating">
-                              <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
-                              <output>1</output><i class="fa-solid fa-star"></i>
-                            </div>
-                          <div class="review-block-description"><%=comments%></div>
+                          <div class="review-block-description"><%=e.comment%></div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              <% }) %>
+                <!-- <div class="carousel-item active">
+                  <div class="review-block">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <img src="<%=book.reviews[0].reviewerPic%>" class="img-thumbnail">
+                        <div class="review-block-name"><p class="text-primary"><%=book.reviews[0].reviewerNickname%></p></div>
+                        <div class="review-block-date"><%=book.reviews[0].age%></div>
+                      </div>
+                      <div class="col-sm-9">
+                        <div class="review-block-rate">
+                          <span class="name mb-1 fw-500">Valoración del Libro</span>
+                          <div class="rating">
+                            <input type="range" value="<%=book.reviews[0].bookRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value">
+                            <output><%=book.reviews[0].bookRate%></output><i class="fa-solid fa-star"></i>
+                          </div>
+                          <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
+                          <div class="rating">
+                            <input type="range" value="<%=book.reviews[0].copyRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value">
+                            <output><%=book.reviews[0].copyRate%></output><i class="fa-solid fa-star"></i>
+                          </div>
+                          <div class="review-block-description"><%=book.reviews[0].comment%></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="review-block">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <img src="<%=book.reviews[1].reviewerPic%>" class="img-thumbnail">
+                        <div class="review-block-name"><p class="text-primary"><%=book.reviews[1].reviewerNickname%></p></div>
+                        <div class="review-block-date"><%=book.reviews[1].age%></div>
+                      </div>
+                      <div class="col-sm-9">
+                        <div class="review-block-rate">
+                          <span class="name mb-1 fw-500">Valoración del Libro</span>
+                          <div class="rating">
+                            <input type="range" value="<%=book.reviews[1].bookRate%>" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
+                            <output><%=book.reviews[1].bookRate%></output><i class="fa-solid fa-star"></i>
+                          </div>
+                          <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
+                          <div class="rating">
+                            <input type="range" value="<%=book.reviews[1].copyRate%>" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
+                            <output><%=book.reviews[1].copyRate%></output><i class="fa-solid fa-star"></i>
+                          </div>
+                          <div class="review-block-description"><%=book.reviews[1].comment%></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                 <span class="visually-hidden">Anterior</span>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Anterior</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                 <span class="visually-hidden">Siguiente</span>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Siguiente</span>
                 </button>
               </div>
             </div>
+            <!-- END CAROUSEL DE REVIEWS -->
+
           </div>
         </div>
       </div>
-      </div>
+    </div>
   </div>
 
   <!-- Fila de Sugerencias-->

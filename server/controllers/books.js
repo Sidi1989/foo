@@ -1,4 +1,4 @@
-const books = require('../../runtime/db/books.json');
+const {getBookById} = require('../models/books.js');
 
 
 
@@ -43,15 +43,13 @@ var booksearchHandler= function (req, res) {
 var bookprofileHandler = function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/bookprofile.html`;
 
-  var filteredBooks = books.filter(function (e) {
-    return (req.params.book == e.id)
-  });
+  var book = getBookById(req.params.book);
 
   var info = {};
-  if (filteredBooks.length == 0) {
+  if (book == null) {
     info.book = {};
   } else {
-    info.book = filteredBooks[0];
+    info.book = book;
   };
 
   res.render(pathname, info);
