@@ -5,13 +5,14 @@ const books = require('../../runtime/db/books.json');
 
 /**
  * @description
- * Una función destinada a...
+ * Función destinada a cubrir la petición de Registrar un nuevo libro
  *
- * @param req String. Parámetro que contiene la información de la petición
+ * @param req Contiene la información de la petición
+ * @param res Contiene la renderización de la petición para el cliente
  */
 var bookformHandler= function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/bookform.html`;
-  var info;
+  var info = {};
 
   res.render(pathname, info);
 };
@@ -19,6 +20,25 @@ var bookformHandler= function (req, res) {
 
 /**
  * @description
+ * Función destinada a cubrir la petición de Búsqueda de un nuevo libro
+ *
+ * @param req Contiene la información de la petición
+ * @param res Contiene la renderización de la petición para el cliente
+ */
+var booksearchHandler= function (req, res) {
+  var pathname = `${__dirname}/../../Pinakes/html/booksearch.html`;
+  var info = {};
+
+  res.render(pathname, info);
+};
+
+
+/**
+ * @description
+ * Función destinada a cubrir la petición de Información sobre un libro concreto
+ *
+ * @param req Contiene la información de la petición
+ * @param res Contiene la renderización de la petición para el cliente
  */
 var bookprofileHandler = function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/bookprofile.html`;
@@ -27,11 +47,11 @@ var bookprofileHandler = function (req, res) {
     return (req.params.book == e.id)
   });
 
-  var info;
+  var info = {};
   if (filteredBooks.length == 0) {
-    info = {};
+    info.book = {};
   } else {
-    info = filteredBooks[0];
+    info.book = filteredBooks[0];
   };
 
   res.render(pathname, info);
@@ -40,6 +60,6 @@ var bookprofileHandler = function (req, res) {
 
 
 
-
 exports.bookformHandler = bookformHandler;
+exports.booksearchHandler = booksearchHandler;
 exports.bookprofileHandler = bookprofileHandler;
