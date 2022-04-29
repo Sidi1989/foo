@@ -11,45 +11,9 @@
 
 
 <body>
-  <!-- Header-->
   <div class="container">
-    <div class="row">
-      <div class="col-8">
-        <div class="bg-success p-4 text-white">Logo de la Aplicación</div>
-      </div>
-      <div class="col">
-        <!-- Menú de Opciones-->
-        <nav class="navbar navbar-light bg-light">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Menú de Opciones</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-              <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#">  <i class="fa-solid fa-user-gear"></i> Configuración</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#">
-                      <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </div>
+    <!-- Header-->
+    <%- include('./partials/header.html', {}); %>
 
     <div class="row">
       <!-- Columna Lateral-->
