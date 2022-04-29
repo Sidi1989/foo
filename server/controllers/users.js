@@ -1,6 +1,6 @@
 const {getUserById} = require('../models/users.js');
 const {getBookById} = require('../models/books.js');
-
+const {getCollectionById} = require('../models/collections.js');
 
 
 
@@ -61,6 +61,18 @@ var userprofileHandler = function (req, res) {
   } else {
     info.lastBookRead = lastBookRead;
   };
+
+  var lastBookReadCollectionId = lastBookRead.collection;
+  var lastBookReadCollection = getCollectionById(lastBookReadCollectionId);
+  
+  info.lastBookReadCollection = lastBookReadCollection;
+
+  var otherBooksInCollection = lastBookReadCollection.books.map((e,i) => {
+    var book = getBookById(e);
+    return book;
+  });
+
+  info.otherBooksInCollection = otherBooksInCollection;
 
   res.render(pathname, info);
 };

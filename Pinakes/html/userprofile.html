@@ -274,7 +274,7 @@
             <!--Cinta de opciones-->
             <div class="row">
               <div class="col-9">
-                <div class="bg-success p-2 text-dark bg-opacity-25">Otros Libros de la misma Colección</div>
+                <div class="bg-success p-2 text-dark bg-opacity-25">Otros Libros en "<%=lastBookReadCollection.name%>"</div>
               </div>
             <div class="col">
               <div class="btn-group" role="group">
@@ -307,7 +307,7 @@
                 <div class="card text-center" style="width: 16rem;">
                   <img src="..." class="card-img-top" alt="Libro de la Coleción 01">
                   <div class="card-body">
-                    <span class="name mb-1 fw-500">Título</span> <small class="text-black-50">Autor <i class="fa-solid fa-star"></i></small>
+                    <span class="name mb-1 fw-500"><%=otherBooksInCollection[0].title%></span> <small class="text-black-50"><%=otherBooksInCollection[0].author.name%> <i class="fa-solid fa-star"></i></small>
                   </div>
                 </div>
               </div>
@@ -315,7 +315,7 @@
                 <div class="card text-center" style="width: 16rem;">
                   <img src="..." class="card-img-top" alt="Libro de la Coleción 02">
                   <div class="card-body">
-                    <span class="name mb-1 fw-500">Título</span> <small class="text-black-50">Autor</small>
+                    <span class="name mb-1 fw-500"><%=otherBooksInCollection[1].title%></span> <small class="text-black-50"><%=otherBooksInCollection[1].author.name%> </small>
                   </div>
                 </div>
               </div>
@@ -323,7 +323,7 @@
                 <div class="card text-center" style="width: 16rem;">
                   <img src="..." class="card-img-top" alt="Libro de la Coleción 03">
                   <div class="card-body">
-                    <span class="name mb-1 fw-500">Título</span> <small class="text-black-50">Autor <i class="fa-solid fa-star"></i></small>
+                    <span class="name mb-1 fw-500"><%=otherBooksInCollection[2].title%></span> <small class="text-black-50"><%=otherBooksInCollection[2].author.name%> <i class="fa-solid fa-star"></i></small>
                   </div>
                 </div>
               </div>
