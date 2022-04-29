@@ -17,17 +17,17 @@
       <!-- Columna de la Foto-->
       <div class="col-3">
         <div class="row">
-          <img class="img-fluid" alt="200x280" src="<%=book.picture.main%>">
+          <img class="img-fluid" alt="Foto principal" src="<%=book.picture.main%>">
         </div>
         <div class="row">
           <div class="col-4">
-            <img class="img-thumbnail" alt="75%x200" src="<%=book.picture.others[0]%>">
+            <img class="img-thumbnail" alt="Foto alternativa 01" src="<%=book.picture.others[0]%>">
           </div>
           <div class="col-4">
-            <img class="img-thumbnail" alt="75%x200" src="<%=book.picture.others[1]%>">
+            <img class="img-thumbnail" alt="Foto alternativa 02" src="<%=book.picture.others[1]%>">
           </div>
           <div class="col-4">
-            <img class="img-thumbnail" alt="75%x200" src="<%=book.picture.others[2]%>">
+            <img class="img-thumbnail" alt="Foto alternativa 03" src="<%=book.picture.others[2]%>">
           </div>
         </div>
       </div>
@@ -35,11 +35,11 @@
       <!--Columna de la Información-->
       <div class="col-9">
         <div class="row">
-          <div class="col-5">
+          <div class="col-7">
           <h4><%=book.title%></h4>
           <h6><%=book.author.name%></h6>
           </div>
-          <div class="col-5">
+          <div class="col-3">
           <h5><i class="fa-solid fa-location-dot"></i><%=book.location%></h5>
           </div>
 
@@ -56,7 +56,7 @@
                 <li><a class="dropdown-item" href="#">Colección Z</a></li>
               </ul>
               <p> </p>
-              <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary btn-lg">
+              <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary btn-lg" disabled>
               <i class="fa-solid fa-eraser"></i>
               </button>
             </div>
@@ -129,18 +129,18 @@
                       <div class="col-sm-3">
                         <img src="<%=e.reviewerPic%>" class="img-thumbnail">
                         <div class="review-block-name"><p class="text-primary"><%=e.reviewerNickname%></p></div>
-                        <div class="review-block-date"><%=e.age%></div>
+                        <div class="review-block-date">Hace <%=e.age%> días</div>
                       </div>
                       <div class="col-sm-9">
                         <div class="review-block-rate">
                           <span class="name mb-1 fw-500">Valoración del Libro</span>
                           <div class="rating">
-                            <input type="range" value="<%=e.bookRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value">
+                            <input type="range" value="<%=e.bookRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
                             <output><%=e.bookRate%></output><i class="fa-solid fa-star"></i>
                           </div>
                           <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
                           <div class="rating">
-                            <input type="range" value="<%=e.copyRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value">
+                            <input type="range" value="<%=e.copyRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
                             <output><%=e.copyRate%></output><i class="fa-solid fa-star"></i>
                           </div>
                           <div class="review-block-description"><%=e.comment%></div>
@@ -150,66 +150,12 @@
                   </div>
                 </div>
               <% }) %>
-                <!-- <div class="carousel-item active">
-                  <div class="review-block">
-                    <div class="row">
-                      <div class="col-sm-3">
-                        <img src="<%=book.reviews[0].reviewerPic%>" class="img-thumbnail">
-                        <div class="review-block-name"><p class="text-primary"><%=book.reviews[0].reviewerNickname%></p></div>
-                        <div class="review-block-date"><%=book.reviews[0].age%></div>
-                      </div>
-                      <div class="col-sm-9">
-                        <div class="review-block-rate">
-                          <span class="name mb-1 fw-500">Valoración del Libro</span>
-                          <div class="rating">
-                            <input type="range" value="<%=book.reviews[0].bookRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value">
-                            <output><%=book.reviews[0].bookRate%></output><i class="fa-solid fa-star"></i>
-                          </div>
-                          <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
-                          <div class="rating">
-                            <input type="range" value="<%=book.reviews[0].copyRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value">
-                            <output><%=book.reviews[0].copyRate%></output><i class="fa-solid fa-star"></i>
-                          </div>
-                          <div class="review-block-description"><%=book.reviews[0].comment%></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="review-block">
-                    <div class="row">
-                      <div class="col-sm-3">
-                        <img src="<%=book.reviews[1].reviewerPic%>" class="img-thumbnail">
-                        <div class="review-block-name"><p class="text-primary"><%=book.reviews[1].reviewerNickname%></p></div>
-                        <div class="review-block-date"><%=book.reviews[1].age%></div>
-                      </div>
-                      <div class="col-sm-9">
-                        <div class="review-block-rate">
-                          <span class="name mb-1 fw-500">Valoración del Libro</span>
-                          <div class="rating">
-                            <input type="range" value="<%=book.reviews[1].bookRate%>" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
-                            <output><%=book.reviews[1].bookRate%></output><i class="fa-solid fa-star"></i>
-                          </div>
-                          <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
-                          <div class="rating">
-                            <input type="range" value="<%=book.reviews[1].copyRate%>" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
-                            <output><%=book.reviews[1].copyRate%></output><i class="fa-solid fa-star"></i>
-                          </div>
-                          <div class="review-block-description"><%=book.reviews[1].comment%></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
 
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Anterior</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Siguiente</span>
                 </button>
               </div>
             </div>
@@ -232,14 +178,19 @@
                 </div>
             </div>
               <div class="row">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <!-- Carrusel de libros propuestos -->
 
+                <div id="carouselExampleDark" class="carousel carousel-dark slide" data-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"></button>
+                    </div>
                       <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="row">
                                 <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280" src="https://pictures.abebooks.com/inventory/md/md31117706379.jpg">
+                                    <div class="card text-center" style="width: 12rem;">
+                                        <img class="card-img-top" alt="Libro propuesto 01" src="https://pictures.abebooks.com/inventory/md/md31117706379.jpg">
                                         <div class="card-body">
                                             <h4 class="card-title">Lord Jim</h4>
                                             <h8 class="card-text">Joseph Conrad</h8>
@@ -247,8 +198,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280" src="https://imagessl5.casadellibro.com/a/l/t5/35/9788439725435.jpg">
+                                    <div class="card text-center" style="width: 12rem;">
+                                        <img class="card-img-top" alt="Libro propuesto 02" src="https://imagessl5.casadellibro.com/a/l/t5/35/9788439725435.jpg">
                                         <div class="card-body">
                                             <h4 class="card-title">El lobo de mar</h4>
                                             <h8 class="card-text">Jack London</h8>
@@ -256,8 +207,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280" src="https://imagessl2.casadellibro.com/a/l/t5/02/9788477027102.jpg">
+                                    <div class="card text-center" style="width: 12rem;">
+                                        <img class="card-img-top" alt="Libro propuesto 03" src="https://imagessl2.casadellibro.com/a/l/t5/02/9788477027102.jpg">
                                         <div class="card-body">
                                             <h4 class="card-title">Moby Dick</h4>
                                             <h8 class="card-text">Herman Melville</h8>
@@ -270,8 +221,8 @@
                         <div class="carousel-item">
                             <div class="row">
                                 <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280" src="https://pictures.abebooks.com/inventory/md/md30847479434.jpg">
+                                    <div class="card text-center" style="width: 12rem;">
+                                        <img class="card-img-top" alt="Libro propuesto 04" src="https://pictures.abebooks.com/inventory/md/md30847479434.jpg">
                                         <div class="card-body">
                                             <h4 class="card-title">La narración de Arthur Gordon Pym</h4>
                                             <h8 class="card-text">Edgar Allan Poe</h8>
@@ -279,8 +230,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280" src="https://imagessl7.casadellibro.com/a/l/t5/57/9788466747257.jpg">
+                                    <div class="card text-center" style="width: 12rem;">
+                                        <img class="card-img-top" alt="Libro propuesto 05" src="https://imagessl7.casadellibro.com/a/l/t5/57/9788466747257.jpg">
                                         <div class="card-body">
                                             <h4 class="card-title">La esfinge de los hielos</h4>
                                             <h8 class="card-text">Julio Verne</h8>
@@ -288,8 +239,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280" src="https://pictures.abebooks.com/inventory/md/md1405946102.jpg">
+                                    <div class="card text-center" style="width: 12rem;">
+                                        <img class="card-img-top" alt="Libro propuesto 06" src="https://pictures.abebooks.com/inventory/md/md1405946102.jpg">
                                         <div class="card-body">
                                             <h4 class="card-title">Discurso de mi vida</h4>
                                             <h8 class="card-text">Alonso de Contreras</h8>
@@ -299,15 +250,13 @@
                             </div>
                         </div>
                     </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                     <span class="visually-hidden">Anterior</span>
-                   </button>
-                   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                     <span class="visually-hidden">Siguiente</span>
-                   </button>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </button>
+                    <!-- End Carrusel de libros propuestos -->
 
                   </div>
                 </div>

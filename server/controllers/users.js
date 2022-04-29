@@ -1,4 +1,4 @@
-const {getUserById} = require('../models/books.js');
+const {getUserById} = require('../models/users.js');
 
 
 
