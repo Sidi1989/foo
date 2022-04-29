@@ -115,10 +115,10 @@
           <div class="row">
 
             <!-- CAROUSEL DE REVIEWS -->
-            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-ride="carousel">
+            <div id="carouselExampleDark1" class="carousel carousel-dark slide" data-ride="carousel">
               <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Review 01"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Review 02"></button>
+                <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Review 01"></button>
+                <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="1" aria-label="Review 02"></button>
               </div>
               <div class="carousel-inner">
 
@@ -128,7 +128,7 @@
                     <div class="row">
                       <div class="col-sm-3">
                         <img src="<%=e.reviewerPic%>" class="img-thumbnail">
-                        <div class="review-block-name"><p class="text-primary"><%=e.reviewerNickname%></p></div>
+                        <div class="review-block-name"><a href="/auth/new"<p class="text-primary"><%=e.reviewerNickname%></p></a></div>
                         <div class="review-block-date">Hace <%=e.age%> días</div>
                       </div>
                       <div class="col-sm-9">
@@ -151,10 +151,10 @@
                 </div>
               <% }) %>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark1" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark1" data-bs-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 </button>
               </div>
@@ -180,16 +180,16 @@
               <div class="row">
                 <!-- Carrusel de libros propuestos -->
 
-                <div id="carouselExampleDark" class="carousel carousel-dark slide" data-ride="carousel">
+                <div id="carouselExampleDark2" class="carousel carousel-dark slide" data-ride="carousel">
                     <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true"></button>
-                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="1"></button>
                     </div>
                       <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="row">
                                 <div class="col-md-4 mb-3">
-                                    <div class="card text-center" style="width: 12rem;">
+                                    <div class="card text-center" style="width: 10rem;">
                                         <img class="card-img-top" alt="Libro propuesto 01" src="https://pictures.abebooks.com/inventory/md/md31117706379.jpg">
                                         <div class="card-body">
                                             <h4 class="card-title">Lord Jim</h4>
@@ -198,7 +198,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <div class="card text-center" style="width: 12rem;">
+                                    <div class="card text-center" style="width: 10rem;">
                                         <img class="card-img-top" alt="Libro propuesto 02" src="https://imagessl5.casadellibro.com/a/l/t5/35/9788439725435.jpg">
                                         <div class="card-body">
                                             <h4 class="card-title">El lobo de mar</h4>
@@ -207,7 +207,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <div class="card text-center" style="width: 12rem;">
+                                    <div class="card text-center" style="width: 10rem;">
                                         <img class="card-img-top" alt="Libro propuesto 03" src="https://imagessl2.casadellibro.com/a/l/t5/02/9788477027102.jpg">
                                         <div class="card-body">
                                             <h4 class="card-title">Moby Dick</h4>
@@ -221,7 +221,7 @@
                         <div class="carousel-item">
                             <div class="row">
                                 <div class="col-md-4 mb-3">
-                                    <div class="card text-center" style="width: 12rem;">
+                                    <div class="card text-center" style="width: 10rem;">
                                         <img class="card-img-top" alt="Libro propuesto 04" src="https://pictures.abebooks.com/inventory/md/md30847479434.jpg">
                                         <div class="card-body">
                                             <h4 class="card-title">La narración de Arthur Gordon Pym</h4>
@@ -230,7 +230,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <div class="card text-center" style="width: 12rem;">
+                                    <div class="card text-center" style="width: 10rem;">
                                         <img class="card-img-top" alt="Libro propuesto 05" src="https://imagessl7.casadellibro.com/a/l/t5/57/9788466747257.jpg">
                                         <div class="card-body">
                                             <h4 class="card-title">La esfinge de los hielos</h4>
@@ -239,7 +239,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <div class="card text-center" style="width: 12rem;">
+                                    <div class="card text-center" style="width: 10rem;">
                                         <img class="card-img-top" alt="Libro propuesto 06" src="https://pictures.abebooks.com/inventory/md/md1405946102.jpg">
                                         <div class="card-body">
                                             <h4 class="card-title">Discurso de mi vida</h4>
@@ -249,19 +249,18 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     </button>
                     <!-- End Carrusel de libros propuestos -->
-
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
   </div>
 
 </div>
