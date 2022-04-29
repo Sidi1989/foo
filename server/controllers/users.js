@@ -1,4 +1,5 @@
 const {getUserById} = require('../models/users.js');
+const {getBookById} = require('../models/books.js');
 
 
 
@@ -50,6 +51,15 @@ var userprofileHandler = function (req, res) {
     info.user = {};
   } else {
     info.user = user;
+  };
+
+  var lastBookReadId = user.lastBookRead;
+  var lastBookRead = getBookById(lastBookReadId);
+
+  if (lastBookRead == null) {
+    info.lastBookRead = {};
+  } else {
+    info.lastBookRead = lastBookRead;
   };
 
   res.render(pathname, info);

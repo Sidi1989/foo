@@ -226,12 +226,13 @@
         <!--Sobre el Libro seleccionado-->
         <div class="row">
           <div class="col">
-            <div class="card text-center" style="width: 16rem;">
+
+            <div class="card text-center" style="width:16rem;">
               <div class="card-header">
-                <span class="name mb-1 fw-500">El corazón de las tinieblas</span> <small class="text-black-50">Joseph Conrad<i class="fa-solid fa-star"></i></small>
+                <span class="name mb-1 fw-500"><%=lastBookRead.title%></span> <small class="text-black-50"><%=lastBookRead.author.name%><i class="fa-solid fa-star"></i></small>
               </div>
               <a href="/books/new">
-                <img src="https://pictures.abebooks.com/isbn/9788481097085-es.jpg" class="card-img-top" alt="Libro Seleccionado">
+                <img src="<%=lastBookRead.picture.main%>" class="card-img-top" alt="Libro Seleccionado">
               </a>
             </div>
           </div>
@@ -273,7 +274,7 @@
             <!--Cinta de opciones-->
             <div class="row">
               <div class="col-9">
-                <div class="bg-success p-2 text-dark bg-opacity-25">Otros Libros de la Colección</div>
+                <div class="bg-success p-2 text-dark bg-opacity-25">Otros Libros de la misma Colección</div>
               </div>
             <div class="col">
               <div class="btn-group" role="group">
