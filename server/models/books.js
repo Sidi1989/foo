@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const books = require('../../runtime/db/books.json');
 
 
@@ -18,6 +19,17 @@ var getBookById = function (id) {
 };
 
 
+var getRandomBooks = function (quantity) {
+  var filteredBooks = books.filter(function (e,i) {
+    var aleas = Math.random();
+    return (aleas > 0.5);
+  });
+
+  var filteredTakenBooks = _.take(filteredBooks, quantity);
+  return filteredTakenBooks;
+};
+
 
 
 exports.getBookById = getBookById;
+exports.getRandomBooks = getRandomBooks;

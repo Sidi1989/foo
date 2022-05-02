@@ -36,7 +36,6 @@ app.get('/users/:user', userprofileHandler);
 //Añadir criba de colecciones a collectionform
 //Crear los bucles de los géneros en bookform y petitionform
 //Problema en bookprofile con sede y reviews
-//Rutas public de header y footer, y problema con footer
 
 
 app.listen(port, function () {
