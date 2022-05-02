@@ -12,7 +12,7 @@ const {getCollectionById} = require('../models/collections.js');
  * @param res Contiene la renderización de la petición para el cliente
  */
 var userformHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/userform.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/userform.html`;
   var info = {};
 
   res.render(pathname, info);
@@ -27,7 +27,7 @@ var userformHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var userloginHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/userlogin.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/userlogin.html`;
   var info = {};
 
   res.render(pathname, info);
@@ -42,7 +42,7 @@ var userloginHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var userprofileHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/userprofile.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/userprofile.html`;
 
   var user = getUserById(req.params.user);
 
@@ -52,6 +52,7 @@ var userprofileHandler = function (req, res) {
   } else {
     info.user = user;
   };
+
 
   var lastBookReadId = user.lastBookRead;
   var lastBookRead = getBookById(lastBookReadId);
@@ -63,11 +64,16 @@ var userprofileHandler = function (req, res) {
   };
 
   var lastBookReadCollectionId = lastBookRead.collection;
-  var lastBookReadCollection = getCollectionById(lastBookReadCollectionId);
-  
-  info.lastBookReadCollection = lastBookReadCollection;
 
-  var otherBooksInCollection = lastBookReadCollection.books.map((e,i) => {
+  var lastBookReadCollection = getCollectionById(lastBookReadCollectionId);
+  if (lastBookReadCollection == null) {
+    info.lastBookReadCollection = {};
+  } else {
+    info.lastBookReadCollection = lastBookReadCollection;
+  };
+
+
+  var otherBooksInCollection = lastBookReadCollection.books.map(function (e) {
     var book = getBookById(e);
     return book;
   });
