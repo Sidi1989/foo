@@ -11,7 +11,7 @@ const collections = require('../../runtime/db/petitions.json');
  * @param res Contiene la renderización de la petición para el cliente
  */
 var petitionformHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/petitionform.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/petitionform.html`;
   var info = {};
 
   res.render(pathname, info);

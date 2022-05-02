@@ -23,6 +23,9 @@ app.get('/auth', userloginHandler);
 app.get('/auth/new', userformHandler);
 app.get('/users/:user', userprofileHandler);
 
+//Tarea: añadir criba de colecciones a collectionform
+//Tarea: crear los bucles de los géneros en bookform y petitionform
+//Tarea: problema en bookprofile con sede y reviews
 
 
 app.listen(port, () => {

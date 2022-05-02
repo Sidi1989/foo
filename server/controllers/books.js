@@ -11,7 +11,7 @@ const {getBookById} = require('../models/books.js');
  * @param res Contiene la renderización de la petición para el cliente
  */
 var bookformHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/bookform.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/bookform.html`;
   var info = {};
 
   res.render(pathname, info);
@@ -26,7 +26,7 @@ var bookformHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var booksearchHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/booksearch.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/booksearch.html`;
   var info = {};
 
   res.render(pathname, info);
@@ -41,7 +41,7 @@ var booksearchHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var bookprofileHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/bookprofile.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/bookprofile.html`;
 
   var book = getBookById(req.params.book);
 
