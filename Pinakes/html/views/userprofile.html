@@ -303,30 +303,17 @@
             </div>
             <!--Display de los Libros de la Colección-->
             <div class="row">
+            <% otherBooksInCollection.forEach(function(e,i){ %>
               <div class="col-4">
                 <div class="card text-center" style="width: 16rem;">
                   <img src="..." class="card-img-top" alt="Libro de la Coleción 01">
                   <div class="card-body">
-                    <span class="name mb-1 fw-500"><%=otherBooksInCollection[0].title%></span> <small class="text-black-50"><%=otherBooksInCollection[0].author.name%> <i class="fa-solid fa-star"></i></small>
+                    <span class="name mb-1 fw-500"><%=e.title%></span> <small class="text-black-50"><%=e.author.name%> <i class="fa-solid fa-star"></i></small>
                   </div>
                 </div>
               </div>
-              <div class="col-4">
-                <div class="card text-center" style="width: 16rem;">
-                  <img src="..." class="card-img-top" alt="Libro de la Coleción 02">
-                  <div class="card-body">
-                    <span class="name mb-1 fw-500"><%=otherBooksInCollection[1].title%></span> <small class="text-black-50"><%=otherBooksInCollection[1].author.name%> </small>
-                  </div>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="card text-center" style="width: 16rem;">
-                  <img src="..." class="card-img-top" alt="Libro de la Coleción 03">
-                  <div class="card-body">
-                    <span class="name mb-1 fw-500"><%=otherBooksInCollection[2].title%></span> <small class="text-black-50"><%=otherBooksInCollection[2].author.name%> <i class="fa-solid fa-star"></i></small>
-                  </div>
-                </div>
-              </div>
+            <% }) %>
+
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <!-- Header-->
-    <%- include('./partials/header.html', {}); %>
+    <%- include('./../partials/header.html', {}); %>
 
     <!-- Fila sobre datos del libro-->
     <div class="row">
@@ -130,8 +130,8 @@
                   <div class="review-block">
                     <div class="row">
                       <div class="col-sm-3">
-                        <img src="<%=e.reviewerPic%>" class="img-thumbnail">
-                        <div class="review-block-name"><a href="/auth/new"<p class="text-primary"><%=e.reviewerNickname%></p></a></div>
+                        <img src="<%=e.userId%>" class="img-thumbnail">
+                        <div class="review-block-name"><a href="/auth/new"<p class="text-primary"><%=e.userId%></p></a></div>
                         <div class="review-block-date">Hace <%=e.age%> días</div>
                       </div>
                       <div class="col-sm-9">
