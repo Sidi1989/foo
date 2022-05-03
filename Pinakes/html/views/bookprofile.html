@@ -42,7 +42,7 @@
           <h6><%=book.author.name%></h6>
           </div>
           <div class="col-3">
-          <h5><i class="fa-solid fa-location-dot"></i><%=bookLocation.name%></h5>
+          <h5><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
           </div>
 
           <div class="col-2">
@@ -129,8 +129,10 @@
                   <div class="review-block">
                     <div class="row">
                       <div class="col-sm-3">
-                        <img src="<%=e.userId%>" class="img-thumbnail">
-                        <div class="review-block-name"><a href="/auth/new"<p class="text-primary"><%=userInfo.nickname%></p></a></div>
+                        <img src="<%=e.user.pic%>" class="img-thumbnail">
+                        <div class="review-block-name">
+                          <a href="/auth/new"<p class="text-primary"><%=e.user.nickname%></p></a>
+                        </div>
                         <div class="review-block-date">Hace <%=e.age%> días</div>
                       </div>
                       <div class="col-sm-9">

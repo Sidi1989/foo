@@ -57,17 +57,15 @@ var bookprofileHandler = function (req, res) {
 
   var bookLocation = getLocationById(book.location);
   if (book.location == null) {
-    info.bookLocation = {};
+    info.book.location = {};
   } else {
-    info.bookLocation = bookLocation;
+    info.book.location = bookLocation;
   };
 
-  var userInfo = getUserById(book.reviews.userId);
-  if (book.reviews.userId == null) {
-    info.userInfo = {};
-  } else {
-    info.userInfo = userInfo;
-  };
+  book.reviews.forEach(function (e,i) {
+    e.user = getUserById(e.userId);
+  });
+  //var foo = getUserById(book.reviews[0].userId);
 
   res.render(pathname, info);
 };
