@@ -27,15 +27,13 @@ app.use('/public', express.static(publicDirname, options));
 app.get('/books/new', bookformHandler);
 app.get('/books/search', booksearchHandler);
 app.get('/books/:book', bookprofileHandler);
-app.get('/collections/new', collectionformHandler);
-app.get('/petitions/new', petitionformHandler);
 app.get('/auth', userloginHandler);
 app.get('/auth/new', userformHandler);
 app.get('/users/:user', userprofileHandler);
+app.get('/users/:user/newcollection', collectionformHandler);
+app.get('/users/:user/newpetition', petitionformHandler);
 
-//Añadir criba de colecciones a collectionform
-//Crear los bucles de los géneros en bookform y petitionform
-//Problema en bookprofile con sede y reviews
+
 
 
 app.listen(port, function () {

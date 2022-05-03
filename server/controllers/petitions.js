@@ -1,4 +1,5 @@
-const collections = require('../../runtime/db/petitions.json');
+const {getUserById} = require('../models/users.js');
+const {getCategoryById} = require('../models/categories.js')
 
 
 
@@ -12,7 +13,15 @@ const collections = require('../../runtime/db/petitions.json');
  */
 var petitionformHandler= function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/petitionform.html`;
+
+  var user = getUserById(req.params.user);
+
   var info = {};
+  if (user == null) {
+    info.user = {};
+  } else {
+    info.user = user;
+  };
 
   res.render(pathname, info);
 };

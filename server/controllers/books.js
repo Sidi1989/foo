@@ -1,4 +1,7 @@
 const {getBookById} = require('../models/books.js');
+const {getCategoryById} = require('../models/categories.js');
+const {getLocationById} = require('../models/locations.js');
+const {getUserById} = require('../models/users.js');
 
 
 
@@ -50,6 +53,20 @@ var bookprofileHandler = function (req, res) {
     info.book = {};
   } else {
     info.book = book;
+  };
+
+  var bookLocation = getLocationById(book.location);
+  if (book.location == null) {
+    info.bookLocation = {};
+  } else {
+    info.bookLocation = bookLocation;
+  };
+
+  var userInfo = getUserById(book.reviews.userId);
+  if (book.reviews.userId == null) {
+    info.userInfo = {};
+  } else {
+    info.userInfo = userInfo;
   };
 
   res.render(pathname, info);

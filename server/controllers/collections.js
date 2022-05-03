@@ -1,4 +1,6 @@
-const collections = require('../../runtime/db/collections.json');
+const {getUserById} = require('../models/users.js');
+const {getCollectionById} = require('../models/collections.js');
+
 
 
 
@@ -12,7 +14,22 @@ const collections = require('../../runtime/db/collections.json');
  */
 var collectionformHandler= function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/collectionform.html`;
+
+  var user = getUserById(req.params.user);
+
   var info = {};
+  if (user == null) {
+    info.user = {};
+  } else {
+    info.user = user;
+  };
+
+  var userCollections = user.collections.map(function (e) {
+    var eachCollection = getCollectionById(e);
+    return eachCollection;
+  });
+
+  info.userCollections = userCollections;
 
   res.render(pathname, info);
 };
