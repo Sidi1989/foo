@@ -2,6 +2,7 @@ const petitions = require('../../runtime/db/petitions.json');
 
 
 
+
 var getPetitionById = function (id) {
   var filteredPetitions = petitions.filter(function (e) {
     return (e.id == id);

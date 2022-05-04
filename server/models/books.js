@@ -3,6 +3,7 @@ const books = require('../../runtime/db/books.json');
 
 
 
+
 var getBookById = function (id) {
   var filteredBooks = books.filter(function (e) {
     return (e.id == id);
@@ -30,6 +31,12 @@ var getRandomBooks = function (quantity) {
 };
 
 
+var getAllBooks = function () {
+  return books;
+};
+
+
 
 exports.getBookById = getBookById;
 exports.getRandomBooks = getRandomBooks;
+exports.getAllBooks = getAllBooks;

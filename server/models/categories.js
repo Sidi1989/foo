@@ -2,6 +2,7 @@ const categories = require('../../runtime/db/categories.json');
 
 
 
+
 var getCategoryById = function (id) {
   var filteredCategories = categories.filter(function (e) {
     return (e.id == id);
