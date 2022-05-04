@@ -19,6 +19,12 @@ var getCategoryById = function (id) {
 };
 
 
+var getAllCategories = function () {
+  return categories;
+};
+
+
 
 
 exports.getCategoryById = getCategoryById;
+exports.getAllCategories = getAllCategories;

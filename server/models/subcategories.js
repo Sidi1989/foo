@@ -19,6 +19,12 @@ var getSubcategoryById = function (id) {
 };
 
 
+var getAllSubcategories = function () {
+  return subcategories;
+};
+
+
 
 
 exports.getSubcategoryById = getSubcategoryById;
+exports.getAllSubcategories = getAllSubcategories;
