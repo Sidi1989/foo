@@ -9,7 +9,6 @@
 </head>
 
 
-
 <body>
   <div class="container">
     <!-- Header-->
@@ -17,44 +16,53 @@
 
     <div class="row">
       <form class="row g-3">
-        <div class="col-8">
-          <div class="bg-success p-2 text-white"><h4>Registro de Colección</h4></div>
+
+        <div class="col">
+          <div class="bg-success p-2 text-white">
+            <h4>Registro de Colección</h4>
+          </div>
         </div>
 
         <div class="input-group">
           <span class="input-group-text">Nombre de la Colección</span>
             <input type="text" aria-label="First name" class="form-control">
         </div>
-        <div class="mb-3">
-          <label for="formFileMultiple" class="form-label">Logo de la Colección</label>
+
+        <div class="mb-2 py-3">
+          <label for="formFileMultiple" class="form-label">
+            <h6><u>Logo de la Colección</u></h6></label>
           <input class="form-control" type="file" id="formFileMultiple" multiple>
         </div>
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-4">
           <span class="input-group-text">¿Quieres añadir un primer libro?</span>
-            <select id="inputState" class="form-select">
-              <option selected>Libros sin Colección</option>
+          <select id="inputState" class="form-select">
+            <option selected>Libros sin Colección</option>
             <% userCollections.forEach(function(e,i){ %>
-              <option><%=e.name%></option>
+            <option><%=e.name%></option>
             <% }) %>
-            </select>
-            <select id="inputState" class="form-select">
-              <option selected></option>
+          </select>
+          <select id="inputState" class="form-select">
+            <option selected></option>
             <% userCollections.forEach(function(e,i){ %>
-              <option><%=e.books%></option>
+            <option><%=e.books%></option>
             <% }) %>
-            </select>
+          </select>
         </div>
 
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Registrar Colección</button>
-      </div>
-    </form>
+        <!-- Botón de submit -->
+        <div class="row mb-3">
+          <button type="submit" class="btn btn-primary">Añadir Colección</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="py-3">
+      <!-- Footer-->
+      <%- include('../partials/footer.html', {}); %>
+    </div>
   </div>
 
-  <!-- Footer-->
-  <%- include('../partials/footer.html', {}); %>
-</div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
       <script type="text/javascript" src="/public/js/ollectionform.js"></script>
 

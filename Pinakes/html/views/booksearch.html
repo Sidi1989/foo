@@ -10,10 +10,10 @@
 
 <body>
   <div class="container">
-  <!-- Header-->
-  <%- include('../partials/header.html', {}); %>
+    <!-- Header-->
+    <%- include('../partials/header.html', {}); %>
 
-    <div>
+    <div class="py-4">
       <button type="button" class="btn btn-outline-white btn-rounded">
         <i class="fas fa-pencil-alt mt-0"></i>
       </button>
@@ -23,95 +23,94 @@
     </div>
 
     <!--Buscador para la Tabla-->
-
     <form class="d-flex">
       <input class="form-control me-2" type="search" placeholder="Busca por título, autor, ISBN,...">
-      <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i>
+      </button>
     </form>
 
     <!--Buscador para la Tabla-->
-    <div class="px-4">
-      <div class="table-wrapper">
+    <div class="table-wrapper">
+      <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="10" width="100%"
+        data-toggle="table"
+        data-url="books.json"
+        data-pagination="true"
+        data-search="true">
 
-        <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-          <table
-            data-toggle="table"
-            data-url="books.json"
-            data-pagination="true"
-            data-search="true">
-            <thead>
-              <tr>
-                <th class="th-sm">Título
-                </th>
-                <th class="th-sm">Autor
-                </th>
-                <th class="th-sm">ISBN
-                </th>
-                <th class="th-sm">Idioma
-                </th>
-                <th class="th-sm">Género
-                </th>
-                <th class="th-sm">Subgénero
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>11</td>
-                <td>21</td>
-                <td>31</td>
-                <td>41</td>
-                <td>51</td>
-                <td>61</td>
-              </tr>
-              <tr>
-                <td>12</td>
-                <td>22</td>
-                <td>32</td>
-                <td>42</td>
-                <td>52</td>
-                <td>62</td>
-              </tr>
-              <tr>
-                <td>13</td>
-                <td>23</td>
-                <td>33</td>
-                <td>43</td>
-                <td>53</td>
-                <td>63</td>
-              </tr>
-              <tr>
-                <td>14</td>
-                <td>24</td>
-                <td>34</td>
-                <td>44</td>
-                <td>54</td>
-                <td>64</td>
-              </tr>
-              <tr>
-                <td>15</td>
-                <td>25</td>
-                <td>35</td>
-                <td>45</td>
-                <td>55</td>
-                <td>65</td>
-              </tr>
-              <tr>
-                <td>16</td>
-                <td>26</td>
-                <td>36</td>
-                <td>46</td>
-                <td>56</td>
-                <td>66</td>
-              </tr>
-            </tbody>
-          </table>
+        <thead>
+          <tr>
+            <th class="th-sm">Título
+            </th>
+            <th class="th-sm">Autor
+            </th>
+            <th class="th-sm">ISBN
+            </th>
+            <th class="th-sm">Idioma
+            </th>
+            <th class="th-sm">Género
+            </th>
+            <th class="th-sm">Subgénero
+            </th>
+          </tr>
+        </thead>
 
-      </div>
+        <tbody>
+          <tr>
+            <td>11</td>
+            <td>21</td>
+            <td>31</td>
+            <td>41</td>
+            <td>51</td>
+            <td>61</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>22</td>
+            <td>32</td>
+            <td>42</td>
+            <td>52</td>
+            <td>62</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>23</td>
+            <td>33</td>
+            <td>43</td>
+            <td>53</td>
+            <td>63</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>24</td>
+            <td>34</td>
+            <td>44</td>
+            <td>54</td>
+            <td>64</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>25</td>
+            <td>35</td>
+            <td>45</td>
+            <td>55</td>
+            <td>65</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>26</td>
+            <td>36</td>
+            <td>46</td>
+            <td>56</td>
+            <td>66</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-  <!-- Footer-->
-  <%- include('../partials/footer.html', {}); %>
+  <div class="py-4">
+    <!-- Footer-->
+    <%- include('../partials/footer.html', {}); %>
+  </div>
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

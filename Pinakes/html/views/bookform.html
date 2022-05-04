@@ -9,7 +9,6 @@
 </head>
 
 
-
 <body>
   <div class="container">
     <!-- Header-->
@@ -19,11 +18,9 @@
       <form class="row g-3">
 
         <!-- Datos básicos del Libro -->
-        <div class="row">
-          <div class="col">
-            <div class="bg-success p-2 text-white">
-              <h4>Registro básico</h4>
-            </div>
+        <div class="col">
+          <div class="bg-success p-2 text-white">
+            <h4>Registro básico</h4>
           </div>
         </div>
 
@@ -31,6 +28,7 @@
           <span class="input-group-text">Título</span>
             <input type="text" aria-label="First name" class="form-control">
         </div>
+
         <div class="input-group mb-3">
           <span class="input-group-text">Autor</span>
             <select id="inputState" class="form-select">
@@ -40,6 +38,7 @@
             </select>
             <input type="text" aria-label="Author name" class="form-control">
         </div>
+
         <div class="input-group mb-3">
           <label class="input-group-text" for="inputGroupSelect01">Sede de depósito</label>
           <select class="form-select" id="inputGroupSelect01">
@@ -51,7 +50,7 @@
         </div>
 
         <!-- Datos extra del Libro -->
-        <div class="row">
+        <div class="row py-2">
           <div class="col">
             <div class="bg-success p-2 text-white">
               <h4>Registro avanzado</h4>
@@ -59,119 +58,123 @@
           </div>
         </div>
 
-      <div class="col-md-4">
-        <label for="inputState" class="form-label">Género</label>
-        <select id="inputState" class="form-select">
-          <option selected>Otros</option>
-          <option>Literatura española</option>
-          <option>Literatura extranjera</option>
-          <option>Literatura infantil y/o juvenil</option>
-          <option>Guías y Catálogos</option>
-          <option>Enciclopedias y Diccionarios</option>
-        </select>
-      </div>
+        <div class="col-md-6">
+          <label for="inputState" class="form-label">
+            <h5><u>Género</u></h5>
+          </label>
+          <select id="inputState" class="form-select">
+            <option selected>Otros</option>
+            <option>Literatura española</option>
+            <option>Literatura extranjera</option>
+            <option>Literatura infantil y/o juvenil</option>
+            <option>Guías y Catálogos</option>
+            <option>Enciclopedias y Diccionarios</option>
+          </select>
+        </div>
 
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Literatura española</label>
-        <select class="form-select" id="inputGroupSelect01">
-          <option selected>Novela</option>
-          <option value="1">Poesía</option>
-          <option value="2">Teatro</option>
-          <option value="3">Ensayo</option>
-        </select>
-      </div>
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Nacionalidad del Autor</label>
-        <select class="form-select" id="inputGroupSelect01">
-          <option selected>Otros</option>
-          <option value="1">Francia</option>
-          <option value="2">Reino Unido</option>
-          <option value="3">Estados Unidos</option>
-          <option value="3">Alemania</option>
-          <option value="3">Italia</option>
-          <option value="3">Portugal</option>
-          <option value="3">Rusia</option>
-          <option value="3">Polonia</option>
-          <option value="3">Roma Clásica</option>
-          <option value="3">Grecia Clásica</option>
-        </select>
-        <label class="input-group-text" for="inputGroupSelect01">Idioma</label>
-        <select class="form-select" id="inputGroupSelect01">
-          <option selected>Castellano</option>
-          <option value="1">Inglés</option>
-          <option value="2">Francés</option>
-          <option value="3">Alemán</option>
-          <option value="3">Latín</option>
-        </select>
-      </div>
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Literatura extranjera</label>
-        <select class="form-select" id="inputGroupSelect01">
-          <option selected>Novela</option>
-          <option value="1">Poesía</option>
-          <option value="2">Teatro</option>
-          <option value="3">Ensayo</option>
-        </select>
-      </div>
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Literatura infantil y/o juvenil</label>
-        <select class="form-select" id="inputGroupSelect01">
-          <option value="1">De 0 a 3 años</option>
-          <option value="2">De 3 a 9 años</option>
-          <option value="3">De 10 a 18 años</option>
-        </select>
-      </div>
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Guías y catálogos</label>
-        <select class="form-select" id="inputGroupSelect01">
-          <option value="1">Otros</option>
-          <option value="2">De arte</option>
-          <option value="3">De viajes</option>
-        </select>
-      </div>
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">Enciclopedias y diccionarios</label>
-        <select class="form-select" id="inputGroupSelect01">
-          <option value="1">Generalistas</option>
-          <option value="2">De materias específicas</option>
-          <option value="3">De traducción</option>
-        </select>
-      </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Literatura española</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Novela</option>
+            <option value="1">Poesía</option>
+            <option value="2">Teatro</option>
+            <option value="3">Ensayo</option>
+          </select>
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Nacionalidad del Autor</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Otros</option>
+            <option value="1">Francia</option>
+            <option value="2">Reino Unido</option>
+            <option value="3">Estados Unidos</option>
+            <option value="3">Alemania</option>
+            <option value="3">Italia</option>
+            <option value="3">Portugal</option>
+            <option value="3">Rusia</option>
+            <option value="3">Polonia</option>
+            <option value="3">Roma Clásica</option>
+            <option value="3">Grecia Clásica</option>
+          </select>
+          <label class="input-group-text" for="inputGroupSelect01">Idioma</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Castellano</option>
+            <option value="1">Inglés</option>
+            <option value="2">Francés</option>
+            <option value="3">Alemán</option>
+            <option value="3">Latín</option>
+          </select>
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Literatura extranjera</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Novela</option>
+            <option value="1">Poesía</option>
+            <option value="2">Teatro</option>
+            <option value="3">Ensayo</option>
+          </select>
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Literatura infantil y/o juvenil</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option value="1">De 0 a 3 años</option>
+            <option value="2">De 3 a 9 años</option>
+            <option value="3">De 10 a 18 años</option>
+          </select>
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Guías y catálogos</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option value="1">Otros</option>
+            <option value="2">De arte</option>
+            <option value="3">De viajes</option>
+          </select>
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Enciclopedias y diccionarios</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option value="1">Generalistas</option>
+            <option value="2">De materias específicas</option>
+            <option value="3">De traducción</option>
+          </select>
+        </div>
 
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon3">ISBN</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon3">
-      </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon3">Editorial</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon3">
-        <span class="input-group-text" id="basic-addon3">Formato</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon3">
-      </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text">Fecha de Publicación</span>
-        <input type="number" class="form-control" aria-label="Amount">
-        <span class="input-group-text">Nº de Edición</span>
-        <input type="number" class="form-control" aria-label="Amount">
-        <span class="input-group-text">Nº de Páginas</span>
-        <input type="number" class="form-control" aria-label="Amount">
-      </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon3">ISBN</span>
+          <input type="text" class="form-control" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon3">Editorial</span>
+          <input type="text" class="form-control" aria-describedby="basic-addon3">
+          <span class="input-group-text" id="basic-addon3">Formato</span>
+          <input type="text" class="form-control" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Fecha de Publicación</span>
+          <input type="number" class="form-control" aria-label="Amount">
+          <span class="input-group-text">Nº de Edición</span>
+          <input type="number" class="form-control" aria-label="Amount">
+          <span class="input-group-text">Nº de Páginas</span>
+          <input type="number" class="form-control" aria-label="Amount">
+        </div>
 
-      <div class="mb-3">
-        <label for="formFileMultiple" class="form-label">Imágenes del Libro</label>
-        <input class="form-control" type="file" id="formFileMultiple" multiple>
-      </div>
+        <div class="mb-4">
+          <label for="formFileMultiple" class="form-label">Imágenes del Libro</label>
+          <input class="form-control" type="file" id="formFileMultiple" multiple>
+        </div>
 
-      <!-- Botón de submit -->
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Añadir Libro</button>
-      </div>
-    </form>
+        <!-- Botón de submit -->
+        <div class="row mb-3">
+          <button type="submit" class="btn btn-primary">Añadir Libro</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="py-3">
+      <!-- Footer-->
+      <%- include('../partials/footer.html', {}); %>
+    </div>
   </div>
-
-  <!-- Footer-->
-  <%- include('../partials/footer.html', {}); %>
-</div>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
       <script type="text/javascript" src="/public/js/bookform.js"></script>
