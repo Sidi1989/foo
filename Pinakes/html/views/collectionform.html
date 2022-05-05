@@ -75,15 +75,15 @@
                               </div>
                             </div>
                           </div>
-                          <% userCollections.forEach(function(e,i){ %>
+                          <% collections.forEach(function (collection,i){ %>
                           <div class="col">
                             <div class="card" style="max-width: 18rem;">
                               <div class="card-body">
-                                <h6 class="card-title text-center"><%= e.name%></h6>
+                                <h6 class="card-title text-center"><%= collection.name%></h6>
                                 <div class="row">
-                                  <% booksInCollection.forEach(function(e,i){ %>
+                                  <% collection.books.forEach(function (book,i){ %>
                                   <div class="col">
-                                    <img class="card-img-top" src="#" alt="<%= e.picture.main%>">
+                                    <img class="card-img-top" src="<%= book.picture.main%>" alt="Imagen">
                                   </div>
                                   <% }) %>
                                 </div>
@@ -116,6 +116,6 @@
   </div>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-      <script type="text/javascript" src="/public/js/ollectionform.js"></script>
+      <script type="text/javascript" src="/public/js/collectionform.js"></script>
 
 </body>

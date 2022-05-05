@@ -16,7 +16,7 @@ var getBookById = function (id) {
     book = filteredBooks[0];
   };
 
-  return book;
+  return _.cloneDeep(book);
 };
 
 
@@ -27,7 +27,7 @@ var getRandomBooks = function (quantity) {
   });
 
   var filteredTakenBooks = _.take(filteredBooks, quantity);
-  return filteredTakenBooks;
+  return _.cloneDeep(filteredTakenBooks);
 };
 
 

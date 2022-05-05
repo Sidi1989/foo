@@ -1,4 +1,5 @@
 const {getUserById} = require('../models/users.js');
+const {getBookById} = require('../models/books.js')
 const {getCollectionById} = require('../models/collections.js');
 
 
@@ -23,13 +24,23 @@ var collectionformHandler= function (req, res) {
     info.user = user;
   };
 
-  var userCollections = user.collections.map(function (e) {
-    var eachCollection = getCollectionById(e);
-    return eachCollection;
+  var collections = user.collections.map(function (id) {
+    var collection = getCollectionById(id);
+    return collection;
   });
 
-  info.userCollections = userCollections;
 
+  var collectionsEnhanced = collections.map(function (collection) {
+    var books = collection.books.map(function (id) {
+      var book = getBookById(id);
+      return book;
+    });
+    collection.books = books;
+    return collection;
+  });
+
+  info.collections = collectionsEnhanced;
+  
   res.render(pathname, info);
 };
 

@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const collections = require('../../runtime/db/collections.json');
 
 
@@ -15,7 +16,7 @@ var getCollectionById = function (id) {
     collection = filteredCollections[0];
   };
 
-  return collection;
+  return _.cloneDeep(collection);
 };
 
 
