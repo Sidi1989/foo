@@ -1,5 +1,6 @@
 const {getUserById} = require('../models/users.js');
-const {getCategoryById} = require('../models/categories.js')
+const {getAllCategories} = require('../models/categories.js');
+const {getAllSubcategories} = require('../models/subcategories.js');
 
 
 
@@ -22,6 +23,13 @@ var petitionformHandler= function (req, res) {
   } else {
     info.user = user;
   };
+
+  var bookCategories = getAllCategories();
+  info.bookCategories = bookCategories;
+
+  var bookSubcategories = getAllSubcategories();
+  info.bookSubcategories = bookSubcategories;
+
 
   res.render(pathname, info);
 };

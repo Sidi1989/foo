@@ -15,72 +15,79 @@
     <%- include('../partials/header.html', {}); %>
 
     <div class="row">
-      <form class="row g-4">
+      <form class="row g-3">
 
         <!-- Datos básicos del Usuario -->
-        <div class="col-8">
-          <div class="bg-success p-2 text-white"><h4>Registro básico</h4></div>
+        <div class="col">
+          <div class="bg-success p-2 text-white">
+            <h4>Registro básico</h4>
+          </div>
         </div>
 
         <div class="input-group">
           <span class="input-group-text">Nickname</span>
-            <input type="text" aria-label="First name" class="form-control">
+            <input id="nickname" type="text" class="form-control">
         </div>
 
         <div class="mb-3">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username">
+          <div class="input-group mb-4">
+            <input id="domainUsername" type="text" class="form-control" placeholder="Username">
             <span class="input-group-text">@</span>
-            <input type="text" class="form-control" placeholder="Server">
+            <input id="domainServer" type="text" class="form-control" placeholder="Server">
             <span class="input-group-text"> . </span>
-            <input type="text" class="form-control" placeholder="Domain">
+            <input id="domainDot"type="text" class="form-control" placeholder="Domain">
           </div>
-          <label for="inputPassword5" class="form-label">Contraseña</label>
-          <input type="password" id="inputPassword5" class="form-control">
+          <label for="userPassword" class="form-label">Contraseña</label>
+          <input id="userPassword" type="password" class="form-control">
           <div id="passwordHelpBlock" class="form-text">
             Tu contraseña debe tener entre 8 y 20 caracteres, contener letras y números, y no incluir espacios ni caracteres especiales.
           </div>
         </div>
 
         <div class="mb-3">
-          <label for="formFile" class="form-label">Imagen de Usuario</label>
-          <input class="form-control" type="file" id="formFile">
+          <label for="userPicFile" class="form-label">Imagen de Usuario</label>
+          <input id="userPicFile" class="form-control" type="file" multiple>
         </div>
 
         <!-- Datos extra del Usuario -->
-        <div class="row">
-          <div class="col-8">
-            <div class="bg-success p-2 text-white"><h5>Otros datos</h5></div>
+        <div class="col">
+          <div class="bg-success p-2 text-white">
+            <h4>Otros datos</h4>
           </div>
         </div>
 
-        <div class="input-group">
+        <div class="input-group mb-3">
           <span class="input-group-text">Nombre y Apellidos</span>
-          <input type="text" class="form-control">
-          <input type="text" class="form-control">
-        </div>
-        <label for="birthday">Fecha de Nacimiento:</label>
-        <input type="date" id="birthday" name="birthday">
-
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Acepto las <a href="#">Condiciones del servicio y Política de privacidad</a>
-          </label>
+          <input id="userFirstname" type="text" class="form-control">
+          <input id="userLastname" type="text" class="form-control">
         </div>
 
-      <!-- Botón de submit -->
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Darse de Alta</button>
-      </div>
-    </form>
-  </div>
+        <div class="input-group mb-3">
+          <label for="userBirthday">Fecha de Nacimiento:</label>
+          <input id="userBirthday" type="date" name="userBirthday">
+        </div>
 
-  <div class="py-3">
-    <!-- Footer-->
-    <%- include('../partials/footer.html', {}); %>
+        <div class="input-group mb-4">
+          <div class="form-check">
+            <input id="termsAcceptance" class="form-check-input" type="checkbox">
+            <label class="form-check-label" for="termsAcceptance">
+              Acepto las <a href="#">Condiciones del servicio y Política de privacidad</a>
+            </label>
+          </div>
+        </div>
+
+        <!-- Botón de submit -->
+        <div class="row mb-3">
+          <button id="createNewUser" type="submit" class="btn btn-primary">Darse de Alta</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="py-3">
+      <!-- Footer-->
+      <%- include('../partials/footer.html', {}); %>
+    </div>
   </div>
-</div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script type="text/javascript" src="/public/js/userform.js"></script>
