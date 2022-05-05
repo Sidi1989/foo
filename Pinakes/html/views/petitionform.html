@@ -53,24 +53,30 @@
             <h5><u>Género</u></h5>
           </label>
           <select id="inputState" class="form-select">
-            <option selected>Otros</option>
-            <option>Literatura española</option>
-            <option>Literatura extranjera</option>
-            <option>Literatura infantil y/o juvenil</option>
-            <option>Guías y catálogos</option>
-            <option>Enciclopedias y diccionarios</option>
+            <% bookCategories.forEach(function (e,i) { %>
+              <option value="<%= e.id%>"><%= e.name%></option>
+            <% }) %>
           </select>
         </div>
 
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupSelect01">Literatura española</label>
-          <select class="form-select" id="inputGroupSelect01">
-            <option selected>Novela</option>
-            <option value="1">Poesía</option>
-            <option value="2">Teatro</option>
-            <option value="3">Ensayo</option>
-          </select>
-        </div>
+
+        <% bookCategories.forEach(function (category,i) { %>
+          <div class="input-group mb-3" style="display: none">
+            <label class="input-group-text" for="inputGroupSelect01"><%= category.name%></label>
+            <select class="form-select" id="inputGroupSelect01">
+              <%
+                var filteredBookSubcategories = bookSubcategories.filter(function (subcategory,i) {
+                  return (subcategory.parent == category.id)
+                })
+              %>
+              <% filteredBookSubcategories.forEach(function (subcategory,i) { %>
+                <option <% if (i==1) { %> selected <% }%> value="1"><%= subcategory.name%></option>
+              <% }) %>
+            </select>
+          </div>
+        <% }) %>
+
+
         <div class="input-group mb-3">
           <label class="input-group-text" for="inputGroupSelect01">Nacionalidad del Autor</label>
           <select class="form-select" id="inputGroupSelect01">
@@ -86,7 +92,6 @@
             <option value="3">Roma Clásica</option>
             <option value="3">Grecia Clásica</option>
           </select>
-
           <label class="input-group-text" for="inputGroupSelect01">Idioma</label>
           <select class="form-select" id="inputGroupSelect01">
             <option selected>Castellano</option>
@@ -94,39 +99,6 @@
             <option value="2">Francés</option>
             <option value="3">Alemán</option>
             <option value="3">Latín</option>
-          </select>
-        </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupSelect01">Literatura extranjera</label>
-          <select class="form-select" id="inputGroupSelect01">
-            <option selected>Novela</option>
-            <option value="1">Poesía</option>
-            <option value="2">Teatro</option>
-            <option value="3">Ensayo</option>
-          </select>
-        </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupSelect01">Literatura infantil y/o juvenil</label>
-          <select class="form-select" id="inputGroupSelect01">
-            <option value="1">De 0 a 3 años</option>
-            <option value="2">De 3 a 9 años</option>
-            <option value="3">De 10 a 18 años</option>
-          </select>
-        </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupSelect01">Guías y catálogos</label>
-          <select class="form-select" id="inputGroupSelect01">
-            <option value="1">Otros</option>
-            <option value="2">De arte</option>
-            <option value="3">De viajes</option>
-          </select>
-        </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupSelect01">Enciclopedias y diccionarios</label>
-          <select class="form-select" id="inputGroupSelect01">
-            <option value="1">Generalistas</option>
-            <option value="2">De materias específicas</option>
-            <option value="3">De traducción</option>
           </select>
         </div>
 

@@ -32,7 +32,7 @@ var getRandomBooks = function (quantity) {
 
 
 var getAllBooks = function () {
-  return books;
+  return _.cloneDeep(books);
 };
 
 

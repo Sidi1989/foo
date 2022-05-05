@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const categories = require('../../runtime/db/categories.json');
 
 
@@ -20,7 +21,7 @@ var getCategoryById = function (id) {
 
 
 var getAllCategories = function () {
-  return categories;
+  return _.cloneDeep(categories);
 };
 
 

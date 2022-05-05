@@ -4,7 +4,6 @@ const {getCollectionById} = require('../models/collections.js');
 
 
 
-
 /**
  * @description
  * Función destinada a cubrir la petición de Registrar una nueva colección para el usuario

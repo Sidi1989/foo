@@ -1,9 +1,10 @@
-const {getBookById} = require('../models/books.js');
-const {getAllCategories} = require('../models/categories.js');
-const {getAllSubcategories} = require('../models/subcategories.js');
+const {getBookById, getAllBooks} = require('../models/books.js');
+const {getAllCategories, getCategoryById} = require('../models/categories.js');
+const {getAllSubcategories, getSubcategoryById} = require('../models/subcategories.js');
 const {getAuthorById} = require('../models/authors.js');
 const {getReviewById} = require('../models/reviews.js');
 const {getLocationById} = require('../models/locations.js');
+const {getLanguageById} = require('../models/languages.js');
 const {getUserById} = require('../models/users.js');
 
 
@@ -37,11 +38,28 @@ var bookformHandler= function (req, res) {
  * @param req Contiene la información de la petición
  * @param res Contiene la renderización de la petición para el cliente
  */
-var booksearchHandler= function (req, res) {
+var booksearchHandler = function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/booksearch.html`;
   var info = {};
 
-  res.render(pathname, info);
+  var books = getAllBooks();
+
+  books.forEach(function (e,i) {
+    e.author = getAuthorById(e.author);
+  });
+  books.forEach(function (e,i) {
+    e.category = getCategoryById(e.category);
+  });
+  books.forEach(function (e,i) {
+    e.subcategory = getSubcategoryById(e.subcategory);
+  });
+  books.forEach(function (e,i) {
+    e.language = getLanguageById(e.language);
+  });
+
+  info.books = books;
+
+  return res.render(pathname, info);
 };
 
 
@@ -78,10 +96,6 @@ var bookprofileHandler = function (req, res) {
     info.book.author = bookAuthor;
   };
 
-/*  book.reviews.forEach(function (e,i) {
-    e.user = getUserById(e.userId);
-  });
-*/
   res.render(pathname, info);
 };
 
