@@ -24,7 +24,7 @@ var collectionformHandler= function (req, res) {
     info.user = user;
   };
 
-  var collections = user.collections.map(function (id) {
+  var collectionsMapped = user.collections.map(function (id) {
     var collection = getCollectionById(id);
     return collection;
   });
@@ -39,7 +39,7 @@ var collectionformHandler= function (req, res) {
     return collection;
   });
 
-  info.collections = collectionsWithBooks;
+  info.collectionsMapped = collectionsWithBooks;
 
   res.render(pathname, info);
 };

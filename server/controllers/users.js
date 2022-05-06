@@ -73,12 +73,12 @@ var userprofileHandler = function (req, res) {
   };
 
 
-  var booksInLastCollection = lastBookReadCollection.books.map(function (id) {
+  var collectionMapped = lastBookReadCollection.books.map(function (id) {
     var book = getBookById(id);
     return book;
   });
 
-  info.booksInLastCollection = booksInLastCollection;
+  info.collectionMapped = collectionMapped;
 
 
   var suggestedBooks = getRandomBooks(3);

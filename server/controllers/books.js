@@ -100,12 +100,10 @@ var bookprofileHandler = function (req, res) {
 };
 
 
-var reviews = book.reviews.map(function (id) {
+var reviewsMapped = book.reviews.map(function (id) {
   var review = getReviewById(id);
   return review;
 });
-
-info.reviews = reviews;
 
 var reviewer = getUserById(review.reviewer);
 if (review.reviewer == null) {
@@ -113,6 +111,8 @@ if (review.reviewer == null) {
 } else {
   info.review.reviewer = reviewer;
 };
+
+info.reviewsMapped = reviewsMapped;
 
 
 
