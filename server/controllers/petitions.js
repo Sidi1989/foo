@@ -1,6 +1,7 @@
 const {getUserById} = require('../models/users.js');
 const {getAllCategories} = require('../models/categories.js');
 const {getAllSubcategories} = require('../models/subcategories.js');
+const {getAllLanguages} = require('../models/languages.js');
 
 
 
@@ -30,6 +31,8 @@ var petitionformHandler= function (req, res) {
   var subcategories = getAllSubcategories();
   info.subcategories = subcategories;
 
+  var languages = getAllLanguages();
+  info.languages = languages;
 
   res.render(pathname, info);
 };
