@@ -1,6 +1,12 @@
+const _ = require('lodash');
 const authors = require('../../runtime/db/authors.json');
 
 
+
+
+var getAllAuthors = function () {
+  return _.cloneDeep(authors);
+};
 
 
 var getAuthorById = function (id) {
@@ -15,10 +21,11 @@ var getAuthorById = function (id) {
     author = filteredAuthors[0];
   };
 
-  return author;
+  return _.cloneDeep(author);
 };
 
 
 
 
+exports.getAllAuthors = getAllAuthors;
 exports.getAuthorById = getAuthorById;

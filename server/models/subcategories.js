@@ -4,6 +4,11 @@ const subcategories = require('../../runtime/db/subcategories.json');
 
 
 
+var getAllSubcategories = function () {
+  return _.cloneDeep(subcategories);
+};
+
+
 var getSubcategoryById = function (id) {
   var filteredSubcategories = subcategories.filter(function (e) {
     return (e.id == id);
@@ -16,16 +21,11 @@ var getSubcategoryById = function (id) {
     subcategory = filteredSubcategories[0];
   };
 
-  return subcategory;
-};
-
-
-var getAllSubcategories = function () {
-  return _.cloneDeep(subcategories);
+  return _.cloneDeep(subcategory);
 };
 
 
 
 
-exports.getSubcategoryById = getSubcategoryById;
 exports.getAllSubcategories = getAllSubcategories;
+exports.getSubcategoryById = getSubcategoryById;

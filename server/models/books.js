@@ -4,6 +4,11 @@ const books = require('../../runtime/db/books.json');
 
 
 
+var getAllBooks = function () {
+  return _.cloneDeep(books);
+};
+
+
 var getBookById = function (id) {
   var filteredBooks = books.filter(function (e) {
     return (e.id == id);
@@ -31,12 +36,8 @@ var getRandomBooks = function (quantity) {
 };
 
 
-var getAllBooks = function () {
-  return _.cloneDeep(books);
-};
 
 
-
+exports.getAllBooks = getAllBooks;
 exports.getBookById = getBookById;
 exports.getRandomBooks = getRandomBooks;
-exports.getAllBooks = getAllBooks;

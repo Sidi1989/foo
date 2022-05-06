@@ -1,6 +1,12 @@
+const _ = require('lodash');
 const buylists = require('../../runtime/db/buylists.json');
 
 
+
+
+var getAllBuylists = function () {
+  return _.cloneDeep(buylists);
+};
 
 
 var getBuylistById = function (id) {
@@ -15,10 +21,11 @@ var getBuylistById = function (id) {
     buylist = filteredBuylists[0];
   };
 
-  return buylists;
+  return _.cloneDeep(buylist);
 };
 
 
 
 
+exports.getAllBuylists = getAllBuylists;
 exports.getBuylistById = getBuyistById;

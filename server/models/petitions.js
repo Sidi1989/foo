@@ -1,6 +1,12 @@
+const _ = require('lodash');
 const petitions = require('../../runtime/db/petitions.json');
 
 
+
+
+var getAllPetitions = function () {
+  return _.cloneDeep(petitions);
+};
 
 
 var getPetitionById = function (id) {
@@ -15,10 +21,11 @@ var getPetitionById = function (id) {
     petition = filteredPetitions[0];
   };
 
-  return petition;
+  return _.cloneDeep(petition);
 };
 
 
 
 
+exports.getAllPetitions = getAllPetitions;
 exports.getPetitionById = getPetitionById;

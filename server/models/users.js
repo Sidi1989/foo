@@ -1,6 +1,12 @@
+const _ = require('lodash');
 const users = require('../../runtime/db/users.json');
 
 
+
+
+var getAllUsers = function () {
+  return _.cloneDeep(users);
+};
 
 
 var getUserById = function (id) {
@@ -15,10 +21,11 @@ var getUserById = function (id) {
     user = filteredUsers[0];
   };
 
-  return user;
+  return _.cloneDeep(user);
 };
 
 
 
 
+exports.getAllUsers = getAllUsers;
 exports.getUserById = getUserById;

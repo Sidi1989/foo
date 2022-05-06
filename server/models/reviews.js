@@ -1,6 +1,12 @@
+const _ = require('lodash');
 const reviews = require('../../runtime/db/reviews.json');
 
 
+
+
+var getAllReviews = function () {
+  return _.cloneDeep(reviews);
+};
 
 
 var getReviewById = function (id) {
@@ -15,10 +21,11 @@ var getReviewById = function (id) {
     review = filteredReviews[0];
   };
 
-  return reviews;
+  return _.cloneDeep(review);
 };
 
 
 
 
+exports.getAllReviews = getAllReviews;
 exports.getReviewById = getReviewById;

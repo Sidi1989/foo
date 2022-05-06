@@ -1,6 +1,12 @@
+const _ = require('lodash');
 const locations = require('../../runtime/db/locations.json');
 
 
+
+
+var getAllLocations = function () {
+  return _.cloneDeep(locations);
+};
 
 
 var getLocationById = function (id) {
@@ -15,10 +21,11 @@ var getLocationById = function (id) {
     location = filteredLocations[0];
   };
 
-  return location;
+  return _.cloneDeep(location);
 };
 
 
 
 
+exports.getAllLocations = getAllLocations;
 exports.getLocationById = getLocationById;

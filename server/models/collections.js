@@ -4,6 +4,11 @@ const collections = require('../../runtime/db/collections.json');
 
 
 
+var getAllCollections = function () {
+  return _.cloneDeep(collections);
+};
+
+
 var getCollectionById = function (id) {
   var filteredCollections = collections.filter(function (e) {
     return (e.id == id);
@@ -22,4 +27,5 @@ var getCollectionById = function (id) {
 
 
 
+exports.getAllCollections = getAllCollections;
 exports.getCollectionById = getCollectionById;

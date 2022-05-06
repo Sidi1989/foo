@@ -4,6 +4,11 @@ const categories = require('../../runtime/db/categories.json');
 
 
 
+var getAllCategories = function () {
+  return _.cloneDeep(categories);
+};
+
+
 var getCategoryById = function (id) {
   var filteredCategories = categories.filter(function (e) {
     return (e.id == id);
@@ -16,16 +21,11 @@ var getCategoryById = function (id) {
     category = filteredCategories[0];
   };
 
-  return category;
-};
-
-
-var getAllCategories = function () {
-  return _.cloneDeep(categories);
+  return _.cloneDeep(category);
 };
 
 
 
 
-exports.getCategoryById = getCategoryById;
 exports.getAllCategories = getAllCategories;
+exports.getCategoryById = getCategoryById;

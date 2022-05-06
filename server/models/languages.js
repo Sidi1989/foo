@@ -1,6 +1,12 @@
+const _ = require('lodash');
 const languages = require('../../runtime/db/languages.json');
 
 
+
+
+var getAllLanguages = function () {
+  return _.cloneDeep(languages);
+};
 
 
 var getLanguageById = function (id) {
@@ -15,10 +21,11 @@ var getLanguageById = function (id) {
     language = filteredLanguages[0];
   };
 
-  return language;
+    return _.cloneDeep(language);
 };
 
 
 
 
+exports.getAllLanguages = getAllLanguages;
 exports.getLanguageById = getLanguageById;
