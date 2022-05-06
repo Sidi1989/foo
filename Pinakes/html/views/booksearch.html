@@ -8,75 +8,79 @@
   <link rel="stylesheet" href="/public/css/booksearch.css">
 </head>
 
+
 <body>
   <div class="container">
     <!-- Header-->
     <%- include('../partials/header.html', {}); %>
 
-    <div class="py-4">
-      <button type="button" class="btn btn-outline-white btn-rounded">
-        <i class="fas fa-pencil-alt mt-0"></i>
-      </button>
-      <button type="button" class="btn btn-outline-white btn-rounded">
-        <i class="far fa-trash-alt mt-0"></i>
-      </button>
-    </div>
+    <div class="row">
+      <div class="row g-3">
 
-    <!--Buscador para la Tabla-->
-    <form class="d-flex">
-      <input id="bookSearchingInput" class="form-control me-2" type="search" placeholder="Busca por título, autor, ISBN,...">
-      <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-    </form>
+        <button type="button" class="btn btn-outline-white btn-rounded">
+          <i class="fas fa-pencil-alt mt-0"></i>
+        </button>
+        <button type="button" class="btn btn-outline-white btn-rounded">
+          <i class="far fa-trash-alt mt-0"></i>
+        </button>
+      </div>
 
-    <!--Buscador para la Tabla-->
-    <div class="table-wrapper">
-      <table id="bookSearchingTable" class="table table-striped table-bordered table-sm" cellspacing="10" width="100%"
-        data-toggle="table"
-        data-url="books.json"
-        data-pagination="true"
-        data-search="true">
+      <!--Buscador para la Tabla-->
+      <form class="d-flex">
+        <input id="bookSearchingInput" class="form-control me-2" type="search" placeholder="Busca por título, autor, ISBN,...">
+        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
 
-        <thead>
-          <tr>
-            <th class="th-sm">Título
-            </th>
-            <th class="th-sm">Nombre del Autor
-            </th>
-            <th class="th-sm">Apellido del Autor
-            </th>
-            <th class="th-sm">ISBN
-            </th>
-            <th class="th-sm">Género
-            </th>
-            <th class="th-sm">Subgénero
-            </th>
-            <th class="th-sm">Idioma
-            </th>
-          </tr>
-        </thead>
+      <!--Buscador para la Tabla-->
+      <div class="table-wrapper">
+        <table id="bookSearchingTable" class="table table-striped table-bordered table-sm" cellspacing="10" width="100%"
+          data-toggle="table"
+          data-url="books.json"
+          data-pagination="true"
+          data-search="true">
 
-        <tbody>
-          <% books.forEach(function (book, i) { %>
+          <thead>
             <tr>
-              <td><%= book.title%></td>
-              <td><%= book.author.firstname%></td>
-              <td><%= book.author.lastname%></td>
-              <td><%= book.isbn%></td>
-              <td><%= book.category.name%></td>
-              <td><%= book.subcategory.name%></td>
-              <td><%= book.language.name%></td>
+              <th class="th-sm">Título
+              </th>
+              <th class="th-sm">Nombre del Autor
+              </th>
+              <th class="th-sm">Apellido del Autor
+              </th>
+              <th class="th-sm">ISBN
+              </th>
+              <th class="th-sm">Género
+              </th>
+              <th class="th-sm">Subgénero
+              </th>
+              <th class="th-sm">Idioma
+              </th>
             </tr>
-          <% }) %>
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            <% books.forEach(function (book, i) { %>
+              <tr>
+                <td><%= book.title%></td>
+                <td><%= book.author.firstname%></td>
+                <td><%= book.author.lastname%></td>
+                <td><%= book.isbn%></td>
+                <td><%= book.category.name%></td>
+                <td><%= book.subcategory.name%></td>
+                <td><%= book.language.name%></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-  <div class="py-4">
-    <!-- Footer-->
-    <%- include('../partials/footer.html', {}); %>
+    <div class="py-3">
+      <!-- Footer-->
+      <%- include('../partials/footer.html', {}); %>
+    </div>
   </div>
-</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/public/js/booksearch.js"></script>

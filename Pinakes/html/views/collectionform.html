@@ -31,22 +31,22 @@
         <div class="mb-2 py-3">
           <label for="collectionPicFile" class="form-label">
             <h6><u>Logo de la Colección</u></h6></label>
-          <input id="collectionPicFile" class="form-control" type="file" multiple>
+          <input id="collectionPicFiles" class="form-control" type="file" multiple>
         </div>
 
 
         <div class="container-fluid">
           <div class="card">
             <div class="card-header text-center">
-              <h5><u>Tu nueva Colección</u></h5>
+              <h5><u>Tu nueva Colección (nombre antes escrito)</u></h5>
             </div>
             <div class="card-body">
               <div class="container-fluid" style="padding-top: 10px;">
                 <div class="row">
                   <div class="card h-50">
                     <div class="card-body">
-                      <div class="col">
-                        <img class="card-img-top" src="#" alt="Imagen de una tabla donde meter los libros">
+                      <div id="chosenBooksTable" class="row">
+                        <img class="card-img-top" src="#" alt="Imágenes de los libros arrastrados">
                       </div>
                     </div>
                   </div>
@@ -82,7 +82,7 @@
                                 <h6 class="card-title text-center"><%= collection.name%></h6>
                                 <div class="row">
                                   <% collection.books.forEach(function (book,i){ %>
-                                  <div class="col">
+                                  <div id="bookToChoose" class="col">
                                     <img class="card-img-top" src="<%= book.picture.main%>" alt="Imagen">
                                   </div>
                                   <% }) %>

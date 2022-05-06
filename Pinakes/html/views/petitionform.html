@@ -26,12 +26,12 @@
 
         <div class="input-group">
           <span class="input-group-text">Título</span>
-            <input type="text" class="form-control">
+            <input id="title" type="text" class="form-control">
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text">Autor</span>
-            <select id="inputState" class="form-select">
+            <select id="authorName" class="form-select">
               <option selected>Nombre</option>
               <option>Anónimo</option>
               <option>VV.AA.</option>
@@ -49,27 +49,27 @@
         </div>
 
         <div class="col-md-6">
-          <label for="inputState" class="form-label">
+          <label for="category" class="form-label">
             <h5><u>Género</u></h5>
           </label>
-          <select id="inputState" class="form-select">
-            <% bookCategories.forEach(function (e,i) { %>
+          <select id="category" class="form-select">
+            <% categories.forEach(function (e,i) { %>
               <option value="<%= e.id%>"><%= e.name%></option>
             <% }) %>
           </select>
         </div>
 
 
-        <% bookCategories.forEach(function (category,i) { %>
+        <% categories.forEach(function (category,i) { %>
           <div class="input-group mb-3" style="display: none">
-            <label class="input-group-text" for="inputGroupSelect01"><%= category.name%></label>
-            <select class="form-select" id="inputGroupSelect01">
+            <label class="input-group-text" for="subcategory"><%= category.name%></label>
+            <select class="form-select" id="subcategory">
               <%
-                var filteredBookSubcategories = bookSubcategories.filter(function (subcategory,i) {
+                var filteredSubcategories = subcategories.filter(function (subcategory,i) {
                   return (subcategory.parent == category.id)
                 })
               %>
-              <% filteredBookSubcategories.forEach(function (subcategory,i) { %>
+              <% filteredSubcategories.forEach(function (subcategory,i) { %>
                 <option <% if (i==1) { %> selected <% }%> value="1"><%= subcategory.name%></option>
               <% }) %>
             </select>
@@ -78,42 +78,31 @@
 
 
         <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupSelect01">Nacionalidad del Autor</label>
-          <select class="form-select" id="inputGroupSelect01">
+          <label class="input-group-text" for="authorBirthplace">Nacionalidad del Autor</label>
+          <select class="form-select" id="authorBirthplace">
             <option selected>Otros</option>
-            <option value="1">Francia</option>
-            <option value="2">Reino Unido</option>
-            <option value="3">Estados Unidos</option>
-            <option value="3">Alemania</option>
-            <option value="3">Italia</option>
-            <option value="3">Portugal</option>
-            <option value="3">Rusia</option>
-            <option value="3">Polonia</option>
-            <option value="3">Roma Clásica</option>
-            <option value="3">Grecia Clásica</option>
+            <option value="1">España</option>
           </select>
-          <label class="input-group-text" for="inputGroupSelect01">Idioma</label>
-          <select class="form-select" id="inputGroupSelect01">
-            <option selected>Castellano</option>
-            <option value="1">Inglés</option>
-            <option value="2">Francés</option>
-            <option value="3">Alemán</option>
-            <option value="3">Latín</option>
+          <label class="input-group-text" for="language">Idioma</label>
+          <select class="form-select" id="language">
+            <% languages.forEach(function (language,i) { %>
+              <option <% if (i==1) { %> selected <% }%> value="1"><%= language.name%></option>
+            <% }) %>
           </select>
         </div>
 
         <div class="mb-4">
-          <label for="basic-url" class="form-label">
+          <label for="shoppingLink" class="form-label">
             <i class="fa-brands fa-markdown"></i> Me lo pido</label>
           <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon3">URL de la tienda</span>
-            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+            <span class="input-group-text">URL de la oferta</span>
+            <input type="text" class="form-control" id="shoppingLink">
           </div>
         </div>
 
         <!-- Botón de submit -->
         <div class="row mb-3">
-          <button type="submit" class="btn btn-primary">Añadir Petición</button>
+          <button id="createNewPetition" type="submit" class="btn btn-primary">Añadir Petición</button>
         </div>
       </form>
     </div>

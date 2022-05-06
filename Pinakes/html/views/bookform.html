@@ -26,26 +26,25 @@
 
         <div class="input-group">
           <span class="input-group-text">Título</span>
-            <input type="text" aria-label="First name" class="form-control">
+            <input id="title" type="text" class="form-control">
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text">Autor</span>
-            <select id="inputState" class="form-select">
+            <select id="authorName" class="form-select">
               <option selected>Nombre</option>
               <option>Anónimo</option>
               <option>VV.AA.</option>
             </select>
-            <input type="text" aria-label="Author name" class="form-control">
+            <input type="text" class="form-control">
         </div>
 
         <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupSelect01">Sede de depósito</label>
-          <select class="form-select" id="inputGroupSelect01">
-            <option selected>Madrid</option>
-            <option value="1">Chalet</option>
-            <option value="2">Enguera</option>
-            <option value="3">Calpe</option>
+          <label class="input-group-text" for="location">Sede de depósito</label>
+          <select class="form-select" id="location">
+            <% locations.forEach(function (location,i) { %>
+              <option <% if (i==1) { %> selected <% }%> value="1"><%= location.name%></option>
+            <% }) %>
           </select>
         </div>
 
@@ -59,27 +58,27 @@
         </div>
 
         <div class="col-md-6">
-          <label for="inputState" class="form-label">
+          <label for="category" class="form-label">
             <h5><u>Género</u></h5>
           </label>
-          <select id="inputState" class="form-select">
-            <% bookCategories.forEach(function (e,i) { %>
+          <select id="category" class="form-select">
+            <% categories.forEach(function (e,i) { %>
               <option value="<%= e.id%>"><%= e.name%></option>
             <% }) %>
           </select>
         </div>
 
 
-        <% bookCategories.forEach(function (category,i) { %>
+        <% categories.forEach(function (category,i) { %>
           <div class="input-group mb-3" style="display: none">
-            <label class="input-group-text" for="inputGroupSelect01"><%= category.name%></label>
-            <select class="form-select" id="inputGroupSelect01">
+            <label class="input-group-text" for="subcategory"><%= category.name%></label>
+            <select class="form-select" id="subcategory">
               <%
-                var filteredBookSubcategories = bookSubcategories.filter(function (subcategory,i) {
+                var filteredSubcategories = subcategories.filter(function (subcategory,i) {
                   return (subcategory.parent == category.id)
                 })
               %>
-              <% filteredBookSubcategories.forEach(function (subcategory,i) { %>
+              <% filteredSubcategories.forEach(function (subcategory,i) { %>
                 <option <% if (i==1) { %> selected <% }%> value="1"><%= subcategory.name%></option>
               <% }) %>
             </select>
@@ -88,60 +87,49 @@
 
 
         <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupSelect01">Nacionalidad del Autor</label>
-          <select class="form-select" id="inputGroupSelect01">
+          <label class="input-group-text" for="authorBirthplace">Nacionalidad del Autor</label>
+          <select class="form-select" id="authorBirthplace">
             <option selected>Otros</option>
-            <option value="1">Francia</option>
-            <option value="2">Reino Unido</option>
-            <option value="3">Estados Unidos</option>
-            <option value="3">Alemania</option>
-            <option value="3">Italia</option>
-            <option value="3">Portugal</option>
-            <option value="3">Rusia</option>
-            <option value="3">Polonia</option>
-            <option value="3">Roma Clásica</option>
-            <option value="3">Grecia Clásica</option>
+            <option value="1">España</option>
           </select>
-          <label class="input-group-text" for="inputGroupSelect01">Idioma</label>
-          <select class="form-select" id="inputGroupSelect01">
-            <option selected>Castellano</option>
-            <option value="1">Inglés</option>
-            <option value="2">Francés</option>
-            <option value="3">Alemán</option>
-            <option value="3">Latín</option>
+          <label class="input-group-text" for="language">Idioma</label>
+          <select class="form-select" id="language">
+            <% languages.forEach(function (language,i) { %>
+              <option <% if (i==1) { %> selected <% }%> value="1"><%= language.name%></option>
+            <% }) %>
           </select>
         </div>
 
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon3">ISBN</span>
-          <input type="text" class="form-control" aria-describedby="basic-addon3">
+          <span class="input-group-text" id="isbn">ISBN</span>
+          <input type="text" class="form-control">
         </div>
 
 
         <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon3">Editorial</span>
-          <input type="text" class="form-control" aria-describedby="basic-addon3">
-          <span class="input-group-text" id="basic-addon3">Formato</span>
-          <input type="text" class="form-control" aria-describedby="basic-addon3">
+          <span class="input-group-text" id="editorial">Editorial</span>
+          <input type="text" class="form-control">
+          <span class="input-group-text" id="format">Formato</span>
+          <input type="text" class="form-control">
         </div>
         <div class="input-group mb-3">
-          <span class="input-group-text">Fecha de Publicación</span>
-          <input type="number" class="form-control" aria-label="Amount">
-          <span class="input-group-text">Nº de Edición</span>
-          <input type="number" class="form-control" aria-label="Amount">
-          <span class="input-group-text">Nº de Páginas</span>
-          <input type="number" class="form-control" aria-label="Amount">
+          <span class="input-group-text" id="publishDate">Fecha de Publicación</span>
+          <input type="number" class="form-control">
+          <span class="input-group-text" id="issue">Nº de Edición</span>
+          <input type="number" class="form-control">
+          <span class="input-group-text" id="pages">Nº de Páginas</span>
+          <input type="number" class="form-control">
         </div>
 
         <div class="mb-4">
-          <label for="formFileMultiple" class="form-label">Imágenes del Libro</label>
-          <input class="form-control" type="file" id="formFileMultiple" multiple>
+          <label for="bookPicFiles" class="form-label">Imágenes del Libro</label>
+          <input class="form-control" type="file" id="bookPicFiles" multiple>
         </div>
 
         <!-- Botón de submit -->
         <div class="row mb-3">
-          <button type="submit" class="btn btn-primary">Añadir Libro</button>
+          <button id="createNewBooks" type="submit" class="btn btn-primary">Añadir Libro</button>
         </div>
       </form>
     </div>
