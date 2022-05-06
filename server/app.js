@@ -7,6 +7,8 @@ const {collectionformHandler} = require('./controllers/collections.js');
 const {petitionformHandler} = require('./controllers/petitions.js');
 const {userformHandler, userloginHandler, userprofileHandler} = require('./controllers/users.js');
 
+const {apiBooksHandler} = require('./controllers/api.js');
+
 
 
 
@@ -32,6 +34,8 @@ app.get('/auth/new', userformHandler);
 app.get('/users/:user', userprofileHandler);
 app.get('/users/:user/newcollection', collectionformHandler);
 app.get('/users/:user/newpetition', petitionformHandler);
+
+app.get('/api/books', apiBooksHandler);
 
 
 
