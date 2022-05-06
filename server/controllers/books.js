@@ -102,23 +102,23 @@ var bookprofileHandler = function (req, res) {
     info.book.author = author;
   };
 
+
+  var reviewsMapped = book.reviews.map(function (id) {
+    var review = getReviewById(id);
+    if (review.reviewer == null) {
+      review.reviewer = {}
+    } else {
+      var reviewer = getUserById(review.reviewer);
+      review.reviewer = reviewer;
+    };
+
+    return review;
+  });
+
+  info.reviews = reviewsMapped
+
   res.render(pathname, info);
 };
-
-
-var reviewsMapped = book.reviews.map(function (id) {
-  var review = getReviewById(id);
-  return review;
-});
-
-var reviewer = getUserById(review.reviewer);
-if (review.reviewer == null) {
-  info.review.reviewer = {};
-} else {
-  info.review.reviewer = reviewer;
-};
-
-info.reviewsMapped = reviewsMapped;
 
 
 

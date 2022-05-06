@@ -19,17 +19,17 @@
       <!-- Columna de la Foto-->
       <div class="col-3">
         <div class="row">
-          <img class="img-fluid" alt="Foto principal" src="<%=book.picture.main%>">
+          <img class="img-fluid" alt="Foto principal" src="<%=book.pic.main%>">
         </div>
         <div class="row">
           <div class="col-4">
-            <img class="img-thumbnail" alt="Foto alternativa 01" src="<%=book.picture.others[0]%>">
+            <img class="img-thumbnail" alt="Foto alternativa 01" src="<%=book.pic.others[0]%>">
           </div>
           <div class="col-4">
-            <img class="img-thumbnail" alt="Foto alternativa 02" src="<%=book.picture.others[1]%>">
+            <img class="img-thumbnail" alt="Foto alternativa 02" src="<%=book.pic.others[1]%>">
           </div>
           <div class="col-4">
-            <img class="img-thumbnail" alt="Foto alternativa 03" src="<%=book.picture.others[2]%>">
+            <img class="img-thumbnail" alt="Foto alternativa 03" src="<%=book.pic.others[2]%>">
           </div>
         </div>
       </div>
@@ -39,10 +39,10 @@
         <div class="row">
           <div class="col-7">
           <h4><%=book.title%></h4>
-          <h6>Nombre del autor</h6>
+          <h6><%=book.author.firstname%> <%=book.author.lastname%></h6>
           </div>
           <div class="col-3">
-          <h5><i class="fa-solid fa-location-dot"></i>Sede</h5>
+          <h5><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
           </div>
 
           <div class="col-2">
@@ -124,28 +124,30 @@
               </div>
               <div class="carousel-inner">
 
-              <!--<% book.reviews.forEach(function(e,i){ %> -->
+              <% reviews.forEach(function(e,i){ %>
                 <div class="carousel-item <% if (i==0) { %>active<% } %>">
                   <div class="review-block">
                     <div class="row">
                       <div class="col-sm-3">
-                        <img src="#" class="img-thumbnail">
+                        <img src="<%=e.reviewer.pic%>" class="img-thumbnail">
                         <div class="review-block-name">
-                          <a href="/auth/new"<p class="text-primary">Nick</p></a>
+                          <a href="/auth/new"<p class="text-primary"><%= e.reviewer.nickname%></p></a>
                         </div>
-                        <div class="review-block-date">Hace X días</div>
+                        <div class="review-block-date">Hace <%= e.age%> días</div>
                       </div>
                       <div class="col-sm-9">
                         <div class="review-block-rate">
                           <span class="name mb-1 fw-500">Valoración del Libro</span>
                           <div class="rating">
-                            <input type="range" value="1" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
-                            <output>Valor libro</output><i class="fa-solid fa-star"></i>
+                            <input type="range" value="<%=e.bookRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
+                            <output><%=e.bookRate%></output>
+                            <i class="fa-solid fa-star"></i>
                           </div>
                           <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
                           <div class="rating">
-                            <input type="range" value="1" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
-                            <output>Valor ejemplar</output><i class="fa-solid fa-star"></i>
+                            <input type="range" value="<%=e.copyRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
+                            <output><%=e.copyRate%></output>
+                            <i class="fa-solid fa-star"></i>
                           </div>
                           <div class="review-block-description">Comentario</div>
                         </div>
