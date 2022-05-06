@@ -55,8 +55,7 @@ var userprofileHandler = function (req, res) {
   };
 
 
-  var lastBookReadId = user.lastBookRead;
-  var lastBookRead = getBookById(lastBookReadId);
+  var lastBookRead = getBookById(user.lastBookRead);
 
   if (lastBookRead == null) {
     info.lastBookRead = {};
@@ -65,9 +64,8 @@ var userprofileHandler = function (req, res) {
   };
 
 
-  var lastBookReadCollectionId = lastBookRead.collection;
+  var lastBookReadCollection = getCollectionById(lastBookRead.collection);
 
-  var lastBookReadCollection = getCollectionById(lastBookReadCollectionId);
   if (lastBookReadCollection == null) {
     info.lastBookReadCollection = {};
   } else {
@@ -75,12 +73,12 @@ var userprofileHandler = function (req, res) {
   };
 
 
-  var otherBooksInCollection = lastBookReadCollection.books.map(function (e) {
-    var bookInCollection = getBookById(e);
-    return bookInCollection;
+  var booksInLastCollection = lastBookReadCollection.books.map(function (id) {
+    var book = getBookById(id);
+    return book;
   });
 
-  info.otherBooksInCollection = otherBooksInCollection;
+  info.booksInLastCollection = booksInLastCollection;
 
 
   var suggestedBooks = getRandomBooks(3);

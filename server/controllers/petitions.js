@@ -24,11 +24,11 @@ var petitionformHandler= function (req, res) {
     info.user = user;
   };
 
-  var bookCategories = getAllCategories();
-  info.bookCategories = bookCategories;
+  var categories = getAllCategories();
+  info.categories = categories;
 
-  var bookSubcategories = getAllSubcategories();
-  info.bookSubcategories = bookSubcategories;
+  var subcategories = getAllSubcategories();
+  info.subcategories = subcategories;
 
 
   res.render(pathname, info);

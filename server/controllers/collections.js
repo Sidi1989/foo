@@ -30,7 +30,7 @@ var collectionformHandler= function (req, res) {
   });
 
 
-  var collectionsEnhanced = collections.map(function (collection) {
+  var collectionsWithBooks = collections.map(function (collection) {
     var books = collection.books.map(function (id) {
       var book = getBookById(id);
       return book;
@@ -39,8 +39,8 @@ var collectionformHandler= function (req, res) {
     return collection;
   });
 
-  info.collections = collectionsEnhanced;
-  
+  info.collections = collectionsWithBooks;
+
   res.render(pathname, info);
 };
 

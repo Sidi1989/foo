@@ -1,10 +1,10 @@
 const {getBookById, getAllBooks} = require('../models/books.js');
 const {getAllCategories, getCategoryById} = require('../models/categories.js');
 const {getAllSubcategories, getSubcategoryById} = require('../models/subcategories.js');
+const {getLanguageById} = require('../models/languages.js');
+const {getLocationById} = require('../models/locations.js');
 const {getAuthorById} = require('../models/authors.js');
 const {getReviewById} = require('../models/reviews.js');
-const {getLocationById} = require('../models/locations.js');
-const {getLanguageById} = require('../models/languages.js');
 const {getUserById} = require('../models/users.js');
 
 
@@ -21,11 +21,11 @@ var bookformHandler= function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/bookform.html`;
 
   var info = {};
-  var bookCategories = getAllCategories();
-  info.bookCategories = bookCategories;
+  var categories = getAllCategories();
+  info.categories = categories;
 
-  var bookSubcategories = getAllSubcategories();
-  info.bookSubcategories = bookSubcategories;
+  var subcategories = getAllSubcategories();
+  info.subcategories = subcategories;
 
   res.render(pathname, info);
 };
@@ -82,21 +82,36 @@ var bookprofileHandler = function (req, res) {
     info.book = book;
   };
 
-  var bookLocation = getLocationById(book.location);
+  var location = getLocationById(book.location);
   if (book.location == null) {
     info.book.location = {};
   } else {
-    info.book.location = bookLocation;
+    info.book.location = location;
   };
 
-  var bookAuthor = getAuthorById(book.author);
+  var author = getAuthorById(book.author);
   if (book.author == null) {
     info.book.author = {};
   } else {
-    info.book.author = bookAuthor;
+    info.book.author = author;
   };
 
   res.render(pathname, info);
+};
+
+
+var reviews = book.reviews.map(function (id) {
+  var review = getReviewById(id);
+  return review;
+});
+
+info.reviews = reviews;
+
+var reviewer = getUserById(review.reviewer);
+if (review.reviewer == null) {
+  info.review.reviewer = {};
+} else {
+  info.review.reviewer = reviewer;
 };
 
 
