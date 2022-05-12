@@ -21,6 +21,7 @@ var bookformHandler= function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/bookform.html`;
 
   var info = {};
+
   var locations = getAllLocations();
   info.locations = locations;
 
@@ -32,6 +33,7 @@ var bookformHandler= function (req, res) {
 
   var languages = getAllLanguages();
   info.languages = languages;
+
 
   res.render(pathname, info);
 };
@@ -46,6 +48,7 @@ var bookformHandler= function (req, res) {
  */
 var booksearchHandler = function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/booksearch.html`;
+
   var info = {};
 
   var books = getAllBooks();
@@ -65,7 +68,8 @@ var booksearchHandler = function (req, res) {
 
   info.books = books;
 
-  return res.render(pathname, info);
+
+  res.render(pathname, info);
 };
 
 
@@ -79,9 +83,10 @@ var booksearchHandler = function (req, res) {
 var bookprofileHandler = function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/bookprofile.html`;
 
+  var info = {};
+
   var book = getBookById(req.params.book);
 
-  var info = {};
   if (book == null) {
     info.book = {};
   } else {
@@ -89,19 +94,28 @@ var bookprofileHandler = function (req, res) {
   };
 
   var location = getLocationById(book.location);
+
   if (book.location == null) {
     info.book.location = {};
   } else {
     info.book.location = location;
   };
 
+  var language = getLanguageById(book.language);
+
+  if (book.language == null) {
+    info.book.language = {};
+  } else {
+    info.book.language = language;
+  };
+
   var author = getAuthorById(book.author);
+
   if (book.author == null) {
     info.book.author = {};
   } else {
     info.book.author = author;
   };
-
 
   var reviewsMapped = book.reviews.map(function (id) {
     var review = getReviewById(id);
@@ -114,8 +128,11 @@ var bookprofileHandler = function (req, res) {
 
     return review;
   });
-
   info.reviews = reviewsMapped
+
+  var books = getAllBooks();
+  info.books = books;
+
 
   res.render(pathname, info);
 };

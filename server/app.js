@@ -3,9 +3,9 @@ const path = require('path');
 const express = require('express');
 const {renderFile} = require('ejs');
 const {bookformHandler, booksearchHandler, bookprofileHandler} = require('./controllers/books.js');
-const {collectionformHandler} = require('./controllers/collections.js');
-const {petitionformHandler} = require('./controllers/petitions.js');
-const {userformHandler, userloginHandler, userprofileHandler} = require('./controllers/users.js');
+const {collectionformHandler, collectionprofileHandler} = require('./controllers/collections.js');
+const {petitionformHandler, petitionprofileHandler} = require('./controllers/petitions.js');
+const {userformHandler, userloginHandler, userprofileHandler, useraccountHandler} = require('./controllers/users.js');
 
 const {apiBooksHandler} = require('./controllers/api.js');
 
@@ -32,8 +32,11 @@ app.get('/books/:book', bookprofileHandler);
 app.get('/auth', userloginHandler);
 app.get('/auth/new', userformHandler);
 app.get('/users/:user', userprofileHandler);
-app.get('/users/:user/newcollection', collectionformHandler);
-app.get('/users/:user/newpetition', petitionformHandler);
+app.get('/users/:user/account', useraccountHandler);
+app.get('/users/:user/collections/new', collectionformHandler);
+app.get('/users/:user/collections/:collection', collectionprofileHandler);
+app.get('/users/:user/petitions/new', petitionformHandler);
+app.get('/users/:user/petitions/:petition', petitionprofileHandler);
 
 app.get('/api/books', apiBooksHandler);
 
