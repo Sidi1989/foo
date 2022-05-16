@@ -1,39 +1,57 @@
-<div class="row">
-  <div class="col-8">
-    <div class="bg-success p-3 text-white">Pinakes (y su Logo)</div>
+<div class="row bg-success mb-5">
+  <div class="col-11">
+    <figure class="text-center text-white">
+      <blockquote class="blockquote">
+        <h3>PIN
+        <img src="https://cdn-icons-png.flaticon.com/512/6627/6627472.png" class="img-fluid" style="width:1.5rem; height:1.5rem">
+        KES</h3>
+      </blockquote>
+    </figure>
   </div>
-  <div class="col">
 
+  <div class="col-1">
     <!-- Menú de Opciones-->
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Menú de Opciones</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+
+          <!-- Dentro del desplegable-->
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarTitle"><u>Menú</u></h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+            <div class="offcanvas-title">
+              <u><h5>Menú</h5></u>
+            </div>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas">
+            </button>
           </div>
+
           <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li class="nav-item">
+            <ul class="navbar-nav justify-content-end flex-grow-1">
+              <li class="nav-item mb-2">
                 <a class="nav-link active" href="/auth"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">  <i class="fa-solid fa-user-gear"></i> Configuración</a>
+              <li class="nav-item mb-4">
+                <a class="nav-link active" href="/auth/new">  <i class="fa-solid fa-user-gear"></i> Configuración</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="/books/search">
-                  <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i> <h5>Buscar</h5></button>
+                  <button class="btn btn-outline-success" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <h5>Buscar</h5>
+                  </button>
                 </a>
               </li>
             </ul>
           </div>
+
         </div>
+
       </div>
     </nav>
-
   </div>
+
 </div>
