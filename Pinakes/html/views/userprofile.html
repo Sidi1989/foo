@@ -5,9 +5,9 @@
   <title>Pinakes - <%=user.nickname%></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="/public/css/main.css">
   <link rel="stylesheet" href="/public/css/userprofile.css">
 </head>
-
 
 
 <body>
@@ -15,310 +15,331 @@
     <!-- Header-->
     <%- include('../partials/header.html', {}); %>
 
+    <!-- Todo el Contenido, salvo el Header-->
     <div class="row">
-      <!-- Columna Lateral-->
-      <div id="sidebar" class="col-3">
-        <div class="px-4 py-4">
 
-          <!-- Perfil de usuario-->
+      <!-- Columna Lateral-->
+      <div class="col-4">
+
+        <!-- Perfil de usuario-->
+        <div class="p-1 bg-light border">
           <div class="row">
             <div class="col">
-              <img class="img-thumbnail" src="<%=user.pic%>" alt="profile-pic">
+              <img id="userPicFile"  class="img-thumbnail" src="<%=user.pic%>">
             </div>
-            <div class="col">
+            <div class="col mt-2">
               <div class="row"><i class="fa-solid fa-user-pen"></i>
-                <p class="text-primary"><%=user.nickname%></p>
+                <p id="nickname" class="text-primary"><%=user.nickname%></p>
               </div>
               <div class="row"><i class="fa-solid fa-hourglass"></i>
-                <p class="text-primary"><%=user.clientAge%> días</p>
+                <p id="clientAge" class="text-primary"><%=user.clientAge%> días</p>
               </div>
               <div class="row">
                 <div class="col"><i class="fa-solid fa-book-open"></i>
-                <p class="text-primary">8</p>
+                  <p id="bookNUmber" class="text-primary"><%=user.books.length%></p>
                 </div>
                 <div class="col"><i class="fa-solid fa-map-pin"></i>
-                <p class="text-primary">2</p>
+                  <p id="petitionNumber" class="text-primary"><%=user.petitions.length%></p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="p-1 mt-4 bg-success text-white">
+          <!-- Header de Colecciones-->
+          <div class="row g-0 p-1">
+            <div class="col-10 text-center">
+              <h4>Mis Colecciones</h4>
+            </div>
+            <div class="col-2 text-end">
+              <a href="<%= user.id%>/collections/new">
+                <button type="button" class="btn btn-success btn-lg">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </a>
             </div>
           </div>
 
           <!-- Mis Colecciones-->
-          <div class="row">
-            <div class="p-3 mb-2 bg-secondary text-white">Mis Colecciones
-              <button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-filter-circle-xmark"></i></button>
-              <button type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="accordion" id="accordionPanelsStayOpenExample">
-
-              <div class="accordion-item">
-                <div class="col-9">
-                  <div class="accordion-header" id="panelsStayOpen-headingTwo">
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="btn-group" role="group">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
-                    Nombre de Colección<span class="badge bg-secondary rounded-pill">Nº</span></button>
-                    <div class="btn-group">
-                      <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-arrow-down-wide-short"></i>
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
-                        <li><a class="dropdown-item" href="#">Más recientes</a></li>
-                        <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
-                        <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
-                      </ul>
-                      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-file-signature"></i>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Cambiar nombre</a></li>
-                        <li><a class="dropdown-item" href="#">Eliminar colección</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                  <div class="accordion-body">
-                    <a href="#" class="list-group-item list-group-item-action"><strong>La llamada de la selva</strong> (Jack London) <i class="fa-solid fa-star"></i></a>
-                    <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
-                    <button type="button" class="btn btn-light"><i class="fa-solid fa-indent"></i></button>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Libros sin Colección-->
-          <div class="row">
-            <div class="p-3 mb-2 bg-secondary text-white">
-
-              <div class="accordion" id="accordionPanelsStayOpenExample">
+          <% user.collections.forEach(function (collection, i) { %>
+          <div class="row gx-0">
+            <div class="col-9">
+              <div id="collectionInfo" class="accordion">
                 <div class="accordion-item">
-                  <div class="accordion-header" id="panelsStayOpen-headingThree"></div>
-                  <div class="btn-group" role="group">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
-                    Libros sin Colección<span class="badge bg-secondary rounded-pill">2</span></button>
-                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-arrow-down-wide-short"></i>
+                  <div class="accordion-header" id="accordionCollapser<%= i%>">
+                    <button class="accordion-button collapsed" type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionCollapser<%= i%>"
+                      aria-expanded="true"
+                      aria-controls="accordionCollapser<%= i%>">
+                      <span><%= collection.name %></span>
+                      <span class="badge bg-success rounded-pill"><%= collection.books.length %></span>
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                      <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
-                      <li><a class="dropdown-item" href="#">Más recientes</a></li>
-                      <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
-                      <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
-                    </ul>
                   </div>
-                  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+
+                  <div id="accordionCollapser<%= i%>" class="accordion-collapse collapse">
                     <div class="accordion-body">
-                      <a href="#" class="list-group-item list-group-item-action"><strong>El corazón de las tinieblas</strong> (Joseph Conrad) </a>
-                      <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
-                      <button type="button" class="btn btn-light"><i class="fa-solid fa-indent"></i></button>
+                      <% collection.books.forEach(function (book) { %>
+                        <a href="/books/<%=book.id%>" class="list-group-item list-group-item-action">
+                          <span><strong><%=book.title %></strong> (<%=book.author %>)</span>
+                          <i class="fa-solid fa-star"></i>
+                        </a>
+                        <button type="button" class="btn btn-light">
+                          <i class="fa-solid fa-square-xmark"></i>
+                        </button>
+                      <% }); %>
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
-          </div>
 
-          <!-- Peticiones de Libros-->
-          <div class="row">
-            <div class="p-3 mb-2 bg-dark text-white">
-
-              <div class="accordion" id="accordionPanelsStayOpenExample">
-                <div class="accordion-item">
-                  <div class="accordion-header" id="panelsStayOpen-headingFour"></div>
-                  <div class="btn-group" role="group">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
-                    Libros en Petición<span class="badge bg-dark rounded-pill">2</span></button>
-                    <button id="btnGroupDrop1" type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-arrow-down-wide-short"></i>
-                    </button>
-                      <button type="button" class="btn btn-dark btn-lg"><i class="fa-solid fa-plus"></i></button>
-                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                      <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
-                      <li><a class="dropdown-item" href="#">Más recientes</a></li>
-                      <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
-                      <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
-                    </ul>
-                  </div>
-                  <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
-                    <div class="accordion-body">
-                      <a href="#" class="list-group-item list-group-item-action"><strong>El arenal de Sevilla</strong> (Lope de Vega) </a>
-                      <button type="button" class="btn btn-light"><i class="fa-solid fa-square-xmark"></i></button>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Columna Central-->
-      <div id="maincontent" class="col-9">
-        <div class="py-4">
-          <!--Sobre el Libro seleccionado-->
-          <div class="row">
-            <div class="col">
-
-              <div class="card text-center" style="width:16rem;">
-                <div class="card-header">
-                  <span class="name mb-1 fw-500"><%=lastBookRead.title%></span> <small class="text-black-50"><%=lastBookRead.author.name%><i class="fa-solid fa-star"></i></small>
-                </div>
-                <a href="/books/new">
-                  <img src="<%=lastBookRead.picture.main%>" class="card-img-top" alt="Libro Seleccionado">
+            <div class="col-3">
+              <div class="btn-group">
+                <button id="buttonDropdown" type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-arrow-down-wide-short"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
+                  <li><a class="dropdown-item" href="#">Más recientes</a></li>
+                  <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
+                  <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
+                </ul>
+                <a href="<%= user.id%>/collections/<%= collection.id%>">
+                  <button type="button" class="btn btn-success">
+                    <i class="fa-solid fa-file-signature"></i>
+                  </button>
                 </a>
               </div>
             </div>
-
-            <div class="col">
-              <div class="row">
-                <div class="comment-box ml-2">
-
-                  <span class="name mb-1 fw-500">Valoración del Libro</span>
-                  <div class="rating">
-                    <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
-                    <output>1</output><i class="fa-solid fa-star"></i>
-                  </div>
-                  <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
-                  <div class="rating">
-                    <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
-                    <output>1</output><i class="fa-solid fa-star"></i>
-                  </div>
-
-                  <div class="comment-area">
-                    <h4>Añadir un comentario</h4>
-                    <textarea class="form-control" placeholder="¿Qué opinas?" rows="5"></textarea>
-                  </div>
-
-                  <div class="row">
-                    <div class="col"> <button class="btn btn-success send btn-sm">Modificar Valoración</button>
-                    </div>
-                    <div class="col"> <button class="btn btn-success send btn-sm">Guardar Valoración</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
+          <% }); %>
 
-          <!--Sobre los Libros de la Colección-->
-          <div class="py-4">
-            <div class="row">
-              <div class="col">
-                <!--Cinta de opciones-->
-                <div class="row">
-                  <div class="col-9">
-                    <div class="bg-success p-2 text-dark bg-opacity-25">Otros Libros en "<%=lastBookReadCollection.name%>"</div>
+          <!-- Libros sin Colección-->
+          <div class="row gx-0">
+            <div class="col-9">
+              <div id="collectionInfo" class="accordion">
+                <div class="accordion-item">
+                  <div class="accordion-header" id="accordionOthersCollapser">
+                    <button class="accordion-button collapsed" type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionOthersCollapser"
+                      aria-expanded="true"
+                      aria-controls="accordionOthersCollapser">
+                      Libros sin Colección<span class="badge bg-success rounded-pill">1</span>
+                    </button>
                   </div>
-                <div class="col">
-                  <div class="btn-group" role="group">
-                      <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-grip"></i>
+
+                  <div id="accordionOthersCollapser" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <span><strong>Aurora espléndida</strong> (Jack London)</span>
+                        <i class="fa-solid fa-star"></i>
+                      </a>
+                      <button type="button" class="btn btn-light">
+                        <i class="fa-solid fa-square-xmark"></i>
                       </button>
-                      <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <li><a class="dropdown-item" href="#">Imágenes grandes</a></li>
-                        <li><a class="dropdown-item" href="#">Imágenes pequeñas</a></li>
-                        <li><a class="dropdown-item" href="#">Lista grande</a></li>
-                        <li><a class="dropdown-item" href="#">Lista pequeña</a></li>
-                      </ul>
-                  </div>
-                  <div class="btn-group" role="group">
-                      <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-arrow-down-wide-short"></i>
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
-                        <li><a class="dropdown-item" href="#">Más recientes</a></li>
-                        <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
-                        <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
-                      </ul>
-                  </div>
-                </div>
-                </div>
-                <!--Display de los Libros de la Colección-->
-                <div class="row">
-                <% otherBooksInCollection.forEach(function(e,i){ %>
-                  <div class="col-4">
-                    <div class="card text-center" style="width: 8rem;">
-                      <img src="<%=e.picture.main%>" class="card-img-top" alt="Otro Libro">
-                      <div class="card-body">
-                        <span class="name mb-1 fw-500"><%=e.title%></span> <small class="text-black-50"><%=e.author.name%> <i class="fa-solid fa-star"></i></small>
-                      </div>
                     </div>
                   </div>
-                <% }) %>
+                </div>
+              </div>
+            </div>
 
+            <div class="col-3">
+              <div class="btn-group">
+                <button id="buttonDropdown" type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-arrow-down-wide-short"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
+                  <li><a class="dropdown-item" href="#">Más recientes</a></li>
+                  <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
+                  <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="p-1 mt-4 bg-success opacity-75 text-white">
+          <!-- Header de Peticiones-->
+          <div class="row gx-0">
+            <div class="col-10 text-center">
+              <h4>Mis Peticiones</h4>
+            </div>
+            <div class="col-2 text-end">
+              <a href="<%= user.id%>/petitions/new">
+                <button type="button" class="btn btn-success btn-lg">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </a>
+            </div>
+          </div>
+
+          <!-- Libros Pedidos-->
+          <div class="row">
+            <ul class="list-group">
+              <% user.petitions.forEach(function (petition, i) { %>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><strong><%=petition.title %></strong> (<%= petition.author %>)</span>
+                <span class="badge bg-success rounded-pill"><%= petition.buylists.length %></span>
+
+                <!-- Modal para editar Petición -->
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#petitionEdit">
+                  <i class="fa-solid fa-file-signature"></i>
+                </button>
+                <%- include('../partials/petitionedit.html', {}); %>
+
+              </li>
+              <% }); %>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <!-- Fin de la Columna Lateral-->
+
+
+      <!-- Columna Central-->
+      <div class="col-8 px-4">
+
+        <!--Sobre el Libro seleccionado-->
+        <div class="row mb-4">
+          <div class="col-5">
+            <div id="selectedBook" class="card">
+              <div class="card-header text-center">
+                <p><%=lastBookRead.title%></p>
+                <small class="text-black-50"> (<%=lastBookRead.author.name%>)</small>
+              </div>
+              <a href="/books/<%=lastBookRead.id%>">
+                <img src="<%=lastBookRead.pic.main%>" class="card-img-top">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-7">
+            <div class="p-1 bg-light border">
+              <div class="row mt-3">
+                <span>Valoración del Libro</span>
+                <div id="bookRate" class="rating mt-1">
+                  <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
+                  <output>1</output>
+                  <small><i class="fa-solid fa-star"></i></small>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <span>Valoración del Ejemplar</span>
+                <div id="copyRate" class="rating mt-1">
+                  <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
+                  <output>1</output>
+                  <small><i class="fa-solid fa-star"></i></small>
+                </div>
+              </div>
+              <div id="comment" class="comment-area mt-3">
+                <h5>Añadir un comentario</h5>
+                <textarea class="form-control" rows="5" placeholder="¿Qué opinas?"></textarea>
+              </div>
+              <div class="row mt-1">
+                <div id="saveReview" class="col text-end">
+                  <button class="btn btn-success send">Guardar cambios
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!--Sobre los Libros sugeridos-->
-          <div class="py-4">
-            <div class="row">
-              <div class="col">
-                <!--Cinta de opciones-->
-                <div class="row">
-                  <div class="col-9">
-                    <div class="bg-success p-2 text-dark bg-opacity-25">Libros sugeridos</div>
-                  </div>
-                  <div class="col">
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="fa-solid fa-grip"></i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                          <li><a class="dropdown-item" href="#">Imágenes grandes</a></li>
-                          <li><a class="dropdown-item" href="#">Imágenes pequeñas</a></li>
-                          <li><a class="dropdown-item" href="#">Lista grande</a></li>
-                          <li><a class="dropdown-item" href="#">Lista pequeña</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="fa-solid fa-arrow-down-wide-short"></i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                          <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
-                          <li><a class="dropdown-item" href="#">Más recientes</a></li>
-                          <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
-                          <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                </div>
-                <!--Display de los Libros sugeridos-->
-                <div class="row">
-                <% suggestedBooks.forEach(function(e,i){ %>
-                  <div class="col-4">
-                    <div class="card text-center" style="width: 16rem;">
-                      <img src="" class="card-img-top" alt="Libro sugerido 01">
-                      <div class="card-body">
-                        <span class="name mb-1 fw-500"><%=e.title%></span> <small class="text-black-50"><%=e.author.name%></small>
-                      </div>
-                    </div>
-                  </div>
-                <% }) %>
+        <!--Sobre los Libros de la Colección-->
+        <div class="row">
+          <div class="bg-success p-1 mb-3 text-center text-white">
+            Otros Libros en "<%=lastBookRead.collection.name%>"
+          </div>
+        </div>
 
-                </div>
+        <div id="otherBooksInCollection" class="row">
+          <% lastBookRead.collection.books.forEach(function(e,i) { %>
+          <div class="col-4">
+            <div class="card text-center">
+              <img src="<%=e.pic.main%>" class="card-img-top">
+              <div class="card-body">
+                <span><%=e.title%></span>
+                <i class="fa-solid fa-star"></i>
               </div>
             </div>
           </div>
-
+          <% }); %>
         </div>
       </div>
+
+    <div class="row mt-4">
+      <div class="container">
+        <div class="bg-success p-1 mb-3 text-white text-center">
+          <h4>Sugerencias</h4>
+        </div>
+
+        <div class="row">
+          <!-- Carrusel de libros sugeridos -->
+          <div id="suggestedBooksCarousel" class="carousel carousel-dark slide" data-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide-to="0" class="active" aria-current="true">
+              </button>
+              <button type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide-to="1">
+              </button>
+            </div>
+
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <% suggestedBooks.forEach(function(e,i){ %>
+                  <div class="col-4 mb-3">
+                    <div class="card text-center w-50">
+                      <img class="card-img-top" src="<%=e.pic.main%>">
+                      <div class="card-body">
+                        <h4 class="card-title"><%=e.title%></h4>
+                        <h8 class="card-text"><%=e.author.name%></h8>
+                      </div>
+                    </div>
+                  </div>
+                  <% }) %>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="row">
+                  <% suggestedBooks.forEach(function(e,i){ %>
+                  <div class="col-4 mb-3">
+                    <div class="card text-center w-50">
+                      <img class="card-img-top" src="<%=e.pic.main%>">
+                      <div class="card-body">
+                        <h4 class="card-title"><%=e.title%></h4>
+                        <h8 class="card-text"><%=e.author.name%></h8>
+                      </div>
+                    </div>
+                  </div>
+                  <% }) %>
+                </div>
+              </div>
+
+              <button class="carousel-control-prev" type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+          <!-- Final del carrusel de libros sugeridos -->
+        </div>
+
+      </div>
     </div>
-  <!-- Footer-->
-  <%- include('../partials/footer.html', {}); %>
-</div>
+
+    <!-- Footer-->
+    <%- include('../partials/footer.html', {}); %>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script type="text/javascript" src="/public/js/userprofile.js"></script>

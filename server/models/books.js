@@ -31,8 +31,8 @@ var getRandomBooks = function (quantity) {
     return (aleas > 0.5);
   });
 
-  var filteredTakenBooks = _.take(filteredBooks, quantity);
-  return _.cloneDeep(filteredTakenBooks);
+  var takenBooks = _.take(filteredBooks, quantity);
+  return _.cloneDeep(takenBooks);
 };
 
 

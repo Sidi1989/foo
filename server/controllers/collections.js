@@ -18,7 +18,6 @@ var collectionprofileHandler= function (req, res) {
   var info = {};
 
   var user = getUserById(req.params.user);
-
   if (user == null) {
     info.user = {};
   } else {
@@ -26,7 +25,6 @@ var collectionprofileHandler= function (req, res) {
   };
 
   var collection = getCollectionById(req.params.collection);
-
   if (collection == null) {
     info.collection = {};
   } else {
@@ -51,7 +49,6 @@ var collectionformHandler= function (req, res) {
   var info = {};
 
   var user = getUserById(req.params.user);
-
   if (user == null) {
     info.user = {};
   } else {

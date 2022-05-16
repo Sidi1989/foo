@@ -1,6 +1,8 @@
 const {getUserById} = require('../models/users.js');
 const {getBookById, getRandomBooks} = require('../models/books.js');
 const {getCollectionById} = require('../models/collections.js');
+const {getPetitionById} = require('../models/petitions.js');
+const {getAuthorById} = require('../models/authors.js');
 
 
 
@@ -50,7 +52,6 @@ var useraccountHandler= function (req, res) {
   var info = {};
 
   var user = getUserById(req.params.user);
-
   if (user == null) {
     info.user = {};
   } else {
@@ -75,28 +76,29 @@ var userprofileHandler = function (req, res) {
   var info = {};
 
   var user = getUserById(req.params.user);
-
   if (user == null) {
     info.user = {};
   } else {
     info.user = user;
   };
 
-  var collectionsMapped = user.collections.map(function (id) {
-    var collection = getCollectionById(id);
+  var collectionsMapped = user.collections.map(function (collectionId) {
+    var collection = getCollectionById(collectionId);
+    var booksInCollection = collection.books.map(function (bookId) {
+      var book = getBookById(bookId);
+      return book;
+    });
+    collection.books = booksInCollection;
     return collection;
   });
   info.user.collections = collectionsMapped;
 
-  var collectionsEnhanced = collectionsMapped.map(function (collection) {
-    var books = collection.books.map(function (id) {
-      book = getBookById(id);
-      return book;
-    });
-    collection.books = books;
-    return collection;
+  var petitionsMapped = user.petitions.map(function (petitionId) {
+    var petition = getPetitionById(petitionId);
+    return petition;
+    var petitionAuthor = getAuthorById(petition.author);
   });
-  info.user.collections = collectionsEnhanced
+  info.user.petitions = petitionsMapped;
 
   var lastBookRead = getBookById(user.lastBookRead);
   if (lastBookRead == null) {
@@ -105,21 +107,30 @@ var userprofileHandler = function (req, res) {
     info.lastBookRead = lastBookRead;
   };
 
-  var lastBookReadCollection = getCollectionById(lastBookRead.collection);
-
-  if (lastBookReadCollection == null) {
-    info.lastBookReadCollection = {};
+  var lastBookReadAuthor = getAuthorById(lastBookRead.author);
+  if (lastBookReadAuthor == null) {
+    info.lastBookRead.author = {};
   } else {
-    info.lastBookReadCollection = lastBookReadCollection;
+    info.lastBookRead.author = lastBookReadAuthor;
   };
 
-  var booksMapped = lastBookReadCollection.books.map(function (id) {
-    var book = getBookById(id);
+  var lastBookReadCollection = getCollectionById(lastBookRead.collection);
+  if (lastBookReadCollection == null) {
+    info.lastBookRead.collection = {};
+  } else {
+    info.lastBookRead.collection = lastBookReadCollection;
+  };
+
+  var booksMapped = lastBookReadCollection.books.map(function (bookId) {
+    var book = getBookById(bookId);
     return book;
   });
-  info.booksInCollection = booksMapped;
+  info.lastBookRead.collection.books = booksMapped;
 
   var suggestedBooks = getRandomBooks(3);
+  suggestedBooks.forEach(function (e,i) {
+    e.author = getAuthorById(e.author);
+  });
   info.suggestedBooks = suggestedBooks;
 
 

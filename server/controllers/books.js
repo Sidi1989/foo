@@ -1,4 +1,4 @@
-const {getBookById, getAllBooks} = require('../models/books.js');
+const {getBookById, getAllBooks, getRandomBooks} = require('../models/books.js');
 const {getAllLocations, getLocationById} = require('../models/locations.js');
 const {getAllCategories, getCategoryById} = require('../models/categories.js');
 const {getAllSubcategories, getSubcategoryById} = require('../models/subcategories.js');
@@ -86,7 +86,6 @@ var bookprofileHandler = function (req, res) {
   var info = {};
 
   var book = getBookById(req.params.book);
-
   if (book == null) {
     info.book = {};
   } else {
@@ -94,7 +93,6 @@ var bookprofileHandler = function (req, res) {
   };
 
   var location = getLocationById(book.location);
-
   if (book.location == null) {
     info.book.location = {};
   } else {
@@ -102,7 +100,6 @@ var bookprofileHandler = function (req, res) {
   };
 
   var language = getLanguageById(book.language);
-
   if (book.language == null) {
     info.book.language = {};
   } else {
@@ -110,7 +107,6 @@ var bookprofileHandler = function (req, res) {
   };
 
   var author = getAuthorById(book.author);
-
   if (book.author == null) {
     info.book.author = {};
   } else {
@@ -130,8 +126,11 @@ var bookprofileHandler = function (req, res) {
   });
   info.reviews = reviewsMapped
 
-  var books = getAllBooks();
-  info.books = books;
+  var suggestedBooks = getRandomBooks(3);
+  suggestedBooks.forEach(function (e,i) {
+    e.author = getAuthorById(e.author);
+  });
+  info.suggestedBooks = suggestedBooks;
 
 
   res.render(pathname, info);
