@@ -9,39 +9,6 @@ const {getAllLanguages} = require('../models/languages.js');
 
 /**
  * @description
- * Función destinada a cubrir la petición de Mostrar la Configuración de una Petición concreta
- *
- * @param req Contiene la información de la petición
- * @param res Contiene la renderización de la petición para el cliente
- */
-var petitionprofileHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/petitionprofile.html`;
-
-  var info = {};
-
-  var user = getUserById(req.params.user);
-
-  if (user == null) {
-    info.user = {};
-  } else {
-    info.user = user;
-  };
-
-  var petition = getPetitionById(req.params.petition);
-
-  if (petition == null) {
-    info.petition = {};
-  } else {
-    info.petition = petition;
-  };
-
-
-  res.render(pathname, info);
-};
-
-
-/**
- * @description
  * Función destinada a cubrir la petición de Registrar una nueva petición de libro para Pinakes
  *
  * @param req Contiene la información de la petición
@@ -53,7 +20,6 @@ var petitionformHandler= function (req, res) {
   var info = {};
 
   var user = getUserById(req.params.user);
-
   if (user == null) {
     info.user = {};
   } else {
@@ -76,5 +42,4 @@ var petitionformHandler= function (req, res) {
 
 
 
-exports.petitionprofileHandler = petitionprofileHandler;
 exports.petitionformHandler = petitionformHandler;
