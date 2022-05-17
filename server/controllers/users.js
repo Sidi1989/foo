@@ -127,7 +127,7 @@ var userprofileHandler = function (req, res) {
   });
   info.lastBookRead.collection.books = booksMapped;
 
-  var suggestedBooks = getRandomBooks(3);
+  var suggestedBooks = getRandomBooks(6);
   suggestedBooks.forEach(function (e,i) {
     e.author = getAuthorById(e.author);
   });
