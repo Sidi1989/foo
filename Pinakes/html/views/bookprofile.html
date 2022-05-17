@@ -79,160 +79,65 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-4">
           <!-- Columna con los datos técnicos -->
           <div class="col-4">
-            <div class="d-grid">
-              <div class="p-1 bg-light border">
-
-                <div class="row">
-                  <div class="col">
-                    <i class="fa-solid fa-barcode"></i>
-                  </div>
-                  <div id="isbn" class="col-10"><%=book.isbn || 'No disponible'%></div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <i class="fa-solid fa-building"></i>
-                  </div>
-                  <div id="editorial" class="col-10"><%=book.editorial%></div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <i class="fa-solid fa-book"></i>
-                  </div>
-                  <div id="format" class="col-10"><%=book.format%></div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <i class="fa-solid fa-ruler-combined"></i>
-                  </div>
-                  <div id="dimensions" class="col-10"><%=book.dimensions.length%> x <%=book.dimensions.width%> Cms</div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <i class="fa-solid fa-calendar-days"></i>
-                  </div>
-                  <div id="publishDate" class="col-10"><%=book.publishDate%></div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <i class="fa-solid fa-print"></i>
-                  </div>
-                  <div id="issue" class="col-10"><%=book.issue%>º edición</div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <i class="fa-solid fa-copy"></i>
-                  </div>
-                  <div id="pages" class="col-10"><%=book.pages%> páginas</div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <i class="fa-solid fa-language"></i>
-                  </div>
-                  <div id="language" class="col-10"><%=book.language.name%></div>
-                </div>
-
-              </div>
-            </div>
+            <%- include('../partials/bookspecifications.html', {}); %>
           </div>
 
+          <!-- Navbar de las Reviews -->
           <div class="col-8">
-            <div class="row mb-4">
-
-              <!-- Intento de Reviews con navbars -->
-              <% reviews.forEach(function(e,i){ %>
-              <ul class="nav nav-tabs">
-                <li class="nav-item">
-                  <a class="nav-link <% if (i==0) { %>active<% } %>" aria-current="page" href="#intentonavbar0">Review</a>
-                </li>
-                <li class="nav-item">
-                 <a class="nav-link" href="#intentonavbar<%=i%>">Otra</a>
-                </li>
-              </ul>
-              <% }) %>
-              <% reviews.forEach(function(e,i){ %>
-              <div id="intentonavbar<%=i%>" class="review-block">
-                <div class="row">
-                  <div class="col-sm-3">
-                    <img src="<%=e.reviewer.pic%>" class="img-thumbnail">
-                    <div class="review-block-name">
-                      <a class="text-primary" href="/auth/new"<p><%= e.reviewer.nickname%></p></a>
-                    </div>
-                    <div class="review-block-date">Hace <%= e.age%> días</div>
-                  </div>
-                  <div class="col-sm-9">
-                    <div class="review-block-rate">
-                      <span class="name mb-1 fw-500">Valoración del Libro</span>
-                      <div class="rating">
-                        <input type="range" value="<%=e.bookRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
-                        <output><%=e.bookRate%></output>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-                      <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
-                      <div class="rating">
-                        <input type="range" value="<%=e.copyRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
-                        <output><%=e.copyRate%></output>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-                      <div class="review-block-description"><%=e.comment%></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <% }) %>
-
-              <!-- Intento con carrusel de reviews-->
-              <div id="reviewsCarousel" class="carousel carousel-dark slide mt-5" data-ride="carousel">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Review 01"></button>
-                  <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="1" aria-label="Review 02"></button>
-                </div>
-                <div class="carousel-inner">
-
+            <div class="row">
+              <ul class="nav nav-tabs" id="reviewsNav" role="tablist">
                 <% reviews.forEach(function(e,i){ %>
-                  <div class="carousel-item <% if (i==0) { %>active<% } %>">
-                    <div class="review-block mb-3">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <img src="<%=e.reviewer.pic%>" class="img-thumbnail">
-                          <div class="review-block-name">
-                            <a class="text-primary" href="/auth/new"<p><%= e.reviewer.nickname%></p></a>
-                          </div>
-                          <div class="review-block-date">Hace <%= e.age%> días</div>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link <% if (i==0) { %>active<% } %>"
+                      id="review<%=i %>-tab"
+                      data-bs-toggle="tab" data-bs-target="#review<%=i %>"
+                      type="button" role="tab"
+                      aria-controls="review<%=i %>" aria-selected="true">
+                      Review <%=i %>
+                  </button>
+                </li>
+                <% }) %>
+              </ul>
+
+              <div class="tab-content mt-2" id="reviewsNavContent">
+                <% reviews.forEach(function(e,i){ %>
+                <div class="tab-pane fade <% if (i==0) { %>show active<% } %>" id="review<%=i %>" role="tabpanel">
+
+                  <div class="review-block">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <img src="<%=e.reviewer.pic%>" class="img-thumbnail">
+                        <div class="review-block-name">
+                          <a class="text-primary" href="/auth/new"<p><%= e.reviewer.nickname%></p></a>
                         </div>
-                        <div class="col-sm-9">
-                          <div class="review-block-rate">
-                            <span class="name mb-1 fw-500">Valoración del Libro</span>
-                            <div class="rating">
-                              <input type="range" value="<%=e.bookRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
-                              <output><%=e.bookRate%></output>
-                              <i class="fa-solid fa-star"></i>
-                            </div>
-                            <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
-                            <div class="rating">
-                              <input type="range" value="<%=e.copyRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
-                              <output><%=e.copyRate%></output>
-                              <i class="fa-solid fa-star"></i>
-                            </div>
-                            <div class="review-block-description"><%=e.comment%></div>
+                        <div class="review-block-date">Hace <%= e.age%> días</div>
+                      </div>
+                      <div class="col-sm-9">
+                        <div class="review-block-rate">
+                          <span class="name mb-1 fw-500">Valoración del Libro</span>
+                          <div class="rating">
+                            <input type="range" value="<%=e.bookRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
+                            <output><%=e.bookRate%></output>
+                            <i class="fa-solid fa-star"></i>
                           </div>
+                          <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
+                          <div class="rating">
+                            <input type="range" value="<%=e.copyRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
+                            <output><%=e.copyRate%></output>
+                            <i class="fa-solid fa-star"></i>
+                          </div>
+                          <div class="review-block-description mt-2"><%=e.comment%></div>
                         </div>
                       </div>
                     </div>
                   </div>
-                <% }) %>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                </button>
+                </div>
+                <% }) %>
               </div>
-            </div>
-            <!-- Final del carrusel de reviews-->
 
             </div>
           </div>
@@ -246,64 +151,14 @@
     <!-- Final de la Parte superior-->
 
 
-    <div class="row">
+    <div class="row mt-4">
       <div class="container">
         <div class="bg-success p-1 mb-3 text-white text-center">
           <h4>Sugerencias</h4>
         </div>
 
         <div class="row">
-          <!-- Carrusel de libros sugeridos -->
-          <div id="suggestedBooksCarousel" class="carousel carousel-dark slide" data-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide-to="0" class="active" aria-current="true">
-              </button>
-              <button type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide-to="1">
-              </button>
-            </div>
-
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="row">
-                  <% suggestedBooks.forEach(function(e,i){ %>
-                  <div class="col-4 mb-3">
-                    <div class="card text-center w-50">
-                      <img class="card-img-top" src="<%=e.pic.main%>">
-                      <div class="card-body">
-                        <h4 class="card-title"><%=e.title%></h4>
-                        <h8 class="card-text"><%=e.author.name%></h8>
-                      </div>
-                    </div>
-                  </div>
-                  <% }) %>
-                </div>
-              </div>
-
-              <div class="carousel-item">
-                <div class="row">
-                  <% suggestedBooks.forEach(function(e,i){ %>
-                  <div class="col-4 mb-3">
-                    <div class="card text-center w-50">
-                      <img class="card-img-top" src="<%=e.pic.main%>">
-                      <div class="card-body">
-                        <h4 class="card-title"><%=e.title%></h4>
-                        <h8 class="card-text"><%=e.author.name%></h8>
-                      </div>
-                    </div>
-                  </div>
-                  <% }) %>
-                </div>
-              </div>
-
-              <button class="carousel-control-prev" type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              </button>
-            </div>
-          </div>
-          <!-- Final del carrusel de libros sugeridos -->
+          <%- include('../partials/suggestedbooks.html', {}); %>
         </div>
 
       </div>

@@ -221,34 +221,7 @@
           </div>
 
           <div class="col-7">
-            <div class="p-1 bg-light border">
-              <div class="row mt-3">
-                <span>Valoración del Libro</span>
-                <div id="bookRate" class="rating mt-1">
-                  <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
-                  <output>1</output>
-                  <small><i class="fa-solid fa-star"></i></small>
-                </div>
-              </div>
-              <div class="row mt-3">
-                <span>Valoración del Ejemplar</span>
-                <div id="copyRate" class="rating mt-1">
-                  <input type="range" value="1" min="1" max="10" step="0.5" oninput="this.nextElementSibling.value = this.value">
-                  <output>1</output>
-                  <small><i class="fa-solid fa-star"></i></small>
-                </div>
-              </div>
-              <div id="comment" class="comment-area mt-3">
-                <h5>Añadir un comentario</h5>
-                <textarea class="form-control" rows="5" placeholder="¿Qué opinas?"></textarea>
-              </div>
-              <div class="row mt-1">
-                <div id="saveReview" class="col text-end">
-                  <button class="btn btn-success send">Guardar cambios
-                  </button>
-                </div>
-              </div>
-            </div>
+            <%- include('../partials/ratingbox.html', {}); %>
           </div>
         </div>
 
@@ -281,57 +254,7 @@
         </div>
 
         <div class="row">
-          <!-- Carrusel de libros sugeridos -->
-          <div id="suggestedBooksCarousel" class="carousel carousel-dark slide" data-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide-to="0" class="active" aria-current="true">
-              </button>
-              <button type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide-to="1">
-              </button>
-            </div>
-
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="row">
-                  <% suggestedBooks.forEach(function(e,i){ %>
-                  <div class="col-4 mb-3">
-                    <div class="card text-center w-50">
-                      <img class="card-img-top" src="<%=e.pic.main%>">
-                      <div class="card-body">
-                        <h4 class="card-title"><%=e.title%></h4>
-                        <h8 class="card-text"><%=e.author.name%></h8>
-                      </div>
-                    </div>
-                  </div>
-                  <% }) %>
-                </div>
-              </div>
-
-              <div class="carousel-item">
-                <div class="row">
-                  <% suggestedBooks.forEach(function(e,i){ %>
-                  <div class="col-4 mb-3">
-                    <div class="card text-center w-50">
-                      <img class="card-img-top" src="<%=e.pic.main%>">
-                      <div class="card-body">
-                        <h4 class="card-title"><%=e.title%></h4>
-                        <h8 class="card-text"><%=e.author.name%></h8>
-                      </div>
-                    </div>
-                  </div>
-                  <% }) %>
-                </div>
-              </div>
-
-              <button class="carousel-control-prev" type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              </button>
-            </div>
-          </div>
-          <!-- Final del carrusel de libros sugeridos -->
+          <%- include('../partials/suggestedbooks.html', {}); %>
         </div>
 
       </div>

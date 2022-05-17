@@ -1,0 +1,54 @@
+<div class="d-grid">
+  <div class="p-1 bg-light border">
+
+    <div class="row">
+      <div class="col">
+        <i class="fa-solid fa-barcode"></i>
+      </div>
+      <div id="isbn" class="col-10"><%=book.isbn || 'No disponible'%></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <i class="fa-solid fa-building"></i>
+      </div>
+      <div id="editorial" class="col-10"><%=book.editorial%></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <i class="fa-solid fa-book"></i>
+      </div>
+      <div id="format" class="col-10"><%=book.format%></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <i class="fa-solid fa-ruler-combined"></i>
+      </div>
+      <div id="dimensions" class="col-10"><%=book.dimensions.length%> x <%=book.dimensions.width%> Cms</div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <i class="fa-solid fa-calendar-days"></i>
+      </div>
+      <div id="publishDate" class="col-10"><%=book.publishDate%></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <i class="fa-solid fa-print"></i>
+      </div>
+      <div id="issue" class="col-10"><%=book.issue%>º edición</div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <i class="fa-solid fa-copy"></i>
+      </div>
+      <div id="pages" class="col-10"><%=book.pages%> páginas</div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <i class="fa-solid fa-language"></i>
+      </div>
+      <div id="language" class="col-10"><%=book.language.name%></div>
+    </div>
+
+  </div>
+</div>

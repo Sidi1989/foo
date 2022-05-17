@@ -1,0 +1,50 @@
+<!-- Carrusel de libros sugeridos -->
+<div id="suggestedBooksCarousel" class="carousel carousel-dark slide" data-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide-to="0" class="active" aria-current="true">
+    </button>
+    <button type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide-to="1">
+    </button>
+  </div>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="row">
+        <% suggestedBooks[0].forEach(function(e,i){ %>
+        <div class="col-4 mb-3">
+          <div class="card text-center w-50">
+            <img class="card-img-top" src="<%=e.pic.main%>">
+            <div class="card-body">
+              <h4 class="card-title"><%=e.title%></h4>
+              <h8 class="card-text"><%=e.author.name%></h8>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <div class="row">
+        <% suggestedBooks[1].forEach(function(e,i){ %>
+        <div class="col-4 mb-3">
+          <div class="card text-center w-50">
+            <img class="card-img-top" src="<%=e.pic.main%>">
+            <div class="card-body">
+              <h4 class="card-title"><%=e.title%></h4>
+              <h8 class="card-text"><%=e.author.name%></h8>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+</div>
