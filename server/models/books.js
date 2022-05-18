@@ -25,13 +25,13 @@ var getBookById = function (id) {
 };
 
 
-var getRandomBooks = function (quantity) {
+var getRandomBooks = function (quantity, size) {
   var filteredBooks = books.filter(function (e,i) {
     var aleas = Math.random();
     return (aleas > 0.5);
   });
 
-  var chunkBooks = _.chunk(filteredBooks, 3);
+  var chunkBooks = _.chunk(filteredBooks, size);
   return _.cloneDeep(chunkBooks);
 };
 

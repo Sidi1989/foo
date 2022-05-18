@@ -3,6 +3,7 @@ const {getBookById, getRandomBooks} = require('../models/books.js');
 const {getCollectionById} = require('../models/collections.js');
 const {getPetitionById} = require('../models/petitions.js');
 const {getAuthorById} = require('../models/authors.js');
+const {getQuoteById, getRandomQuotes} = require('../models/quotes.js');
 
 
 
@@ -33,6 +34,9 @@ var userformHandler= function (req, res) {
 var userloginHandler= function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/userlogin.html`;
   var info = {};
+
+  var dailyQuote = getRandomQuotes(1);
+  info.quotes = dailyQuote;
 
 
   res.render(pathname, info);
@@ -89,6 +93,9 @@ var userprofileHandler = function (req, res) {
       return book;
     });
     collection.books = booksInCollection;
+    booksInCollection.forEach(function (e) {
+      e.author = getAuthorById(e.author);
+    });
     return collection;
   });
   info.user.collections = collectionsMapped;
@@ -96,7 +103,9 @@ var userprofileHandler = function (req, res) {
   var petitionsMapped = user.petitions.map(function (petitionId) {
     var petition = getPetitionById(petitionId);
     return petition;
-    var petitionAuthor = getAuthorById(petition.author);
+    });
+    petitionsMapped.forEach(function (e) {
+      e.author = getAuthorById(e.author);
   });
   info.user.petitions = petitionsMapped;
 
@@ -127,7 +136,7 @@ var userprofileHandler = function (req, res) {
   });
   info.lastBookRead.collection.books = booksMapped;
 
-  var suggestedBooks = getRandomBooks(6);
+  var suggestedBooks = getRandomBooks(6, 3);
   suggestedBooks.forEach(function (e,i) {
     e.author = getAuthorById(e.author);
   });
