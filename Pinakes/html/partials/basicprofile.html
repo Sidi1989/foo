@@ -1,0 +1,24 @@
+<!-- Perfil de usuario-->
+<div class="p-1 bg-light border">
+  <div class="row">
+    <div class="col">
+      <img id="userPicFile"  class="img-thumbnail" src="<%=user.pic%>">
+    </div>
+    <div class="col mt-2">
+      <div class="row"><i class="fa-solid fa-user-pen"></i>
+        <p id="nickname" class="text-primary"><%=user.nickname%></p>
+      </div>
+      <div class="row"><i class="fa-solid fa-hourglass"></i>
+        <p id="clientAge" class="text-primary"><%=user.clientAge%> días</p>
+      </div>
+      <div class="row">
+        <div class="col"><i class="fa-solid fa-book-open"></i>
+          <p id="bookNUmber" class="text-primary"><%=user.books.length%></p>
+        </div>
+        <div class="col"><i class="fa-solid fa-map-pin"></i>
+          <p id="petitionNumber" class="text-primary"><%=user.petitions.length%></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
