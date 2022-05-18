@@ -1,102 +1,94 @@
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pinakes - Login</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="/public/css/main.css">
-  <link rel="stylesheet" href="/public/css/userlogin.css">
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pinakes - Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/main.css">
+    <link rel="stylesheet" href="/public/css/userlogin.css">
+  </head>
 
 
-<body>
-  <div class="container">
-    <!-- Header-->
-    <%- include('../partials/header.html', {}); %>
+  <body>
+    <div class="container">
+      <div class="row my-5 g-5">
 
-    <form class="row g-3">
-
-      <div class="row mb-3">
-        <!-- Notificaciones -->
-        <div class="col-11">
+        <div class="col-5">
+          <% quotes.forEach(function(e,i){ %>
           <div class="row">
-            <div id="citePic" class="col text-end">
-              <img src="https://i.pinimg.com/originals/f1/e4/3d/f1e43dd07229fcb0de9ea3ee64410702.jpg" class="img-thumbnail w-50">
+            <div id="citePic" class="col my-5">
+              <img src="<%=e.pic%>" class="img-thumbnail w-100">
             </div>
-            <div class="col mt-5">
+            <div class="col my-5">
             <figure>
               <blockquote id="citeText" class="blockquote">
-                <p>¡Despierta fgfg! Ha llegado tu momento, debes salvar a Zelda.</p>
+                <p><%=e.text%></p>
               </blockquote>
-              <figcaption id="citeAuthor" class="blockquote-footer">
-                Hada Navi, en <cite title="citedBook">Ocarina of Time</cite>
+              <figcaption id="citeAuthor" class="blockquote-footer mt-3">
+                <span><%=e.whose%></span>
+                <p><cite title="citedBook"><%=e.why%></cite></p>
               </figcaption>
             </figure>
             </div>
           </div>
+          <% }) %>
         </div>
 
-        <!-- Notificaciones -->
-        <div class="col">
-          <div class="d-grid gap-1 d-md-flex justify-content-md-end">
-            <button type="button" class="btn btn-outline-success btn-lg">
-              <i class="fa-solid fa-square-arrow-up-right"></i>
-            </button>
-            <button type="button" class="btn btn-outline-success btn-lg">
-              <i class="fa-solid fa-bell"></i>
-            </button>
+        <!-- Sección de registro -->
+        <div class="col-7">
+          <div class="d-grid">
+            <div class="p-3 bg-light border">
+
+              <div class="mb-4">
+                <label for="userDomain" class="form-label">
+                  <u><h6>Usuario</h6></u>
+                </label>
+                <input type="email" class="form-control" id="userDomain" placeholder="Introduzca su E-mail">
+              </div>
+
+              <div class="mb-3">
+                <label for="userPassword" class="form-label">
+                  <u><h6>Contraseña</h6></u>
+                <input type="password" class="form-control" id="userPassword" placeholder="Introduzca su Contraseña">
+              </div>
+
+              <div class="mb-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="rememberMe">
+                  <label class="form-check-label" for="rememberMe">
+                    Recuérdame
+                  </label>
+                </div>
+              </div>
+
+              <!-- Botón de Login y Recuperación de cuenta -->
+              <div class="d-grid col-4 mx-auto">
+                <button id="userLogin" type="submit" class="btn btn-success">
+                  <h5>Entrar</h5>
+                  </button>
+              </div>
+
+              <div class="dropdown-divider mt-4"></div>
+
+              <div id="problemNewUser1" class="mb-2 nav_pop_new_cust nav-flyout-content nav-flyout-accessibility">¿Aún no tienes cuenta?
+                <a href="/auth/new" rel="nofollow" class="nav-a">Empieza aquí</a>
+              </div>
+              <div id="problemNewUser2" class="nav_pop_new_cust nav-flyout-content nav-flyout-accessibility">¿Olvidaste la contraseña?
+                <a href="#" rel="nofollow" class="nav-a">Contacta aquí</a>
+              </div>
+
+            </div>
           </div>
         </div>
 
       </div>
+    </div>
 
-      <!-- Sección de registro -->
-      <div class="mb-3">
-        <label for="userDomain" class="form-label">
-          <u><h6>Usuario</h6></u>
-        </label>
-        <input type="email" class="form-control" id="userDomain" placeholder="Introduzca su E-mail">
-      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/public/js/userlogin.js"></script>
 
-      <div class="mb-3">
-        <label for="userPassword" class="form-label">
-          <u><h6>Contraseña</h6></u>
-        <input type="password" class="form-control" id="userPassword" placeholder="Introduzca su Contraseña">
-      </div>
-
-      <div class="mb-2">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="rememberMe">
-          <label class="form-check-label" for="rememberMe">
-            Recuérdame
-          </label>
-        </div>
-      </div>
-
-      <!-- Botón de Login y Recuperación de cuenta -->
-      <div class="d-grid col-3 mx-auto p-0 border border-secondary border-4">
-        <button id="userLogin" type="submit" class="btn btn-success">
-          <h5>Entrar</h5>
-          </button>
-      </div>
-
-      <div class="dropdown-divider mt-4"></div>
-
-      <div id="problemNewUser1" class="nav_pop_new_cust nav-flyout-content nav-flyout-accessibility">¿Aún no tienes cuenta?
-        <a href="/auth/new" rel="nofollow" class="nav-a">Empieza aquí</a>
-      </div>
-      <div id="problemNewUser2" class="nav_pop_new_cust nav-flyout-content nav-flyout-accessibility">¿Olvidaste la contraseña?
-        <a href="#" rel="nofollow" class="nav-a">Contacta aquí</a>
-      </div>
-
-    </form>
-
-    <!-- Footer-->
-    <%- include('../partials/footer.html', {}); %>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="/public/js/userlogin.js"></script>
-
-</body>
+  </body>
+</html>
