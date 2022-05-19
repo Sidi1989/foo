@@ -16,7 +16,7 @@ const {getQuoteById, getRandomQuotes} = require('../models/quotes.js');
  * @param res Contiene la renderización de la petición para el cliente
  */
 var userformHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/userform.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/signup.html`;
   var info = {};
 
 
@@ -32,7 +32,7 @@ var userformHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var userloginHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/userlogin.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/signin.html`;
   var info = {};
 
   var dailyQuote = getRandomQuotes(1)[0];

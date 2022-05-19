@@ -48,8 +48,7 @@ app.get('/signin', userloginHandler);
 app.get('/signup', userformHandler);
 app.get('/users/:user', userprofileHandler);
 app.get('/users/:user/account', useraccountHandler);
-app.get('/users/:user/collections/new', collectionformHandler);
-app.get('/users/:user/collections/:collection', collectionprofileHandler);
+app.get('/users/:user/:collection', collectionprofileHandler);
 app.get('/users/:user/petitions/new', petitionformHandler);
 
 app.get('/api/books', apiBooksHandler);
