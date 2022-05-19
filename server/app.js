@@ -44,8 +44,8 @@ app.use(function (req, res, next) {
 app.get('/books/new', bookformHandler);
 app.get('/books/search', booksearchHandler);
 app.get('/books/:book', bookprofileHandler);
-app.get('/signin', userloginHandler);
-app.get('/signup', userformHandler);
+app.get('/auth/signin', userloginHandler);
+app.get('/auth/signup', userformHandler);
 app.get('/users/:user', userprofileHandler);
 app.get('/users/:user/account', useraccountHandler);
 app.get('/users/:user/:collection', collectionprofileHandler);
