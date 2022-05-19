@@ -1,0 +1,113 @@
+<!-- Header de Colecciones-->
+<div class="row g-0 p-1">
+  <div class="col-10 text-center">
+    <h4>Mis Colecciones</h4>
+  </div>
+  <div class="col-2 text-end">
+    <a href="<%= user.id%>/collections/new">
+      <button type="button" class="btn btn-success btn-lg">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </a>
+  </div>
+</div>
+
+<!-- Mis Colecciones-->
+<% user.collections.forEach(function (collection, i) { %>
+<div class="row gx-0">
+  <div class="col-9">
+    <div id="collectionInfo" class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header" id="accordionCollapser<%= i%>">
+          <button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#accordionCollapser<%= i%>"
+            aria-expanded="true"
+            aria-controls="accordionCollapser<%= i%>">
+            <span><%= collection.name %></span>
+            <span class="badge bg-success rounded-pill"><%= collection.books.length %></span>
+          </button>
+        </div>
+
+        <div id="accordionCollapser<%= i%>" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            <% collection.books.forEach(function (book) { %>
+              <a href="/books/<%=book.id%>" class="list-group-item list-group-item-action">
+                <span><strong><%=book.title %></strong> (<%=book.author.name %>)</span>
+                <i class="fa-solid fa-star"></i>
+              </a>
+              <button type="button" class="btn btn-light">
+                <i class="fa-solid fa-square-xmark"></i>
+              </button>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3">
+    <div class="btn-group">
+      <button id="buttonDropdown" type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-arrow-down-wide-short"></i>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
+        <li><a class="dropdown-item" href="#">Más recientes</a></li>
+        <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
+        <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
+      </ul>
+      <a href="<%= user.id%>/collections/<%= collection.id%>">
+        <button type="button" class="btn btn-success">
+          <i class="fa-solid fa-file-signature"></i>
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+<% }); %>
+
+<!-- Libros sin Colección-->
+<div class="row gx-0">
+  <div class="col-9">
+    <div id="collectionInfo" class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header" id="accordionOthersCollapser">
+          <button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#accordionOthersCollapser"
+            aria-expanded="true"
+            aria-controls="accordionOthersCollapser">
+            Libros sin Colección<span class="badge bg-success rounded-pill">1</span>
+          </button>
+        </div>
+
+        <div id="accordionOthersCollapser" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            <a href="#" class="list-group-item list-group-item-action">
+              <span><strong>Aurora espléndida</strong> (Jack London)</span>
+              <i class="fa-solid fa-star"></i>
+            </a>
+            <button type="button" class="btn btn-light">
+              <i class="fa-solid fa-square-xmark"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3">
+    <div class="btn-group">
+      <button id="buttonDropdown" type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-arrow-down-wide-short"></i>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
+        <li><a class="dropdown-item" href="#">Más recientes</a></li>
+        <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
+        <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
