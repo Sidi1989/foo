@@ -15,9 +15,13 @@
   <body>
     <div class="container">
       <!-- Header-->
-      <%- include('../partials/header.html', {}); %>
+      <%- include('../partials/header.html', {user: {id: "u1a"}}); %>
 
       <div class="row">
+
+        <button id="nuevoBoton" class="btn btn-success" type="button">
+          <i class="fa-solid fa-arrow-down-wide-short"></i>
+        </button>
 
         <!--Buscador para la Tabla-->
         <form class="d-flex">
