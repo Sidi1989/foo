@@ -20,35 +20,43 @@
       <!-- Parte superior-->
       <div class="row">
 
-        <div class="col">
-        <!-- Columna con fotos de Colecciones del Usuario-->
-          <div class="row text-center mb-3">
-            <u>Mis Colecciones</u>
-          </div>
-          <div class="row">
-            <% user.collections.forEach(function (collection, i) { %>
-            <div class="col-6">
-              <div class="card text-center w-75">
-                <img src="<%=collection.logo%>" class="card-img-top">
-                <div class="card-body">
-                  <h6 class="card-title"><%=collection.name%></h6>
-                </div>
+        <div class="col-4">
+        <!-- Columna con información de la Colección-->
+          <div class="p-1 bg-light border text-center">
+            <div class="row mb-1">
+                <h4 id="collectionName" class="text-primary"><%=collection.name%></h4>
+            </div>
+            <div class="row">
+              <img id="colectionPicFile"  class="img-fluid mx-auto w-75" src="<%=collection.logo%>">
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <i class="fa-solid fa-book-open"></i>
+                <p id="bookNumber" class="text-primary"><%=collection.books.length%></p>
+              </div>
+              <div class="col">
+                <i class="fa-solid fa-hourglass"></i>
+                <p id="collectionAge" class="text-primary"><%=collection.age%> días</p>
               </div>
             </div>
-            <% }); %>
-            <div class="w-100"></div>
           </div>
         </div>
 
-        <div class="col">
+        <div class="col-8">
         <!-- Columna con libros de la Colección seleccionada-->
           <div class="row text-center mb-3">
-            <u>Libros de la Colección</u>
+            <u><h5>Libros de la Colección</h5></u>
           </div>
           <div class="row">
+            <div class="col-6">
+              <!-- Modal para añadir libro desde otras Colecciones -->
+              <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#searchInCollections">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
             <% collection.books.forEach(function (book, i) { %>
             <div class="col-6">
-              <div class="card text-center w-75">
+              <div class="card text-center w-50 mb-3">
                  <img src="<%=book.pic.main%>" class="card-img-top">
                  <div class="card-body">
                    <h6 class="card-title"><%=book.title%></h6>
@@ -56,48 +64,6 @@
               </div>
             </div>
             <% }); %>
-            <div class="w-100"></div>
-          </div>
-        </div>
-
-        <div class="col">
-        <!-- Columna con filtro total de Libros del Usuario-->
-          <div class="row text-center mb-3">
-            <u>Todos tus libros</u>
-          </div>
-          <div class="row">
-
-            <div class="btn-group">
-              <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-filter-circle-xmark"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Género</a></li>
-                <li><a class="dropdown-item" href="#">Subgénero</a></li>
-                <li><a class="dropdown-item" href="#">Nacionalidad del Autor</a></li>
-                <li><a class="dropdown-item" href="#">Idioma</a></li>
-              </ul>
-
-              <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-arrow-down-wide-short"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Orden alfabético</a></li>
-                <li><a class="dropdown-item" href="#">Más recientes</a></li>
-                <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
-                <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
-              </ul>
-            </div>
-
-          </div>
-
-          <div class="row">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Libro filtrado 1</li>
-              <li class="list-group-item">Libro filtrado 2</li>
-              <li class="list-group-item">Libro filtrado 3</li>
-              <li class="list-group-item">Libro filtrado 4</li>
-            </ul>
           </div>
         </div>
 
@@ -106,6 +72,9 @@
       <!-- Footer-->
       <%- include('../partials/footer.html', {}); %>
     </div>
+
+    <!-- Zona para Modals-->
+    <%- include('../partials/searchincollections.html', {}); %>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/public/js/collectionprofile.js"></script>
