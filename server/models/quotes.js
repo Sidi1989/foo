@@ -26,12 +26,8 @@ var getQuoteById = function (id) {
 
 
 var getRandomQuotes = function (quantity) {
-  var filteredQuotes = quotes.filter(function (e,i) {
-    var aleas = Math.random();
-    return (aleas > 0.5);
-  });
-
-  var takenQuotes = _.take(filteredQuotes);
+  var shuffledQuotes = _.shuffle(quotes);
+  var takenQuotes = _.take(shuffledQuotes, quantity);
   return _.cloneDeep(takenQuotes);
 };
 

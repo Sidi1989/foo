@@ -35,8 +35,8 @@ var userloginHandler= function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/userlogin.html`;
   var info = {};
 
-  var dailyQuote = getRandomQuotes(1);
-  info.quotes = dailyQuote;
+  var dailyQuote = getRandomQuotes(1)[0];
+  info.quote = dailyQuote;
 
 
   res.render(pathname, info);

@@ -17,24 +17,23 @@
       <div class="row my-5 g-5">
 
         <div class="col-5">
-          <% quotes.forEach(function(e,i){ %>
+
           <div class="row">
             <div id="citePic" class="col my-5">
-              <img src="<%=e.pic%>" class="img-thumbnail w-100">
+              <img src="<%=quote.pic%>" class="img-thumbnail w-100">
             </div>
             <div class="col my-5">
             <figure>
               <blockquote id="citeText" class="blockquote">
-                <p><%=e.text%></p>
+                <p><%=quote.text%></p>
               </blockquote>
               <figcaption id="citeAuthor" class="blockquote-footer mt-3">
-                <span><%=e.whose%></span>
-                <p><cite title="citedBook"><%=e.why%></cite></p>
+                <span><%=quote.whose%></span>
+                <p><cite title="citedBook"><%=quote.why%></cite></p>
               </figcaption>
             </figure>
             </div>
           </div>
-          <% }) %>
         </div>
 
         <!-- Sección de registro -->
@@ -68,7 +67,7 @@
               <div class="d-grid col-4 mx-auto">
                 <button id="userLogin" type="submit" class="btn btn-success">
                   <h5>Entrar</h5>
-                  </button>
+                </button>
               </div>
 
               <div class="dropdown-divider mt-4"></div>
