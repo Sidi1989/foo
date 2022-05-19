@@ -25,7 +25,7 @@
 
           <!-- Perfil de usuario-->
           <%- include('../partials/basicprofile.html', {}); %>
-          
+
           <div class="p-1 mt-4 bg-success text-white">
             <!-- Header de Colecciones-->
             <div class="row g-0 p-1">
@@ -170,7 +170,6 @@
                   <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#petitionEdit">
                     <i class="fa-solid fa-file-signature"></i>
                   </button>
-                  <%- include('../partials/petitionedit.html', {}); %>
 
                 </li>
                 <% }); %>
@@ -242,6 +241,9 @@
       <!-- Footer-->
       <%- include('../partials/footer.html', {}); %>
     </div>
+
+    <!-- Zona para Modals-->
+    <%- include('../partials/petitionedit.html', {}); %>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/public/js/userprofile.js"></script>

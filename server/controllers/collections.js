@@ -1,6 +1,7 @@
 const {getUserById} = require('../models/users.js');
 const {getBookById} = require('../models/books.js')
 const {getCollectionById} = require('../models/collections.js');
+const {getAuthorById} = require('../models/authors.js');
 
 
 
@@ -24,12 +25,28 @@ var collectionprofileHandler= function (req, res) {
     info.user = user;
   };
 
+  var collectionsMapped = user.collections.map(function (collectionId) {
+    var collection = getCollectionById(collectionId);
+    var booksInCollection = collection.books.map(function (bookId) {
+      var book = getBookById(bookId);
+      return book;
+    });
+    return collection;
+  });
+  info.user.collections = collectionsMapped;
+
   var collection = getCollectionById(req.params.collection);
   if (collection == null) {
     info.collection = {};
   } else {
     info.collection = collection;
   };
+
+  var booksInCollection = collection.books.map(function (bookId) {
+    var book = getBookById(bookId);
+    return book;
+  });
+  collection.books = booksInCollection;
 
 
   res.render(pathname, info);

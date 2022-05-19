@@ -20,11 +20,19 @@
       <!-- Parte superior-->
       <div class="row">
 
-        <div class="col">
+        <div class="col-5">
         <!-- Columna con datos del usuario-->
+          <%- include('../partials/basicprofile.html', {}); %>
+          <div class="my-4">
+            <label for="lastBookRead" class="form-label">
+              <u><h6>Último libro leído</h6></u>
+            </label>
+            <input id="lastBookRead" class="form-control" type="file" multiple>
+          </div>
         </div>
 
-        <div class="col">
+
+        <div class="col-7">
         <!-- Columna con edición de datos-->
 
           <!-- Notificaciones -->
@@ -40,7 +48,34 @@
           </div>
 
           <div class="bg-success p-1 text-white">
-            <h5>Otros datos</h5>
+            <h5>Edita tus datos</h5>
+          </div>
+
+          <div class="mb-4">
+            <label for="userNickname" class="form-label">
+              <u><h6>Nickname</h6></u>
+            </label>
+            <input type="text" class="form-control" id="userNickname" placeholder="Éste es tu Nickname">
+          </div>
+
+          <div class="mb-4">
+            <label for="userDomain" class="form-label">
+              <u><h6>Usuario</h6></u>
+            </label>
+            <input type="email" class="form-control" id="userDomain" placeholder="Éste es tu E-mail">
+          </div>
+
+          <div class="mb-3">
+            <label for="userPassword" class="form-label">
+              <u><h6>Contraseña</h6></u>
+            <input type="password" class="form-control" id="userPassword" placeholder="Ésta es tu Contraseña">
+          </div>
+          <button id="changePassword" type="submit" class="btn btn-success my-4">
+            <h5>Cambiar contraseña</h5>
+          </button>
+
+          <div class="bg-success p-1 text-white">
+            <h5>Completa tu cuenta</h5>
           </div>
 
           <div class="input-group mb-3 g-3">

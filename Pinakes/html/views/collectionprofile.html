@@ -22,65 +22,63 @@
 
         <div class="col">
         <!-- Columna con fotos de Colecciones del Usuario-->
-          <div class="row">
+          <div class="row text-center mb-3">
             <u>Mis Colecciones</u>
           </div>
           <div class="row">
             <% user.collections.forEach(function (collection, i) { %>
-            <div class="col-6 col-sm-3">
-              <div class="card w-50">
-                 <img src="<%=collection.logo%>" class="card-img-top">
-                 <div class="card-body">
-                   <h5 class="card-title"><%=collection.name%></h5>
-                 </div>
+            <div class="col-6">
+              <div class="card text-center w-75">
+                <img src="<%=collection.logo%>" class="card-img-top">
+                <div class="card-body">
+                  <h6 class="card-title"><%=collection.name%></h6>
+                </div>
               </div>
             </div>
-            <div class="w-100"></div>
             <% }); %>
+            <div class="w-100"></div>
           </div>
         </div>
 
         <div class="col">
         <!-- Columna con libros de la Colección seleccionada-->
-          <div class="row">
+          <div class="row text-center mb-3">
             <u>Libros de la Colección</u>
           </div>
           <div class="row">
-            <% user.collections.forEach(function (collection, i) { %>
-            <div class="col-6 col-sm-3">
-              <div class="card w-50">
-                 <img src="<%=collection.logo%>" class="card-img-top">
+            <% collection.books.forEach(function (book, i) { %>
+            <div class="col-6">
+              <div class="card text-center w-75">
+                 <img src="<%=book.pic.main%>" class="card-img-top">
                  <div class="card-body">
-                   <h5 class="card-title"><%=collection.name%></h5>
+                   <h6 class="card-title"><%=book.title%></h6>
                  </div>
               </div>
             </div>
-            <div class="w-100"></div>
             <% }); %>
+            <div class="w-100"></div>
           </div>
         </div>
 
         <div class="col">
         <!-- Columna con filtro total de Libros del Usuario-->
-          <div class="row">
+          <div class="row text-center mb-3">
             <u>Todos tus libros</u>
           </div>
           <div class="row">
 
-              <div class="btn-group dropstart">
-                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fa-solid fa-filter-circle-xmark"></i>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Género</a></li>
-                  <li><a class="dropdown-item" href="#">Subgénero</a></li>
-                  <li><a class="dropdown-item" href="#">Nacionalidad del Autor</a></li>
-                  <li><a class="dropdown-item" href="#">Idioma</a></li>
-                </ul>
-              </div>
-
             <div class="btn-group">
-              <button id="buttonDropdown" type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-filter-circle-xmark"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Género</a></li>
+                <li><a class="dropdown-item" href="#">Subgénero</a></li>
+                <li><a class="dropdown-item" href="#">Nacionalidad del Autor</a></li>
+                <li><a class="dropdown-item" href="#">Idioma</a></li>
+              </ul>
+
+              <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-solid fa-arrow-down-wide-short"></i>
               </button>
               <ul class="dropdown-menu">

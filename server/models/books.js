@@ -26,12 +26,9 @@ var getBookById = function (id) {
 
 
 var getRandomBooks = function (quantity, size) {
-  var filteredBooks = books.filter(function (e,i) {
-    var aleas = Math.random();
-    return (aleas > 0.5);
-  });
-
-  var chunkBooks = _.chunk(filteredBooks, size);
+  var shuffledBooks = _.shuffle(books);
+  var takenBooks = _.take(shuffledBooks, quantity);
+  var chunkBooks = _.chunk(takenBooks, size);
   return _.cloneDeep(chunkBooks);
 };
 
