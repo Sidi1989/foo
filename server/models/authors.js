@@ -10,7 +10,8 @@ var getAllAuthors = function () {
 
 
 var getAuthorById = function (id) {
-  var filteredAuthors = authors.filter(function (e) {
+  var clonedAuthors = _.cloneDeep(authors);
+  var filteredAuthors = clonedAuthors.filter(function (e) {
     return (e.id == id);
   });
 
@@ -21,7 +22,7 @@ var getAuthorById = function (id) {
     author = filteredAuthors[0];
   };
 
-  return _.cloneDeep(author);
+  return author;
 };
 
 

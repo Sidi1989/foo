@@ -10,7 +10,8 @@ var getAllPetitions = function () {
 
 
 var getPetitionById = function (id) {
-  var filteredPetitions = petitions.filter(function (e) {
+  var clonedPetitions = _.cloneDeep(petitions);
+  var filteredPetitions = clonedPetitions.filter(function (e) {
     return (e.id == id);
   });
 
@@ -21,7 +22,7 @@ var getPetitionById = function (id) {
     petition = filteredPetitions[0];
   };
 
-  return _.cloneDeep(petition);
+  return petition;
 };
 
 

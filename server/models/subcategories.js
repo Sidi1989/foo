@@ -10,7 +10,8 @@ var getAllSubcategories = function () {
 
 
 var getSubcategoryById = function (id) {
-  var filteredSubcategories = subcategories.filter(function (e) {
+  var clonedSubcategories = _.cloneDeep(subcategories);
+  var filteredSubcategories = clonedSubcategories.filter(function (e) {
     return (e.id == id);
   });
 
@@ -21,7 +22,7 @@ var getSubcategoryById = function (id) {
     subcategory = filteredSubcategories[0];
   };
 
-  return _.cloneDeep(subcategory);
+  return subcategory;
 };
 
 

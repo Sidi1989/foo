@@ -10,7 +10,8 @@ var getAllBuylists = function () {
 
 
 var getBuylistById = function (id) {
-  var filteredBuylists = buylists.filter(function (e) {
+  var clonedBuylists = _.cloneDeep(buylists);
+  var filteredBuylists = clonedBuylists.filter(function (e) {
     return (e.id == id);
   });
 
@@ -21,7 +22,7 @@ var getBuylistById = function (id) {
     buylist = filteredBuylists[0];
   };
 
-  return _.cloneDeep(buylist);
+  return buylist;
 };
 
 

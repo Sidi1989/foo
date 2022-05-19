@@ -10,7 +10,8 @@ var getAllQuotes = function () {
 
 
 var getQuoteById = function (id) {
-  var filteredQuotes = quotes.filter(function (e) {
+  var clonedQuotes = _.cloneDeep(quotes);
+  var filteredQuotes = clonedQuotes.filter(function (e) {
     return (e.id == id);
   });
 
@@ -21,14 +22,15 @@ var getQuoteById = function (id) {
     quote = filteredQuotes[0];
   };
 
-  return _.cloneDeep(quote);
+  return quote;
 };
 
 
 var getRandomQuotes = function (quantity) {
-  var shuffledQuotes = _.shuffle(quotes);
+  var clonedQuotes = _.cloneDeep(quotes)
+  var shuffledQuotes = _.shuffle(clonedQuotes);
   var takenQuotes = _.take(shuffledQuotes, quantity);
-  return _.cloneDeep(takenQuotes);
+  return takenQuotes;
 };
 
 

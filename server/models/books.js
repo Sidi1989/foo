@@ -10,7 +10,8 @@ var getAllBooks = function () {
 
 
 var getBookById = function (id) {
-  var filteredBooks = books.filter(function (e) {
+  var clonedBooks = _.cloneDeep(books);
+  var filteredBooks = clonedBooks.filter(function (e) {
     return (e.id == id);
   });
 
@@ -21,15 +22,16 @@ var getBookById = function (id) {
     book = filteredBooks[0];
   };
 
-  return _.cloneDeep(book);
+  return book;
 };
 
 
 var getRandomBooks = function (quantity, size) {
-  var shuffledBooks = _.shuffle(books);
+  var clonedBooks = _.cloneDeep(books);
+  var shuffledBooks = _.shuffle(clonedBooks);
   var takenBooks = _.take(shuffledBooks, quantity);
   var chunkBooks = _.chunk(takenBooks, size);
-  return _.cloneDeep(chunkBooks);
+  return chunkBooks;
 };
 
 

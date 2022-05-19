@@ -10,7 +10,8 @@ var getAllCollections = function () {
 
 
 var getCollectionById = function (id) {
-  var filteredCollections = collections.filter(function (e) {
+  var clonedCollections = _.cloneDeep(collections);
+  var filteredCollections = clonedCollections.filter(function (e) {
     return (e.id == id);
   });
 
@@ -21,7 +22,7 @@ var getCollectionById = function (id) {
     collection = filteredCollections[0];
   };
 
-  return _.cloneDeep(collection);
+  return collection;
 };
 
 

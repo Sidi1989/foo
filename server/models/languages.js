@@ -10,7 +10,8 @@ var getAllLanguages = function () {
 
 
 var getLanguageById = function (id) {
-  var filteredLanguages = languages.filter(function (e) {
+  var clonedLanguages= _.cloneDeep(languages);
+  var filteredLanguages = clonedLanguages.filter(function (e) {
     return (e.id == id);
   });
 
@@ -21,7 +22,7 @@ var getLanguageById = function (id) {
     language = filteredLanguages[0];
   };
 
-    return _.cloneDeep(language);
+    return language;
 };
 
 

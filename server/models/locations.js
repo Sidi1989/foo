@@ -10,7 +10,8 @@ var getAllLocations = function () {
 
 
 var getLocationById = function (id) {
-  var filteredLocations = locations.filter(function (e) {
+  var clonedLocations = _.cloneDeep(locations);
+  var filteredLocations = clonedLocations.filter(function (e) {
     return (e.id == id);
   });
 
@@ -21,7 +22,7 @@ var getLocationById = function (id) {
     location = filteredLocations[0];
   };
 
-  return _.cloneDeep(location);
+  return location;
 };
 
 

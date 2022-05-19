@@ -10,7 +10,8 @@ var getAllReviews = function () {
 
 
 var getReviewById = function (id) {
-  var filteredReviews = reviews.filter(function (e) {
+  var clonedReviews = _.cloneDeep(reviews);
+  var filteredReviews = clonedReviews.filter(function (e) {
     return (e.id == id);
   });
 
@@ -21,7 +22,7 @@ var getReviewById = function (id) {
     review = filteredReviews[0];
   };
 
-  return _.cloneDeep(review);
+  return review;
 };
 
 
