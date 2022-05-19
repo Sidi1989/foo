@@ -31,14 +31,12 @@ app.use(cookieParser());
 
 app.use(function (req, res, next) {
   res.cookie('user', 'u1a');
-  console.log(req.cookies);
   return next();
 });
 
 app.use(function (req, res, next) {
   req.user = {};
   req.user.id = req.cookies.user;
-  console.log(req.user);
   return next();
 });
 
@@ -46,8 +44,8 @@ app.use(function (req, res, next) {
 app.get('/books/new', bookformHandler);
 app.get('/books/search', booksearchHandler);
 app.get('/books/:book', bookprofileHandler);
-app.get('/auth', userloginHandler);
-app.get('/auth/new', userformHandler);
+app.get('/signin', userloginHandler);
+app.get('/signup', userformHandler);
 app.get('/users/:user', userprofileHandler);
 app.get('/users/:user/account', useraccountHandler);
 app.get('/users/:user/collections/new', collectionformHandler);
