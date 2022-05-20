@@ -24,11 +24,11 @@
         <div class="col-4">
 
           <!-- Perfil de usuario-->
-          <%- include('../partials/basicprofile.html', {}); %>
+          <%- include('../partials/memberGridProfile.html', {}); %>
 
           <!-- Mis Colecciones-->
           <div class="p-1 mt-4 bg-success text-white">
-            <%- include('../partials/mycollections.html', {}); %>
+            <%- include('../partials/collectionsMyGrid.html', {}); %>
           </div>
 
           <div class="p-1 mt-4 bg-success opacity-75 text-white">
@@ -38,11 +38,10 @@
                 <h4>Mis Peticiones</h4>
               </div>
               <div class="col-2 text-end">
-                <a href="<%= member.id%>/petitions/new">
-                  <button type="button" class="btn btn-success btn-lg">
+                <!-- Modal para Crear Petición -->
+                <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#petitionNew">
                     <i class="fa-solid fa-plus"></i>
-                  </button>
-                </a>
+                </button>
               </div>
             </div>
 
@@ -53,7 +52,7 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   <span><strong><%=petition.title %></strong> (<%= petition.author.name %>)</span>
                   <span class="badge bg-success rounded-pill"><%= petition.buylists.length %></span>
-                  <!-- Modal para editar Petición -->
+                  <!-- Modal para Editar Petición -->
                   <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#petitionEdit">
                     <i class="fa-solid fa-file-signature"></i>
                   </button>
@@ -85,7 +84,7 @@
             </div>
 
             <div class="col-7">
-              <%- include('../partials/ratingbox.html', {}); %>
+              <%- include('../partials/bookGridRating.html', {}); %>
             </div>
           </div>
 
@@ -118,7 +117,7 @@
           </div>
 
           <div class="row">
-            <%- include('../partials/suggestedbooks.html', {}); %>
+            <%- include('../partials/booksSuggested.html', {}); %>
           </div>
 
         </div>
@@ -129,8 +128,9 @@
     </div>
 
     <!-- Zona para Modals-->
-    <%- include('../partials/createcollection.html', {}); %>
-    <%- include('../partials/petitionedit.html', {}); %>
+    <%- include('../partials/collectionNew.html', {}); %>
+    <%- include('../partials/petitionNew.html', {}); %>
+    <%- include('../partials/petitionEdit.html', {}); %>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/public/js/memberProfile.js"></script>
