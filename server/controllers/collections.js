@@ -12,7 +12,7 @@ const {getCollectionById} = require('../models/collections.js');
  * @param req Contiene la información de la petición
  * @param res Contiene la renderización de la petición para el cliente
  */
-var collectionprofileHandler= function (req, res) {
+var collectionEditHandler= function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/collectionEdit.html`;
 
   var info = {};
@@ -54,4 +54,4 @@ var collectionprofileHandler= function (req, res) {
 
 
 
-exports.collectionprofileHandler = collectionprofileHandler;
+exports.collectionEditHandler = collectionEditHandler;

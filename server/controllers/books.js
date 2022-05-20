@@ -1,4 +1,4 @@
-const {getBookById, getAllBooks, getRandomBooks} = require('../models/books.js');
+const {getAllBooks, getBookById, getRandomBooks} = require('../models/books.js');
 const {getAllLocations, getLocationById} = require('../models/locations.js');
 const {getAllCategories, getCategoryById} = require('../models/categories.js');
 const {getAllSubcategories, getSubcategoryById} = require('../models/subcategories.js');
@@ -17,7 +17,7 @@ const {getMemberById} = require('../models/members.js');
  * @param req Contiene la información de la petición
  * @param res Contiene la renderización de la petición para el cliente
  */
-var bookformHandler= function (req, res) {
+var bookNewHandler= function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/bookNew.html`;
 
   var info = {};
@@ -46,7 +46,7 @@ var bookformHandler= function (req, res) {
  * @param req Contiene la información de la petición
  * @param res Contiene la renderización de la petición para el cliente
  */
-var booksearchHandler = function (req, res) {
+var bookSearchHandler = function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/bookSearch.html`;
 
   var info = {};
@@ -62,7 +62,7 @@ var booksearchHandler = function (req, res) {
  * @param req Contiene la información de la petición
  * @param res Contiene la renderización de la petición para el cliente
  */
-var bookprofileHandler = function (req, res) {
+var bookProfileHandler = function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/bookProfile.html`;
 
   var info = {};
@@ -123,6 +123,6 @@ var bookprofileHandler = function (req, res) {
 
 
 
-exports.bookformHandler = bookformHandler;
-exports.booksearchHandler = booksearchHandler;
-exports.bookprofileHandler = bookprofileHandler;
+exports.bookNewHandler = bookNewHandler;
+exports.bookSearchHandler = bookSearchHandler;
+exports.bookProfileHandler = bookProfileHandler;

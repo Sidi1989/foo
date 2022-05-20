@@ -1,40 +1,24 @@
 const {getMemberById} = require('../models/members.js');
 const {getBookById, getRandomBooks} = require('../models/books.js');
 const {getCollectionById} = require('../models/collections.js');
+const {getAuthorById} = require('../models/authors.js');
 const {getPetitionById} = require('../models/petitions.js');
 const {getAllCategories, getCategoryById} = require('../models/categories.js');
 const {getAllSubcategories, getSubcategoryById} = require('../models/subcategories.js');
 const {getAllLanguages, getLanguageById} = require('../models/languages.js');
-const {getAuthorById} = require('../models/authors.js');
 const {getQuoteById, getRandomQuotes} = require('../models/quotes.js');
 
 
 
 
 /**
- * @description
- * Función destinada a cubrir la petición de Registrar a un nuevo usuario
- *
- * @param req Contiene la información de la petición
- * @param res Contiene la renderización de la petición para el cliente
- */
-var userformHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/memberSignUp.html`;
-  var info = {};
-
-
-  res.render(pathname, info);
-};
-
-
-/**
- * @description
- * Función destinada a cubrir la petición de Login de un usuario
- *
- * @param req Contiene la información de la petición
- * @param res Contiene la renderización de la petición para el cliente
- */
-var userloginHandler= function (req, res) {
+* @description
+* Función destinada a cubrir la petición de Login de un miembro
+*
+* @param req Contiene la información de la petición
+* @param res Contiene la renderización de la petición para el cliente
+*/
+var memberSignInHandler= function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/memberSignIn.html`;
   var info = {};
 
@@ -48,12 +32,28 @@ var userloginHandler= function (req, res) {
 
 /**
  * @description
- * Función destinada a cubrir la petición de Mostrar la Configuración de un usuario concreto
+ * Función destinada a cubrir la petición de Registrar a un nuevo miembro
  *
  * @param req Contiene la información de la petición
  * @param res Contiene la renderización de la petición para el cliente
  */
-var useraccountHandler= function (req, res) {
+var memberSignUpHandler= function (req, res) {
+  var pathname = `${__dirname}/../../Pinakes/html/views/memberSignUp.html`;
+  var info = {};
+
+
+  res.render(pathname, info);
+};
+
+
+/**
+ * @description
+ * Función destinada a cubrir la petición de Mostrar las Preferencias de un miembro concreto
+ *
+ * @param req Contiene la información de la petición
+ * @param res Contiene la renderización de la petición para el cliente
+ */
+var memberEditHandler= function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/memberEdit.html`;
 
   var info = {};
@@ -72,12 +72,12 @@ var useraccountHandler= function (req, res) {
 
 /**
  * @description
- * Función destinada a cubrir la petición de Mostrar el Home de un usuario concreto
+ * Función destinada a cubrir la petición de Mostrar el Home de un miembro concreto
  *
  * @param req Contiene la información de la petición
  * @param res Contiene la renderización de la petición para el cliente
  */
-var userprofileHandler = function (req, res) {
+var memberProfileHandler = function (req, res) {
   var pathname = `${__dirname}/../../Pinakes/html/views/memberProfile.html`;
 
   var info = {};
@@ -163,7 +163,7 @@ var userprofileHandler = function (req, res) {
 
 
 
-exports.userformHandler = userformHandler;
-exports.userloginHandler = userloginHandler;
-exports.useraccountHandler = useraccountHandler;
-exports.userprofileHandler = userprofileHandler;
+exports.memberSignInHandler = memberSignInHandler;
+exports.memberSignUpHandler = memberSignUpHandler;
+exports.memberEditHandler = memberEditHandler;
+exports.memberProfileHandler = memberProfileHandler;
