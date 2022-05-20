@@ -1,7 +1,10 @@
-const {getUserById} = require('../models/users.js');
+const {getMemberById} = require('../models/members.js');
 const {getBookById, getRandomBooks} = require('../models/books.js');
 const {getCollectionById} = require('../models/collections.js');
 const {getPetitionById} = require('../models/petitions.js');
+const {getAllCategories, getCategoryById} = require('../models/categories.js');
+const {getAllSubcategories, getSubcategoryById} = require('../models/subcategories.js');
+const {getAllLanguages, getLanguageById} = require('../models/languages.js');
 const {getAuthorById} = require('../models/authors.js');
 const {getQuoteById, getRandomQuotes} = require('../models/quotes.js');
 
@@ -16,7 +19,7 @@ const {getQuoteById, getRandomQuotes} = require('../models/quotes.js');
  * @param res Contiene la renderización de la petición para el cliente
  */
 var userformHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/signup.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/memberSignUp.html`;
   var info = {};
 
 
@@ -32,7 +35,7 @@ var userformHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var userloginHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/signin.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/memberSignIn.html`;
   var info = {};
 
   var dailyQuote = getRandomQuotes(1)[0];
@@ -51,15 +54,15 @@ var userloginHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var useraccountHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/useraccount.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/memberEdit.html`;
 
   var info = {};
 
-  var user = getUserById(req.params.user);
-  if (user == null) {
-    info.user = {};
+  var member = getMemberById(req.params.member);
+  if (member == null) {
+    info.member = {};
   } else {
-    info.user = user;
+    info.member = member;
   };
 
 
@@ -75,18 +78,27 @@ var useraccountHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var userprofileHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/userprofile.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/memberProfile.html`;
 
   var info = {};
 
-  var user = getUserById(req.params.user);
-  if (user == null) {
-    info.user = {};
+  var member = getMemberById(req.params.member);
+  if (member == null) {
+    info.member = {};
   } else {
-    info.user = user;
+    info.member = member;
   };
 
-  var collectionsMapped = user.collections.map(function (collectionId) {
+  var categories = getAllCategories();
+  info.categories = categories;
+
+  var subcategories = getAllSubcategories();
+  info.subcategories = subcategories;
+
+  var languages = getAllLanguages();
+  info.languages = languages;
+
+  var collectionsMapped = member.collections.map(function (collectionId) {
     var collection = getCollectionById(collectionId);
     var booksInCollection = collection.books.map(function (bookId) {
       var book = getBookById(bookId);
@@ -98,18 +110,18 @@ var userprofileHandler = function (req, res) {
     });
     return collection;
   });
-  info.user.collections = collectionsMapped;
+  info.member.collections = collectionsMapped;
 
-  var petitionsMapped = user.petitions.map(function (petitionId) {
+  var petitionsMapped = member.petitions.map(function (petitionId) {
     var petition = getPetitionById(petitionId);
     return petition;
     });
     petitionsMapped.forEach(function (e) {
       e.author = getAuthorById(e.author);
   });
-  info.user.petitions = petitionsMapped;
+  info.member.petitions = petitionsMapped;
 
-  var lastBookRead = getBookById(user.lastBookRead);
+  var lastBookRead = getBookById(member.lastBookRead);
   if (lastBookRead == null) {
     info.lastBookRead = {};
   } else {
@@ -136,11 +148,13 @@ var userprofileHandler = function (req, res) {
   });
   info.lastBookRead.collection.books = booksMapped;
 
-  var suggestedBooks = getRandomBooks(6, 3);
-  suggestedBooks.forEach(function (e,i) {
-    e.author = getAuthorById(e.author);
+  var suggestedBooksChunks = getRandomBooks(6, 3);
+  suggestedBooksChunks.forEach(function (chunk,i) {
+    chunk.forEach(function (book,i) {
+      book.author = getAuthorById(book.author);
+    });
   });
-  info.suggestedBooks = suggestedBooks;
+  info.suggestedBooks = suggestedBooksChunks;
 
 
   res.render(pathname, info);

@@ -5,8 +5,7 @@ const cookieParser = require('cookie-parser');
 const {renderFile} = require('ejs');
 const {bookformHandler, booksearchHandler, bookprofileHandler} = require('./controllers/books.js');
 const {collectionformHandler, collectionprofileHandler} = require('./controllers/collections.js');
-const {petitionformHandler} = require('./controllers/petitions.js');
-const {userformHandler, userloginHandler, userprofileHandler, useraccountHandler} = require('./controllers/users.js');
+const {userformHandler, userloginHandler, userprofileHandler, useraccountHandler} = require('./controllers/members.js');
 
 const {apiBooksHandler} = require('./controllers/api.js');
 
@@ -46,10 +45,9 @@ app.get('/books/search', booksearchHandler);
 app.get('/books/:book', bookprofileHandler);
 app.get('/auth/signin', userloginHandler);
 app.get('/auth/signup', userformHandler);
-app.get('/users/:user', userprofileHandler);
-app.get('/users/:user/account', useraccountHandler);
-app.get('/users/:user/:collection', collectionprofileHandler);
-app.get('/users/:user/petitions/new', petitionformHandler);
+app.get('/users/:member', userprofileHandler);
+app.get('/users/:member/account', useraccountHandler);
+app.get('/users/:member/:collection', collectionprofileHandler);
 
 app.get('/api/books', apiBooksHandler);
 

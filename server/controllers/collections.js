@@ -1,4 +1,4 @@
-const {getUserById} = require('../models/users.js');
+const {getMemberById} = require('../models/members.js');
 const {getBookById} = require('../models/books.js')
 const {getCollectionById} = require('../models/collections.js');
 
@@ -13,18 +13,18 @@ const {getCollectionById} = require('../models/collections.js');
  * @param res Contiene la renderización de la petición para el cliente
  */
 var collectionprofileHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/collectionprofile.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/collectionEdit.html`;
 
   var info = {};
 
-  var user = getUserById(req.params.user);
-  if (user == null) {
-    info.user = {};
+  var member = getMemberById(req.params.member);
+  if (member == null) {
+    info.member = {};
   } else {
-    info.user = user;
+    info.member = member;
   };
 
-  var collectionsMapped = user.collections.map(function (collectionId) {
+  var collectionsMapped = member.collections.map(function (collectionId) {
     var collection = getCollectionById(collectionId);
     var booksInCollection = collection.books.map(function (bookId) {
       var book = getBookById(bookId);
@@ -32,7 +32,7 @@ var collectionprofileHandler= function (req, res) {
     });
     return collection;
   });
-  info.user.collections = collectionsMapped;
+  info.member.collections = collectionsMapped;
 
   var collection = getCollectionById(req.params.collection);
   if (collection == null) {

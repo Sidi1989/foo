@@ -5,7 +5,7 @@ const {getAllSubcategories, getSubcategoryById} = require('../models/subcategori
 const {getAllLanguages, getLanguageById} = require('../models/languages.js');
 const {getAuthorById} = require('../models/authors.js');
 const {getReviewById} = require('../models/reviews.js');
-const {getUserById} = require('../models/users.js');
+const {getMemberById} = require('../models/members.js');
 
 
 
@@ -18,7 +18,7 @@ const {getUserById} = require('../models/users.js');
  * @param res Contiene la renderización de la petición para el cliente
  */
 var bookformHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/bookform.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/bookNew.html`;
 
   var info = {};
 
@@ -47,27 +47,9 @@ var bookformHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var booksearchHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/booksearch.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/bookSearch.html`;
 
   var info = {};
-
-  var books = getAllBooks();
-
-  books.forEach(function (e,i) {
-    e.category = getCategoryById(e.category);
-  });
-  books.forEach(function (e,i) {
-    e.subcategory = getSubcategoryById(e.subcategory);
-  });
-  books.forEach(function (e,i) {
-    e.author = getAuthorById(e.author);
-  });
-  books.forEach(function (e,i) {
-    e.language = getLanguageById(e.language);
-  });
-
-  info.books = books;
-
 
   res.render(pathname, info);
 };
@@ -81,7 +63,7 @@ var booksearchHandler = function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var bookprofileHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/bookprofile.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/bookProfile.html`;
 
   var info = {};
 
@@ -118,7 +100,7 @@ var bookprofileHandler = function (req, res) {
     if (review.reviewer == null) {
       review.reviewer = {}
     } else {
-      var reviewer = getUserById(review.reviewer);
+      var reviewer = getMemberById(review.reviewer);
       review.reviewer = reviewer;
     };
 
@@ -126,11 +108,13 @@ var bookprofileHandler = function (req, res) {
   });
   info.reviews = reviewsMapped
 
-  var suggestedBooks = getRandomBooks(6, 3);
-  suggestedBooks.forEach(function (e,i) {
-    e.author = getAuthorById(e.author);
+  var suggestedBooksChunks = getRandomBooks(6, 3);
+  suggestedBooksChunks.forEach(function (chunk,i) {
+    chunk.forEach(function (book,i) {
+      book.author = getAuthorById(book.author);
+    });
   });
-  info.suggestedBooks = suggestedBooks;
+  info.suggestedBooks = suggestedBooksChunks;
 
 
   res.render(pathname, info);

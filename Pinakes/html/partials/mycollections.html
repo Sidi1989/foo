@@ -11,7 +11,7 @@
 </div>
 
 <!-- Mis Colecciones-->
-<% user.collections.forEach(function (collection, i) { %>
+<% member.collections.forEach(function (collection, i) { %>
 <div class="row gx-0">
   <div class="col-9">
     <div id="collectionInfo" class="accordion">
@@ -55,7 +55,7 @@
         <li><a class="dropdown-item" href="#">Libro mejor valorado</a></li>
         <li><a class="dropdown-item" href="#">Ejemplar mejor valorado</a></li>
       </ul>
-      <a href="<%= user.id%>/<%= collection.id%>">
+      <a href="<%= member.id%>/<%= collection.id%>">
         <button type="button" class="btn btn-success">
           <i class="fa-solid fa-file-signature"></i>
         </button>
