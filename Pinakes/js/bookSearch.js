@@ -1,9 +1,9 @@
 var books = [];
 
 window.onload = function () {
-  var bookSearchingInputNode = document.getElementById("bookSearchingInput");
-  bookSearchingInputNode.onkeyup = function (event) {
-    var userSearch = bookSearchingInputNode.value;
+  var bookSearchingInputElement = document.getElementById("bookSearchingInput");
+  bookSearchingInputElement.onkeyup = function (event) {
+    var userSearch = bookSearchingInputElement.value;
     var url = '/api/books';
     fetch(url)
       .then(response => response.json())
@@ -22,11 +22,11 @@ window.onload = function () {
                     <p>${book.title}</p>
                   </a>
                 </td>
-                <td>${book.author}</td>
+                <td>${book.author.name}</td>
                 <td>${book.isbn}</td>
-                <td>${book.category}</td>
-                <td>${book.subcategory}</td>
-                <td>${book.language}</td>
+                <td>${book.category.name}</td>
+                <td>${book.subcategory.name}</td>
+                <td>${book.language.name}</td>
             `;
             searchTableBodyElement.appendChild(newRowElement);
           });
@@ -34,12 +34,12 @@ window.onload = function () {
   };
 
 
-  var nuevoBotonNode = document.getElementById("nuevoBoton");
-  nuevoBotonNode.onclick = function (event) {
+  var nuevoBotonElement = document.getElementById("nuevoBoton");
+  nuevoBotonElement.onclick = function (event) {
       var searchTableBodyElement = document.getElementById('searchTableBody');
       searchTableBodyElement.innerHTML = '';
 
-      var sortedBooks = books.slice(0,1);
+      var sortedBooks = _.sortBy(books, ['title'])
       sortedBooks.forEach(function (book, i) {
         const newRowElement = document.createElement('tr')
         newRowElement.innerHTML = `
@@ -48,11 +48,11 @@ window.onload = function () {
                 <p>${book.title}</p>
               </a>
             </td>
-            <td>${book.author}</td>
+            <td>${book.author.name}</td>
             <td>${book.isbn}</td>
-            <td>${book.category}</td>
-            <td>${book.subcategory}</td>
-            <td>${book.language}</td>
+            <td>${book.category.name}</td>
+            <td>${book.subcategory.name}</td>
+            <td>${book.language.name}</td>
         `;
         searchTableBodyElement.appendChild(newRowElement);
       });
