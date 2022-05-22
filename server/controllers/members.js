@@ -18,8 +18,8 @@ const {getQuoteById, getRandomQuotes} = require('../models/quotes.js');
 * @param req Contiene la información de la petición
 * @param res Contiene la renderización de la petición para el cliente
 */
-var memberSignInHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/memberSignIn.html`;
+var signInHandler= function (req, res) {
+  var pathname = `${__dirname}/../../Pinakes/html/views/sign-in.html`;
   var info = {};
 
   var dailyQuote = getRandomQuotes(1)[0];
@@ -37,8 +37,8 @@ var memberSignInHandler= function (req, res) {
  * @param req Contiene la información de la petición
  * @param res Contiene la renderización de la petición para el cliente
  */
-var memberSignUpHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/memberSignUp.html`;
+var signUpHandler= function (req, res) {
+  var pathname = `${__dirname}/../../Pinakes/html/views/sign-up.html`;
   var info = {};
 
 
@@ -54,7 +54,7 @@ var memberSignUpHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var memberEditHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/memberEdit.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/member-edit.html`;
 
   var info = {};
 
@@ -78,7 +78,7 @@ var memberEditHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var memberProfileHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/memberProfile.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/member-profile.html`;
 
   var info = {};
 
@@ -163,7 +163,7 @@ var memberProfileHandler = function (req, res) {
 
 
 
-exports.memberSignInHandler = memberSignInHandler;
-exports.memberSignUpHandler = memberSignUpHandler;
+exports.signInHandler = signInHandler;
+exports.signUpHandler = signUpHandler;
 exports.memberEditHandler = memberEditHandler;
 exports.memberProfileHandler = memberProfileHandler;

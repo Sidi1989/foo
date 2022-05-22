@@ -1,12 +1,20 @@
-const {getAllBooks} = require('../models/books.js');
+const {getAllBooks, getBookById} = require('../models/books.js');
 const {getCategoryById} = require('../models/categories.js');
 const {getSubcategoryById} = require('../models/subcategories.js');
 const {getLanguageById} = require('../models/languages.js');
 const {getAuthorById} = require('../models/authors.js');
+const {getAllCollections} = require('../models/collections.js');
 
 
 
-var apiBooksHandler = function (req, res) {
+
+var apiCreateBookHandler = function (req, res) {
+  console.log(req.body);
+  return res.json({});
+};
+
+
+var apiListBooksHandler = function (req, res) {
   var books = getAllBooks();
 
   books.forEach(function (e,i) {
@@ -26,6 +34,23 @@ var apiBooksHandler = function (req, res) {
 };
 
 
+var apiRetrieveBookHandler = function (req, res) {
+  var book = getBookById(req.params.book);
+
+  return res.json(book);
+};
 
 
-exports.apiBooksHandler = apiBooksHandler;
+var apiListCollectionsHandler = function (req, res) {
+  var collections = getAllCollections();
+
+  return res.json(collections);
+};
+
+
+
+
+exports.apiCreateBookHandler = apiCreateBookHandler;
+exports.apiListBooksHandler = apiListBooksHandler;
+exports.apiRetrieveBookHandler = apiRetrieveBookHandler;
+exports.apiListCollectionsHandler = apiListCollectionsHandler;

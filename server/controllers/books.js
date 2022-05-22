@@ -18,7 +18,7 @@ const {getMemberById} = require('../models/members.js');
  * @param res Contiene la renderización de la petición para el cliente
  */
 var bookNewHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/bookNew.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/book-new.html`;
 
   var info = {};
 
@@ -41,29 +41,13 @@ var bookNewHandler= function (req, res) {
 
 /**
  * @description
- * Función destinada a cubrir la petición de Búsqueda de un nuevo libro
- *
- * @param req Contiene la información de la petición
- * @param res Contiene la renderización de la petición para el cliente
- */
-var bookSearchHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/bookSearch.html`;
-
-  var info = {};
-
-  res.render(pathname, info);
-};
-
-
-/**
- * @description
  * Función destinada a cubrir la petición de Información sobre un libro concreto
  *
  * @param req Contiene la información de la petición
  * @param res Contiene la renderización de la petición para el cliente
  */
 var bookProfileHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/bookProfile.html`;
+  var pathname = `${__dirname}/../../Pinakes/html/views/book-profile.html`;
 
   var info = {};
 
@@ -116,8 +100,24 @@ var bookProfileHandler = function (req, res) {
 };
 
 
+/**
+* @description
+* Función destinada a cubrir la petición de Búsqueda de un nuevo libro
+*
+* @param req Contiene la información de la petición
+* @param res Contiene la renderización de la petición para el cliente
+*/
+var bookSearchHandler = function (req, res) {
+  var pathname = `${__dirname}/../../Pinakes/html/views/book-search.html`;
+
+  var info = {};
+
+  res.render(pathname, info);
+};
+
+
 
 
 exports.bookNewHandler = bookNewHandler;
-exports.bookSearchHandler = bookSearchHandler;
 exports.bookProfileHandler = bookProfileHandler;
+exports.bookSearchHandler = bookSearchHandler;

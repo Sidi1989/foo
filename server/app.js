@@ -3,11 +3,16 @@ const path = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const {renderFile} = require('ejs');
-const {bookNewHandler, bookSearchHandler, bookProfileHandler} = require('./controllers/books.js');
+const {bookNewHandler, bookProfileHandler, bookSearchHandler} = require('./controllers/books.js');
 const {collectionEditHandler} = require('./controllers/collections.js');
-const {memberSignUpHandler, memberSignInHandler, memberProfileHandler, memberEditHandler} = require('./controllers/members.js');
+const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = require('./controllers/members.js');
 
-const {apiBooksHandler} = require('./controllers/api.js');
+const {
+  apiCreateBookHandler,
+  apiListBooksHandler,
+  apiRetrieveBookHandler,
+  apiListCollectionsHandler
+} = require('./controllers/api.js');
 
 
 
@@ -43,13 +48,16 @@ app.use(function (req, res, next) {
 app.get('/books/new', bookNewHandler);
 app.get('/books/search', bookSearchHandler);
 app.get('/books/:book', bookProfileHandler);
-app.get('/auth/signin', memberSignInHandler);
-app.get('/auth/signup', memberSignUpHandler);
+app.get('/auth/signin', signInHandler);
+app.get('/auth/signup', signUpHandler);
 app.get('/members/:member', memberProfileHandler);
 app.get('/members/:member/preferences', memberEditHandler);
 app.get('/members/:member/:collection', collectionEditHandler);
 
-app.get('/api/books', apiBooksHandler);
+app.post('/api/book', apiCreateBookHandler);
+app.get('/api/books', apiListBooksHandler);
+app.get('/api/books/:book', apiRetrieveBookHandler);
+app.get('/api/collections', apiListCollectionsHandler);
 
 
 
