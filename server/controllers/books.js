@@ -89,11 +89,7 @@ var bookProfileHandler = function (req, res) {
   };
 
   var author = getAuthorById(book.author);
-  if (book.author == null) {
-    info.book.author = {};
-  } else {
-    info.book.author = author;
-  };
+  info.book.author = author;
 
   var reviewsMapped = book.reviews.map(function (id) {
     var review = getReviewById(id);
@@ -103,10 +99,9 @@ var bookProfileHandler = function (req, res) {
       var reviewer = getMemberById(review.reviewer);
       review.reviewer = reviewer;
     };
-
     return review;
   });
-  info.reviews = reviewsMapped
+  info.reviews = reviewsMapped;
 
   var suggestedBooksChunks = getRandomBooks(6, 3);
   suggestedBooksChunks.forEach(function (chunk,i) {

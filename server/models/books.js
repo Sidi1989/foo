@@ -22,12 +22,6 @@ var getBookById = function (id) {
     book = filteredBooks[0];
   };
 
-  if (book.author == null) {
-    book.author.name = "Anónimo";
-  } else {
-    book.author.name = book.author.name
-  };
-
   return book;
 };
 

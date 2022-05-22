@@ -10,6 +10,12 @@ var getAllAuthors = function () {
 
 
 var getAuthorById = function (id) {
+  if (id == null) {
+    var author = {};
+    author.name = "Anónimo";
+    return author;
+  };
+
   var clonedAuthors = _.cloneDeep(authors);
   var filteredAuthors = clonedAuthors.filter(function (e) {
     return (e.id == id);
