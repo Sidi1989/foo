@@ -17,7 +17,7 @@
     <%- include('../partials/header.html', {}); %>
     <div class="container">
 
-      <!-- Todo el Contenido, salvo el Header-->
+      <!-- Todo el Contenido, hasta las Sugerencias-->
       <div class="row">
 
         <!-- Columna Lateral-->
@@ -110,12 +110,14 @@
           </div>
         </div>
 
+      </div>
+
+      <!--Carrusel de Sugerencias-->
       <div class="row mt-4">
         <div class="container">
-          <div class="bg-success p-1 mb-3 text-white text-center">
+          <div class="bg-success p-1 text-white text-center">
             <h4>Sugerencias</h4>
           </div>
-
           <div class="row">
             <%- include('../partials/suggested-books-carousel.html', {}); %>
           </div>
