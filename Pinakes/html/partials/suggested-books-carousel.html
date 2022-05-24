@@ -7,7 +7,7 @@
         <% suggestedBooks[0].forEach(function(e,i){ %>
         <div class="col-auto g-4 mb-3 d-flex align-items-stretch">
           <div class="card text-center">
-            <a href="/books/<%e.id%>">
+            <a href="/books/<%=e.id%>">
               <img class="card-img-top" style="width: 240px; height: 320px" src="<%=e.pic.main%>">
             </a>
             <div class="card-body">
@@ -25,7 +25,7 @@
         <% suggestedBooks[1].forEach(function(e,i){ %>
         <div class="col-auto g-4 mb-3 d-flex align-items-stretch">
           <div class="card text-center">
-            <a href="/books/<%e.id%>">
+            <a href="/books/<%=e.id%>">
               <img class="card-img-top" style="width: 240px; height: 320px" src="<%=e.pic.main%>">
             </a>
             <div class="card-body">

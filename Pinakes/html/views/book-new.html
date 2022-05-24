@@ -24,11 +24,12 @@
           <h5>Registro básico</h5>
         </div>
 
+        <!-- Campo para título: "title" -->
         <div class="input-group">
-          <label class="input-group-text" for="title">Título</label>
-          <input id="title" type="text" class="form-control">
+          <label for="title" class="input-group-text">Título</label>
+          <input id="title" type="text" name="title" class="form-control">
         </div>
-
+        <!-- Campo para autor: "author" -->
         <div class="input-group mb-3">
           <label class="input-group-text" for="authorName">Autor</label>
           <select id="authorName" class="form-select">
@@ -38,12 +39,12 @@
           </select>
           <input type="text" class="form-control">
         </div>
-
+        <!-- Campo para sede: "location" -->
         <div class="input-group mb-4">
-          <label class="input-group-text" for="location">Sede de depósito</label>
-          <select class="form-select" id="location">
+          <label for="location" class="input-group-text">Sede de depósito</label>
+          <select id="location" name="location" class="form-select">
             <% locations.forEach(function (location,i) { %>
-              <option <% if (i==0) { %> selected <% }%> value="1"><%= location.name%></option>
+              <option <% if (i==0) { %> selected <% }%> value="<%=location.id%>"><%= location.name%></option>
             <% }) %>
           </select>
         </div>
@@ -133,13 +134,13 @@
           <input id="bookPicFiles" class="form-control" type="file" multiple>
         </div>
 
-        <!-- Botón de submit -->
-        <div class="d-grid col-4 mx-auto p-0 border border-secondary border-4">
-          <button id="createNewBook" type="submit" class="btn btn-success">
-            <h5>Añadir Libro</h5>
-            </button>
-        </div>
       </form>
+      <!-- Botón de submit -->
+      <div class="d-grid col-4 mx-auto p-0 border border-secondary border-4">
+        <button id="createNewBook" class="btn btn-success">
+          <h5>Añadir Libro</h5>
+        </button>
+      </div>
 
     </div>
     <!-- Footer-->

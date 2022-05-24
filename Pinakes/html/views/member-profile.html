@@ -33,7 +33,7 @@
 
           <div class="p-1 mt-4 bg-success opacity-75 text-white">
             <!-- Header de Peticiones-->
-            <div class="row gx-0">
+            <div class="row g-0">
               <div class="col-10 text-center">
                 <h4>Mis Peticiones</h4>
               </div>
@@ -72,17 +72,18 @@
           <!--Sobre el Libro seleccionado-->
           <div class="row mb-4">
             <div class="col-5">
-              <div id="selectedBook" class="card">
-                <div class="card-header text-center">
-                  <p><%=lastBookRead.title%></p>
-                  <small class="text-black-50"> (<%=lastBookRead.author.name%>)</small>
+              <div id="selectedBook" class="card text-center">
+                <div class="card-header">
+                  <h5><%=lastBookRead.title%></h5>
+                  <h8 class="text-black-50"> (<%=lastBookRead.author.name%>)</h8>
                 </div>
+                <div class="card-body">
                 <a href="/books/<%=lastBookRead.id%>">
-                  <img src="<%=lastBookRead.pic.main%>" class="card-img-top">
+                  <img class="card-img-top" style="width: 240px; height: 320px" src="<%=lastBookRead.pic.main%>">
                 </a>
               </div>
+              </div>
             </div>
-
             <div class="col-7">
               <%- include('../partials/book-rating-card.html', {}); %>
             </div>
@@ -97,11 +98,13 @@
 
           <div id="otherBooksInCollection" class="row">
             <% lastBookRead.collection.books.forEach(function(e,i) { %>
-            <div class="col-4">
+            <div class="col-auto mb-3 gy-1 d-flex align-items-stretch">
               <div class="card text-center">
-                <img src="<%=e.pic.main%>" class="card-img-top">
-                <div class="card-body">
-                  <span><%=e.title%></span>
+                <a href="/books/<%=e.id%>">
+                  <img class="card-img-top mt-1" style="width: 180px; height: 240px" src="<%=e.pic.main%>">
+                </a>
+                <div class="card-body">                  
+                  <h6 class="card-title"><%=e.title%></h6>
                   <i class="fa-solid fa-star"></i>
                 </div>
               </div>
@@ -131,6 +134,7 @@
 
     <!-- Zona para Modals-->
     <%- include('../partials/new-collection-modal.html', {}); %>
+    <%- include('../partials/delete-book-modal.html', {}); %>
     <%- include('../partials/new-petition-modal.html', {}); %>
     <%- include('../partials/edit-petition-modal.html', {}); %>
 

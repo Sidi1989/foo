@@ -32,11 +32,19 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1">
               <li class="nav-item mb-2">
-                <a class="nav-link active" href="/auth/signin"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+                <a class="nav-link active" href="#">
+                  <i class="fa-solid fa-bell"></i> Notificaciones
+                  <span class="badge bg-success rounded-pill">2</span>
+                </a>
+              </li>
+              <li class="nav-item mb-2">
+                <a class="nav-link active" href="/members/<%=member.id%>/preferences">
+                  <i class="fa-solid fa-user-gear"></i> Configuración
+                </a>
               </li>
               <li class="nav-item mb-4">
-                <a class="nav-link active" href="/members/<%=member.id%>/account">
-                  <i class="fa-solid fa-user-gear"></i> Configuración
+                <a class="nav-link active" href="/auth/signin">
+                  <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
                 </a>
               </li>
               <li class="nav-item">
