@@ -1,4 +1,5 @@
 const {getAllBooks, getBookById} = require('../models/books.js');
+const {getAllMembers} = require('../models/members.js');
 const {getCategoryById} = require('../models/categories.js');
 const {getSubcategoryById} = require('../models/subcategories.js');
 const {getLanguageById} = require('../models/languages.js');
@@ -8,9 +9,56 @@ const {getAllCollections} = require('../models/collections.js');
 
 
 
+var apiSignInHandler = function (req, res) {
+  console.log(req.body);
+
+  var members = getAllMembers();
+  var filteredMembers = members.filter(function (e,i) {
+    return (req.body.email == e.email)
+  });
+
+  if (filteredMembers.length == 0) {
+    return res.json({
+      status: 'KO',
+      message: 'Credenciales inválidas'
+    });
+  };
+
+  var member = filteredMembers[0];
+  if (member.password == req.body.password) {
+    return res.json({
+      status: 'OK',
+      id: member.id,
+      session: new Date()
+    });
+  } else {
+    return res.json({
+      status: 'KO',
+      message: 'Credenciales inválidas'
+    });
+  }
+};
+
+
 var apiCreateBookHandler = function (req, res) {
   console.log(req.body);
-  return res.json({});
+  var bookId = new Date();
+  var info = {
+    status: "OK",
+    book: bookId
+  };
+  return res.json(info);
+};
+
+
+var apiCreateCollectionHandler = function (req, res) {
+  console.log(req.body);
+  var collectionId = new Date();
+  var info = {
+    status: "OK",
+    book: collectionId
+  };
+  return res.json(info);
 };
 
 
@@ -50,7 +98,9 @@ var apiListCollectionsHandler = function (req, res) {
 
 
 
+exports.apiSignInHandler = apiSignInHandler;
 exports.apiCreateBookHandler = apiCreateBookHandler;
+exports.apiCreateCollectionHandler = apiCreateCollectionHandler;
 exports.apiListBooksHandler = apiListBooksHandler;
 exports.apiRetrieveBookHandler = apiRetrieveBookHandler;
 exports.apiListCollectionsHandler = apiListCollectionsHandler;

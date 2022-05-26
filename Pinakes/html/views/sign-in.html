@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="/public/css/main.css">
     <link rel="stylesheet" href="/public/css/sign-in.css">
+    <script type="text/javascript" src="/public/js/cookies-utils.js"></script>
   </head>
 
 
@@ -39,19 +40,19 @@
         <!-- Sección de registro -->
         <div class="col-7">
           <div class="d-grid">
-            <div class="p-3 bg-light border">
+            <form class="p-3 bg-light border">
 
               <div class="mb-4">
-                <label for="memberDomain" class="form-label">
+                <label for="memberEmail" class="form-label">
                   <h6>Usuario</h6>
                 </label>
-                <input type="email" class="form-control" id="memberDomain" placeholder="Introduzca su E-mail">
+                <input id="memberEmail" type="email" name="memberEmail" class="form-control" placeholder="Introduzca su E-mail">
               </div>
 
               <div class="mb-3">
                 <label for="memberPassword" class="form-label">
                   <h6>Contraseña</h6>
-                <input type="password" class="form-control" id="memberPassword" placeholder="Introduzca su Contraseña">
+                <input id="memberPassword" type="password" name="memberPassword" class="form-control" placeholder="Introduzca su Contraseña">
               </div>
 
               <div class="mb-4">
@@ -62,24 +63,24 @@
                   </label>
                 </div>
               </div>
+            </form>
 
-              <!-- Botón de Login y Recuperación de cuenta -->
-              <div class="d-grid col-4 mx-auto">
-                <button id="memberLogin" type="submit" class="btn btn-success">
-                  <h5>Entrar</h5>
-                </button>
-              </div>
-
-              <div class="dropdown-divider mt-4"></div>
-
-              <div id="problemNewMember1" class="mb-2 nav_pop_new_cust nav-flyout-content nav-flyout-accessibility">¿Aún no tienes cuenta?
-                <a href="/auth/signup" rel="nofollow" class="nav-a">Empieza aquí</a>
-              </div>
-              <div id="problemNewMember2" class="nav_pop_new_cust nav-flyout-content nav-flyout-accessibility">¿Olvidaste la contraseña?
-                <a href="#" rel="nofollow" class="nav-a">Contacta aquí</a>
-              </div>
-
+            <!-- Botón de Login y Recuperación de cuenta -->
+            <div class="d-grid col-4 mx-auto">
+              <button id="memberLogin" class="btn btn-success">
+                <h5>Entrar</h5>
+              </button>
             </div>
+
+            <div class="dropdown-divider mt-4"></div>
+
+            <div id="problemNewMember1" class="mb-2 nav_pop_new_cust nav-flyout-content nav-flyout-accessibility">¿Aún no tienes cuenta?
+              <a href="/auth/signup" rel="nofollow" class="nav-a">Empieza aquí</a>
+            </div>
+            <div id="problemNewMember2" class="nav_pop_new_cust nav-flyout-content nav-flyout-accessibility">¿Olvidaste la contraseña?
+              <a href="#" rel="nofollow" class="nav-a">Contacta aquí</a>
+            </div>
+
           </div>
         </div>
 

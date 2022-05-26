@@ -8,7 +8,9 @@ const {collectionEditHandler} = require('./controllers/collections.js');
 const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = require('./controllers/members.js');
 
 const {
+  apiSignInHandler,
   apiCreateBookHandler,
+  apiCreateCollectionHandler,
   apiListBooksHandler,
   apiRetrieveBookHandler,
   apiListCollectionsHandler
@@ -32,11 +34,8 @@ app.use(function (req, res, next) {
 });
 
 app.use(cookieParser());
-
-app.use(function (req, res, next) {
-  res.cookie('user', 'u1a');
-  return next();
-});
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use(function (req, res, next) {
   req.user = {};
@@ -54,7 +53,10 @@ app.get('/members/:member', memberProfileHandler);
 app.get('/members/:member/preferences', memberEditHandler);
 app.get('/members/:member/:collection', collectionEditHandler);
 
-app.post('/api/book', apiCreateBookHandler);
+app.post('/api/sessions', apiSignInHandler);
+app.post('/api/books', apiCreateBookHandler);
+app.post('/api/collections', apiCreateCollectionHandler);
+
 app.get('/api/books', apiListBooksHandler);
 app.get('/api/books/:book', apiRetrieveBookHandler);
 app.get('/api/collections', apiListCollectionsHandler);

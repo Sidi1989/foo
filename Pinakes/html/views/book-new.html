@@ -25,20 +25,38 @@
         </div>
 
         <!-- Campo para título: "title" -->
-        <div class="input-group">
+        <div class="input-group mb-2">
           <label for="title" class="input-group-text">Título</label>
           <input id="title" type="text" name="title" class="form-control">
         </div>
+
         <!-- Campo para autor: "author" -->
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="authorName">Autor</label>
-          <select id="authorName" class="form-select">
-            <option selected>Nombre</option>
-            <option>Anónimo</option>
-            <option>VV.AA.</option>
-          </select>
-          <input type="text" class="form-control">
+        <div class="input-group">
+          <div class="form-check">
+            <input id="authorKnown" class="form-check-input" type="radio" name="authorKnown" checked>
+            <label for="authorKnown" class="form-check-label">
+              Autor conocido
+            </label>
+          </div>
+          <div class="form-check">
+            <input id="authorAnonymous" class="form-check-input" type="radio" name="authorAnonymous">
+            <label class="form-check-label" for="authorAnonymous">
+              Autor anónimo
+            </label>
+          </div>
+          <div class="form-check">
+            <input id="authorMultiple" class="form-check-input" type="radio" name="authorMultiple">
+            <label class="form-check-label" for="authorMultiple">
+              Varios autores
+            </label>
+          </div>
         </div>
+
+        <div class="input-group mb-2">
+          <label for="authorName" class="input-group-text">Nombre del Autor</label>
+          <input id="authorName" type="text" name="authorName" class="form-control">
+        </div>
+
         <!-- Campo para sede: "location" -->
         <div class="input-group mb-4">
           <label for="location" class="input-group-text">Sede de depósito</label>
@@ -55,8 +73,8 @@
         </div>
 
         <div class="input-group mb-2">
-          <label class="input-group-text" for="category">Género</label>
-          <select id="category" class="form-select">
+          <label for="category" class="input-group-text">Género</label>
+          <select id="category" name="category" class="form-select">
             <% categories.forEach(function (e,i) { %>
               <option value="<%= e.id%>"><%= e.name%></option>
             <% }) %>
@@ -65,8 +83,8 @@
 
         <% categories.forEach(function (category,i) { %>
           <div class="input-group mb-2" style="display: none">
-            <label class="input-group-text" for="subcategory"><%= category.name%></label>
-            <select id="subcategory" class="form-select">
+            <label for="subcategory" class="input-group-text"><%= category.name%></label>
+            <select id="subcategory" name="subcategory" class="form-select">
               <%
                 var filteredSubcategories = subcategories.filter(function (subcategory,i) {
                   return (subcategory.parent == category.id)

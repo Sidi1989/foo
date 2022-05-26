@@ -34,6 +34,8 @@ var bookNewHandler= function (req, res) {
   var languages = getAllLanguages();
   info.languages = languages;
 
+  info.member = req.user;
+
 
   res.render(pathname, info);
 };
