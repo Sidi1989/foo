@@ -1,44 +1,32 @@
 <div class="modal fade" id="editCollectionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Crear Colección</h5>
+
+      <div class="modal-header p-2">
+        <h5 class="modal-title">Modificar Colección</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
 
-
-
-        <form class="row g-3 needs-validation" novalidate>
-          <div class="col-md-4">
-            <label for="validationCustom01" class="form-label">First name</label>
-            <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
+      <div class="modal-body my-3">
+        <form class="row g-3">
+          <div class="input-group mb-4">
+            <label for="collectionName" class="input-group-text">Nombre de la Colección</label>
+            <input id="collectionName" type="text" name="collectionName" class="form-control">
           </div>
-
-          <div class="input-group mb-3">
-            <label class="input-group-text" for="collectionName">Nombre de la Colección</label>
-            <input id="collectionName" type="text" class="form-control">
-          </div>
-
-          <div class="mb-4">
+          <div class="mb">
             <label for="collectionPicFile" class="form-label">
               <h6><u>Imagen para la Colección</u></h6>
             </label>
-            <input id="collectionPicFile" class="form-control" type="file" multiple>
-          </div>
-
-          <div class="col-12">
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <input id="collectionPicFile" type="file" name="collectionPicFile" class="form-control">
           </div>
         </form>
+      </div>
 
-      </div>
-      <div class="modal-footer">
+      <div class="modal-footer p-1">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar Cambios</button>
+        <button id="saveChangesCollection" type="button" class="btn btn-primary">Guardar Cambios</button>
       </div>
+
     </div>
   </div>
 </div>

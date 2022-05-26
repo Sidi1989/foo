@@ -1,67 +1,40 @@
-<div class="row bg-success mb-5">
-  <div class="col-11">
-    <figure class="text-center text-white">
-      <blockquote class="blockquote">
-        <h3>PIN
-        <img src="https://cdn-icons-png.flaticon.com/512/6627/6627472.png" class="img-fluid" style="width:1.5rem; height:1.5rem">
-        KES</h3>
-      </blockquote>
-    </figure>
+<nav class="navbar navbar-expand-lg bg-success mb-5">
+  <div class="container-fluid">
+    <a class="navbar-brand text-center text-white" href="#">
+      <h3>
+        PIN<img src="https://cdn-icons-png.flaticon.com/512/6627/6627472.png" class="img-fluid" style="width: 30px; height: 30px">KES
+      </h3>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white" href="#">
+            <i class="fa-solid fa-bell"></i>
+            <span class="badge bg-success rounded-pill">2</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active text-white" href="/members/<%=member.id%>/preferences">
+            <i class="fa-solid fa-user-gear"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active text-white" href="/auth/signin">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Busca un libro por ...">
+        <a class="nav-link active" href="/books/search">
+          <button class="btn btn-success" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </a>
+      </form>
+    </div>
   </div>
-
-  <div class="col-1">
-    <!-- Menú de Opciones-->
-    <nav class="navbar navbar-light">
-      <div class="container-fluid">
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
-
-          <!-- Dentro del desplegable-->
-          <div class="offcanvas-header">
-            <div class="offcanvas-title">
-              <u><h5>Menú</h5></u>
-            </div>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas">
-            </button>
-          </div>
-
-          <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1">
-              <li class="nav-item mb-2">
-                <a class="nav-link active" href="#">
-                  <i class="fa-solid fa-bell"></i> Notificaciones
-                  <span class="badge bg-success rounded-pill">2</span>
-                </a>
-              </li>
-              <li class="nav-item mb-2">
-                <a class="nav-link active" href="/members/<%=member.id%>/preferences">
-                  <i class="fa-solid fa-user-gear"></i> Configuración
-                </a>
-              </li>
-              <li class="nav-item mb-4">
-                <a class="nav-link active" href="/auth/signin">
-                  <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="/books/search">
-                  <button class="btn btn-outline-success" type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <h5>Buscar</h5>
-                  </button>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-
-      </div>
-    </nav>
-  </div>
-
-</div>
+</nav>

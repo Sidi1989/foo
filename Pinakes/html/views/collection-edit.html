@@ -38,11 +38,15 @@
                 <i class="fa-solid fa-hourglass"></i>
                 <p id="collectionAge" class="text-primary"><%=collection.age%> días</p>
               </div>
+              <div class="col">
+                <!-- Modal para Editar Colección -->
+                <button type="button" class="btn btn-lg btn-outline-success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editCollectionModal">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+              </div>
             </div>
-            <!-- Modal para Editar Colección -->
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editCollectionModal">
-              </i>Cambiar nombre y logo
-            </button>
           </div>
         </div>
 
@@ -57,10 +61,10 @@
               <div class="card text-center">
                 <button type="button"
                     class="btn btn-outline-success"
-                    style="width: 240px; height: 320px"
+                    style="width: 240px; height: 320px;"
                     data-bs-toggle="modal"
                     data-bs-target="#myBooksSearchModal">
-                  <i class="fa-solid fa-plus"></i>
+                  <i class="fa-solid fa-plus fa-4x"></i>
                 </button>
                 <div class="card-body">
                   <div class="p-0 bg-light border">
