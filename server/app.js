@@ -33,9 +33,9 @@ app.use(function (req, res, next) {
   return next();
 });
 
-app.use(cookieParser());
-app.use(express.json()); // for parsing application/json
-app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(cookieParser()); // for parsing cookies
+app.use(express.json()); // for parsing json
+app.use(express.urlencoded({ extended: true })); // for parsing x-www-form-urlencoded
 
 app.use(function (req, res, next) {
   req.user = {};

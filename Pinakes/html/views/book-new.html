@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="/public/css/main.css">
     <link rel="stylesheet" href="/public/css/book-new.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
   </head>
 
 
@@ -20,47 +22,47 @@
       <form class="row g-3">
 
         <!-- Datos básicos del Libro -->
-        <div class="bg-success p-1 text-white">
-          <h5>Registro básico</h5>
+        <div class="section-title">
+          Registro básico
         </div>
 
         <!-- Campo para título: "title" -->
         <div class="input-group mb-2">
-          <label for="title" class="input-group-text">Título</label>
-          <input id="title" type="text" name="title" class="form-control">
+          <label for="new_book_title" class="input-group-text">Título</label>
+          <input id="new_book_title" type="text" name="new_book_title" class="form-control">
         </div>
 
         <!-- Campo para autor: "author" -->
         <div class="input-group">
           <div class="form-check">
-            <input id="authorKnown" class="form-check-input" type="radio" name="authorKnown" checked>
-            <label for="authorKnown" class="form-check-label">
+            <input id="new_book_author_known" class="form-check-input" type="radio" name="new_book_author_known" checked>
+            <label for="new_book_author_known" class="form-check-label">
               Autor conocido
             </label>
           </div>
           <div class="form-check">
-            <input id="authorAnonymous" class="form-check-input" type="radio" name="authorAnonymous">
-            <label class="form-check-label" for="authorAnonymous">
+            <input id="new_book_author_anonymous" class="form-check-input" type="radio" name="new_book_author_anonymous">
+            <label for="new_book_author_anonymous" class="form-check-label">
               Autor anónimo
             </label>
           </div>
           <div class="form-check">
-            <input id="authorMultiple" class="form-check-input" type="radio" name="authorMultiple">
-            <label class="form-check-label" for="authorMultiple">
+            <input id="new_book_author_multiple" class="form-check-input" type="radio" name="new_book_author_multiple">
+            <label for="new_book_author_multiple" class="form-check-label">
               Varios autores
             </label>
           </div>
         </div>
 
         <div class="input-group mb-2">
-          <label for="authorName" class="input-group-text">Nombre del Autor</label>
-          <input id="authorName" type="text" name="authorName" class="form-control">
+          <label for="new_book_author_name" class="input-group-text">Nombre del Autor</label>
+          <input id="new_book_author_name" type="text" name="new_book_author_name" class="form-control">
         </div>
 
         <!-- Campo para sede: "location" -->
         <div class="input-group mb-4">
-          <label for="location" class="input-group-text">Sede de depósito</label>
-          <select id="location" name="location" class="form-select">
+          <label for="new_book_location" class="input-group-text">Sede de depósito</label>
+          <select id="new_book_location" name="new_book_location" class="form-select">
             <% locations.forEach(function (location,i) { %>
               <option <% if (i==0) { %> selected <% }%> value="<%=location.id%>"><%= location.name%></option>
             <% }) %>
@@ -68,13 +70,13 @@
         </div>
 
         <!-- Datos extra del Libro -->
-        <div class="bg-success p-1 text-white">
-          <h5>Registro avanzado</h5>
+        <div class="section-title">
+          Registro avanzado
         </div>
 
         <div class="input-group mb-2">
-          <label for="category" class="input-group-text">Género</label>
-          <select id="category" name="category" class="form-select">
+          <label for="new_book_category" class="input-group-text">Género</label>
+          <select id="new_book_category" name="new_book_category" class="form-select">
             <% categories.forEach(function (e,i) { %>
               <option value="<%= e.id%>"><%= e.name%></option>
             <% }) %>
@@ -83,8 +85,8 @@
 
         <% categories.forEach(function (category,i) { %>
           <div class="input-group mb-2" style="display: none">
-            <label for="subcategory" class="input-group-text"><%= category.name%></label>
-            <select id="subcategory" name="subcategory" class="form-select">
+            <label for="new_book_subcategory" class="input-group-text"><%= category.name%></label>
+            <select id="new_book_subcategory" name="new_book_subcategory" class="form-select">
               <%
                 var filteredSubcategories = subcategories.filter(function (subcategory,i) {
                   return (subcategory.parent == category.id)
@@ -98,13 +100,13 @@
         <% }) %>
 
         <div class="input-group">
-          <label class="input-group-text" for="authorBirthplace">Nacionalidad del Autor</label>
-          <select class="form-select" id="authorBirthplace">
+          <label for="new_book_author_birthplace" class="input-group-text">Nacionalidad del Autor</label>
+          <select id="new_book_author_birthplace" class="form-select" name="new_book_author_birthplace">
             <option selected>Otros</option>
             <option value="1">España</option>
           </select>
-          <label class="input-group-text" for="language">Idioma</label>
-          <select class="form-select" id="language">
+          <label for="new_book_language" class="input-group-text">Idioma</label>
+          <select id="new_book_language" class="form-select" name="new_book_language">
             <% languages.forEach(function (language,i) { %>
               <option <% if (i==0) { %> selected <% }%> value="1"><%= language.name%></option>
             <% }) %>
@@ -112,50 +114,50 @@
         </div>
 
         <div class="input-group">
-          <label class="input-group-text" for="isbn">ISBN</label>
-          <input id="isbn" type="text" class="form-control">
+          <label for="new_book_isbn" class="input-group-text">ISBN</label>
+          <input id="new_book_isbn" type="text" name="new_book_isbn" class="form-control">
         </div>
 
         <div class="input-group">
-          <label class="input-group-text" for="editorial">Editorial</label>
-          <input id="editorial" type="text" class="form-control">
+          <label for="new_book_editorial" class="input-group-text">Editorial</label>
+          <input id="new_book_editorial" type="text" name="new_book_editorial" class="form-control">
         </div>
 
         <div class="input-group">
-          <label class="input-group-text" for="format">Formato</label>
-          <input id="format" type="text" class="form-control">
-          <label class="input-group-text" for="dimensions">Dimensiones</label>
-          <input id="length" type="number" class="form-control" placeholder="Alto">
+          <label for="new_book_format" class="input-group-text">Formato</label>
+          <input id="new_book_format" type="text" name="new_book_format" class="form-control">
+          <label for="new_book_dimensions" class="input-group-text">Dimensiones</label>
+          <input id="new_book_dimensions_length" type="number" class="form-control" placeholder="Alto">
           <span class="input-group-text">x</span>
-          <input id="width" type="number" class="form-control" placeholder="Ancho">
+          <input id="new_book_dimensions_width" type="number" class="form-control" placeholder="Ancho">
           <span class="input-group-text">Cms</span>
         </div>
 
         <div class="input-group">
-          <label class="input-group-text" for="publishDate">Año de Publicación</label>
-          <input id="publishDate" type="number" class="form-control">
-          <label class="input-group-text" for="issue">Nº de Edición</label>
-          <input id="issue" type="number" class="form-control">
-          <label class="input-group-text" for="pages">Nº de Páginas</label>
-          <input id="pages" type="number" class="form-control">
+          <label for="new_book_publish_date" class="input-group-text">Año de Publicación</label>
+          <input id="new_book_publish_date" type="number" class="form-control">
+          <label for="new_book_issue" class="input-group-text">Nº de Edición</label>
+          <input id="new_book_issue" type="number" class="form-control">
+          <label for="new_book_pages" class="input-group-text">Nº de Páginas</label>
+          <input id="new_book_pages" type="number" class="form-control">
         </div>
 
         <div class="input-group mb-3">
-          <label class="input-group-text" for="synopsis">Sinopsis</label>
-          <textarea id="synopsis" class="form-control" rows="4" placeholder="Trate de no superar los 500 caracteres; y sólo en relación al libro, no al ejemplar"></textarea>
+          <label for="new_book_synopsis" class="input-group-text">Sinopsis</label>
+          <textarea id="new_book_synopsis" class="form-control" rows="4" placeholder="Trata de no superar los 500 caracteres; y haz referencia al libro, no al ejemplar."></textarea>
         </div>
 
         <div class="mb-4">
-          <label for="bookPicFiles" class="form-label">
+          <label for="new_book_pic_files" class="form-label">
             <u><h6>Imágenes del Libro</h6></u>
           </label>
-          <input id="bookPicFiles" class="form-control" type="file" multiple>
+          <input id="new_book_pic_files" class="form-control" type="file" multiple>
         </div>
 
       </form>
       <!-- Botón de submit -->
       <div class="d-grid col-4 mx-auto p-0 border border-secondary border-4">
-        <button id="createNewBook" class="btn btn-success">
+        <button id="new_book_create_button" type="button" class="btn btn-success" name="new_book_create_button">
           <h5>Añadir Libro</h5>
         </button>
       </div>
@@ -164,7 +166,6 @@
     <!-- Footer-->
     <%- include('../partials/footer.html', {}); %>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/public/js/book-new.js"></script>
 
   </body>

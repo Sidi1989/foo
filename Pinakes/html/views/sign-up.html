@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="/public/css/main.css">
     <link rel="stylesheet" href="/public/css/sign-up.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
   </head>
 
 
@@ -23,64 +25,56 @@
           	<p>Por favor, rellena los siguientes datos para crear una cuenta en Pinakes:</p>
 
           	<div class="input-group mt-4">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fa fa-user"></i>
-          		  </div>
-          		</div>
-      				<input type="text" class="form-control" placeholder="Nickname" required="required">
+              <label for="sign_up_nickname" class="input-group-text">
+                <i class="fa fa-user"></i>
+              </label>
+      				<input id="sign_up_nickname" type="text" name="sign_up_nickname" class="form-control" placeholder="Nickname" required="required">
       			</div>
 
-      			<div class="input-group mt-4">
-      				<div class="input-group-prepend">
-      					<div class="input-group-text">
-      						<i class="fa fa-paper-plane"></i>
-      					</div>
-      				</div>
-      				<input type="email" class="form-control" placeholder="E-mail" required="required">
-      			</div>
-
-      			<div class="input-group mt-4">
-      				<div class="input-group-prepend">
-      					<div class="input-group-text">
-      						<i class="fa fa-lock"></i>
-      					</div>
-      				</div>
-      				<input type="text" class="form-control" placeholder="Contraseña" required="required">
+            <div class="input-group mt-4">
+              <label for="sign_up_email" class="input-group-text">
+                <i class="fa fa-paper-plane"></i>
+              </label>
+              <input id="sign_up_email" type="email" name="sign_up_email" class="form-control" placeholder="E-mail" required="required">
             </div>
-            <div class="form-text mb-3">
+
+            <div class="input-group mt-4">
+              <label for="sign_up_password" class="input-group-text">
+                <i class="fa fa-lock"></i>
+              </label>
+              <input id="sign_up_password" type="text" name="sign_up_password" class="form-control" placeholder="Contraseña" required="required">
+            </div>
+            <div class="form-text text-end mb-3">
               Debe tener entre 8 y 20 caracteres, contener letras y números, y no incluir espacios ni caracteres especiales.
             </div>
 
-            <div class="input-group mt-1">
-      				<div class="input-group-prepend">
-      					<div class="input-group-text">
-      						<i class="fa fa-lock"></i>
-      						<i class="fa fa-check"></i>
-      					</div>
-      				</div>
-      				<input type="text" class="form-control" placeholder="Confirma tu Contraseña" required="required">
-      			</div>
+            <div class="input-group mt-2">
+              <label for="sign_up_password_confirmed" class="input-group-text">
+                <i class="fa fa-lock"></i>
+                <i class="fa fa-check"></i>
+              </label>
+              <input id="sign_up_password_confirmed" type="text" name="sign_up_password_confirmed" class="form-control" placeholder="Confirma tu Contraseña" required="required">
+            </div>
 
             <div class="input-group my-4">
               <div class="form-check" required="required">
-                <input id="termsAcceptance" class="form-check-input" type="checkbox">
-                <label class="form-check-label" for="termsAcceptance">
+                <input id="terms_acceptance_check" class="form-check-input" type="checkbox" name="terms_acceptance_check">
+                <label for="terms_acceptance_check" class="form-check-label">
                   Acepto las <a href="#">Condiciones del servicio y Políticas de privacidad</a>
                 </label>
               </div>
             </div>
 
-            <!-- Botón de Sign Up -->
+            <!-- Botón de SignUp -->
             <div class="d-grid col-5 mx-auto mb-3">
-              <button id="memberLogin" type="submit" class="btn btn-success">
+              <button id="sign_up_button" type="submit" class="btn btn-success" name="sign_up_button">
                 <h5>Crear</h5>
-                </button>
+              </button>
             </div>
 
-            <div class="dropdown-divider mt-3"></div>
+            <div class="dropdown-divider my-3"></div>
 
-          	<div class="text-center mb-5">¿Ya tienes una cuenta?
+          	<div class="text-center mb-4">¿Ya tienes una cuenta?
               <a href="/auth/signin">Entra aquí</a>
             </div>
 
@@ -89,7 +83,6 @@
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/public/js/sign-up.js"></script>
 
   </body>

@@ -1,4 +1,4 @@
-<div class="modal fade" id="newCollectionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+<div class="modal fade" id="new_collection_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -10,21 +10,22 @@
       <div class="modal-body my-3">
         <form class="row g-3">
           <div class="input-group mb-4">
-            <label for="collectionName" class="input-group-text">Nombre de la Colección</label>
-            <input id="collectionName" type="text" name="collectionName" class="form-control">
+            <label for="new_collection_name" class="input-group-text">Nombre de la Colección</label>
+            <input id="new_collection_name" type="text" name="new_collection_name" class="form-control">
           </div>
           <div class="mb">
-            <label for="collectionPicFile" class="form-label">
+            <label for="new_collection_pic_file" class="form-label">
               <h6><u>Imagen para la Colección</u></h6>
             </label>
-            <input id="collectionPicFile" type="file" name="collectionPicFile" class="form-control">
+            <input id="new_collection_pic_file" type="file" class="form-control">
           </div>
         </form>
       </div>
 
       <div class="modal-footer p-1">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button id="createNewCollection" type="button" class="btn btn-primary">Crear Colección</button>
+        <button id="new_collection_create_button" type="button" name="new_collection_create_button" class="btn btn-primary">
+          Crear Colección
+        </button>
       </div>
 
     </div>

@@ -38,3 +38,9 @@ window.onload = function () {
       })
   }
 };
+
+
+var introModal = new bootstrap.Modal(document.getElementById("preSignInModal"));
+document.onreadystatechange = function () {
+  introModal.show();
+};

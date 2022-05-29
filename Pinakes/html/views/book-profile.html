@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="/public/css/main.css">
     <link rel="stylesheet" href="/public/css/book-profile.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
   </head>
 
 
@@ -18,10 +20,10 @@
     <div class="container">
 
       <!-- Parte superior, sobre datos del libro-->
-      <div class="row">
+      <div class="row mb-4">
 
         <!-- Columna de la Foto-->
-        <div id="bookPicFiles" class="col-3">
+        <div id="book_pic_files" class="col-3">
 
           <div class="row mb-1">
             <div class="text-center">
@@ -44,18 +46,19 @@
         <div class="col-9">
           <div class="row mb-2">
 
-            <div class="col-6">
-              <h4 id="title"><%=book.title%></h4>
-              <h6 id="authorName"><%=book.author.name%></h6>
+            <div class="col-5">
+              <h4 id="book_title"><%=book.title%></h4>
+              <h6 id="book_author_name"><%=book.author.name%></h6>
             </div>
 
-            <div class="col-4">
-              <h5 id="location"><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
+            <div class="col-3">
+              <h5 id="book_location"><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
             </div>
 
-            <div id="collectionName" class="col-2 g-0">
+            <div class="col-4 text-end g-0">
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-success btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <!-- Sobre la situación actual del libro en Colecciones -->
+                <button id="book_present_collection_dropdown" type="button" class="btn btn-success btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="fa-light fa-plus"></i>
                   <i class="fa-solid fa-bookmark"></i>
                 </button>
@@ -65,9 +68,12 @@
                     <li><a class="dropdown-item" href="#">+ Libros sin Colección</a></li>
                     <li><a class="dropdown-item" href="#">+ Colección Y</a></li>
                   </ul>
+                <!-- Modal para Editar Libro -->
+                <button id="edit_book_button" type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#edit_book_modal">
+                  <i class="fa-solid fa-file-signature"></i>
+                </button>
               </div>
             </div>
-
           </div>
 
           <div class="row mb-3">
@@ -75,7 +81,7 @@
               <div class="p-1 bg-light border">
                 <div class="row">
                   <u><h5>Sinopsis:</h5></u>
-                  <span id="synopsis"><%=book.synopsis%></span>
+                  <span id="book_synopsis"><%=book.synopsis%></span>
                 </div>
               </div>
             </div>
@@ -90,27 +96,26 @@
             <!-- Navbar de las Reviews -->
             <div class="col-8">
               <div class="row">
-                <ul class="nav nav-tabs" id="reviewsNav" role="tablist">
+                <ul class="nav nav-tabs" role="tablist">
                   <% reviews.forEach(function(e,i){ %>
                   <li class="nav-item" role="presentation">
                     <button class="nav-link <% if (i==0) { %>active<% } %>"
-                        id="review<%=i %>-tab"
-                        data-bs-toggle="tab" data-bs-target="#review<%=i %>"
+                        id="book_review<%=i %>_tab"
+                        data-bs-toggle="tab" data-bs-target="#book_review<%=i %>"
                         type="button" role="tab"
-                        aria-controls="review<%=i %>" aria-selected="true">
+                        aria-controls="book_review<%=i %>" aria-selected="true">
                         Review <%=i %>
                     </button>
                   </li>
                   <% }) %>
                 </ul>
 
-                <div class="tab-content mt-1" id="reviewsNavContent">
+                <div class="tab-content mt-1">
                   <% reviews.forEach(function(e,i){ %>
-                  <div class="tab-pane fade <% if (i==0) { %>show active<% } %>" id="review<%=i %>" role="tabpanel">
-
+                  <div class="tab-pane fade <% if (i==0) { %>show active<% } %>" id="book_review<%=i %>" role="tabpanel">
                       <div class="row">
-                        <div class="col-3 p-0">
 
+                        <div class="col-3 p-0">
                           <div class="card text-center">
                             <img class="card-img-top mt-1 mx-auto" style="width: 90px; height: 90px" src="<%=e.reviewer.pic%>">
                             <div class="card-body">
@@ -157,23 +162,17 @@
       <!-- Final de la Parte superior-->
 
 
-      <div class="row mt-4">
-        <div class="container">
-          <div class="bg-success p-1 text-white text-center">
-            <h4>Sugerencias</h4>
-          </div>
-          <div class="row">
-            <%- include('../partials/suggested-books-carousel.html', {}); %>
-          </div>
-
-        </div>
+      <div class="section-title">
+        Sugerencias
+      </div>
+      <div class="row">
+        <%- include('../partials/suggested-books-carousel.html', {}); %>
       </div>
 
     </div>
     <!-- Footer-->
     <%- include('../partials/footer.html', {}); %>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/public/js/book-profile.js"></script>
 
   </body>

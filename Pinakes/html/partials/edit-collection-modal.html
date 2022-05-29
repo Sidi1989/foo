@@ -1,4 +1,4 @@
-<div class="modal fade" id="editCollectionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+<div class="modal fade" id="edit_collection_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -10,21 +10,22 @@
       <div class="modal-body my-3">
         <form class="row g-3">
           <div class="input-group mb-4">
-            <label for="collectionName" class="input-group-text">Nombre de la Colección</label>
-            <input id="collectionName" type="text" name="collectionName" class="form-control">
+            <label for="edit_collection_name" class="input-group-text">Nombre de la Colección</label>
+            <input id="edit_collection_name" type="text" name="edit_collection_name" class="form-control">
           </div>
           <div class="mb">
-            <label for="collectionPicFile" class="form-label">
+            <label for="edit_collection_pic_file" class="form-label">
               <h6><u>Imagen para la Colección</u></h6>
             </label>
-            <input id="collectionPicFile" type="file" name="collectionPicFile" class="form-control">
+            <input id="edit_collection_pic_file" type="file" class="form-control">
           </div>
         </form>
       </div>
 
       <div class="modal-footer p-1">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button id="saveChangesCollection" type="button" class="btn btn-primary">Guardar Cambios</button>
+        <button id="edit_collection_save_button" type="button" name="edit_collection_save_button" class="btn btn-primary">
+          Guardar Cambios
+        </button>
       </div>
 
     </div>

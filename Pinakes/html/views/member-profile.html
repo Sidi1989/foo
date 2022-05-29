@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="/public/css/main.css">
     <link rel="stylesheet" href="/public/css/member-profile.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
   </head>
 
 
@@ -17,8 +19,8 @@
     <%- include('../partials/header.html', {}); %>
     <div class="container">
 
-      <!-- Todo el Contenido, hasta las Sugerencias-->
-      <div class="row">
+      <!-- Parte superior, sobre datos del usuario y sus libros-->
+      <div class="row mb-4">
 
         <!-- Columna Lateral-->
         <div class="col-4">
@@ -39,7 +41,7 @@
               </div>
               <div class="col-2 text-end">
                 <!-- Modal para Crear Petición -->
-                <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#newPetitionModal">
+                <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#new_petition_modal">
                     <i class="fa-solid fa-plus"></i>
                 </button>
               </div>
@@ -51,9 +53,9 @@
                 <% member.petitions.forEach(function (petition, i) { %>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   <span><strong><%=petition.title %></strong> (<%= petition.author.name %>)</span>
-                  <span class="badge bg-success rounded-pill"><%= petition.buylists.length %></span>
+                  <span class="badge bg-success rounded-pill"><%= petition.buyoptions.length %></span>
                   <!-- Modal para Editar Petición -->
-                  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editPetitionModal">
+                  <button id="edit_petition_<%=petition.id%>_button" type="button" class="edit-petition-button btn btn-success" data-bs-toggle="modal" data-bs-target="#edit_petition_modal">
                     <i class="fa-solid fa-file-signature"></i>
                   </button>
                 </li>
@@ -69,17 +71,17 @@
         <!-- Columna Central-->
         <div class="col-8 px-4">
 
-          <!--Sobre el Libro seleccionado-->
+          <!--Sobre el último libro añadido-->
           <div class="row mb-4">
             <div class="col-5">
-              <div id="selectedBook" class="card text-center">
+              <div id="last_book_added_card" class="card text-center" name="last_book_added_card">
                 <div class="card-header">
-                  <h5><%=lastBookRead.title%></h5>
-                  <h8 class="text-black-50"> (<%=lastBookRead.author.name%>)</h8>
+                  <h5><%=lastBookAdded.title%></h5>
+                  <h8 class="text-black-50"> (<%=lastBookAdded.author.name%>)</h8>
                 </div>
                 <div class="card-body">
-                <a href="/books/<%=lastBookRead.id%>">
-                  <img class="card-img-top" style="width: 240px; height: 320px" src="<%=lastBookRead.pic.main%>">
+                <a href="/books/<%=lastBookAdded.id%>">
+                  <img class="card-img-top" style="width: 240px; height: 320px" src="<%=lastBookAdded.pic.main%>">
                 </a>
               </div>
               </div>
@@ -91,21 +93,21 @@
 
           <!--Sobre los Libros de la Colección-->
           <div class="row">
-            <div class="bg-success p-1 mb-3 text-center text-white">
-              Otros Libros en "<%=lastBookRead.collection.name%>"
+            <div class="section-title">
+              Otros Libros en "<%=lastBookAdded.collection.name%>"
             </div>
           </div>
 
-          <div id="otherBooksInCollection" class="row">
-            <% lastBookRead.collection.books.forEach(function(e,i) { %>
+          <div id="last_book_added_collection_others" class="row" name="last_book_added_collection_others">
+            <% lastBookAdded.collection.books.forEach(function(e,i) { %>
             <div class="col-auto mb-3 gy-1 d-flex align-items-stretch">
               <div class="card text-center">
                 <a href="/books/<%=e.id%>">
                   <img class="card-img-top mt-1" style="width: 180px; height: 240px" src="<%=e.pic.main%>">
                 </a>
-                <div class="card-body">                  
+                <div class="card-body">
                   <h6 class="card-title"><%=e.title%></h6>
-                  <i class="fa-solid fa-star"></i>
+                  <i id="<%=e.id%>_reviewed_star" class="book-reviewed-star fa-solid fa-star"></i>
                 </div>
               </div>
             </div>
@@ -114,18 +116,14 @@
         </div>
 
       </div>
+      <!-- Final de la Parte superior-->
 
-      <!--Carrusel de Sugerencias-->
-      <div class="row mt-4">
-        <div class="container">
-          <div class="bg-success p-1 text-white text-center">
-            <h4>Sugerencias</h4>
-          </div>
-          <div class="row">
-            <%- include('../partials/suggested-books-carousel.html', {}); %>
-          </div>
 
-        </div>
+      <div class="section-title">
+        Sugerencias
+      </div>
+      <div class="row">
+        <%- include('../partials/suggested-books-carousel.html', {}); %>
       </div>
 
     </div>
@@ -138,7 +136,6 @@
     <%- include('../partials/new-petition-modal.html', {}); %>
     <%- include('../partials/edit-petition-modal.html', {}); %>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/public/js/member-profile.js"></script>
 
   </body>

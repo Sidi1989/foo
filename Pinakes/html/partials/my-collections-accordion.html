@@ -4,7 +4,7 @@
     <h4>Mis Colecciones</h4>
   </div>
   <div class="col-2 text-end">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newCollectionModal">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#new_collection_modal">
       <i class="fa-solid fa-plus"></i>
     </button>
   </div>
@@ -13,7 +13,7 @@
 <!-- Mis Colecciones-->
 <% member.collections.forEach(function (collection, i) { %>
 <div class="row">
-  <div id="collectionInfo" class="accordion">
+  <div class="accordion">
     <div class="accordion-item">
       <div class="accordion-header">
         <button class="accordion-button collapsed" type="button"
@@ -32,12 +32,12 @@
           <div class="row g-0">
             <div class="col-11">
               <a href="/books/<%=book.id%>" class="list-group-item list-group-item-action">
-                <i class="fa-solid fa-star"></i>
+                <i id="<%=book.id%>_reviewed_star" class="book-reviewed-star fa-solid fa-star"></i>
                 <span><strong><%=book.title %></strong> (<%=book.author.name %>)</span>
               </a>
             </div>
             <div class="col-1">
-              <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteBookModal">
+              <button id="delete_book_<%=book.id%>_button" type="button" class="delete-book-button btn btn-light" data-bs-toggle="modal" data-bs-target="#delete_book_modal">
                 <i class="fa-solid fa-square-xmark"></i>
               </button>
             </div>
@@ -62,19 +62,19 @@
 
 <!-- Libros sin Colección-->
 <div class="row">
-  <div id="collectionInfo" class="accordion">
+  <div class="accordion">
     <div class="accordion-item">
       <div class="accordion-header">
         <button class="accordion-button collapsed" type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#accordionOthersCollapser"
+          data-bs-target="#accordionOtherCollapser"
           aria-expanded="true"
-          aria-controls="accordionOthersCollapser">
+          aria-controls="accordionOtherCollapser">
           Libros sin Colección<span class="badge bg-success rounded-pill">1</span>
         </button>
       </div>
 
-      <div id="accordionOthersCollapser" class="accordion-collapse collapse">
+      <div id="accordionOtherCollapser" class="accordion-collapse collapse">
         <div class="accordion-body p-1">
           <div class="row g-0">
             <div class="col-11">
@@ -84,7 +84,7 @@
               </a>
             </div>
             <div class="col-1">
-              <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteBookModal">
+              <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#delete_book_modal">
                 <i class="fa-solid fa-square-xmark"></i>
               </button>
             </div>
@@ -94,7 +94,7 @@
         <div class="row g-0 text-center">
           <button type="button" class="btn btn-success">
             <i class="fa-solid fa-file-signature"></i>
-            <span><strong>Ir a la Colección</strong></span>
+            <span><strong>Asignar a otras (¿modal?)</strong></span>
           </button>
         </div>
       </div>

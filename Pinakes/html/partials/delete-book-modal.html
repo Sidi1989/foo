@@ -1,5 +1,5 @@
 <!-- Modal como advertencia previa a borrar un libro -->
-<div class="modal fade" id="deleteBookModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="delete_book_modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header p-2">
@@ -7,10 +7,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body my-3">
-        Estás a punto de eliminar un libro de tus Colecciones, ¿seguro que quieres hacerlo?
+        Estás a punto de eliminar este libro de tus Colecciones, ¿seguro que quieres hacerlo?
       </div>
       <div class="modal-footer p-1">
-        <button type="button" class="btn btn-primary">Eliminar</button>
+        <button id="delete_book_button" type="button" class="btn btn-primary" name="delete_book_button">
+          Eliminar
+        </button>
       </div>
     </div>
   </div>

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="/public/css/main.css">
     <link rel="stylesheet" href="/public/css/member-edit.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
   </head>
 
 
@@ -17,105 +19,85 @@
     <%- include('../partials/header.html', {}); %>
     <div class="container">
 
-      <!-- Parte superior-->
       <div class="row">
+        <!-- Todo salvo Header y Footer-->
 
         <div class="col-4">
-        <!-- Columna con datos del usuario-->
+        <!-- Columna con datos actuales del usuario-->
           <%- include('../partials/member-basic-info-card.html', {}); %>
-          <div class="my-4">
-            <label for="lastBookRead" class="form-label">
-              <h6>Último libro leído</h6>
+
+          <div class="mt-4">
+            <label for="member_edit_last_book_added" class="form-label">
+              <u><h6>Último libro añadido</h6></u>
             </label>
-            <input id="lastBookRead" class="form-control" type="file" multiple>
+            <input id="member_edit_last_book_added" class="form-control" type="file">
           </div>
         </div>
 
 
         <div class="col-8">
-        <!-- Columna con edición de datos-->
+        <!-- Columna para la edición de los datos del usuario-->
 
-          <div class="bg-success p-1 text-white">
-            <h5>Edita tus datos</h5>
+          <div class="section-title">
+            Edita tus datos
+          </div>
+          <!-- Datos Principales-->
+          <div class="input-group mb-3">
+            <label for="member_edit_nickname" class="input-group-text">Nickname</label>
+            <input id="member_edit_nickname" type="text" name="member_edit_nickname" class="form-control" placeholder="Éste es tu Nickname actual">
           </div>
 
-          <div class="mb-4">
-            <label for="memberNickname" class="form-label">
-              <h6>Nickname</h6>
+          <div class="mb-5">
+            <label for="member_edit_pic_file" class="form-label">
+              <u><h6>Imagen de usuario</h6></u>
             </label>
-            <input type="text" class="form-control" id="memberNickname" placeholder="Éste es tu Nickname">
-          </div>
-
-          <div class="mb-4">
-            <label for="memberDomain" class="form-label">
-              <h6>Usuario</h6>
-            </label>
-            <input type="email" class="form-control" id="memberDomain" placeholder="Éste es tu E-mail">
-          </div>
-
-          <div class="mb-3">
-            <label for="memberPassword" class="form-label">
-              <h6>Contraseña</h6>
-            <input type="password" class="form-control" id="memberPassword" placeholder="Ésta es tu Contraseña">
-          </div>
-          <button id="changePassword" type="submit" class="btn btn-success my-4">
-            <h5>Cambiar contraseña</h5>
-          </button>
-
-          <div class="bg-success p-1 text-white">
-            <h5>Completa tu cuenta</h5>
-          </div>
-
-          <div class="input-group mb-3 g-3">
-            <label class="input-group-text" for="memberName">Usuario</label>
-            <div class="col ps-1">
-              <input id="memberFirstname" type="text" class="form-control" placeholder="Nombre">
-            </div>
-            <div class="col ps-3">
-              <input id="memberLastname" type="text" class="form-control" placeholder="Apellidos">
-            </div>
+            <input id="member_edit_pic_file" class="form-control" type="file">
           </div>
 
           <div class="input-group mb-3">
-            <label for="memberBirthday">
-              <span class="input-group-text">Fecha de nacimiento:</span>
-            </label>
-            <input id="memberBirthday" type="date" name="memberBirthday">
+            <label for="member_edit_email" class="input-group-text">Usuario</label>
+            <input id="member_edit_email" type="email" name="member_edit_email" class="form-control" placeholder="Éste es tu E-mail actual">
           </div>
 
-          <div class="mb-4">
-            <label for="memberPicFile" class="form-label">
-              <h6>Imagen de usuario</h6>
-            </label>
-            <input id="memberPicFile" class="form-control" type="file" multiple>
+          <div class="input-group mb-4">
+            <label for="member_edit_password" class="input-group-text">Contraseña</label>
+            <input id="member_edit_password" type="password" name="member_edit_password" class="form-control" placeholder="Ésta es tu Contraseña actual">
+          </div>
+
+          <div class="d-grid col-4 mx-auto mb-5">
+            <button id="member_edit_save_main_button" type="submit" class="btn btn-success" name="member_edit_save_main_button">
+              <h5>Guardar cambios</h5>
+            </button>
+          </div>
+
+
+          <div class="section-title">
+            Completa los datos de tu Cuenta
+          </div>
+          <!-- Datos Secundarios-->
+
+          <div class="input-group mb-4 g-3">
+            <label for="member_edit_name" class="input-group-text">Usuario</label>
+            <div class="col ps-1">
+              <input id="member_edit_name_first" type="text" name="member_edit_name_first" class="form-control" placeholder="Nombre">
+            </div>
+            <div class="col ps-3">
+              <input id="member_edit_name_last" type="text" name="member_edit_name_last" class="form-control" placeholder="Apellidos">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="member_edit_birthday" class="input-group-text">Fecha de nacimiento:</label>
+            <input id="member_edit_birthday" type="date" name="member_edit_birthday" class="form-control">
           </div>
 
         </div>
-
-      </div>
-
-      <!-- Parte inferior-->
-      <div class="row">
-
-        <div class="col">
-        <!-- Columna con Colecciones del Usuario-->
-        </div>
-
-        <div class="col">
-        <!-- Columna con último libro leído-->
-        </div>
-
-        <div class="col">
-        <!-- Columna con edición de Temas-->
-        </div>
-
       </div>
 
     </div>
     <!-- Footer-->
     <%- include('../partials/footer.html', {}); %>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/public/js/member-edit.js"></script>
 
   </body>

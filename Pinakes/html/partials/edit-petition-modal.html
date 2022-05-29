@@ -1,4 +1,4 @@
-<div class="modal fade" id="editPetitionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+<div class="modal fade" id="edit_petition_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -11,41 +11,41 @@
         <form class="row g-3">
 
           <div class="input-group">
-            <label for="title" class="input-group-text">Título</label>
-            <input id="title" type="text" name="title" class="form-control">
+            <label for="edit_petition_title" class="input-group-text">Título</label>
+            <input id="edit_petition_title" type="text" name="edit_petition_title" class="form-control">
           </div>
 
           <div class="input-group">
-            <div class="form-check">
-              <input id="authorKnown" class="form-check-input" type="radio" name="authorKnown" checked>
-              <label for="authorKnown" class="form-check-label">
+            <div class="form-check px-3">
+              <input id="edit_petition_author_known" class="form-check-input" type="radio" name="edit_petition_author_known" checked>
+              <label for="edit_petition_author_known" class="form-check-label">
                 Autor conocido
               </label>
             </div>
-            <div class="form-check">
-              <input id="authorAnonymous" class="form-check-input" type="radio" name="authorAnonymous">
-              <label class="form-check-label" for="authorAnonymous">
+            <div class="form-check px-3">
+              <input id="edit_petition_author_anonymous" class="form-check-input" type="radio" name="edit_petition_author_anonymous">
+              <label for="edit_petition_author_anonymous" class="form-check-label">
                 Autor anónimo
               </label>
             </div>
-            <div class="form-check">
-              <input id="authorMultiple" class="form-check-input" type="radio" name="authorMultiple">
-              <label class="form-check-label" for="authorMultiple">
+            <div class="form-check px-3">
+              <input id="edit_petition_author_multiple" class="form-check-input" type="radio" name="edit_petition_author_multiple">
+              <label for="edit_petition_author_multiple" class="form-check-label">
                 Varios autores
               </label>
             </div>
           </div>
 
           <div class="input-group mb-2">
-            <label for="authorName" class="input-group-text">Nombre del Autor</label>
-            <input id="authorName" type="text" name="authorName" class="form-control">
+            <label for="edit_petition_author_name" class="input-group-text">Nombre del Autor</label>
+            <input id="edit_petition_author_name" type="text" name="edit_petition_author_name" class="form-control">
           </div>
 
 
 
           <div class="input-group mb-2">
-            <label for="category" class="input-group-text">Género</label>
-            <select id="category" name="category" class="form-select">
+            <label for="edit_petition_category" class="input-group-text">Género</label>
+            <select id="edit_petition_category" name="edit_petition_category" class="form-select">
               <% categories.forEach(function (e,i) { %>
                 <option value="<%= e.id%>"><%= e.name%></option>
               <% }) %>
@@ -53,9 +53,9 @@
           </div>
 
           <% categories.forEach(function (category,i) { %>
-            <div class="input-group mb-2" style="display: none">
-              <label for="subcategory" class="input-group-text"><%= category.name%></label>
-              <select id="subcategory" name="subcategory" class="form-select">
+            <div class="input-group mb-2">
+              <label for="edit_petition_subcategory" class="input-group-text"><%= category.name%></label>
+              <select id="edit_petition_subcategory" name="edit_petition_subcategory" class="form-select">
                 <%
                   var filteredSubcategories = subcategories.filter(function (subcategory,i) {
                     return (subcategory.parent == category.id)
@@ -69,13 +69,13 @@
           <% }) %>
 
           <div class="input-group mb-3">
-            <label class="input-group-text" for="authorBirthplace">Nacionalidad del Autor</label>
-            <select class="form-select" id="authorBirthplace">
+            <label for="edit_petition_author_birthplace" class="input-group-text">Nacionalidad del Autor</label>
+            <select id="edit_petition_author_birthplace" class="form-select" name="edit_petition_author_birthplace">
               <option selected>Otros</option>
               <option value="1">España</option>
             </select>
-            <label class="input-group-text" for="language">Idioma</label>
-            <select class="form-select" id="language">
+            <label for="edit_petition_language" class="input-group-text">Idioma</label>
+            <select id="edit_petition_language" class="form-select" name="edit_petition_language">
               <% languages.forEach(function (language,i) { %>
                 <option <% if (i==0) { %> selected <% }%> value="1"><%= language.name%></option>
               <% }) %>
@@ -83,16 +83,17 @@
           </div>
 
           <div class="input-group mb-4">
-            <label class="input-group-text" for="shoppingLink">
+            <label class="input-group-text" for="edit_petition_shopping_link">
               <i class="fa-brands fa-markdown"></i>Me lo pido
             </label>
-            <input id="shoppingLink" type="text" class="form-control" placeholder="URL de la oferta">
+            <input id="edit_petition_shopping_link" type="text" class="form-control" name="edit_petition_shopping_link" placeholder="URL de la oferta">
           </div>
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar Cambios</button>
+      <div class="modal-footer p-1">
+        <button id="edit_petition_save_button" type="button" class="btn btn-primary" name="edit_petition_save_button">
+          Guardar Cambios
+        </button>
       </div>
     </div>
   </div>
