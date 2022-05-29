@@ -121,32 +121,32 @@ var memberProfileHandler = function (req, res) {
   });
   info.member.petitions = petitionsMapped;
 
-  var lastBookRead = getBookById(member.lastBookRead);
-  if (lastBookRead == null) {
-    info.lastBookRead = {};
+  var lastBookAdded = getBookById(member.lastBookAdded);
+  if (lastBookAdded == null) {
+    info.lastBookAdded = {};
   } else {
-    info.lastBookRead = lastBookRead;
+    info.lastBookAdded = lastBookAdded;
   };
 
-  var lastBookReadAuthor = getAuthorById(lastBookRead.author);
-  if (lastBookReadAuthor == null) {
-    info.lastBookRead.author = {};
+  var lastBookAddedAuthor = getAuthorById(lastBookAdded.author);
+  if (lastBookAddedAuthor == null) {
+    info.lastBookAdded.author = {};
   } else {
-    info.lastBookRead.author = lastBookReadAuthor;
+    info.lastBookAdded.author = lastBookAddedAuthor;
   };
 
-  var lastBookReadCollection = getCollectionById(lastBookRead.collection);
-  if (lastBookReadCollection == null) {
-    info.lastBookRead.collection = {};
+  var lastBookAddedCollection = getCollectionById(lastBookAdded.collection);
+  if (lastBookAddedCollection == null) {
+    info.lastBookAdded.collection = {};
   } else {
-    info.lastBookRead.collection = lastBookReadCollection;
+    info.lastBookAdded.collection = lastBookAddedCollection;
   };
 
-  var booksMapped = lastBookReadCollection.books.map(function (bookId) {
+  var booksMapped = lastBookAddedCollection.books.map(function (bookId) {
     var book = getBookById(bookId);
     return book;
   });
-  info.lastBookRead.collection.books = booksMapped;
+  info.lastBookAdded.collection.books = booksMapped;
 
   var suggestedBooksChunks = getRandomBooks(6, 3);
   suggestedBooksChunks.forEach(function (chunk,i) {

@@ -1,9 +1,16 @@
-window.onload = function () {
-  var memberLoginNode = document.getElementById('memberLogin');
-  memberLogin.onclick = function (event) {
-    var memberEmailNode = document.getElementById('memberEmail');
-    var memberPasswordNode = document.getElementById('memberPassword');
+var introModal = new bootstrap.Modal(document.getElementById("pre_sign_in_modal"));
+onReadyStateChangeListener = function () {
+  introModal.show();
+};
+document.addEventListener('readystatechange', onReadyStateChangeListener);
+
+
+var onloadListener = function () {
+  var memberSignInNode = document.getElementById('sign_in_button');
+  memberSignInNode.onclick = function (event) {
+    var memberEmailNode = document.getElementById('sign_in_email');
     var email = memberEmailNode.value;
+    var memberPasswordNode = document.getElementById('sign_in_password');
     var password = memberPasswordNode.value;
     var url = '/api/sessions';
 
@@ -16,9 +23,8 @@ window.onload = function () {
       var encodedKey = encodeURIComponent(property);
       var encodedValue = encodeURIComponent(details[property]);
       formBody.push(encodedKey + "=" + encodedValue);
-    }
+    };
     formBody = formBody.join("&");
-
     var options = {
       method: 'POST',
       headers: {
@@ -26,21 +32,17 @@ window.onload = function () {
       },
       body: formBody
     };
+
     fetch(url, options)
       .then(function (res) {return res.json()})
       .then(function (info) {
         if (info.status == 'KO') {
-          window.alert('Eres un cenutrio')
+          window.alert('Algo ha salido mal')
         } else {
-          setCookie('user', info.id, 5);
+          setCookie('member', info.id, 5);
           window.location = `/members/${info.id}`;
         }
       })
   }
 };
-
-
-var introModal = new bootstrap.Modal(document.getElementById("preSignInModal"));
-document.onreadystatechange = function () {
-  introModal.show();
-};
+window.addEventListener('load', onloadListener);

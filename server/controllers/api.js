@@ -5,6 +5,7 @@ const {getSubcategoryById} = require('../models/subcategories.js');
 const {getLanguageById} = require('../models/languages.js');
 const {getAuthorById} = require('../models/authors.js');
 const {getAllCollections} = require('../models/collections.js');
+const {getPetitionById} = require('../models/petitions.js');
 
 
 
@@ -96,6 +97,13 @@ var apiListCollectionsHandler = function (req, res) {
 };
 
 
+var apiRetrievePetitionHandler = function (req, res) {
+  var petition = getPetitionById(req.params.petition);
+
+  return res.json(petition);
+};
+
+
 
 
 exports.apiSignInHandler = apiSignInHandler;
@@ -104,3 +112,4 @@ exports.apiCreateCollectionHandler = apiCreateCollectionHandler;
 exports.apiListBooksHandler = apiListBooksHandler;
 exports.apiRetrieveBookHandler = apiRetrieveBookHandler;
 exports.apiListCollectionsHandler = apiListCollectionsHandler;
+exports.apiRetrievePetitionHandler = apiRetrievePetitionHandler;

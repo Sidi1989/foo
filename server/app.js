@@ -13,7 +13,8 @@ const {
   apiCreateCollectionHandler,
   apiListBooksHandler,
   apiRetrieveBookHandler,
-  apiListCollectionsHandler
+  apiListCollectionsHandler,
+  apiRetrievePetitionHandler
 } = require('./controllers/api.js');
 
 
@@ -60,6 +61,7 @@ app.post('/api/collections', apiCreateCollectionHandler);
 app.get('/api/books', apiListBooksHandler);
 app.get('/api/books/:book', apiRetrieveBookHandler);
 app.get('/api/collections', apiListCollectionsHandler);
+app.get('/api/petitions/:petition', apiRetrievePetitionHandler);
 
 
 
