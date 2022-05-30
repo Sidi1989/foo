@@ -44,7 +44,7 @@ var onclickListener = function () {
         const newRowElement = document.createElement('tr')
         newRowElement.innerHTML = `
             <td>
-              <a class="text-primary" href="/books/${book.id}"
+              <a class="text-white" href="/books/${book.id}"
                 <p>${book.title}</p>
               </a>
             </td>
