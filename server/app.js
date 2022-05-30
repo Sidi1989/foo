@@ -9,12 +9,21 @@ const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = 
 
 const {
   apiSignInHandler,
+
   apiCreateBookHandler,
   apiCreateCollectionHandler,
+  apiCreatePetitionHandler,
+  apiCreateReviewHandler,
+
   apiListBooksHandler,
-  apiRetrieveBookHandler,
   apiListCollectionsHandler,
-  apiRetrievePetitionHandler
+  apiListPetitionsHandler,
+  apiListReviewsHandler,
+
+  apiRetrieveBookHandler,
+  apiRetrieveCollectionHandler,
+  apiRetrievePetitionHandler,
+  apiRetrieveReviewHandler
 } = require('./controllers/api.js');
 
 
@@ -55,13 +64,21 @@ app.get('/members/:member/preferences', memberEditHandler);
 app.get('/members/:member/:collection', collectionEditHandler);
 
 app.post('/api/sessions', apiSignInHandler);
+
 app.post('/api/books', apiCreateBookHandler);
 app.post('/api/collections', apiCreateCollectionHandler);
+app.post('/api/petitions', apiCreatePetitionHandler);
+app.post('/api/reviews', apiCreateReviewHandler);
 
 app.get('/api/books', apiListBooksHandler);
-app.get('/api/books/:book', apiRetrieveBookHandler);
 app.get('/api/collections', apiListCollectionsHandler);
+app.get('/api/petitions', apiListPetitionsHandler);
+app.get('/api/reviews', apiListReviewsHandler);
+
+app.get('/api/books/:book', apiRetrieveBookHandler);
+app.get('/api/collections/:collection', apiRetrieveCollectionHandler);
 app.get('/api/petitions/:petition', apiRetrievePetitionHandler);
+app.get('/api/reviews/:review', apiRetrieveReviewHandler);
 
 
 

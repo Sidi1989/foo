@@ -4,8 +4,9 @@ const {getCategoryById} = require('../models/categories.js');
 const {getSubcategoryById} = require('../models/subcategories.js');
 const {getLanguageById} = require('../models/languages.js');
 const {getAuthorById} = require('../models/authors.js');
-const {getAllCollections} = require('../models/collections.js');
-const {getPetitionById} = require('../models/petitions.js');
+const {getAllCollections, getCollectionById} = require('../models/collections.js');
+const {getAllPetitions, getPetitionById} = require('../models/petitions.js');
+const {getAllReviews, getReviewById} = require('../models/reviews.js');
 
 
 
@@ -51,13 +52,32 @@ var apiCreateBookHandler = function (req, res) {
   return res.json(info);
 };
 
-
 var apiCreateCollectionHandler = function (req, res) {
   console.log(req.body);
   var collectionId = new Date();
   var info = {
     status: "OK",
     book: collectionId
+  };
+  return res.json(info);
+};
+
+var apiCreatePetitionHandler = function (req, res) {
+  console.log(req.body);
+  var petitionId = new Date();
+  var info = {
+    status: "OK",
+    book: petitionId
+  };
+  return res.json(info);
+};
+
+var apiCreateReviewHandler = function (req, res) {
+  console.log(req.body);
+  var reviewId = new Date();
+  var info = {
+    status: "OK",
+    book: reviewId
   };
   return res.json(info);
 };
@@ -83,19 +103,36 @@ var apiListBooksHandler = function (req, res) {
 };
 
 
-var apiRetrieveBookHandler = function (req, res) {
-  var book = getBookById(req.params.book);
-
-  return res.json(book);
-};
-
-
 var apiListCollectionsHandler = function (req, res) {
   var collections = getAllCollections();
 
   return res.json(collections);
 };
 
+var apiListPetitionsHandler = function (req, res) {
+  var petitions = getAllPetitions();
+
+  return res.json(petitions);
+};
+
+var apiListReviewsHandler = function (req, res) {
+  var reviews = getAllReviews();
+
+  return res.json(reviews);
+};
+
+
+var apiRetrieveBookHandler = function (req, res) {
+  var book = getBookById(req.params.book);
+
+  return res.json(book);
+};
+
+var apiRetrieveCollectionHandler = function (req, res) {
+  var collection = getCollectionById(req.params.collection);
+
+  return res.json(collection);
+};
 
 var apiRetrievePetitionHandler = function (req, res) {
   var petition = getPetitionById(req.params.petition);
@@ -103,13 +140,28 @@ var apiRetrievePetitionHandler = function (req, res) {
   return res.json(petition);
 };
 
+var apiRetrieveReviewHandler = function (req, res) {
+  var review = getReviewById(req.params.review);
+
+  return res.json(review);
+};
+
 
 
 
 exports.apiSignInHandler = apiSignInHandler;
+
 exports.apiCreateBookHandler = apiCreateBookHandler;
 exports.apiCreateCollectionHandler = apiCreateCollectionHandler;
+exports.apiCreatePetitionHandler = apiCreatePetitionHandler;
+exports.apiCreateReviewHandler = apiCreateReviewHandler;
+
 exports.apiListBooksHandler = apiListBooksHandler;
-exports.apiRetrieveBookHandler = apiRetrieveBookHandler;
 exports.apiListCollectionsHandler = apiListCollectionsHandler;
+exports.apiListPetitionsHandler = apiListPetitionsHandler;
+exports.apiListReviewsHandler = apiListReviewsHandler;
+
+exports.apiRetrieveBookHandler = apiRetrieveBookHandler;
+exports.apiRetrieveCollectionHandler = apiRetrieveCollectionHandler;
 exports.apiRetrievePetitionHandler = apiRetrievePetitionHandler;
+exports.apiRetrieveReviewHandler = apiRetrieveReviewHandler;
