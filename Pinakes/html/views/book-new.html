@@ -100,20 +100,12 @@
         <% }) %>
 
         <div class="input-group">
-          <label for="new_book_author_birthplace" class="input-group-text">Nacionalidad del Autor</label>
-          <select id="new_book_author_birthplace" class="form-select" name="new_book_author_birthplace">
-            <option selected>Otros</option>
-            <option value="1">España</option>
-          </select>
           <label for="new_book_language" class="input-group-text">Idioma</label>
           <select id="new_book_language" class="form-select" name="new_book_language">
             <% languages.forEach(function (language,i) { %>
               <option <% if (i==0) { %> selected <% }%> value="1"><%= language.name%></option>
             <% }) %>
           </select>
-        </div>
-
-        <div class="input-group">
           <label for="new_book_isbn" class="input-group-text">ISBN</label>
           <input id="new_book_isbn" type="text" name="new_book_isbn" class="form-control">
         </div>

@@ -44,8 +44,8 @@
 
         <!--Columna con Información del libro-->
         <div class="col-9">
-          <div class="row mb-2">
 
+          <div class="row mb-2">
             <div class="col-5">
               <h4 id="book_title"><%=book.title%></h4>
               <h6 id="book_author_name"><%=book.author.name%></h6>
@@ -95,65 +95,9 @@
 
             <!-- Navbar de las Reviews -->
             <div class="col-8">
-              <div class="row">
-                <ul class="nav nav-tabs" role="tablist">
-                  <% reviews.forEach(function(e,i){ %>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link <% if (i==0) { %>active<% } %>"
-                        id="book_review<%=i %>_tab"
-                        data-bs-toggle="tab" data-bs-target="#book_review<%=i %>"
-                        type="button" role="tab"
-                        aria-controls="book_review<%=i %>" aria-selected="true">
-                        Review <%=i %>
-                    </button>
-                  </li>
-                  <% }) %>
-                </ul>
-
-                <div class="tab-content mt-1">
-                  <% reviews.forEach(function(e,i){ %>
-                  <div class="tab-pane fade <% if (i==0) { %>show active<% } %>" id="book_review<%=i %>" role="tabpanel">
-                      <div class="row">
-
-                        <div class="col-3 p-0">
-                          <div class="card text-center">
-                            <img class="card-img-top mt-1 mx-auto" style="width: 90px; height: 90px" src="<%=e.reviewer.pic%>">
-                            <div class="card-body">
-                              <a class="card-title" href="/members/<%=e.reviewer.id%>">
-                                <p><%= e.reviewer.nickname%></p>
-                              </a>
-                              <h8 class="card-text">Hace <%= e.age%> días</h8>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-9">
-                          <div class="review-block-rate">
-                            <span class="name mb-1 fw-500">Valoración del Libro</span>
-                            <div class="rating">
-                              <input type="range" value="<%=e.bookRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
-                              <output><%=e.bookRate%></output>
-                              <i class="fa-solid fa-star"></i>
-                            </div>
-                            <span class="name mb-1 fw-500">Valoración del Ejemplar</span>
-                            <div class="rating">
-                              <input type="range" value="<%=e.copyRate%>" min="1" max="10" step="0.1" oninput="this.nextElementSibling.value = this.value" disabled>
-                              <output><%=e.copyRate%></output>
-                              <i class="fa-solid fa-star"></i>
-                            </div>
-                            <div class="review-block-description mt-2"><%=e.comment%></div>
-                          </div>
-                        </div>
-                      </div>
-
-                  </div>
-                  <% }) %>
-                </div>
-
-              </div>
+              <%- include('../partials/list-reviews-navbar.html', {}); %>
             </div>
           </div>
-          <!-- Final de la fila Post-Sinopsis-->
 
         </div>
         <!-- Final de la Columna con información del libro-->
@@ -169,6 +113,9 @@
     </div>
     <!-- Footer-->
     <%- include('../partials/footer.html', {}); %>
+
+    <!-- Zona para Modals-->
+    <%- include('../partials/edit-book-modal.html', {}); %>
 
     <script type="text/javascript" src="/public/js/book-profile.js"></script>
 
