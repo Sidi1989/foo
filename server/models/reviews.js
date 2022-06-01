@@ -1,5 +1,15 @@
+const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
-const reviews = require('../../runtime/db/reviews.json');
+//const reviews = require('../../runtime/db/reviews.json');
+const reviewsRelativeDirname = '../../runtime/db/reviews';
+const reviewsAbsoluteDirname = path.join(__dirname, reviewsRelativeDirname);
+const reviewsBasenames = fs.readdirSync(reviewsAbsoluteDirname);
+const reviews = reviewsBasenames.map(function (e,i) {
+  var pathname = path.join(reviewsAbsoluteDirname, e);
+  var review = require(pathname);
+  return review;
+});
 
 
 

@@ -1,5 +1,15 @@
+const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
-const quotes = require('../../runtime/db/quotes.json');
+//const quotes = require('../../runtime/db/quotes.json');
+const quotesRelativeDirname = '../../runtime/db/quotes';
+const quotesAbsoluteDirname = path.join(__dirname, quotesRelativeDirname);
+const quotesBasenames = fs.readdirSync(quotesAbsoluteDirname);
+const quotes = quotesBasenames.map(function (e,i) {
+  var pathname = path.join(quotesAbsoluteDirname, e);
+  var quote = require(pathname);
+  return quote;
+});
 
 
 

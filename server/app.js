@@ -14,16 +14,32 @@ const {
   apiCreateCollectionHandler,
   apiCreatePetitionHandler,
   apiCreateReviewHandler,
+  apiCreateMemberHandler,
 
   apiListBooksHandler,
   apiListCollectionsHandler,
   apiListPetitionsHandler,
   apiListReviewsHandler,
+  apiListMembersHandler,
 
   apiRetrieveBookHandler,
   apiRetrieveCollectionHandler,
   apiRetrievePetitionHandler,
-  apiRetrieveReviewHandler
+  apiRetrieveReviewHandler,
+  apiRetrieveMemberHandler,
+
+  apiEditBookHandler,
+  apiEditCollectionHandler,
+  apiEditPetitionHandler,
+  apiEditReviewHandler,
+  apiEditMemberHandler,
+
+  apiDeleteBookHandler,
+  apiDeleteCollectionHandler,
+  apiDeletePetitionHandler,
+  apiDeleteReviewHandler,
+  apiDeleteMemberHandler
+
 } = require('./controllers/api.js');
 
 
@@ -49,7 +65,9 @@ app.use(express.urlencoded({ extended: true })); // for parsing x-www-form-urlen
 
 app.use(function (req, res, next) {
   req.user = {};
-  req.user.id = req.cookies.user;
+  req.user.type = (req.cookies.member)? 'member' : 'guest';
+  req.user.id = req.cookies.member || null;
+  console.log(req.user);
   return next();
 });
 
@@ -69,20 +87,32 @@ app.post('/api/books', apiCreateBookHandler);
 app.post('/api/collections', apiCreateCollectionHandler);
 app.post('/api/petitions', apiCreatePetitionHandler);
 app.post('/api/reviews', apiCreateReviewHandler);
+app.post('/api/members', apiCreateMemberHandler);
 
 app.get('/api/books', apiListBooksHandler);
 app.get('/api/collections', apiListCollectionsHandler);
 app.get('/api/petitions', apiListPetitionsHandler);
 app.get('/api/reviews', apiListReviewsHandler);
+app.get('/api/members', apiListMembersHandler);
 
 app.get('/api/books/:book', apiRetrieveBookHandler);
 app.get('/api/collections/:collection', apiRetrieveCollectionHandler);
 app.get('/api/petitions/:petition', apiRetrievePetitionHandler);
 app.get('/api/reviews/:review', apiRetrieveReviewHandler);
+app.get('/api/members/:member', apiRetrieveMemberHandler);
 
+app.put('/api/books/:book', apiEditBookHandler);
+app.put('/api/collections/:collection', apiEditCollectionHandler);
+app.put('/api/petitions/:petition', apiEditPetitionHandler);
+app.put('/api/reviews/:review', apiEditReviewHandler);
+app.put('/api/members/:member', apiEditMemberHandler);
 
-
+app.delete('/api/books/:book', apiDeleteBookHandler);
+app.delete('/api/collections/:collection', apiDeleteCollectionHandler);
+app.delete('/api/petitions/:petition', apiDeletePetitionHandler);
+app.delete('/api/reviews/:review', apiDeleteReviewHandler);
+app.delete('/api/members/:member', apiDeleteMemberHandler);
 
 app.listen(port, function () {
   console.log(`Pinakes se escucha en el port ${port}`)
-})
+});

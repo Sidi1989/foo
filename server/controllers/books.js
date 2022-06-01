@@ -97,6 +97,42 @@ var bookProfileHandler = function (req, res) {
   });
   info.suggestedBooks = suggestedBooksChunks;
 
+  var locations = getAllLocations();
+  info.locations = locations;
+
+  var categories = getAllCategories();
+  info.categories = categories;
+
+  var subcategories = getAllSubcategories();
+  info.subcategories = subcategories;
+
+  var languages = getAllLanguages();
+  info.languages = languages;
+
+
+
+/*
+  var member = getMemberById(req.user.id);
+  if (member == null) {
+    info.member = {};
+  } else {
+    info.member = member;
+  };
+
+  var collectionsMapped = member.collections.map(function (collectionId) {
+    var collection = getCollectionById(collectionId);
+    var booksInCollection = collection.books.map(function (bookId) {
+      var book = getBookById(bookId);
+      return book;
+    });
+    collection.books = booksInCollection;
+    booksInCollection.forEach(function (e) {
+      e.author = getAuthorById(e.author);
+    });
+    return collection;
+  });
+  info.member.collections = collectionsMapped;
+*/
 
   res.render(pathname, info);
 };

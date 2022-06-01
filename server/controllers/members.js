@@ -142,11 +142,11 @@ var memberProfileHandler = function (req, res) {
     info.lastBookAdded.collection = lastBookAddedCollection;
   };
 
-  var booksMapped = lastBookAddedCollection.books.map(function (bookId) {
+  var lastBooksMapped = lastBookAddedCollection.books.map(function (bookId) {
     var book = getBookById(bookId);
     return book;
   });
-  info.lastBookAdded.collection.books = booksMapped;
+  info.lastBookAdded.collection.books = lastBooksMapped;
 
   var suggestedBooksChunks = getRandomBooks(6, 3);
   suggestedBooksChunks.forEach(function (chunk,i) {
@@ -155,6 +155,18 @@ var memberProfileHandler = function (req, res) {
     });
   });
   info.suggestedBooks = suggestedBooksChunks;
+
+  var booksMapped = member.books.map(function (bookId) {
+    var book = getBookById(bookId);
+    return book;
+  });
+  booksMapped.forEach(function (e) {
+    e.author = getAuthorById(e.author);
+  });
+  info.member.books = booksMapped;
+
+  var orphanBooks = booksMapped.filter(e => e.collection == null);
+  info.orphanBooks = orphanBooks;
 
 
   res.render(pathname, info);

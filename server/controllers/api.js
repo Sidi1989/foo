@@ -1,5 +1,5 @@
 const {getAllBooks, getBookById} = require('../models/books.js');
-const {getAllMembers} = require('../models/members.js');
+const {getAllMembers, getMemberById} = require('../models/members.js');
 const {getCategoryById} = require('../models/categories.js');
 const {getSubcategoryById} = require('../models/subcategories.js');
 const {getLanguageById} = require('../models/languages.js');
@@ -12,7 +12,6 @@ const {getAllReviews, getReviewById} = require('../models/reviews.js');
 
 
 var apiSignInHandler = function (req, res) {
-  console.log(req.body);
 
   var members = getAllMembers();
   var filteredMembers = members.filter(function (e,i) {
@@ -43,7 +42,6 @@ var apiSignInHandler = function (req, res) {
 
 
 var apiCreateBookHandler = function (req, res) {
-  console.log(req.body);
   var bookId = new Date();
   var info = {
     status: "OK",
@@ -53,31 +51,37 @@ var apiCreateBookHandler = function (req, res) {
 };
 
 var apiCreateCollectionHandler = function (req, res) {
-  console.log(req.body);
   var collectionId = new Date();
   var info = {
     status: "OK",
-    book: collectionId
+    collection: collectionId
   };
   return res.json(info);
 };
 
 var apiCreatePetitionHandler = function (req, res) {
-  console.log(req.body);
   var petitionId = new Date();
   var info = {
     status: "OK",
-    book: petitionId
+    petition: petitionId
   };
   return res.json(info);
 };
 
 var apiCreateReviewHandler = function (req, res) {
-  console.log(req.body);
   var reviewId = new Date();
   var info = {
     status: "OK",
-    book: reviewId
+    review: reviewId
+  };
+  return res.json(info);
+};
+
+var apiCreateMemberHandler = function (req, res) {
+  var memberId = new Date();
+  var info = {
+    status: "OK",
+    member: memberId
   };
   return res.json(info);
 };
@@ -102,7 +106,6 @@ var apiListBooksHandler = function (req, res) {
   return res.json(books);
 };
 
-
 var apiListCollectionsHandler = function (req, res) {
   var collections = getAllCollections();
 
@@ -119,6 +122,12 @@ var apiListReviewsHandler = function (req, res) {
   var reviews = getAllReviews();
 
   return res.json(reviews);
+};
+
+var apiListMembersHandler = function (req, res) {
+  var members = getAllMembers();
+
+  return res.json(members);
 };
 
 
@@ -146,7 +155,73 @@ var apiRetrieveReviewHandler = function (req, res) {
   return res.json(review);
 };
 
+var apiRetrieveMemberHandler = function (req, res) {
+  var member = getMemberById(req.params.member);
 
+  return res.json(member);
+};
+
+
+var apiEditBookHandler = function (req, res) {
+  var book = getBookById(req.params.book);
+
+  return res.json(book);
+};
+
+var apiEditCollectionHandler = function (req, res) {
+  var collection = getCollectionById(req.params.collection);
+
+  return res.json(collection);
+};
+
+var apiEditPetitionHandler = function (req, res) {
+  var petition = getPetitionById(req.params.petition);
+
+  return res.json(petition);
+};
+
+var apiEditReviewHandler = function (req, res) {
+  var review = getReviewById(req.params.review);
+
+  return res.json(review);
+};
+
+var apiEditMemberHandler = function (req, res) {
+  var member = getMemberById(req.params.member);
+
+  return res.json(member);
+};
+
+
+var apiDeleteBookHandler = function (req, res) {
+  var book = getBookById(req.params.book);
+
+  return res.json(book);
+};
+
+var apiDeleteCollectionHandler = function (req, res) {
+  var collection = getCollectionById(req.params.collection);
+
+  return res.json(collection);
+};
+
+var apiDeletePetitionHandler = function (req, res) {
+  var petition = getPetitionById(req.params.petition);
+
+  return res.json(petition);
+};
+
+var apiDeleteReviewHandler = function (req, res) {
+  var review = getReviewById(req.params.review);
+
+  return res.json(review);
+};
+
+var apiDeleteMemberHandler = function (req, res) {
+  var member = getMemberById(req.params.member);
+
+  return res.json(member);
+};
 
 
 exports.apiSignInHandler = apiSignInHandler;
@@ -155,13 +230,28 @@ exports.apiCreateBookHandler = apiCreateBookHandler;
 exports.apiCreateCollectionHandler = apiCreateCollectionHandler;
 exports.apiCreatePetitionHandler = apiCreatePetitionHandler;
 exports.apiCreateReviewHandler = apiCreateReviewHandler;
+exports.apiCreateMemberHandler = apiCreateMemberHandler;
 
 exports.apiListBooksHandler = apiListBooksHandler;
 exports.apiListCollectionsHandler = apiListCollectionsHandler;
 exports.apiListPetitionsHandler = apiListPetitionsHandler;
 exports.apiListReviewsHandler = apiListReviewsHandler;
+exports.apiListMembersHandler = apiListMembersHandler;
 
 exports.apiRetrieveBookHandler = apiRetrieveBookHandler;
 exports.apiRetrieveCollectionHandler = apiRetrieveCollectionHandler;
 exports.apiRetrievePetitionHandler = apiRetrievePetitionHandler;
 exports.apiRetrieveReviewHandler = apiRetrieveReviewHandler;
+exports.apiRetrieveMemberHandler = apiRetrieveMemberHandler;
+
+exports.apiEditBookHandler = apiEditBookHandler;
+exports.apiEditCollectionHandler = apiEditCollectionHandler;
+exports.apiEditPetitionHandler = apiEditPetitionHandler;
+exports.apiEditReviewHandler = apiEditReviewHandler;
+exports.apiEditMemberHandler = apiEditMemberHandler;
+
+exports.apiDeleteBookHandler = apiDeleteBookHandler;
+exports.apiDeleteCollectionHandler = apiDeleteCollectionHandler;
+exports.apiDeletePetitionHandler = apiDeletePetitionHandler;
+exports.apiDeleteReviewHandler = apiDeleteReviewHandler;
+exports.apiDeleteMemberHandler = apiDeleteMemberHandler;
