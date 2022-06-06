@@ -10,6 +10,7 @@ const members = membersBasenames.map(function (e) {
   var member = require(pathname);
   return member;
 });
+const {getAllBooks} = require('./books');
 
 
 
@@ -25,14 +26,31 @@ var getMemberById = function (id) {
     return (e.id == id);
   });
 
-  var user;
+  var member;
   if (filteredMembers.length == 0) {
     member = null;
   } else {
     member = filteredMembers[0];
-  };
+  }
 
   return member;
+};
+
+
+/**
+ * @description
+ *
+ * @param member String. Identificador del miembro
+ */
+var getLastBookForMember = function (member) {
+  var books = getAllBooks();
+  var memberBooks = books.filter(function (e) {
+    return e.owner == member;
+  });
+  var sortedBooks = _.sortBy(memberBooks, 'addingDate');
+  var lastBook = _.head(sortedBooks);
+
+  return lastBook
 };
 
 
@@ -40,3 +58,4 @@ var getMemberById = function (id) {
 
 exports.getAllMembers = getAllMembers;
 exports.getMemberById = getMemberById;
+exports.getLastBookForMember = getLastBookForMember;

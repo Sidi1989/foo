@@ -18,13 +18,11 @@
           <%- include('../partials/member-basic-info-card.html', {}); %>
 
           <div class="mt-4">
-            <label for="member_edit_last_book_added" class="form-label">
-              <u><h6>Último libro añadido</h6></u>
-            </label>
-            <input id="member_edit_last_book_added" class="form-control" type="file">
+            <u><h6>Último libro añadido</h6></u>
+            <img src="<%=member.lastBookAdded.pic.main%>" class="img-thumbnail">
           </div>
-        </div>
 
+        </div>
 
         <div class="col-8">
         <!-- Columna para la edición de los datos del usuario-->

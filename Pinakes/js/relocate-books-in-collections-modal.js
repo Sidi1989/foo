@@ -12,18 +12,21 @@ var relocateModalSearchingListener = function () {
       .then(function (info) {
           var relocateModalSearchTableBodyNode = document.getElementById('relocate_search_table_body');
           relocateModalSearchTableBodyNode.innerHTML = '';
+          // nos quedamos sólo con los libros que pertenecen al miembro
           var memberId = getCookie('member');
           var ownedBooks = info.filter(book => book.owner == memberId);
+          // nos quedamos con aquellos cuyo título coincide con la búsqueda
           var searchedBooks = ownedBooks.filter(function (book) {
             return book.title.toLowerCase().startsWith(userSearch.toLowerCase())
           });
           books = searchedBooks;
           books.forEach(function (book) {
             const relocateModalSearchedBookNode = document.createElement('tr');
+            //ante colecciones nulas, se aplica un operador ternario
             relocateModalSearchedBookNode.innerHTML = `
                 <td>${book.title}</td>
                 <td>${book.author.name}</td>
-                <td>${book.collection.name}</td>
+                <td>${(book.collection)? book.collection.name : 'Sin Colección'}</td>
             `;
             relocateModalSearchTableBodyNode.appendChild(relocateModalSearchedBookNode);
           });
@@ -46,7 +49,7 @@ var relocateModalOrderingListener = function () {
         relocateModalSearchedBookNode.innerHTML = `
             <td>${book.title}</td>
             <td>${book.author.name}</td>
-            <td>${book.collection.name}</td>
+            <td>${(book.collection)? book.collection.name : 'Sin Colección'}</td>
         `;
         relocateModalSearchTableBodyNode.appendChild(relocateModalSearchedBookNode);
       });

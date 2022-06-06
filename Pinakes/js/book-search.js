@@ -1,6 +1,10 @@
 var books = [];
 
-// Listener para que, al pulsar teclas en el buscador, vaya cambiando el resultado de la búsqueda
+/**
+ * @description
+ * listener para que, al pulsar teclas en el buscador, vaya cambiando el
+ * resultado de la búsqueda.
+ */
 var bookSearchingListener = function () {
   var bookSearchingInputNode = document.getElementById("book_searching_input");
   bookSearchingInputNode.addEventListener('keyup', function () {
@@ -11,9 +15,17 @@ var bookSearchingListener = function () {
       .then(response => response.json())
       .then(function (info) {
           var searchTableBodyNode = document.getElementById('search_table_body');
+          // Limpiamos la tabla
           searchTableBodyNode.innerHTML = '';
+          // Nos quedamos con aquellos libros cuyas primeras letras coinciden
+          // con la búsqueda.
           var filteredBooks = info.filter(function (book) {
-            return book.title.toLowerCase().startsWith(userSearch.toLowerCase())
+            // "!" significa "no"
+            if (!userSearch) {
+              return false;
+            } else {
+              return book.title.toLowerCase().startsWith(userSearch.toLowerCase())
+            }
           });
           books = filteredBooks;
           books.forEach(function (book) {

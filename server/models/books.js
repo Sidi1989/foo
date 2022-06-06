@@ -30,7 +30,7 @@ var getBookById = function (id) {
     book = null;
   } else {
     book = filteredBooks[0];
-  };
+  }
 
   return book;
 };

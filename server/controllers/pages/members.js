@@ -1,4 +1,4 @@
-const {getMemberById} = require('../../models/members.js');
+const {getMemberById, getLastBookForMember} = require('../../models/members.js');
 const {getBookById, getRandomBooks} = require('../../models/books.js');
 const {getCollectionById} = require('../../models/collections.js');
 const {getAuthorById} = require('../../models/authors.js');
@@ -63,11 +63,9 @@ var memberEditHandler= function (req, res) {
     info.member = {};
   } else {
     info.member = member;
-  };
-
-  var memberLastBook = getBookById(member.lastBookAdded);
+  }
+  var memberLastBook = getLastBookForMember(member.id);
   info.member.lastBookAdded = memberLastBook;
-
 
   res.render(pathname, info);
 };
@@ -124,26 +122,27 @@ var memberProfileHandler = function (req, res) {
   });
   info.member.petitions = petitionsMapped;
 
-  var lastBookAdded = getBookById(member.lastBookAdded);
+
+  var lastBookAdded = getLastBookForMember(member.id);
   if (lastBookAdded == null) {
     info.lastBookAdded = {};
   } else {
     info.lastBookAdded = lastBookAdded;
-  };
+  }
 
   var lastBookAddedAuthor = getAuthorById(lastBookAdded.author);
   if (lastBookAddedAuthor == null) {
     info.lastBookAdded.author = {};
   } else {
     info.lastBookAdded.author = lastBookAddedAuthor;
-  };
+  }
 
   var lastBookAddedCollection = getCollectionById(lastBookAdded.collection);
   if (lastBookAddedCollection == null) {
     info.lastBookAdded.collection = {};
   } else {
     info.lastBookAdded.collection = lastBookAddedCollection;
-  };
+  }
 
   var lastBooksMapped = lastBookAddedCollection.books.map(function (bookId) {
     var book = getBookById(bookId);
