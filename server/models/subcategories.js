@@ -1,5 +1,15 @@
+const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
-const subcategories = require('../../runtime/db/subcategories.json');
+//const subcategories = require('../../runtime/db/subcategories.json');
+const subcategoriesRelativeDirname = '../../runtime/db/subcategories';
+const subcategoriesAbsoluteDirname = path.join(__dirname, subcategoriesRelativeDirname);
+const subcategoriesBasenames = fs.readdirSync(subcategoriesAbsoluteDirname);
+const subcategories = subcategoriesBasenames.map(function (e) {
+  var pathname = path.join(subcategoriesAbsoluteDirname, e);
+  var subcategory = require(pathname);
+  return subcategory;
+});
 
 
 

@@ -1,5 +1,15 @@
+const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
-const buyoptions = require('../../runtime/db/buyoptions.json');
+//const buyoptions = require('../../runtime/db/buyoptions.json');
+const buyoptionsRelativeDirname = '../../runtime/db/buyoptions';
+const buyoptionsAbsoluteDirname = path.join(__dirname, buyoptionsRelativeDirname);
+const buyoptionsBasenames = fs.readdirSync(buyoptionsAbsoluteDirname);
+const buyoptions = buyoptionsBasenames.map(function (e) {
+  var pathname = path.join(buyoptionsAbsoluteDirname, e);
+  var buyoption = require(pathname);
+  return buyoption;
+});
 
 
 

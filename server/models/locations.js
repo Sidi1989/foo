@@ -1,5 +1,15 @@
+const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
-const locations = require('../../runtime/db/locations.json');
+//const locations = require('../../runtime/db/locations.json');
+const locationsRelativeDirname = '../../runtime/db/locations';
+const locationsAbsoluteDirname = path.join(__dirname, locationsRelativeDirname);
+const locationsBasenames = fs.readdirSync(locationsAbsoluteDirname);
+const locations = locationsBasenames.map(function (e) {
+  var pathname = path.join(locationsAbsoluteDirname, e);
+  var location = require(pathname);
+  return location;
+});
 
 
 

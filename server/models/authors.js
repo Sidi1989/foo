@@ -1,5 +1,15 @@
+const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
-const authors = require('../../runtime/db/authors.json');
+//const authors = require('../../runtime/db/authors.json');
+const authorsRelativeDirname = '../../runtime/db/authors';
+const authorsAbsoluteDirname = path.join(__dirname, authorsRelativeDirname);
+const authorsBasenames = fs.readdirSync(authorsAbsoluteDirname);
+const authors = authorsBasenames.map(function (e) {
+  var pathname = path.join(authorsAbsoluteDirname, e);
+  var author = require(pathname);
+  return author;
+});
 
 
 

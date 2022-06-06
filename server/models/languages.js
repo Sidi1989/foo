@@ -1,5 +1,15 @@
+const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
-const languages = require('../../runtime/db/languages.json');
+//const languages = require('../../runtime/db/languages.json');
+const languagesRelativeDirname = '../../runtime/db/languages';
+const languagesAbsoluteDirname = path.join(__dirname, languagesRelativeDirname);
+const languagesBasenames = fs.readdirSync(languagesAbsoluteDirname);
+const languages = languagesBasenames.map(function (e) {
+  var pathname = path.join(languagesAbsoluteDirname, e);
+  var language = require(pathname);
+  return language;
+});
 
 
 

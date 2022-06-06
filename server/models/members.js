@@ -1,5 +1,15 @@
+const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
-const members = require('../../runtime/db/members.json');
+//const members = require('../../runtime/db/members.json');
+const membersRelativeDirname = '../../runtime/db/members';
+const membersAbsoluteDirname = path.join(__dirname, membersRelativeDirname);
+const membersBasenames = fs.readdirSync(membersAbsoluteDirname);
+const members = membersBasenames.map(function (e) {
+  var pathname = path.join(membersAbsoluteDirname, e);
+  var member = require(pathname);
+  return member;
+});
 
 
 

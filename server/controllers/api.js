@@ -102,6 +102,9 @@ var apiListBooksHandler = function (req, res) {
   books.forEach(function (e,i) {
     e.language = getLanguageById(e.language);
   });
+  books.forEach(function (e,i) {
+    e.collection = getCollectionById(e.collection);
+  });
 
   return res.json(books);
 };

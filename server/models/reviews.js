@@ -5,7 +5,7 @@ const _ = require('lodash');
 const reviewsRelativeDirname = '../../runtime/db/reviews';
 const reviewsAbsoluteDirname = path.join(__dirname, reviewsRelativeDirname);
 const reviewsBasenames = fs.readdirSync(reviewsAbsoluteDirname);
-const reviews = reviewsBasenames.map(function (e,i) {
+const reviews = reviewsBasenames.map(function (e) {
   var pathname = path.join(reviewsAbsoluteDirname, e);
   var review = require(pathname);
   return review;
