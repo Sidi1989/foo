@@ -1,12 +1,12 @@
-const {getMemberById} = require('../models/members.js');
-const {getBookById, getRandomBooks} = require('../models/books.js');
-const {getCollectionById} = require('../models/collections.js');
-const {getAuthorById} = require('../models/authors.js');
-const {getPetitionById} = require('../models/petitions.js');
-const {getAllCategories, getCategoryById} = require('../models/categories.js');
-const {getAllSubcategories, getSubcategoryById} = require('../models/subcategories.js');
-const {getAllLanguages, getLanguageById} = require('../models/languages.js');
-const {getQuoteById, getRandomQuotes} = require('../models/quotes.js');
+const {getMemberById} = require('../../models/members.js');
+const {getBookById, getRandomBooks} = require('../../models/books.js');
+const {getCollectionById} = require('../../models/collections.js');
+const {getAuthorById} = require('../../models/authors.js');
+const {getPetitionById} = require('../../models/petitions.js');
+const {getAllCategories, getCategoryById} = require('../../models/categories.js');
+const {getAllSubcategories, getSubcategoryById} = require('../../models/subcategories.js');
+const {getAllLanguages, getLanguageById} = require('../../models/languages.js');
+const {getQuoteById, getRandomQuotes} = require('../../models/quotes.js');
 
 
 
@@ -19,7 +19,7 @@ const {getQuoteById, getRandomQuotes} = require('../models/quotes.js');
 * @param res Contiene la renderización de la petición para el cliente
 */
 var signInHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/sign-in.html`;
+  var pathname = `${__dirname}/../../../Pinakes/html/views/sign-in.html`;
   var info = {};
 
   var dailyQuote = getRandomQuotes(1)[0];
@@ -38,7 +38,7 @@ var signInHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var signUpHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/sign-up.html`;
+  var pathname = `${__dirname}/../../../Pinakes/html/views/sign-up.html`;
   var info = {};
 
 
@@ -54,7 +54,7 @@ var signUpHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var memberEditHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/member-edit.html`;
+  var pathname = `${__dirname}/../../../Pinakes/html/views/member-edit.html`;
 
   var info = {};
 
@@ -64,6 +64,9 @@ var memberEditHandler= function (req, res) {
   } else {
     info.member = member;
   };
+
+  var memberLastBook = getBookById(member.lastBookAdded);
+  info.member.lastBookAdded = memberLastBook;
 
 
   res.render(pathname, info);
@@ -78,7 +81,7 @@ var memberEditHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var memberProfileHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/member-profile.html`;
+  var pathname = `${__dirname}/../../../Pinakes/html/views/member-profile.html`;
 
   var info = {};
 

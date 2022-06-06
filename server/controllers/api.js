@@ -14,7 +14,7 @@ const {getAllReviews, getReviewById} = require('../models/reviews.js');
 var apiSignInHandler = function (req, res) {
 
   var members = getAllMembers();
-  var filteredMembers = members.filter(function (e,i) {
+  var filteredMembers = members.filter(function (e) {
     return (req.body.email == e.email)
   });
 
@@ -90,19 +90,19 @@ var apiCreateMemberHandler = function (req, res) {
 var apiListBooksHandler = function (req, res) {
   var books = getAllBooks();
 
-  books.forEach(function (e,i) {
+  books.forEach(function (e) {
     e.category = getCategoryById(e.category);
   });
-  books.forEach(function (e,i) {
+  books.forEach(function (e) {
     e.subcategory = getSubcategoryById(e.subcategory);
   });
-  books.forEach(function (e,i) {
+  books.forEach(function (e) {
     e.author = getAuthorById(e.author);
   });
-  books.forEach(function (e,i) {
+  books.forEach(function (e) {
     e.language = getLanguageById(e.language);
   });
-  books.forEach(function (e,i) {
+  books.forEach(function (e) {
     e.collection = getCollectionById(e.collection);
   });
 

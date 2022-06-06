@@ -3,9 +3,9 @@ const path = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const {renderFile} = require('ejs');
-const {bookNewHandler, bookProfileHandler, bookSearchHandler} = require('./controllers/books.js');
-const {collectionEditHandler} = require('./controllers/collections.js');
-const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = require('./controllers/members.js');
+const {bookNewHandler, bookProfileHandler, bookSearchHandler} = require('./controllers/pages/books.js');
+const {collectionEditHandler} = require('./controllers/pages/collections.js');
+const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = require('./controllers/pages/members.js');
 
 const {
   apiSignInHandler,

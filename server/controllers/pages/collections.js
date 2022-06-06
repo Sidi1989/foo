@@ -1,6 +1,6 @@
-const {getMemberById} = require('../models/members.js');
-const {getBookById} = require('../models/books.js')
-const {getCollectionById} = require('../models/collections.js');
+const {getMemberById} = require('../../models/members.js');
+const {getBookById} = require('../../models/books.js')
+const {getCollectionById} = require('../../models/collections.js');
 
 
 
@@ -13,7 +13,7 @@ const {getCollectionById} = require('../models/collections.js');
  * @param res Contiene la renderización de la petición para el cliente
  */
 var collectionEditHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/collection-edit.html`;
+  var pathname = `${__dirname}/../../../Pinakes/html/views/collection-edit.html`;
 
   var info = {};
 

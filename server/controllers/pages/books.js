@@ -1,11 +1,11 @@
-const {getAllBooks, getBookById, getRandomBooks} = require('../models/books.js');
-const {getAllLocations, getLocationById} = require('../models/locations.js');
-const {getAllCategories, getCategoryById} = require('../models/categories.js');
-const {getAllSubcategories, getSubcategoryById} = require('../models/subcategories.js');
-const {getAllLanguages, getLanguageById} = require('../models/languages.js');
-const {getAuthorById} = require('../models/authors.js');
-const {getReviewById} = require('../models/reviews.js');
-const {getMemberById} = require('../models/members.js');
+const {getAllBooks, getBookById, getRandomBooks} = require('../../models/books.js');
+const {getAllLocations, getLocationById} = require('../../models/locations.js');
+const {getAllCategories, getCategoryById} = require('../../models/categories.js');
+const {getAllSubcategories, getSubcategoryById} = require('../../models/subcategories.js');
+const {getAllLanguages, getLanguageById} = require('../../models/languages.js');
+const {getAuthorById} = require('../../models/authors.js');
+const {getReviewById} = require('../../models/reviews.js');
+const {getMemberById} = require('../../models/members.js');
 
 
 
@@ -18,7 +18,7 @@ const {getMemberById} = require('../models/members.js');
  * @param res Contiene la renderización de la petición para el cliente
  */
 var bookNewHandler= function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/book-new.html`;
+  var pathname = `${__dirname}/../../../Pinakes/html/views/book-new.html`;
 
   var info = {};
 
@@ -49,7 +49,7 @@ var bookNewHandler= function (req, res) {
  * @param res Contiene la renderización de la petición para el cliente
  */
 var bookProfileHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/book-profile.html`;
+  var pathname = `${__dirname}/../../../Pinakes/html/views/book-profile.html`;
 
   var info = {};
 
@@ -146,7 +146,7 @@ var bookProfileHandler = function (req, res) {
 * @param res Contiene la renderización de la petición para el cliente
 */
 var bookSearchHandler = function (req, res) {
-  var pathname = `${__dirname}/../../Pinakes/html/views/book-search.html`;
+  var pathname = `${__dirname}/../../../Pinakes/html/views/book-search.html`;
 
   var info = {};
 
