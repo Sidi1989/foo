@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/common-head-components.html', {}); %>
+    <title>Pinakes - <%=book.title%></title>
+  </head>
+
+  <body>
+    <!-- Header-->
+    <%- include('../partials/header.html', {user: {id: "u1a"}}); %>
+    <div class="container">
+
+      <!-- Parte superior, sobre datos del libro-->
+      <div class="row mb-4">
+
+        <!-- Columna de la Foto-->
+        <div id="book_pic_files" class="col-3">
+
+          <div class="row mb-1">
+            <div class="text-center">
+              <img src="<%=book.pic.main%>" class="img-thumbnail" style="width: 240px; height: 320px">
+            </div>
+          </div>
+          <div class="row">
+            <div class="text-center">
+              <% book.pic.others.forEach(function(e,i){ %>
+              <div class="col-4">
+                <img src="<%=e%>" class="img-thumbnail" style="width: 75px; height: 100px">
+              </div>
+              <% }) %>
+            </div>
+          </div>
+
+        </div>
+
+        <!--Columna con Información del libro-->
+        <div class="col-9">
+
+          <div class="row mb-2">
+            <div class="col-5">
+              <h4 id="book_title"><%=book.title%></h4>
+              <h6 id="book_author_name"><%=book.author.name%></h6>
+            </div>
+
+            <div class="col-3">
+              <h5 id="book_location"><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
+            </div>
+
+            <div class="col-4 text-end g-0">
+              <div class="btn-group" role="group">
+                <!-- Sobre la situación actual del libro en Colecciones -->
+                <button id="book_present_collection_dropdown" type="button" class="btn btn-success btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-light fa-plus"></i>
+                  <i class="fa-solid fa-bookmark"></i>
+                </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item disabled"><h5>Actualmente en tu Colección "X"</h5></a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">+ Libros sin Colección</a></li>
+                    <li><a class="dropdown-item" href="#">+ Colección Y</a></li>
+                  </ul>
+                <!-- Modal para Editar Libro -->
+                <button id="edit_book_button" type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#edit_book_modal">
+                  <i class="fa-solid fa-file-signature"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="d-grid">
+              <div class="p-1 bg-light border">
+                <div class="row">
+                  <u><h5>Sinopsis:</h5></u>
+                  <span id="book_synopsis"><%=book.synopsis%></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <!-- Columna con los datos técnicos -->
+            <div class="col-4">
+              <%- include('../partials/book-tech-info-card.html', {}); %>
+            </div>
+
+            <!-- Navbar de las Reviews -->
+            <div class="col-8">
+              <%- include('../partials/list-reviews-navbar.html', {}); %>
+            </div>
+          </div>
+
+        </div>
+        <!-- Final de la Columna con información del libro-->
+
+      </div>
+      <!-- Final de la Parte superior-->
+
+
+      <div class="row">
+        <%- include('../partials/suggested-books-carousel.html', {}); %>
+      </div>
+
+    </div>
+    <!-- Footer-->
+    <%- include('../partials/footer.html', {}); %>
+
+    <!-- Zona para Modals-->
+    <%- include('../partials/edit-book-modal.html', {}); %>
+
+    <script type="text/javascript" src="/public/js/book-profile.js"></script>
+
+  </body>
+</html>
