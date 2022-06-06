@@ -1,19 +1,22 @@
-var introModal = new bootstrap.Modal(document.getElementById("pre_sign_in_modal"));
-onReadyStateChangeListener = function () {
-  introModal.show();
+// Listener para que, antes de desplegarse la página, aparezca un modal (que deberá cerrarse)
+var preSignInModal = new bootstrap.Modal(document.getElementById("pre_sign_in_modal"));
+var onReadyStateChangeListener = function () {
+  preSignInModal.show();
 };
 document.addEventListener('readystatechange', onReadyStateChangeListener);
 
 
-var onloadListener = function () {
-  var memberSignInNode = document.getElementById('sign_in_button');
-  memberSignInNode.onclick = function (event) {
-    var memberEmailNode = document.getElementById('sign_in_email');
-    var email = memberEmailNode.value;
-    var memberPasswordNode = document.getElementById('sign_in_password');
-    var password = memberPasswordNode.value;
-    var url = '/api/sessions';
+// Listener para que, al hacer click en el botón de entrar, tras haber rellenado los campos de email y contraseña,...
+// ...se compruebe su corrección, redireccionando o no al perfil del miembro
+var memberSignInListener = function () {
+  var signInButtonNode = document.getElementById('sign_in_button');
+  signInButtonNode.addEventListener('click', function () {
+    var signInEmailNode = document.getElementById('sign_in_email');
+    var email = signInEmailNode.value;
+    var signInPasswordNode = document.getElementById('sign_in_password');
+    var password = signInPasswordNode.value;
 
+    var url = '/api/sessions';
     var details = {
         'email': email,
         'password': password,
@@ -34,15 +37,15 @@ var onloadListener = function () {
     };
 
     fetch(url, options)
-      .then(function (res) {return res.json()})
+      .then(response => response.json())
       .then(function (info) {
-        if (info.status == 'KO') {
-          window.alert('Algo ha salido mal')
-        } else {
-          setCookie('member', info.id, 5);
-          window.location = `/members/${info.id}`;
-        }
-      })
-  }
+          if (info.status == 'KO') {
+            window.alert('Algo ha salido mal')
+          } else {
+            setCookie('member', info.id, 5);
+            window.location = `/members/${info.id}`;
+          }
+      });
+  });
 };
-window.addEventListener('load', onloadListener);
+window.addEventListener('load', memberSignInListener);

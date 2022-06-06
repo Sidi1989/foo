@@ -1,19 +1,21 @@
-var onclickListener = function () {
+// Listener para que, al hacer click en alguno de los botones de editar la petición correspondiente,...
+// distinguidos por encontrarse la id de cada petición en el tercer segmento del id del botón, separado por "_",...
+// el modal para la edición se cargue con los datos que se conservan sobre dicha petición
+var editPetitionModalListener = function () {
   var editPetitionButtonsNodes = document.querySelectorAll('button.edit-petition-button');
-  editPetitionButtonsNodes.forEach( function (e,i) {
-    e.addEventListener('click', function (event) {
-      var editPetitionButtonNodeId = e.id;
+  editPetitionButtonsNodes.forEach( function (buttonNode) {
+    buttonNode.addEventListener('click', function () {
+      var editPetitionButtonNodeId = buttonNode.id;
       var petitionId = editPetitionButtonNodeId.split('_')[2]
-      var url = `/api/petitions/${petitionId}`;
 
+      var url = `/api/petitions/${petitionId}`;
       fetch(url)
         .then(res => res.json())
         .then(function (info) {
-          var titleNode = document.getElementById('edit_petition_title');
-          titleNode.value = info.title;
-          console.log(info)
-        })
-    })
-  })
+            var editTitleNode = document.getElementById('edit_petition_title');
+            editTitleNode.value = info.title;
+        });
+    });
+  });
 };
-window.addEventListener('load', onclickListener);
+window.addEventListener('load', editPetitionModalListener);
