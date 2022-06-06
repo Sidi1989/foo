@@ -1,9 +1,22 @@
 {
   "root": true,
+  "extends": [
+    "eslint:recommended"
+  ],
   "env": {
-    "node": true
+    "node": true,
+    "es6": true,
+    "browser": true
   },
   "parserOptions": {
     "ecmaVersion": 8
+  },
+  "rules": {
+    "max-len": [
+      "warn",
+      {
+        "code": 120
+      }
+    ]
   }
 }
