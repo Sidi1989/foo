@@ -1,13 +1,4 @@
-/*
-const {getAllBooks, getBookById} = require('../models/books.js');
-const {getAllMembers, getMemberById} = require('../models/members.js');
-const {getCategoryById} = require('../models/categories.js');
-const {getSubcategoryById} = require('../models/subcategories.js');
-const {getLanguageById} = require('../models/languages.js');
-const {getAuthorById} = require('../models/authors.js');
-const {getAllCollections, getCollectionById} = require('../models/collections.js');
-const {getAllPetitions, getPetitionById} = require('../models/petitions.js');
-const {getAllReviews, getReviewById} = require('../models/reviews.js');
+const {getAllCollections, getCollectionById} = require('../../models/collections.js');
 
 
 
@@ -57,4 +48,3 @@ exports.apiListCollectionsHandler = apiListCollectionsHandler;
 exports.apiRetrieveCollectionHandler = apiRetrieveCollectionHandler;
 exports.apiEditCollectionHandler = apiEditCollectionHandler;
 exports.apiDeleteCollectionHandler = apiDeleteCollectionHandler;
-*/

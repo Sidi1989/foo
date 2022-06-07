@@ -5,44 +5,54 @@ const cookieParser = require('cookie-parser');
 const {renderFile} = require('ejs');
 const {bookNewHandler, bookProfileHandler, bookSearchHandler} = require('./controllers/pages/books.js');
 const {collectionEditHandler} = require('./controllers/pages/collections.js');
-const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = require('./controllers/pages/members.js');
+const {
+  signInHandler,
+  signUpHandler,
+  memberProfileHandler,
+  memberEditHandler
+} = require('./controllers/pages/members.js');
+
+const {apiSignInHandler} = require('./controllers/apis/sessions.js');
 
 const {
-  apiSignInHandler,
-
   apiCreateBookHandler,
-  apiCreateCollectionHandler,
-  apiCreatePetitionHandler,
-  apiCreateReviewHandler,
-  apiCreateMemberHandler,
-
   apiListBooksHandler,
-  apiListCollectionsHandler,
-  apiListPetitionsHandler,
-  apiListReviewsHandler,
-  apiListMembersHandler,
-
   apiRetrieveBookHandler,
-  apiRetrieveCollectionHandler,
-  apiRetrievePetitionHandler,
-  apiRetrieveReviewHandler,
-  apiRetrieveMemberHandler,
-
   apiEditBookHandler,
+  apiDeleteBookHandler
+} = require('./controllers/apis/books.js');
+
+const {
+  apiCreateCollectionHandler,
+  apiListCollectionsHandler,
+  apiRetrieveCollectionHandler,
   apiEditCollectionHandler,
-  apiEditPetitionHandler,
-  apiEditReviewHandler,
+  apiDeleteCollectionHandler
+} = require('./controllers/apis/collections.js');
+
+const {
+  apiCreateMemberHandler,
+  apiListMembersHandler,
+  apiRetrieveMemberHandler,
   apiEditMemberHandler,
-
-  apiDeleteBookHandler,
-  apiDeleteCollectionHandler,
-  apiDeletePetitionHandler,
-  apiDeleteReviewHandler,
   apiDeleteMemberHandler
+} = require('./controllers/apis/members.js');
 
-} = require('./controllers/api.js');
+const {
+  apiCreatePetitionHandler,
+  apiListPetitionsHandler,
+  apiRetrievePetitionHandler,
+  apiEditPetitionHandler,
+  apiDeletePetitionHandler
+} = require('./controllers/apis/petitions.js');
 
-
+const {
+  apiCreateReviewHandler,
+  apiListReviewsHandler,
+  apiRetrieveReviewHandler,
+  apiEditReviewHandler,
+  apiDeleteReviewHandler
+} = require('./controllers/apis/reviews.js');
 
 
 const app = express();
@@ -67,7 +77,6 @@ app.use(function (req, res, next) {
   req.user = {};
   req.user.type = (req.cookies.member)? 'member' : 'guest';
   req.user.id = req.cookies.member || null;
-  console.log(req.user);
   return next();
 });
 

@@ -1,13 +1,9 @@
-/*
-const {getAllBooks, getBookById} = require('../models/books.js');
-const {getAllMembers, getMemberById} = require('../models/members.js');
-const {getCategoryById} = require('../models/categories.js');
-const {getSubcategoryById} = require('../models/subcategories.js');
-const {getLanguageById} = require('../models/languages.js');
-const {getAuthorById} = require('../models/authors.js');
-const {getAllCollections, getCollectionById} = require('../models/collections.js');
-const {getAllPetitions, getPetitionById} = require('../models/petitions.js');
-const {getAllReviews, getReviewById} = require('../models/reviews.js');
+const {getAllBooks, getBookById} = require('../../models/books.js');
+const {getCategoryById} = require('../../models/categories.js');
+const {getSubcategoryById} = require('../../models/subcategories.js');
+const {getLanguageById} = require('../../models/languages.js');
+const {getAuthorById} = require('../../models/authors.js');
+const {getAllCollections, getCollectionById} = require('../../models/collections.js');
 
 
 
@@ -73,4 +69,3 @@ exports.apiListBooksHandler = apiListBooksHandler;
 exports.apiRetrieveBookHandler = apiRetrieveBookHandler;
 exports.apiEditBookHandler = apiEditBookHandler;
 exports.apiDeleteBookHandler = apiDeleteBookHandler;
-*/
