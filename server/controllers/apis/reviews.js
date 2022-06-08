@@ -1,13 +1,20 @@
-const {getAllReviews, getReviewById} = require('../../models/reviews.js');
+const {getAllReviews, getReviewById, createReview} = require('../../models/reviews.js');
 
 
 
 
 var apiCreateReviewHandler = function (req, res) {
-  var reviewId = new Date();
+  var newReviewInfo = {
+    reviewer: req.user.id,
+    bookRate: req.body.bookRate,
+    copyRate: req.body.copyRate,
+    comment: req.body.comment
+  };
+  var newReview = createReview(newReviewInfo);
+
   var info = {
     status: "OK",
-    review: reviewId
+    member: newReview
   };
   return res.json(info);
 };

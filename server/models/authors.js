@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-//const authors = require('../../runtime/db/authors.json');
 const authorsRelativeDirname = '../../runtime/db/authors';
 const authorsAbsoluteDirname = path.join(__dirname, authorsRelativeDirname);
 const authorsBasenames = fs.readdirSync(authorsAbsoluteDirname);
@@ -24,8 +23,7 @@ var getAuthorById = function (id) {
     var author = {};
     author.name = "Anónimo";
     return author;
-  };
-
+  }
   var clonedAuthors = _.cloneDeep(authors);
   var filteredAuthors = clonedAuthors.filter(function (e) {
     return (e.id == id);
@@ -36,8 +34,8 @@ var getAuthorById = function (id) {
     author = null;
   } else {
     author = filteredAuthors[0];
-  };
-
+  }
+  
   return author;
 };
 

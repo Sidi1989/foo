@@ -1,13 +1,29 @@
-const {getAllMembers, getMemberById} = require('../../models/members.js');
+const {getAllMembers, getMemberById, createMember} = require('../../models/members.js');
 
 
 
 
 var apiCreateMemberHandler = function (req, res) {
-  var memberId = new Date();
+  var newMemberInfo = {
+    nickname: req.body.nickname,
+    name: {
+      first: req.body.first,
+      last: req.body.last
+    },
+    email: req.body.email,
+    password: req.body.password,
+    birthday: {
+      dd: req.body.dd,
+      mm: req.body.mm,
+      yyyy: req.body.yyyy
+    },
+    pic: req.body.pic
+  };
+  var newMember = createMember(newMemberInfo);
+
   var info = {
     status: "OK",
-    member: memberId
+    member: newMember
   };
   return res.json(info);
 };

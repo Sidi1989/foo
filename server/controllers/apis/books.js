@@ -1,4 +1,4 @@
-const {getAllBooks, getBookById} = require('../../models/books.js');
+const {getAllBooks, getBookById, createBook} = require('../../models/books.js');
 const {getCategoryById} = require('../../models/categories.js');
 const {getSubcategoryById} = require('../../models/subcategories.js');
 const {getLanguageById} = require('../../models/languages.js');
@@ -9,11 +9,34 @@ const {getAllCollections, getCollectionById} = require('../../models/collections
 
 
 var apiCreateBookHandler = function (req, res) {
-  var bookId = new Date();
+  var newBookInfo = {
+    owner: req.user.id,
+    title: req.body.title,
+    author: req.body.author,
+    location: req.body.location,
+    synopsis: req.body.synopsis,
+    pages: req.body.pages,
+    dimensions: {
+      length: req.body.length,
+      width: req.body.width
+    },
+    format: req.body.format,
+    editorial: req.body.editorial,
+    publishDate: req.body.publishDate,
+    issue: req.body.issue,
+    isbn: req.body.isbn,
+    category: req.body.category,
+    subcategory: req.body.subcategory,
+    language: req.body.language,
+    pic: req.body.pic
+  };
+  var newBook = createBook(newBookInfo);
+
   var info = {
     status: "OK",
-    book: bookId
+    book: newBook
   };
+
   return res.json(info);
 };
 

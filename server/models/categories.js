@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-//const categories = require('../../runtime/db/categories.json');
 const categoriesRelativeDirname = '../../runtime/db/categories';
 const categoriesAbsoluteDirname = path.join(__dirname, categoriesRelativeDirname);
 const categoriesBasenames = fs.readdirSync(categoriesAbsoluteDirname);
@@ -30,7 +29,7 @@ var getCategoryById = function (id) {
     category = null;
   } else {
     category = filteredCategories[0];
-  };
+  }
 
   return category;
 };

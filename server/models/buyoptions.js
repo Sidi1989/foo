@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-//const buyoptions = require('../../runtime/db/buyoptions.json');
 const buyoptionsRelativeDirname = '../../runtime/db/buyoptions';
 const buyoptionsAbsoluteDirname = path.join(__dirname, buyoptionsRelativeDirname);
 const buyoptionsBasenames = fs.readdirSync(buyoptionsAbsoluteDirname);
@@ -30,7 +29,7 @@ var getBuyoptionById = function (id) {
     buyoption = null;
   } else {
     buyoption = filteredBuyoptions[0];
-  };
+  }
 
   return buyoption;
 };

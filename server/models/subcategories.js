@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-//const subcategories = require('../../runtime/db/subcategories.json');
 const subcategoriesRelativeDirname = '../../runtime/db/subcategories';
 const subcategoriesAbsoluteDirname = path.join(__dirname, subcategoriesRelativeDirname);
 const subcategoriesBasenames = fs.readdirSync(subcategoriesAbsoluteDirname);
@@ -30,7 +29,7 @@ var getSubcategoryById = function (id) {
     subcategory = null;
   } else {
     subcategory = filteredSubcategories[0];
-  };
+  }
 
   return subcategory;
 };

@@ -1,13 +1,21 @@
-const {getAllPetitions, getPetitionById} = require('../../models/petitions.js');
+const {getAllPetitions, getPetitionById, createPetition} = require('../../models/petitions.js');
 
 
 
 
 var apiCreatePetitionHandler = function (req, res) {
-  var petitionId = new Date();
+  var newPetitionInfo = {
+    title: req.body.title,
+    author: req.body.title,
+    category: req.body.title,
+    subcategory: req.body.title,
+    language: req.body.title
+  };
+  var newPetition = createPetition(newPetitionInfo);
+
   var info = {
     status: "OK",
-    petition: petitionId
+    member: newPetition
   };
   return res.json(info);
 };

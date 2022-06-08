@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-//const members = require('../../runtime/db/members.json');
+const {v4: uuidv4} = require('uuid');
 const membersRelativeDirname = '../../runtime/db/members';
 const membersAbsoluteDirname = path.join(__dirname, membersRelativeDirname);
 const membersBasenames = fs.readdirSync(membersAbsoluteDirname);
@@ -54,8 +54,38 @@ var getLastBookForMember = function (member) {
 };
 
 
+var createMember = function (info) {
+  var memberId = `m${uuidv4().slice(0,3)}`;
+  var newMember = {
+    id: memberId,
+    clientAge: 38,
+    nickname: info.nickname,
+    name: {
+      first: info.first,
+      last: info.last
+    },
+    email: info.email,
+    password: info.password,
+    birthday: {
+      dd: info.dd,
+      mm: info.mm,
+      yyyy: info.yyyy
+    },
+    pic: info.pic
+  };
+  var newMemberAsJson = JSON.stringify(newMember, null, 2);
+  var dirname = membersAbsoluteDirname;
+  var basename = `${memberId}.json`;
+  var pathname = path.join(dirname, basename);
+  fs.writeFileSync(pathname, newMemberAsJson);
+
+  return newMember;
+};
+
+
 
 
 exports.getAllMembers = getAllMembers;
 exports.getMemberById = getMemberById;
 exports.getLastBookForMember = getLastBookForMember;
+exports.createMember = createMember;

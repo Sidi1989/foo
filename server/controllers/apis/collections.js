@@ -1,14 +1,21 @@
-const {getAllCollections, getCollectionById} = require('../../models/collections.js');
+const {getAllCollections, getCollectionById, createCollection} = require('../../models/collections.js');
 
 
 
 
 var apiCreateCollectionHandler = function (req, res) {
-  var collectionId = new Date();
+  var newCollectionInfo = {
+    owner: req.user.id,
+    name: req.body.name,
+    pic: req.body.pic
+  };
+  var newCollection = createCollection(newCollectionInfo);
+
   var info = {
     status: "OK",
-    collection: collectionId
+    collection: newCollection
   };
+
   return res.json(info);
 };
 

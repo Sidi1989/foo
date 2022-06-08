@@ -1,3 +1,4 @@
+const {v4: uuidv4} = require('uuid');
 const {getAllMembers, getMemberById} = require('../../models/members.js');
 
 
@@ -22,7 +23,7 @@ var apiSignInHandler = function (req, res) {
     return res.json({
       status: 'OK',
       id: member.id,
-      session: new Date()
+      session: `session${uuidv4().slice(0,3)}`
     });
   } else {
     return res.json({
