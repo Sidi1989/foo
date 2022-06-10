@@ -5,8 +5,8 @@ const {getAllSubcategories, getSubcategoryById} = require('../../models/subcateg
 const {getAllLanguages, getLanguageById} = require('../../models/languages.js');
 const {getAuthorById} = require('../../models/authors.js');
 const {getReviewById} = require('../../models/reviews.js');
-const {getMemberById} = require('../../models/members.js');
-
+const {getMemberById, getCollectionsForMember} = require('../../models/members.js');
+const {getCollectionById} = require('../../models/collections.js');
 
 
 
@@ -55,8 +55,6 @@ var bookProfileHandler = function (req, res) {
 
   var info = {};
 
-  info.member = req.user;
-
   var locations = getAllLocations();
   info.locations = locations;
 
@@ -76,22 +74,21 @@ var bookProfileHandler = function (req, res) {
     info.book = book;
   }
 
+  info.member = req.user;
+  var memberCollections = getCollectionsForMember(req.user.id);
+  info.member.collections = memberCollections;
+  
   var location = getLocationById(book.location);
-  if (book.location == null) {
-    info.book.location = {};
-  } else {
-    info.book.location = location;
-  }
+  info.book.location = location;
 
   var language = getLanguageById(book.language);
-  if (book.language == null) {
-    info.book.language = {};
-  } else {
-    info.book.language = language;
-  }
+  info.book.language = language;
 
   var author = getAuthorById(book.author);
   info.book.author = author;
+
+  var collection = getCollectionById(book.collection);
+  info.book.collection = collection;
 
   var reviewsMapped = book.reviews.map(function (id) {
     var review = getReviewById(id);

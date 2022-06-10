@@ -1,9 +1,9 @@
-const {getAllBooks, getBookById, createBook} = require('../../models/books.js');
+const {getAllBooks, getBookById, createBook, deleteBook} = require('../../models/books.js');
 const {getCategoryById} = require('../../models/categories.js');
 const {getSubcategoryById} = require('../../models/subcategories.js');
 const {getLanguageById} = require('../../models/languages.js');
 const {getAuthorById} = require('../../models/authors.js');
-const {getAllCollections, getCollectionById} = require('../../models/collections.js');
+const {getCollectionById} = require('../../models/collections.js');
 
 
 
@@ -11,19 +11,20 @@ const {getAllCollections, getCollectionById} = require('../../models/collections
 var apiCreateBookHandler = function (req, res) {
   var newBookInfo = {
     owner: req.user.id,
+    collection: req.body.collection,
+    location: req.body.location,
     title: req.body.title,
     author: req.body.author,
-    location: req.body.location,
     synopsis: req.body.synopsis,
-    pages: req.body.pages,
+    pages: Number(req.body.pages),
     dimensions: {
-      length: req.body.length,
-      width: req.body.width
+      length: Number(req.body.lengthDimension),
+      width: Number(req.body.widthDimension)
     },
     format: req.body.format,
     editorial: req.body.editorial,
-    publishDate: req.body.publishDate,
-    issue: req.body.issue,
+    publishDate: Number(req.body.publishDate),
+    issue: Number(req.body.issue),
     isbn: req.body.isbn,
     category: req.body.category,
     subcategory: req.body.subcategory,
@@ -79,9 +80,13 @@ var apiEditBookHandler = function (req, res) {
 
 
 var apiDeleteBookHandler = function (req, res) {
-  var book = getBookById(req.params.book);
+  deleteBook(req.params.book);
 
-  return res.json(book);
+  var info = {
+    status: "OK",
+    book: req.params.book
+  };
+  return res.json(info);
 };
 
 

@@ -1,4 +1,4 @@
-const {getAllMembers, getMemberById, createMember} = require('../../models/members.js');
+const {getAllMembers, getMemberById, createMember, deleteMember} = require('../../models/members.js');
 
 
 
@@ -6,17 +6,13 @@ const {getAllMembers, getMemberById, createMember} = require('../../models/membe
 var apiCreateMemberHandler = function (req, res) {
   var newMemberInfo = {
     nickname: req.body.nickname,
-    name: {
-      first: req.body.first,
-      last: req.body.last
-    },
     email: req.body.email,
     password: req.body.password,
-    birthday: {
-      dd: req.body.dd,
-      mm: req.body.mm,
-      yyyy: req.body.yyyy
+    name: {
+      first: req.body.firstname,
+      last: req.body.lastname
     },
+    birthday: req.body.birthday,
     pic: req.body.pic
   };
   var newMember = createMember(newMemberInfo);
@@ -51,9 +47,13 @@ var apiEditMemberHandler = function (req, res) {
 
 
 var apiDeleteMemberHandler = function (req, res) {
-  var member = getMemberById(req.params.member);
+  deleteMember(req.params.member);
 
-  return res.json(member);
+  var info = {
+    status: "OK",
+    member: req.params.member
+  };
+  return res.json(info);
 };
 
 

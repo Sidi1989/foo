@@ -47,19 +47,18 @@ var getRandomBooks = function (quantity, size) {
 
 var createBook = function (info) {
   var bookId = `b${uuidv4().slice(0,3)}`;
+  var date = `${new Date().toJSON().split('T')[0]}`
   var newBook = {
     id: bookId,
-    addingDate: 50,
     owner: info.owner,
+    addingDate: date,
+    collection: info.collection,
+    location: info.location,
     title: info.title,
     author: info.author,
-    location: info.location,
     synopsis: info.synopsis,
     pages: info.pages,
-    dimensions: {
-      length: info.length,
-      width: info.width
-    },
+    dimensions: info.dimensions,
     format: info.format,
     editorial: info.editorial,
     publishDate: info.publishDate,
@@ -80,9 +79,20 @@ var createBook = function (info) {
 };
 
 
+var deleteBook = function (bookId) {
+  var dirname = booksAbsoluteDirname;
+  var basename = `${bookId}.json`;
+  var pathname = path.join(dirname, basename);
+  fs.unlinkSync(pathname);
+
+  return bookId
+};
+
+
 
 
 exports.getAllBooks = getAllBooks;
 exports.getBookById = getBookById;
 exports.getRandomBooks = getRandomBooks;
 exports.createBook = createBook;
+exports.deleteBook = deleteBook;

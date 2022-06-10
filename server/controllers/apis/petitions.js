@@ -1,4 +1,4 @@
-const {getAllPetitions, getPetitionById, createPetition} = require('../../models/petitions.js');
+const {getAllPetitions, getPetitionById, createPetition, deletePetition} = require('../../models/petitions.js');
 
 
 
@@ -6,16 +6,17 @@ const {getAllPetitions, getPetitionById, createPetition} = require('../../models
 var apiCreatePetitionHandler = function (req, res) {
   var newPetitionInfo = {
     title: req.body.title,
-    author: req.body.title,
-    category: req.body.title,
-    subcategory: req.body.title,
-    language: req.body.title
+    author: req.body.author,
+    category: req.body.category,
+    subcategory: req.body.subcategory,
+    language: req.body.language,
+    shoppingLink: req.body.shoppingLink
   };
   var newPetition = createPetition(newPetitionInfo);
 
   var info = {
     status: "OK",
-    member: newPetition
+    petition: newPetition
   };
   return res.json(info);
 };
@@ -43,9 +44,13 @@ var apiEditPetitionHandler = function (req, res) {
 
 
 var apiDeletePetitionHandler = function (req, res) {
-  var petition = getPetitionById(req.params.petition);
+  deletePetition(req.params.petition);
 
-  return res.json(petition);
+  var info = {
+    status: "OK",
+    petition: req.params.petition
+  };
+  return res.json(info);
 };
 
 

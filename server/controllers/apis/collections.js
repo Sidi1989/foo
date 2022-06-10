@@ -1,4 +1,4 @@
-const {getAllCollections, getCollectionById, createCollection} = require('../../models/collections.js');
+const {getAllCollections, getCollectionById, createCollection, deleteCollection} = require('../../models/collections.js');
 
 
 
@@ -42,9 +42,13 @@ var apiEditCollectionHandler = function (req, res) {
 
 
 var apiDeleteCollectionHandler = function (req, res) {
-  var collection = getCollectionById(req.params.collection);
+  deleteCollection(req.params.collection);
 
-  return res.json(collection);
+  var info = {
+    status: "OK",
+    collection: req.params.collection
+  };
+  return res.json(info);
 };
 
 

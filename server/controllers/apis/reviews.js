@@ -1,4 +1,4 @@
-const {getAllReviews, getReviewById, createReview} = require('../../models/reviews.js');
+const {getAllReviews, getReviewById, createReview, deleteReview} = require('../../models/reviews.js');
 
 
 
@@ -6,15 +6,16 @@ const {getAllReviews, getReviewById, createReview} = require('../../models/revie
 var apiCreateReviewHandler = function (req, res) {
   var newReviewInfo = {
     reviewer: req.user.id,
-    bookRate: req.body.bookRate,
-    copyRate: req.body.copyRate,
+    book: req.book.id,
+    bookRate: Number(req.body.bookRate),
+    copyRate: Number(req.body.copyRate),
     comment: req.body.comment
   };
   var newReview = createReview(newReviewInfo);
 
   var info = {
     status: "OK",
-    member: newReview
+    review: newReview
   };
   return res.json(info);
 };
@@ -42,9 +43,13 @@ var apiEditReviewHandler = function (req, res) {
 
 
 var apiDeleteReviewHandler = function (req, res) {
-  var review = getReviewById(req.params.review);
+  deleteReview(req.params.review);
 
-  return res.json(review);
+  var info = {
+    status: "OK",
+    review: req.params.review
+  };
+  return res.json(info);
 };
 
 

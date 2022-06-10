@@ -38,10 +38,11 @@ var getCollectionById = function (id) {
 
 var createCollection = function (info) {
   var collectionId = `col${uuidv4().slice(0,3)}`;
+  var date = `${new Date().toJSON().split('T')[0]}`
   var newCollection = {
     id: collectionId,
-    age: 200,
     owner: info.owner,
+    addingDate: date,
     name: info.name,
     pic: info.pic
   };
@@ -55,8 +56,19 @@ var createCollection = function (info) {
 };
 
 
+var deleteCollection = function (colectionId) {
+  var dirname = collectionsAbsoluteDirname;
+  var basename = `${colectionId}.json`;
+  var pathname = path.join(dirname, basename);
+  fs.unlinkSync(pathname);
+
+  return colectionId
+};
+
+
 
 
 exports.getAllCollections = getAllCollections;
 exports.getCollectionById = getCollectionById;
 exports.createCollection = createCollection;
+exports.deleteCollection = deleteCollection;

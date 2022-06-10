@@ -11,6 +11,7 @@ const members = membersBasenames.map(function (e) {
   return member;
 });
 const {getAllBooks} = require('./books');
+const {getAllCollections} = require('./collections');
 
 
 
@@ -37,15 +38,10 @@ var getMemberById = function (id) {
 };
 
 
-/**
- * @description
- *
- * @param member String. Identificador del miembro
- */
-var getLastBookForMember = function (member) {
+var getLastBookForMember = function (memberId) {
   var books = getAllBooks();
   var memberBooks = books.filter(function (e) {
-    return e.owner == member;
+    return e.owner == memberId;
   });
   var sortedBooks = _.sortBy(memberBooks, 'addingDate');
   var lastBook = _.head(sortedBooks);
@@ -54,23 +50,26 @@ var getLastBookForMember = function (member) {
 };
 
 
+var getCollectionsForMember = function (memberId) {
+  var collections = getAllCollections();
+  var memberCollections = collections.filter(function (e) {
+    return e.owner == memberId;
+  });
+  return memberCollections;
+};
+
+
 var createMember = function (info) {
   var memberId = `m${uuidv4().slice(0,3)}`;
+  var date = `${new Date().toJSON().split('T')[0]}`
   var newMember = {
     id: memberId,
-    clientAge: 38,
+    addingDate: date,
     nickname: info.nickname,
-    name: {
-      first: info.first,
-      last: info.last
-    },
     email: info.email,
     password: info.password,
-    birthday: {
-      dd: info.dd,
-      mm: info.mm,
-      yyyy: info.yyyy
-    },
+    name: info.name,
+    birthday: info.birthday,
     pic: info.pic
   };
   var newMemberAsJson = JSON.stringify(newMember, null, 2);
@@ -83,9 +82,21 @@ var createMember = function (info) {
 };
 
 
+var deleteMember = function (memberId) {
+  var dirname = membersAbsoluteDirname;
+  var basename = `${memberId}.json`;
+  var pathname = path.join(dirname, basename);
+  fs.unlinkSync(pathname);
+
+  return memberId
+};
+
+
 
 
 exports.getAllMembers = getAllMembers;
 exports.getMemberById = getMemberById;
 exports.getLastBookForMember = getLastBookForMember;
+exports.getCollectionsForMember = getCollectionsForMember;
 exports.createMember = createMember;
+exports.deleteMember = deleteMember;

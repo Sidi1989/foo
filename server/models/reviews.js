@@ -38,10 +38,12 @@ var getReviewById = function (id) {
 
 var createReview = function (info) {
   var reviewId = `rev${uuidv4().slice(0,3)}`;
+  var date = `${new Date().toJSON().split('T')[0]}`
   var newReview = {
     id: reviewId,
-    age: 13,
+    book: info.book,
     reviewer: info.reviewer,
+    addingDate: date,
     bookRate: info.bookRate,
     copyRate: info.copyRate,
     comment: info.comment
@@ -56,8 +58,19 @@ var createReview = function (info) {
 };
 
 
+var deleteReview = function (reviewId) {
+  var dirname = reviewsAbsoluteDirname;
+  var basename = `${reviewId}.json`;
+  var pathname = path.join(dirname, basename);
+  fs.unlinkSync(pathname);
+
+  return reviewId
+};
+
+
 
 
 exports.getAllReviews = getAllReviews;
 exports.getReviewById = getReviewById;
 exports.createReview = createReview;
+exports.deleteReview = deleteReview;
