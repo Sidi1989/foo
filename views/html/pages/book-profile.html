@@ -54,11 +54,33 @@
                   <i class="fa-solid fa-bookmark"></i>
                 </button>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item disabled"><h5>Actualmente en tu Colección "X"</h5></a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">+ Libros sin Colección</a></li>
-                    <li><a class="dropdown-item" href="#">+ Colección Y</a></li>
+                    <h5 class="dropdown-item text-muted">Actualmente en "<%=book.collection.name%>"</h5>
+                    <div class="dropdown-divider"></div>
+                    <form class="my-1">
+                      <div class="form-check">
+                        <input id="relocate_book_to_orphan" type="radio" name="relocate_book_to" value="00" class="form-check-input">
+                        <label for="relocate_book_to_orphan" class="form-check-label">
+                          Libros sin Colección
+                        </label>
+                      </div>
+                      <% member.collections.forEach(function(e,i){ %>
+                      <div class="form-check">
+                        <input id="relocate_book_to_<%=i%>" type="radio" name="relocate_book_to" value="<%=e.id%>"
+                            <% if (e.id==book.collection.id) { %>
+                              checked
+                            <% } %>
+                            class="form-check-input" >
+                        <label for="relocate_book_to_<%=i%>" class="form-check-label">
+                          <%=e.name%>
+                        </label>
+                      </div>
+                      <% }) %>
+                    </form>
+                    <button id="relocate_save_button" type="submit" class="btn btn-success btn-sm" name="relocate_save_button">
+                      Mover Libro
+                    </button>
                   </ul>
+
                 <!-- Modal para Editar Libro -->
                 <button id="edit_book_button" type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#edit_book_modal">
                   <i class="fa-solid fa-file-signature"></i>

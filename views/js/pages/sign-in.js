@@ -19,21 +19,21 @@ var memberSignInListener = function () {
     var url = '/api/sessions';
     var details = {
         'email': email,
-        'password': password,
+        'password': password
     };
     var formBody = [];
-    for (var property in details) {
-      var encodedKey = encodeURIComponent(property);
-      var encodedValue = encodeURIComponent(details[property]);
+    for (var k in details) {
+      var encodedKey = encodeURIComponent(k);
+      var encodedValue = encodeURIComponent(details[k]);
       formBody.push(encodedKey + "=" + encodedValue);
-    };
-    formBody = formBody.join("&");
+    }
+    var formBodyAsString = formBody.join("&");
     var options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: formBody
+      body: formBodyAsString
     };
 
     fetch(url, options)
@@ -42,7 +42,7 @@ var memberSignInListener = function () {
           if (info.status == 'KO') {
             window.alert('Algo ha salido mal')
           } else {
-            setCookie('member', info.id, 5);
+            setCookie('session', info.id, 5);
             window.location = `/members/${info.id}`;
           }
       });

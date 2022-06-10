@@ -15,8 +15,6 @@ var userhomeHandler = function (req, res) {
 app.get('/users/:user', userhomeHandler);
 
 
-
-
 var bookdetailHandler = function (req, res) {
   var pathname = `${__dirname}/../Pinakes/html/bookdetail.html`;
 
@@ -28,7 +26,7 @@ var bookdetailHandler = function (req, res) {
     var info = {};
   } else {
     var info = filteredBooks[0];
-  };
+  }
 
 
   if (req.params.book == '1') {

@@ -2,9 +2,10 @@ var books = [];
 
 /**
  * @description
- * listener para que, al pulsar teclas en el buscador, vaya cambiando el
- * resultado de la búsqueda.
+ * listener para que, al pulsar teclas en el buscador, vayan cambiando los
+ * libros que se obtienen como resultado de la búsqueda.
  */
+
 var bookSearchingListener = function () {
   var bookSearchingInputNode = document.getElementById("book_searching_input");
   bookSearchingInputNode.addEventListener('keyup', function () {
@@ -15,12 +16,11 @@ var bookSearchingListener = function () {
       .then(response => response.json())
       .then(function (info) {
           var searchTableBodyNode = document.getElementById('search_table_body');
-          // Limpiamos la tabla
+          // Limpia la Tabla, para reescribir en ella.
           searchTableBodyNode.innerHTML = '';
-          // Nos quedamos con aquellos libros cuyas primeras letras coinciden
-          // con la búsqueda.
+          // Se va consiguiendo buscar aquellos libros cuyas primeras letras
+          // coinciden con las teclas pulsadas.
           var filteredBooks = info.filter(function (book) {
-            // "!" significa "no"
             if (!userSearch) {
               return false;
             } else {
@@ -46,13 +46,20 @@ var bookSearchingListener = function () {
 window.addEventListener('load', bookSearchingListener);
 
 
-// Listener para que, al hacer click en el botón de ordenar, las búsquedas realizadas se ordenen según su criterio
+/**
+ * @description
+ * listener para que, al hacer click en el botón de ordenar, las búsquedas
+ * realizadas se ordenen según su criterio.
+ */
+
 var orderingListener = function () {
   var orderingNode = document.getElementById("ordering_button");
   orderingNode.addEventListener('click', function () {
       var searchTableBodyNode = document.getElementById('search_table_body');
+      // Limpia la Tabla, para reescribir en ella.
       searchTableBodyNode.innerHTML = '';
-
+      // Se reordenan los libros en la Tabla, volviendo a "pintarla" según
+      // cómo deban disponerse los resultados de acuerdo al criterio.
       var sortedBooks = _.sortBy(books, ['title']);
       sortedBooks.forEach(function (book) {
         const searchedBookNode = document.createElement('tr')

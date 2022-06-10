@@ -23,23 +23,26 @@
 
     <div class="col text-end">
       <div class="btn-group">
+        <button class="btn btn-success btn-lg" type="button">
+          <i class="text-white fa-solid fa-bell fa-lg"></i>
+          <span id="notifications_badge" class="badge rounded-pill bg-success" name="notifications_badge">
+            2
+          </span>
+        </button>
         <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="text-white fa-solid fa-user-large"></i>
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item text-center" href="/members/<%=member.id%>"><%=member.nickname%></a></li>
-          <li><hr class="dropdown-divider"></li>
           <li>
-            <a class="dropdown-item" href="#">
-              <i class="fa-solid fa-bell fa-lg"></i>
-              <span id="notifications_badge" class="me-2 badge rounded-pill bg-success" name="notifications_badge">
-                2
-              </span> Notificaciones recibidas
+            <a class="dropdown-item text-center" href="/members/<%=member.id%>">
+              <img id="member_pic_file" class="img-thumbnail" name="member_pic_file" style="width: 100px; height: 85px" src="<%=member.pic%>">
+              <p><%=member.nickname%></p>
             </a>
           </li>
+          <li><hr class="dropdown-divider"></li>
           <li>
             <a class="dropdown-item" href="/members/<%=member.id%>/preferences">
-              <i class="fa-solid fa-user-pen fa-lg"></i> Opciones de configuración
+              <i class="fa-solid fa-user-pen fa-lg"></i> Configuración
             </a>
           </li>
           <li>
