@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
+
 const quotesRelativeDirname = '../../runtime/db/quotes';
 const quotesAbsoluteDirname = path.join(__dirname, quotesRelativeDirname);
 const quotesBasenames = fs.readdirSync(quotesAbsoluteDirname);

@@ -15,7 +15,6 @@ var apiCreateCollectionHandler = function (req, res) {
     status: "OK",
     collection: newCollection
   };
-
   return res.json(info);
 };
 

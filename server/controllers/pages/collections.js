@@ -1,21 +1,20 @@
 const {getMemberById} = require('../../models/members.js');
-const {getBookById} = require('../../models/books.js')
 const {getCollectionById} = require('../../models/collections.js');
+const {getBookById} = require('../../models/books.js')
 
 
 
 
 /**
  * @description
- * función destinada a cubrir la petición de Mostrar la Configuración de una Colección concreta
+ * función destinada a cubrir la petición de mostrar las Características de una Colección concreta
  *
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
  */
- 
-var collectionEditHandler= function (req, res) {
-  var pathname = `${__dirname}/../../../Pinakes/html/views/collection-edit.html`;
 
+var collectionEditHandler= function (req, res) {
+  var pathname = `${__dirname}/../../../views/html/pages/collection-edit.html`;
   var info = {};
 
   var member = getMemberById(req.params.member);

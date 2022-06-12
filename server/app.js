@@ -1,9 +1,8 @@
-const fs = require('fs');
-const path = require('path');
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const {renderFile} = require('ejs');
-const {bookNewHandler, bookProfileHandler, bookSearchHandler} = require('./controllers/pages/books.js');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const {bookProfileHandler, bookSearchHandler} = require('./controllers/pages/books.js');
 const {collectionEditHandler} = require('./controllers/pages/collections.js');
 const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = require('./controllers/pages/members.js');
 
@@ -57,20 +56,16 @@ const {
   apiDeleteReviewHandler
 } = require('./controllers/apis/reviews.js');
 
-
 const app = express();
 const port = process.argv[2] || 3004;
-
 app.engine('html', renderFile);
-
-const options = {};
-const publicDirname = path.join(__dirname, '../Pinakes');
-app.use('/public', express.static(publicDirname, options));
-
-app.use(function (req, res, next) {
-  console.log(req.originalUrl);
-  return next();
+app.listen(port, function () {
+  console.log(`Pinakes se escucha en el puerto ${port}`)
 });
+
+const publicDirname = path.join(__dirname, '../views');
+const options = {};
+app.use('/public', express.static(publicDirname, options));
 
 app.use(cookieParser()); // for parsing cookies
 app.use(express.json()); // for parsing json
@@ -85,8 +80,11 @@ app.use(function (req, res, next) {
   return next();
 });
 
+app.use(function (req, res, next) {
+  console.log(req.originalUrl);
+  return next();
+});
 
-app.get('/books/new', bookNewHandler);
 app.get('/books/search', bookSearchHandler);
 app.get('/books/:book', bookProfileHandler);
 app.get('/auth/signin', signInHandler);
@@ -131,7 +129,3 @@ app.delete('/api/locations/:location', apiDeleteLocationHandler);
 app.delete('/api/members/:member', apiDeleteMemberHandler);
 app.delete('/api/petitions/:petition', apiDeletePetitionHandler);
 app.delete('/api/reviews/:review', apiDeleteReviewHandler);
-
-app.listen(port, function () {
-  console.log(`Pinakes se escucha en el port ${port}`)
-});

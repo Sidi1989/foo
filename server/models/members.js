@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 const {v4: uuidv4} = require('uuid');
+
 const membersRelativeDirname = '../../runtime/db/members';
 const membersAbsoluteDirname = path.join(__dirname, membersRelativeDirname);
 const membersBasenames = fs.readdirSync(membersAbsoluteDirname);
@@ -10,6 +11,7 @@ const members = membersBasenames.map(function (e) {
   var member = require(pathname);
   return member;
 });
+
 const {getAllBooks} = require('./books');
 const {getAllCollections} = require('./collections');
 

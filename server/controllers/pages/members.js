@@ -1,26 +1,26 @@
+const {getRandomQuotes} = require('../../models/quotes.js');
 const {getMemberById, getLastBookForMember} = require('../../models/members.js');
-const {getBookById, getRandomBooks} = require('../../models/books.js');
+const {getAllCategories} = require('../../models/categories.js');
+const {getAllSubcategories} = require('../../models/subcategories.js');
+const {getAllLanguages} = require('../../models/languages.js');
 const {getCollectionById} = require('../../models/collections.js');
+const {getBookById, getRandomBooks} = require('../../models/books.js');
 const {getAuthorById} = require('../../models/authors.js');
 const {getPetitionById} = require('../../models/petitions.js');
-const {getAllCategories, getCategoryById} = require('../../models/categories.js');
-const {getAllSubcategories, getSubcategoryById} = require('../../models/subcategories.js');
-const {getAllLanguages, getLanguageById} = require('../../models/languages.js');
-const {getQuoteById, getRandomQuotes} = require('../../models/quotes.js');
 
 
 
 
 /**
 * @description
-* función destinada a cubrir la petición de Login de un miembro
+* función destinada a cubrir la petición del login de un usuario
 *
 * @param req contiene la información de la petición
 * @param res contiene la renderización de la petición para el cliente
 */
 
 var signInHandler= function (req, res) {
-  var pathname = `${__dirname}/../../../Pinakes/html/views/sign-in.html`;
+  var pathname = `${__dirname}/../../../views/html/pages/sign-in.html`;
   var info = {};
 
   var dailyQuote = getRandomQuotes(1)[0];
@@ -33,15 +33,14 @@ var signInHandler= function (req, res) {
 
 /**
  * @description
- * función destinada a cubrir la petición de Registrar a un nuevo miembro
+ * función destinada a cubrir la petición de Creación de un nuevo miembro
  *
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
  */
 
 var signUpHandler= function (req, res) {
-  var pathname = `${__dirname}/../../../Pinakes/html/views/sign-up.html`;
-
+  var pathname = `${__dirname}/../../../views/html/pages/sign-up.html`;
   var info = {};
 
 
@@ -51,15 +50,14 @@ var signUpHandler= function (req, res) {
 
 /**
  * @description
- * función destinada a cubrir la petición de Mostrar las Preferencias de un miembro concreto
+ * función destinada a cubrir la petición de mostrar las Características de la cuenta de un miembro
  *
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
  */
 
 var memberEditHandler= function (req, res) {
-  var pathname = `${__dirname}/../../../Pinakes/html/views/member-edit.html`;
-
+  var pathname = `${__dirname}/../../../views/html/pages/member-edit.html`;
   var info = {};
 
   var member = getMemberById(req.params.member);
@@ -68,6 +66,7 @@ var memberEditHandler= function (req, res) {
   } else {
     info.member = member;
   }
+
   var memberLastBook = getLastBookForMember(member.id);
   info.member.lastBookAdded = memberLastBook;
 
@@ -78,15 +77,14 @@ var memberEditHandler= function (req, res) {
 
 /**
  * @description
- * función destinada a cubrir la petición de Mostrar el Home de un miembro concreto
+ * función destinada a cubrir la petición de mostrar la Página Principal de un miembro
  *
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
  */
 
 var memberProfileHandler = function (req, res) {
-  var pathname = `${__dirname}/../../../Pinakes/html/views/member-profile.html`;
-
+  var pathname = `${__dirname}/../../../views/html/pages/member-profile.html`;
   var info = {};
 
   var categories = getAllCategories();
@@ -161,11 +159,11 @@ var memberProfileHandler = function (req, res) {
     info.lastBookAdded.collection = lastBookAddedCollection;
   }
 
-  var lastBooksMapped = lastBookAddedCollection.books.map(function (bookId) {
+  var lastBookAddedCollectionMapped = lastBookAddedCollection.books.map(function (bookId) {
     var book = getBookById(bookId);
     return book;
   });
-  info.lastBookAdded.collection.books = lastBooksMapped;
+  info.lastBookAdded.collection.books = lastBookAddedCollectionMapped;
 
   var suggestedBooksChunks = getRandomBooks(6, 3);
   suggestedBooksChunks.forEach(function (chunk) {

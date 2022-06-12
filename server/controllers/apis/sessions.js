@@ -1,11 +1,10 @@
 const {v4: uuidv4} = require('uuid');
-const {getAllMembers, getMemberById} = require('../../models/members.js');
+const {getAllMembers} = require('../../models/members.js');
 
 
 
 
 var apiSignInHandler = function (req, res) {
-
   var members = getAllMembers();
   var filteredMembers = members.filter(function (e) {
     return (req.body.email == e.email)
@@ -17,21 +16,20 @@ var apiSignInHandler = function (req, res) {
       message: 'Credenciales inválidas'
     });
   }
-
   var member = filteredMembers[0];
-  if (member.password == req.body.password) {
+
+  if (member.password != req.body.password) {
+    return res.json({
+      status: 'KO',
+      message: 'Credenciales inválidas'
+    });
+  } else {
     return res.json({
       status: 'OK',
       id: member.id,
       session: `session${uuidv4().slice(0,3)}`
     });
-  } else {
-    return res.json({
-      status: 'KO',
-      message: 'Credenciales inválidas'
-    });
   }
-
 };
 
 

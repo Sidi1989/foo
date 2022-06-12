@@ -1,58 +1,26 @@
-const {getAllBooks, getBookById, getRandomBooks} = require('../../models/books.js');
 const {getAllLocations, getLocationById} = require('../../models/locations.js');
-const {getAllCategories, getCategoryById} = require('../../models/categories.js');
-const {getAllSubcategories, getSubcategoryById} = require('../../models/subcategories.js');
+const {getAllCategories} = require('../../models/categories.js');
+const {getAllSubcategories} = require('../../models/subcategories.js');
 const {getAllLanguages, getLanguageById} = require('../../models/languages.js');
-const {getAuthorById} = require('../../models/authors.js');
-const {getReviewById} = require('../../models/reviews.js');
+const {getBookById, getRandomBooks} = require('../../models/books.js');
 const {getMemberById, getCollectionsForMember} = require('../../models/members.js');
+const {getAuthorById} = require('../../models/authors.js');
 const {getCollectionById} = require('../../models/collections.js');
+const {getReviewById} = require('../../models/reviews.js');
 
 
-
-/**
- * @description
- * función destinada a cubrir la petición de Registrar un nuevo libro
- *
- * @param req contiene la información de la petición
- * @param res contiene la renderización de la petición para el cliente
- */
-
-var bookNewHandler= function (req, res) {
-  var pathname = `${__dirname}/../../../Pinakes/html/views/book-new.html`;
-
-  var info = {};
-
-  info.member = req.user;
-
-  var locations = getAllLocations();
-  info.locations = locations;
-
-  var categories = getAllCategories();
-  info.categories = categories;
-
-  var subcategories = getAllSubcategories();
-  info.subcategories = subcategories;
-
-  var languages = getAllLanguages();
-  info.languages = languages;
-
-
-  res.render(pathname, info);
-};
 
 
 /**
  * @description
- * función destinada a cubrir la petición de Información sobre un libro concreto
+ * función destinada a cubrir la petición de mostrar la Página Principal de un libro
  *
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
  */
 
 var bookProfileHandler = function (req, res) {
-  var pathname = `${__dirname}/../../../Pinakes/html/views/book-profile.html`;
-
+  var pathname = `${__dirname}/../../../views/html/pages/book-profile.html`;
   var info = {};
 
   var locations = getAllLocations();
@@ -77,7 +45,7 @@ var bookProfileHandler = function (req, res) {
   info.member = req.user;
   var memberCollections = getCollectionsForMember(req.user.id);
   info.member.collections = memberCollections;
-  
+
   var location = getLocationById(book.location);
   info.book.location = location;
 
@@ -117,15 +85,15 @@ var bookProfileHandler = function (req, res) {
 
 /**
 * @description
-* función destinada a cubrir la petición de Búsqueda de un nuevo libro
+* función destinada a cubrir la petición de Búsqueda de un libro
+* (cualquiera que los miembros no reserven para "sólo vista privada")
 *
 * @param req contiene la información de la petición
 * @param res contiene la renderización de la petición para el cliente
 */
 
 var bookSearchHandler = function (req, res) {
-  var pathname = `${__dirname}/../../../Pinakes/html/views/book-search.html`;
-
+  var pathname = `${__dirname}/../../../views/html/pages/book-search.html`;
   var info = {};
 
 
@@ -135,6 +103,5 @@ var bookSearchHandler = function (req, res) {
 
 
 
-exports.bookNewHandler = bookNewHandler;
 exports.bookProfileHandler = bookProfileHandler;
 exports.bookSearchHandler = bookSearchHandler;
