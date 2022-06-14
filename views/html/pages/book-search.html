@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('../partials/common-head-components.html', {}); %>
+    <%- include('../partials/others/common-head-components.html', {}); %>
     <title>Pinakes - Search</title>
   </head>
 
   <body>
-    <!-- Header-->
+    <!-- Header Simplificado-->
+    <div class="row bg-success mb-5 p-2 text-center">
+      <h3>
+        <a href="/auth/signin" class="text-white text-decoration-none">
+          PIN<img src="https://cdn-icons-png.flaticon.com/512/6627/6627472.png" class="img-fluid" style="width: 30px; height: 30px">KES
+        </a>
+      </h3>
+    </div>
+
     <div class="container">
 
       <div class="row">
@@ -43,6 +51,8 @@
       </div>
 
     </div>
+    <!-- Footer-->
+    <%- include('../partials/others/footer.html', {}); %>
 
     <script type="text/javascript" src="/public/js/book-search.js"></script>
 

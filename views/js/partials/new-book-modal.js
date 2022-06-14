@@ -16,7 +16,6 @@ var bookNewCreatingListener = function () {
 
     fetch(url, options)
       .then(response => response.json())
-      //Redirige al nuevo bookprofile creado para este nuevo libro.
       .then(info => window.location=`/books/${info.book.id}`)
   });
 };

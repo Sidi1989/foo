@@ -1,4 +1,9 @@
-// Listener para que, antes de desplegarse la página, aparezca un modal (que deberá cerrarse)
+/**
+ * @description
+ * listener para que, antes de desplegarse la página, aparezca un modal,
+ * (a pantalla completa y con el logo de Pinakes) que deberá cerrarse.
+ */
+
 var preSignInModal = new bootstrap.Modal(document.getElementById("pre_sign_in_modal"));
 var onReadyStateChangeListener = function () {
   preSignInModal.show();
@@ -6,8 +11,13 @@ var onReadyStateChangeListener = function () {
 document.addEventListener('readystatechange', onReadyStateChangeListener);
 
 
-// Listener para que, al hacer click en el botón de entrar, tras haber rellenado los campos de email y contraseña,...
-// ...se compruebe su corrección, redireccionando o no al perfil del miembro
+/**
+ * @description
+ * listener para que, al hacer click en el botón de entrar, tras haber rellenado
+ * los campos de email y contraseña, se compruebe su adecuación con los datos de
+ * algún usuario, redirigiendo, en tal caso, a su perfil de miembro.
+ */
+ 
 var memberSignInListener = function () {
   var signInButtonNode = document.getElementById('sign_in_button');
   signInButtonNode.addEventListener('click', function () {

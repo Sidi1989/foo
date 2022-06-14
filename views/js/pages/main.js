@@ -1,4 +1,8 @@
-// Listeners para establecer una cookie, recuperarla y eliminarla, respectivamente
+/**
+ * @description
+ * funciones destinadas respectivamente a establecer, recuperar y eliminar una cookie.
+ */
+
 function setCookie (name, value, days) {
     var expires = "";
     if (days) {
@@ -8,7 +12,6 @@ function setCookie (name, value, days) {
     }
     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
-
 
 function getCookie (name) {
     var nameEQ = name + "=";
@@ -20,7 +23,6 @@ function getCookie (name) {
     }
     return null;
 }
-
 
 function eraseCookie (name) {
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';

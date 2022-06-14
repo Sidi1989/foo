@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('../partials/common-head-components.html', {}); %>
+    <%- include('../partials/others/common-head-components.html', {}); %>
     <title>Pinakes - <%=member.nickname%> - <%=collection.name%></title>
   </head>
 
   <body>
     <!-- Header-->
-    <%- include('../partials/header.html', {}); %>
+    <%- include('../partials/others/header.html', {}); %>
     <div class="container">
 
       <!-- Parte superior-->
@@ -29,7 +29,7 @@
               </div>
               <div class="col">
                 <i class="fa-solid fa-hourglass"></i>
-                <p id="collection_age" class="text-primary" name="collection_age"><%=collection.age%> días</p>
+                <p id="collection_age" class="text-primary" name="collection_age">Creada a <%=collection.addingDate%></p>
               </div>
             </div>
             <div class="row mx-auto">
@@ -67,7 +67,7 @@
             <div class="col-4 my-3 d-flex align-items-stretch">
               <div class="card text-center">
                 <a href="/books/<%=book.id%>">
-                 <img src="<%=book.pic.main%>" class="card-img-top" style="width: 240px; height: 320px">
+                 <img src="<%=book.pic%>" class="card-img-top" style="width: 240px; height: 320px">
                  </a>
                  <div class="card-body">
                    <h6 class="card-title"><%=book.title%></h6>
@@ -83,11 +83,11 @@
 
     </div>
     <!-- Footer-->
-    <%- include('../partials/footer.html', {}); %>
+    <%- include('../partials/others/footer.html', {}); %>
 
     <!-- Zona para Modals-->
-    <%- include('../partials/edit-collection-modal.html', {}); %>
-    <%- include('../partials/relocate-books-in-collections-modal.html', {}); %>
+    <%- include('../partials/modals/edit-collection-modal.html', {}); %>
+    <%- include('../partials/modals/relocate-books-in-collections-modal.html', {}); %>
 
     <script type="text/javascript" src="/public/js/collection-edit.js"></script>
 

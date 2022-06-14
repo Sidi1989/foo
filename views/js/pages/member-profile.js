@@ -1,6 +1,10 @@
-// Listener para que, al hacer click en alguno de los botones de editar la petición correspondiente,...
-// distinguidos por encontrarse la id de cada petición en el tercer segmento del id del botón, separado por "_",...
-// el modal para la edición se cargue con los datos que se conservan sobre dicha petición
+/**
+ * @description
+ * listener para que, al hacer click en alguno de los botones de editar la petición correspondiente,
+ * distinguidos por encontrarse la id de cada petición en el tercer segmento, separados por "_", del id del botón,
+ * el modal para la dicha edición se cargue con los datos que se conservan sobre la petición correspondiente.
+ */
+ 
 var editPetitionModalListener = function () {
   var editPetitionButtonsNodes = document.querySelectorAll('button.edit-petition-button');
   editPetitionButtonsNodes.forEach( function (buttonNode) {

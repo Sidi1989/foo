@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('../partials/common-head-components.html', {}); %>
+    <%- include('../partials/others/common-head-components.html', {}); %>
     <title>Pinakes - <%=member.nickname%></title>
   </head>
 
   <body>
     <!-- Header-->
-    <%- include('../partials/header.html', {}); %>
+    <%- include('../partials/others/header.html', {}); %>
     <div class="container">
 
       <!-- Parte superior, sobre datos del usuario y sus libros-->
@@ -17,11 +17,11 @@
         <div class="col-4">
 
           <!-- Perfil de usuario-->
-          <%- include('../partials/member-basic-info-card.html', {}); %>
+          <%- include('../partials/others/member-basic-info-card.html', {}); %>
 
           <!-- Mis Colecciones-->
           <div class="p-1 mt-4 bg-success text-white">
-            <%- include('../partials/list-collections-accordion.html', {}); %>
+            <%- include('../partials/others/list-collections-accordion.html', {}); %>
           </div>
 
           <div class="p-1 mt-4 bg-success opacity-75 text-white">
@@ -44,7 +44,6 @@
                 <% member.petitions.forEach(function (petition, i) { %>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   <span><strong><%=petition.title %></strong> (<%= petition.author.name %>)</span>
-                  <span class="badge bg-success rounded-pill"><%= petition.buyoptions.length %></span>
                   <!-- Modal para Editar Petición -->
                   <button id="edit_petition_<%=petition.id%>_button" type="button" class="edit-petition-button btn btn-success" data-bs-toggle="modal" data-bs-target="#edit_petition_modal">
                     <i class="fa-solid fa-file-signature"></i>
@@ -72,13 +71,13 @@
                 </div>
                 <div class="card-body">
                 <a href="/books/<%=lastBookAdded.id%>">
-                  <img class="card-img-top" style="width: 240px; height: 320px" src="<%=lastBookAdded.pic.main%>">
+                  <img class="card-img-top" style="width: 240px; height: 320px" src="<%=lastBookAdded.pic%>">
                 </a>
               </div>
               </div>
             </div>
             <div class="col-7">
-              <%- include('../partials/book-rating-card.html', {}); %>
+              <%- include('../partials/others/book-rating-card.html', {}); %>
             </div>
           </div>
 
@@ -94,7 +93,7 @@
             <div class="col-auto mb-3 gy-1 d-flex align-items-stretch">
               <div class="card text-center">
                 <a href="/books/<%=e.id%>">
-                  <img class="card-img-top mt-1" style="width: 180px; height: 240px" src="<%=e.pic.main%>">
+                  <img class="card-img-top mt-1" style="width: 180px; height: 240px" src="<%=e.pic%>">
                 </a>
                 <div class="card-body">
                   <h6 class="card-title"><%=e.title%></h6>
@@ -111,19 +110,19 @@
 
 
       <div class="row">
-        <%- include('../partials/suggested-books-carousel.html', {}); %>
+        <%- include('../partials/others/suggested-books-carousel.html', {}); %>
       </div>
 
     </div>
     <!-- Footer-->
-    <%- include('../partials/footer.html', {}); %>
+    <%- include('../partials/others/footer.html', {}); %>
 
     <!-- Zona para Modals-->
-    <%- include('../partials/new-collection-modal.html', {}); %>
-    <%- include('../partials/delete-from-collection-modal.html', {}); %>
-    <%- include('../partials/move-orphan-book-modal.html', {}); %>
-    <%- include('../partials/new-petition-modal.html', {}); %>
-    <%- include('../partials/edit-petition-modal.html', {}); %>
+    <%- include('../partials/modals/new-collection-modal.html', {}); %>
+    <%- include('../partials/modals/delete-from-collection-modal.html', {}); %>
+    <%- include('../partials/modals/move-orphan-book-modal.html', {}); %>
+    <%- include('../partials/modals/new-petition-modal.html', {}); %>
+    <%- include('../partials/modals/edit-petition-modal.html', {}); %>
 
     <script type="text/javascript" src="/public/js/member-profile.js"></script>
 

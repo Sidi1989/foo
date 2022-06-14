@@ -20,11 +20,12 @@ var onModalShownListener = function () {
           var headerModalSearchTableBodyNode = document.getElementById('header_modal_search_table_body');
           // Limpia la Tabla, para reescribir en ella.
           headerModalSearchTableBodyNode.innerHTML = '';
-          // Se va consiguiendo buscar aquellos libros cuyas primeras letras
-          // coinciden con las teclas pulsadas (de entre los libros
-          // pertenecientes al miembro).
+          // Se reducen los posibles resultados de la búsqueda a sólo aquellos
+          // libros que pertenecieran al miembro.
           var headerMemberId = getCookie('member');
           var headerOwnedBooks = info.filter(book => book.owner == headerMemberId);
+          // Se va consiguiendo buscar aquellos libros cuyas primeras letras
+          // coinciden con las teclas pulsadas.
           var headerSearchedBooks = headerOwnedBooks.filter(function (book) {
             return book.title.toLowerCase().startsWith(headerUserSearch.toLowerCase())
           });
@@ -32,14 +33,16 @@ var onModalShownListener = function () {
           books.forEach(function (book) {
             const headerModalSearchedBookNode = document.createElement('tr');
             headerModalSearchedBookNode.innerHTML = `
-            <td>
-            <a href="/books/${book.id}"
-            <p>${book.title}</p>
-            </a>
-            </td>
-            <td>${book.author.name}</td>
-            <td>${book.collection.name}</td>
+                <td>
+                  <a href="/books/${book.id}"
+                    <p>${book.title}</p>
+                  </a>
+                </td>
+                <td>${book.author.name}</td>
+                <td>${(book.collection)? book.collection.name : 'Sin Colección'}</td>
             `;
+            // Se ha aplicado un operador ternario ante la posibilidad de que
+            // el libro no estuviera incluido en una Colección concreta.
             headerModalSearchTableBodyNode.appendChild(headerModalSearchedBookNode);
           });
       });
@@ -66,11 +69,12 @@ var headerModalSearchingListener = function () {
           var headerModalSearchTableBodyNode = document.getElementById('header_modal_search_table_body');
           // Limpia la Tabla, para reescribir en ella.
           headerModalSearchTableBodyNode.innerHTML = '';
-          // Se va consiguiendo buscar aquellos libros cuyas primeras letras
-          // coinciden con las teclas pulsadas (de entre los libros
-          // pertenecientes al miembro).
+          // Se reducen los posibles resultados de la búsqueda a sólo aquellos
+          // libros que pertenecieran al miembro.
           var headerMemberId = getCookie('member');
           var headerOwnedBooks = info.filter(book => book.owner == headerMemberId);
+          // Se va consiguiendo buscar aquellos libros cuyas primeras letras
+          // coinciden con las teclas pulsadas.
           var headerSearchedBooks = headerOwnedBooks.filter(function (book) {
             return book.title.toLowerCase().startsWith(headerUserSearch.toLowerCase())
           });
@@ -84,8 +88,10 @@ var headerModalSearchingListener = function () {
                   </a>
                 </td>
                 <td>${book.author.name}</td>
-                <td>${book.collection.name}</td>
+                <td>${(book.collection)? book.collection.name : 'Sin Colección'}</td>
             `;
+            // Se ha aplicado un operador ternario ante la posibilidad de que
+            // el libro no estuviera incluido en una Colección concreta.
             headerModalSearchTableBodyNode.appendChild(headerModalSearchedBookNode);
           });
       });
@@ -118,8 +124,10 @@ var headerModalOrderingListener = function () {
               </a>
             </td>
             <td>${book.author.name}</td>
-            <td>${book.collection.name}</td>
+            <td>${(book.collection)? book.collection.name : 'Sin Colección'}</td>
         `;
+        // Se ha aplicado un operador ternario ante la posibilidad de que
+        // el libro no estuviera incluido en una Colección concreta.
         headerModalSearchTableBodyNode.appendChild(headerModalSearchedBookNode);
       });
   });

@@ -1,49 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('../partials/common-head-components.html', {}); %>
+    <%- include('../partials/others/common-head-components.html', {}); %>
     <title>Pinakes - <%=book.title%></title>
   </head>
 
   <body>
     <!-- Header-->
-    <%- include('../partials/header.html', {user: {id: "u1a"}}); %>
+    <%- include('../partials/others/header.html', {}); %>
     <div class="container">
 
       <!-- Parte superior, sobre datos del libro-->
       <div class="row mb-4">
 
         <!-- Columna de la Foto-->
-        <div id="book_pic_files" class="col-3">
-
+        <div class="col-3">
           <div class="row mb-1">
             <div class="text-center">
-              <img src="<%=book.pic.main%>" class="img-thumbnail" style="width: 240px; height: 320px">
+              <img src="<%=book.pic%>" id="book_pic_file" class="img-thumbnail" style="width: 240px; height: 320px">
+            </div>
+            <div class="row mt-1">
+              <h5 id="book_location"><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
             </div>
           </div>
-          <div class="row">
-            <div class="text-center">
-              <% book.pic.others.forEach(function(e,i){ %>
-              <div class="col-4">
-                <img src="<%=e%>" class="img-thumbnail" style="width: 75px; height: 100px">
-              </div>
-              <% }) %>
-            </div>
-          </div>
-
         </div>
 
         <!--Columna con Información del libro-->
         <div class="col-9">
 
           <div class="row mb-2">
-            <div class="col-5">
+            <div class="col-8">
               <h4 id="book_title"><%=book.title%></h4>
               <h6 id="book_author_name"><%=book.author.name%></h6>
-            </div>
-
-            <div class="col-3">
-              <h5 id="book_location"><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
             </div>
 
             <div class="col-4 text-end g-0">
@@ -103,12 +91,12 @@
           <div class="row mb-4">
             <!-- Columna con los datos técnicos -->
             <div class="col-4">
-              <%- include('../partials/book-tech-info-card.html', {}); %>
+              <%- include('../partials/others/book-tech-info-card.html', {}); %>
             </div>
 
             <!-- Navbar de las Reviews -->
             <div class="col-8">
-              <%- include('../partials/list-reviews-navbar.html', {}); %>
+              <%- include('../partials/others/list-reviews-navbar.html', {}); %>
             </div>
           </div>
 
@@ -120,17 +108,17 @@
 
 
       <div class="row">
-        <%- include('../partials/suggested-books-carousel.html', {}); %>
+        <%- include('../partials/others/suggested-books-carousel.html', {}); %>
       </div>
 
     </div>
     <!-- Footer-->
-    <%- include('../partials/footer.html', {}); %>
+    <%- include('../partials/others/footer.html', {}); %>
 
     <!-- Zona para Modals-->
-    <%- include('../partials/edit-book-modal.html', {}); %>
+    <%- include('../partials/modals/edit-book-modal.html', {}); %>
 
-    <script type="text/javascript" src="/public/js/book-profile.js"></script>
+    <script type="text/javascript" src="/public/js/pages/book-profile.js"></script>
 
   </body>
 </html>

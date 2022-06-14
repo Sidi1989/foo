@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('../partials/common-head-components.html', {}); %>
+    <%- include('../partials/others/common-head-components.html', {}); %>
     <title>Pinakes - <%=member.nickname%> - Preferences</title>
   </head>
 
   <body>
     <!-- Header-->
-    <%- include('../partials/header.html', {}); %>
+    <%- include('../partials/others/header.html', {}); %>
     <div class="container">
 
       <div class="row">
@@ -15,11 +15,11 @@
 
         <div class="col-4">
         <!-- Columna con datos actuales del usuario-->
-          <%- include('../partials/member-basic-info-card.html', {}); %>
+          <%- include('../partials/others/member-basic-info-card.html', {}); %>
 
           <div class="mt-4">
             <u><h6>Último libro añadido</h6></u>
-            <img src="<%=member.lastBookAdded.pic.main%>" class="img-thumbnail">
+            <img src="<%=member.lastBookAdded.pic%>" class="img-thumbnail">
           </div>
 
         </div>
@@ -44,13 +44,13 @@
           </div>
 
           <div class="input-group mb-3">
-            <label for="member_edit_email" class="input-group-text">Usuario</label>
+            <label for="member_edit_email" class="input-group-text">E-mail</label>
             <input id="member_edit_email" type="email" name="member_edit_email" class="form-control" placeholder="Éste es tu E-mail actual">
           </div>
 
           <div class="input-group mb-4">
             <label for="member_edit_password" class="input-group-text">Contraseña</label>
-            <input id="member_edit_password" type="password" name="member_edit_password" class="form-control" placeholder="Ésta es tu Contraseña actual">
+            <input id="member_edit_password" type="password" name="member_edit_password" class="form-control" placeholder="Esto tine que ser un botón para cambiar la contraseña">
           </div>
 
           <div class="d-grid col-4 mx-auto mb-5">
@@ -85,7 +85,7 @@
 
     </div>
     <!-- Footer-->
-    <%- include('../partials/footer.html', {}); %>
+    <%- include('../partials/others/footer.html', {}); %>
 
     <script type="text/javascript" src="/public/js/member-edit.js"></script>
 
