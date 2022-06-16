@@ -21,6 +21,12 @@
             <u><h6>Último libro añadido</h6></u>
             <img src="<%=member.lastBookAdded.pic%>" class="img-thumbnail">
           </div>
+          <div class="mt-4">
+            <u><h6>Mis Sedes</h6></u>
+          </div>
+          <div class="mt-4">
+            <u><h6>Mis Reviews</h6></u>
+          </div>
 
         </div>
 
@@ -31,34 +37,35 @@
             Edita tus datos
           </div>
           <!-- Datos Principales-->
-          <div class="input-group mb-3">
+          <div class="input-group mb-4">
             <label for="member_edit_nickname" class="input-group-text">Nickname</label>
             <input id="member_edit_nickname" type="text" name="member_edit_nickname" class="form-control" placeholder="Éste es tu Nickname actual">
           </div>
 
-          <div class="mb-5">
+          <div class="mb-4">
             <label for="member_edit_pic_file" class="form-label">
               <u><h6>Imagen de usuario</h6></u>
             </label>
             <input id="member_edit_pic_file" class="form-control" type="file">
           </div>
 
-          <div class="input-group mb-3">
+          <div class="input-group mb-5">
             <label for="member_edit_email" class="input-group-text">E-mail</label>
             <input id="member_edit_email" type="email" name="member_edit_email" class="form-control" placeholder="Éste es tu E-mail actual">
           </div>
 
-          <div class="input-group mb-4">
-            <label for="member_edit_password" class="input-group-text">Contraseña</label>
-            <input id="member_edit_password" type="password" name="member_edit_password" class="form-control" placeholder="Esto tine que ser un botón para cambiar la contraseña">
-          </div>
-
-          <div class="d-grid col-4 mx-auto mb-5">
+          <div class="row mb-5">
+              <div class="col-4 mx-auto">
+            <button id="member_edit_password_button" type="submit" class="btn btn-primary" name="member_edit_password_button">
+              <h5>Cambiar contraseña</h5>
+            </button>
+            </div>
+            <div class="col-4 mx-auto">
             <button id="member_edit_save_main_button" type="submit" class="btn btn-success" name="member_edit_save_main_button">
               <h5>Guardar cambios</h5>
             </button>
+            </div>
           </div>
-
 
           <div class="section-title">
             Completa los datos de tu Cuenta
@@ -87,7 +94,7 @@
     <!-- Footer-->
     <%- include('../partials/others/footer.html', {}); %>
 
-    <script type="text/javascript" src="/public/js/member-edit.js"></script>
+    <script type="text/javascript" src="/public/js/pages/member-edit.js"></script>
 
   </body>
 </html>

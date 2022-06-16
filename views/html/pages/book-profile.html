@@ -19,7 +19,7 @@
             <div class="text-center">
               <img src="<%=book.pic%>" id="book_pic_file" class="img-thumbnail" style="width: 240px; height: 320px">
             </div>
-            <div class="row mt-1">
+            <div class="row mt-4 text-center">
               <h5 id="book_location"><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
             </div>
           </div>
@@ -30,7 +30,7 @@
 
           <div class="row mb-2">
             <div class="col-8">
-              <h4 id="book_title"><%=book.title%></h4>
+              <h5 id="book_title"><strong><%=book.title%></strong></h5>
               <h6 id="book_author_name"><%=book.author.name%></h6>
             </div>
 
@@ -42,7 +42,12 @@
                   <i class="fa-solid fa-bookmark"></i>
                 </button>
                   <ul class="dropdown-menu">
-                    <h5 class="dropdown-item text-muted">Actualmente en "<%=book.collection.name%>"</h5>
+                    <h5 class="dropdown-item text-muted">Actualmente en
+                      <% if (book.collection==null) { %>
+                        "Libros sin Colección"
+                      } else {
+                        book.collection.name</h5>
+                      <% } %>
                     <div class="dropdown-divider"></div>
                     <form class="my-1">
                       <div class="form-check">
@@ -53,20 +58,21 @@
                       </div>
                       <% member.collections.forEach(function(e,i){ %>
                       <div class="form-check">
-                        <input id="relocate_book_to_<%=i%>" type="radio" name="relocate_book_to" value="<%=e.id%>"
-                            <% if (e.id==book.collection.id) { %>
-                              checked
-                            <% } %>
-                            class="form-check-input" >
+                        <input id="relocate_book_to_<%=i%>" type="radio" name="relocate_book_to" value="<%=e.id%>" class="form-check-input"
+                          <% if (e.id==book.collection.id) { %>
+                            disabled>
+                          <% } %>
                         <label for="relocate_book_to_<%=i%>" class="form-check-label">
                           <%=e.name%>
                         </label>
                       </div>
                       <% }) %>
                     </form>
-                    <button id="relocate_save_button" type="submit" class="btn btn-success btn-sm" name="relocate_save_button">
-                      Mover Libro
-                    </button>
+                    <div class="text-end">
+                      <button id="relocate_save_button" type="submit" class="btn btn-success btn-sm mt-1" name="relocate_save_button">
+                        Mover Libro
+                      </button>
+                    </div>
                   </ul>
 
                 <!-- Modal para Editar Libro -->

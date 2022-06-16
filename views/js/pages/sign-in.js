@@ -11,13 +11,14 @@ var onReadyStateChangeListener = function () {
 document.addEventListener('readystatechange', onReadyStateChangeListener);
 
 
+
 /**
  * @description
  * listener para que, al hacer click en el botón de entrar, tras haber rellenado
  * los campos de email y contraseña, se compruebe su adecuación con los datos de
  * algún usuario, redirigiendo, en tal caso, a su perfil de miembro.
  */
- 
+
 var memberSignInListener = function () {
   var signInButtonNode = document.getElementById('sign_in_button');
   signInButtonNode.addEventListener('click', function () {
@@ -32,9 +33,9 @@ var memberSignInListener = function () {
         'password': password
     };
     var formBody = [];
-    for (var k in details) {
-      var encodedKey = encodeURIComponent(k);
-      var encodedValue = encodeURIComponent(details[k]);
+    for (var key in details) {
+      var encodedKey = encodeURIComponent(key);
+      var encodedValue = encodeURIComponent(details[key]);
       formBody.push(encodedKey + "=" + encodedValue);
     }
     var formBodyAsString = formBody.join("&");

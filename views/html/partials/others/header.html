@@ -26,7 +26,7 @@
         <button class="btn btn-success btn-lg" type="button">
           <i class="text-white fa-solid fa-bell fa-lg"></i>
           <span id="notifications_badge" class="badge rounded-pill bg-success" name="notifications_badge">
-            2
+            Nº
           </span>
         </button>
         <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,8 +35,10 @@
         <ul class="dropdown-menu">
           <li>
             <a class="dropdown-item text-center" href="/members/<%=member.id%>">
-              <img id="member_pic_file" class="img-thumbnail" name="member_pic_file" style="width: 100px; height: 85px" src="<%=member.pic%>">
-              <p><%=member.nickname%></p>
+              <img id="member_pic_file" class="img-fluid" name="member_pic_file" style="width: 100px; height: 85px" src="<%=member.pic%>">
+            </a>
+            <a class="dropdown-item text-center">
+              <h6><%=member.nickname%></h6>
             </a>
           </li>
           <li><hr class="dropdown-divider"></li>
@@ -58,6 +60,6 @@
 </div>
 
 <!-- Zona para Modals-->
-<%- include('../partials/modals/header-search-modal.html', {}); %>
+<%- include('../modals/header-search-modal.html', {}); %>
 
-<script type="text/javascript" src="/public/js/header.js"></script>
+<script type="text/javascript" src="/public/js/partials/header.js"></script>

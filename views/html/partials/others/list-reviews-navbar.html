@@ -21,12 +21,12 @@
 
         <div class="col-3 p-0">
           <div class="card text-center">
-            <img class="card-img-top mt-1 mx-auto" style="width: 90px; height: 90px" src="<%=e.reviewer.pic%>">
             <div class="card-body">
-              <a class="card-title" href="/members/<%=e.reviewer.id%>">
-                <p><%= e.reviewer.nickname%></p>
+              <a href="/members/<%=e.reviewer.id%>">
+                <img class="img-fluid my-1" style="width: 100px; height: 100px" src="<%=e.reviewer.pic%>">
               </a>
-              <h8 class="card-text">Escrita a <%= e.addingDate%></h8>
+              <h6 class="card-title"><%= e.reviewer.nickname%></h6>
+              <h7 class="card-subtitle mb-2 text-muted"><%= e.addingDate%></h7>
             </div>
           </div>
         </div>

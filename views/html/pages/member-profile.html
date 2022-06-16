@@ -32,8 +32,8 @@
               </div>
               <div class="col-2 text-end">
                 <!-- Modal para Crear Petición -->
-                <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#new_petition_modal">
-                    <i class="fa-solid fa-plus"></i>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#new_petition_modal">
+                  <i class="fa-solid fa-plus"></i>
                 </button>
               </div>
             </div>
@@ -71,7 +71,7 @@
                 </div>
                 <div class="card-body">
                 <a href="/books/<%=lastBookAdded.id%>">
-                  <img class="card-img-top" style="width: 240px; height: 320px" src="<%=lastBookAdded.pic%>">
+                  <img class="img-fluid" style="width: 240px; height: 320px" src="<%=lastBookAdded.pic%>">
                 </a>
               </div>
               </div>
@@ -90,13 +90,13 @@
 
           <div id="last_book_added_collection_others" class="row" name="last_book_added_collection_others">
             <% lastBookAdded.collection.books.forEach(function(e,i) { %>
-            <div class="col-auto mb-3 gy-1 d-flex align-items-stretch">
+            <div class="col-4 mb-3 gy-1">
               <div class="card text-center">
                 <a href="/books/<%=e.id%>">
-                  <img class="card-img-top mt-1" style="width: 180px; height: 240px" src="<%=e.pic%>">
+                  <img class="img-fluid mt-1" style="width: 180px; height: 240px" src="<%=e.pic%>">
                 </a>
                 <div class="card-body">
-                  <h6 class="card-title"><%=e.title%></h6>
+                  <h6><%=e.title%></h6>
                   <i id="<%=e.id%>_reviewed_star" class="book-reviewed-star fa-solid fa-star"></i>
                 </div>
               </div>
@@ -124,7 +124,7 @@
     <%- include('../partials/modals/new-petition-modal.html', {}); %>
     <%- include('../partials/modals/edit-petition-modal.html', {}); %>
 
-    <script type="text/javascript" src="/public/js/member-profile.js"></script>
+    <script type="text/javascript" src="/public/js/pages/member-profile.js"></script>
 
   </body>
 </html>

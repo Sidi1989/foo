@@ -19,20 +19,20 @@
             <div class="row m-2">
               <h5 id="collection_name" class="text-primary" name="collection_name"><%=collection.name%></h5>
             </div>
-            <div class="row">
-              <img id="collection_pic_file"  class="img-thumbnail mx-auto" name="collection_pic_file" style="width: 250px; height: 200px" src="<%=collection.pic%>">
+            <div class="row m-2">
+              <img id="collection_pic_file"  class="img-fluid" name="collection_pic_file" style="width: 250px; height: 200px" src="<%=collection.pic%>">
             </div>
-            <div class="row mt-2">
+            <div class="row mt-3">
               <div class="col">
-                <i class="fa-solid fa-book-open"></i>
+                <i class="fa-solid fa-book-open fa-lg"></i>
                 <p id="collection_books_quantity" class="text-primary" name="collection_books_quantity"><%=collection.books.length%></p>
               </div>
               <div class="col">
-                <i class="fa-solid fa-hourglass"></i>
-                <p id="collection_age" class="text-primary" name="collection_age">Creada a <%=collection.addingDate%></p>
+                <i class="fa-solid fa-hourglass fa-lg"></i>
+                <p id="collection_age" class="text-primary" name="collection_age"><%=collection.addingDate%></p>
               </div>
             </div>
-            <div class="row mx-auto">
+            <div class="row m-1">
               <!-- Modal para Editar Colección -->
               <button type="button" class="btn btn-lg btn-success"
                   data-bs-toggle="modal"
@@ -64,13 +64,13 @@
             </div>
 
             <% collection.books.forEach(function (book, i) { %>
-            <div class="col-4 my-3 d-flex align-items-stretch">
+            <div class="col-4 my-3">
               <div class="card text-center">
                 <a href="/books/<%=book.id%>">
-                 <img src="<%=book.pic%>" class="card-img-top" style="width: 240px; height: 320px">
+                 <img class="img-fluid" style="width: 240px; height: 320px" src="<%=book.pic%>">
                  </a>
                  <div class="card-body">
-                   <h6 class="card-title"><%=book.title%></h6>
+                   <h6><%=book.title%></h6>
                  </div>
               </div>
             </div>
@@ -89,7 +89,7 @@
     <%- include('../partials/modals/edit-collection-modal.html', {}); %>
     <%- include('../partials/modals/relocate-books-in-collections-modal.html', {}); %>
 
-    <script type="text/javascript" src="/public/js/collection-edit.js"></script>
+    <script type="text/javascript" src="/public/js/pages/collection-edit.js"></script>
 
   </body>
 </html>

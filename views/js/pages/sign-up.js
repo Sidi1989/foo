@@ -7,15 +7,45 @@
 var memberNewCreatingListener = function () {
   var createMemberButtonNode = document.getElementById("new_member_create_button");
   createMemberButtonNode.addEventListener('click', function () {
+    var signUpNicknameNode = document.getElementById('sign_up_nickname');
+    var nickname = signUpNicknameNode.value;
+    var signUpEmailNode = document.getElementById('sign_up_email');
+    var email = signUpEmailNode.value;
+    var signUpPasswordNode = document.getElementById('sign_up_password');
+    var password = signUpPasswordNode.value;
+    
+    // Faltan password-confirmed idéntica y ¿registrar terms acceptance?
 
     var url = '/api/members';
+    var details = {
+        'nickname': nickname,
+        'email': email,
+        'password': password
+    };
+    var formBody = [];
+    for (var key in details) {
+      var encodedKey = encodeURIComponent(key);
+      var encodedValue = encodeURIComponent(details[key]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    var formBodyAsString = formBody.join("&");
     var options = {
-      method: "POST",
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formBodyAsString
     };
 
     fetch(url, options)
       .then(response => response.json())
-      .then(info => window.location=`/members/${info.member.id}`)
+      .then(function (info) {
+          if (info.status == 'OK') {
+            window.location = `/members/${info.member.id}`;
+          } else {
+            window.alert('Algo ha salido mal')
+          }
+      });
   });
 };
 window.addEventListener('load', memberNewCreatingListener);
