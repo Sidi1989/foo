@@ -13,8 +13,9 @@ var memberNewCreatingListener = function () {
     var email = signUpEmailNode.value;
     var signUpPasswordNode = document.getElementById('sign_up_password');
     var password = signUpPasswordNode.value;
-    
-    // Faltan password-confirmed idéntica y ¿registrar terms acceptance?
+
+    var signUpPasswordConfirmedNode = document.getElementById('sign_up_password');
+    var passwordConfirmed = signUpPasswordConfirmedNode.value;
 
     var url = '/api/members';
     var details = {

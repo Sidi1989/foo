@@ -9,10 +9,18 @@
     </div>
 
     <div class="col mt-2">
+
       <div class="row">
         <div class="col">
           <i class="fa-solid fa-user-pen fa-lg"></i>
           <p id="member_nickname" class="text-primary" name="member_nickname"><%=member.nickname%></p>
+        </div>
+        <div class="col">
+          <button id="new_book_button" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#new_book_modal">
+            <i class="fa-solid fa-plus"></i>
+            <span> </span>
+            <i class="fa-solid fa-book fa-lg"></i>
+          </button>
         </div>
       </div>
       <div class="row">
@@ -31,6 +39,8 @@
           <p id="member_petitions_quantity" class="text-primary" name="member_petitions_quantity"><%=member.petitions.length%></p>
         </div>
       </div>
+
     </div>
+
   </div>
 </div>

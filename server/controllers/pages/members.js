@@ -7,6 +7,8 @@ const {getCollectionById} = require('../../models/collections.js');
 const {getBookById, getRandomBooks} = require('../../models/books.js');
 const {getAuthorById} = require('../../models/authors.js');
 const {getPetitionById} = require('../../models/petitions.js');
+const {getLocationById} = require('../../models/locations.js');
+const {getReviewById} = require('../../models/reviews.js');
 
 
 
@@ -67,8 +69,20 @@ var memberEditHandler= function (req, res) {
     info.member = member;
   }
 
-  var memberLastBook = getLastBookForMember(member.id);
-  info.member.lastBookAdded = memberLastBook;
+  var locationsMapped = member.locations.map(function (locationId) {
+    var location = getLocationById(locationId);
+    return location;
+  });
+  info.member.locations = locationsMapped;
+
+  var reviewsMapped = member.reviews.map(function (reviewId) {
+    var review = getReviewById(reviewId);
+    return review;
+    });
+    reviewsMapped.forEach(function (e) {
+      e.book = getBookById(e.book);
+  });
+  info.member.reviews = reviewsMapped;
 
 
   res.render(pathname, info);
@@ -164,6 +178,18 @@ var memberProfileHandler = function (req, res) {
     return book;
   });
   info.lastBookAdded.collection.books = lastBookAddedCollectionMapped;
+
+  var reviewsMapped = lastBookAdded.reviews.map(function (id) {
+    var review = getReviewById(id);
+    if (review.reviewer == null) {
+      review.reviewer = {}
+    } else {
+      var reviewer = getMemberById(review.reviewer);
+      review.reviewer = reviewer;
+    }
+    return review;
+  });
+  info.reviews = reviewsMapped;
 
   var suggestedBooksChunks = getRandomBooks(6, 3);
   suggestedBooksChunks.forEach(function (chunk) {

@@ -10,17 +10,17 @@
     <%- include('../partials/others/header.html', {}); %>
     <div class="container">
 
-      <!-- Parte superior, sobre datos del libro-->
-      <div class="row mb-4">
+      <!-- Parte superior, con los datos del libro-->
+      <div class="row mb-2">
 
         <!-- Columna de la Foto-->
         <div class="col-3">
-          <div class="row mb-1">
+          <div class="row mb-2">
+            <div class="row mt-3 mb-1 text-center">
+              <h5 id="book_location"><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
+            </div>
             <div class="text-center">
               <img src="<%=book.pic%>" id="book_pic_file" class="img-thumbnail" style="width: 240px; height: 320px">
-            </div>
-            <div class="row mt-4 text-center">
-              <h5 id="book_location"><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
             </div>
           </div>
         </div>
@@ -83,35 +83,36 @@
             </div>
           </div>
 
-          <div class="row mb-3">
-            <div class="d-grid">
-              <div class="p-1 bg-light border">
-                <div class="row">
-                  <u><h5>Sinopsis:</h5></u>
-                  <span id="book_synopsis"><%=book.synopsis%></span>
+          <!-- Parte con los datos técnicos -->
+          <div class="row mb-2">
+            <div class="col-7">
+              <div class="d-grid">
+                <div class="p-1 bg-light border">
+                  <div class="row">
+                    <u><h5>Sinopsis:</h5></u>
+                    <span id="book_synopsis"><%=book.synopsis%></span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="row mb-4">
-            <!-- Columna con los datos técnicos -->
-            <div class="col-4">
+            <div class="col-5 gx-1">
               <%- include('../partials/others/book-tech-info-card.html', {}); %>
-            </div>
-
-            <!-- Navbar de las Reviews -->
-            <div class="col-8">
-              <%- include('../partials/others/list-reviews-navbar.html', {}); %>
             </div>
           </div>
 
         </div>
-        <!-- Final de la Columna con información del libro-->
-
       </div>
       <!-- Final de la Parte superior-->
 
+      <!-- Zona para la valoración del libro -->
+      <div class="row mb-4">
+        <div class="col-5">
+          <%- include('../partials/others/book-rating-card.html', {}); %>
+        </div>
+        <div class="col-7">
+          <%- include('../partials/others/list-reviews-navbar.html', {}); %>
+        </div>
+      </div>
 
       <div class="row">
         <%- include('../partials/others/suggested-books-carousel.html', {}); %>

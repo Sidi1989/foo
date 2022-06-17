@@ -10,7 +10,7 @@
     <%- include('../partials/others/header.html', {}); %>
     <div class="container">
 
-      <!-- Parte superior, sobre datos del usuario y sus libros-->
+      <!-- Parte superior, sobre datos del usuario y su último libro-->
       <div class="row mb-4">
 
         <!-- Columna Lateral-->
@@ -59,10 +59,10 @@
 
 
         <!-- Columna Central-->
-        <div class="col-8 px-4">
+        <div class="col-8 px-3">
 
           <!--Sobre el último libro añadido-->
-          <div class="row mb-4">
+          <div class="row mb-3">
             <div class="col-5">
               <div id="last_book_added_card" class="card text-center" name="last_book_added_card">
                 <div class="card-header">
@@ -70,44 +70,47 @@
                   <h8 class="text-black-50"> (<%=lastBookAdded.author.name%>)</h8>
                 </div>
                 <div class="card-body">
-                <a href="/books/<%=lastBookAdded.id%>">
-                  <img class="img-fluid" style="width: 240px; height: 320px" src="<%=lastBookAdded.pic%>">
-                </a>
-              </div>
+                  <a href="/books/<%=lastBookAdded.id%>">
+                    <img class="img-fluid" style="width: 200px; height: 240px" src="<%=lastBookAdded.pic%>">
+                  </a>
+                </div>
               </div>
             </div>
             <div class="col-7">
               <%- include('../partials/others/book-rating-card.html', {}); %>
             </div>
           </div>
-
-          <!--Sobre los Libros de la Colección-->
           <div class="row">
-            <div class="section-title">
-              Otros Libros en "<%=lastBookAdded.collection.name%>"
-            </div>
+            <%- include('../partials/others/list-reviews-navbar.html', {}); %>
           </div>
 
-          <div id="last_book_added_collection_others" class="row" name="last_book_added_collection_others">
-            <% lastBookAdded.collection.books.forEach(function(e,i) { %>
-            <div class="col-4 mb-3 gy-1">
-              <div class="card text-center">
-                <a href="/books/<%=e.id%>">
-                  <img class="img-fluid mt-1" style="width: 180px; height: 240px" src="<%=e.pic%>">
-                </a>
-                <div class="card-body">
-                  <h6><%=e.title%></h6>
-                  <i id="<%=e.id%>_reviewed_star" class="book-reviewed-star fa-solid fa-star"></i>
-                </div>
-              </div>
-            </div>
-            <% }); %>
-          </div>
         </div>
 
       </div>
       <!-- Final de la Parte superior-->
 
+      <!--Sobre los Libros de la Colección-->
+      <div class="row">
+        <div class="section-title">
+          Otros Libros en "<%=lastBookAdded.collection.name%>"
+        </div>
+      </div>
+
+      <div id="last_book_added_collection_others" class="row mb-4" name="last_book_added_collection_others">
+        <% lastBookAdded.collection.books.forEach(function(e,i) { %>
+        <div class="col-3 mb-3 gy-1">
+          <div class="card text-center">
+            <a href="/books/<%=e.id%>">
+              <img class="img-fluid mt-1" style="width: 180px; height: 240px" src="<%=e.pic%>">
+            </a>
+            <div class="card-body">
+              <h6><%=e.title%></h6>
+              <i id="<%=e.id%>_reviewed_star" class="book-reviewed-star fa-solid fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
 
       <div class="row">
         <%- include('../partials/others/suggested-books-carousel.html', {}); %>

@@ -11,66 +11,81 @@
     <div class="container">
 
       <div class="row">
-        <!-- Todo salvo Header y Footer-->
+      <!-- Parte general (todo salvo Header y Footer)-->
 
         <div class="col-4">
-        <!-- Columna con datos actuales del usuario-->
+        <!-- Columna con datos varios del usuario-->
           <%- include('../partials/others/member-basic-info-card.html', {}); %>
 
-          <div class="mt-4">
-            <u><h6>Último libro añadido</h6></u>
-            <img src="<%=member.lastBookAdded.pic%>" class="img-thumbnail">
-          </div>
-          <div class="mt-4">
-            <u><h6>Mis Sedes</h6></u>
-          </div>
-          <div class="mt-4">
-            <u><h6>Mis Reviews</h6></u>
-          </div>
+          <div class="row">
 
+            <div class="col-6">
+              <div class="mt-4">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-success">
+                    <i class="fa-light fa-plus fa-lg"></i>
+                  </button>
+                  <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-location-dot fa-lg"></i> Sedes
+                  </button>
+                  <ul class="dropdown-menu">
+                      <% member.locations.forEach(function (e, i) { %>
+                      <li class="list-group-item d-flex align-items-center">
+                        <img class="img-thumbnail" style="width: 60px; height: 60px" src="<%=e.pic%>">
+                        <strong><%=e.name %></strong>
+                      </li>
+                      <% }); %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="mt-4">
+                <div class="btn-group">
+                  <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-gavel fa-lg"></i> Reviews
+                  </button>
+                  <ul class="dropdown-menu">
+                      <% member.reviews.forEach(function (e, i) { %>
+                      <li class="list-group-item d-flex align-items-center">
+                        <div class="col">
+                          <img class="img-thumbnail" style="width: 75px; height: 75px" src="<%=e.book.pic%>">
+                        </div>
+                        <div class="col">
+                          <div class="badge bg-primary text-wrap">
+                            <%=e.bookRate %>
+                          </div>
+                          <div class="badge bg-secondary text-wrap">
+                            <%=e.copyRate %>
+                          </div>
+                        </div>
+                      </li>
+                      <% }); %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
         <div class="col-8">
         <!-- Columna para la edición de los datos del usuario-->
 
           <div class="section-title">
-            Edita tus datos
+            Edita los datos de tu cuenta
           </div>
           <!-- Datos Principales-->
           <div class="input-group mb-4">
             <label for="member_edit_nickname" class="input-group-text">Nickname</label>
-            <input id="member_edit_nickname" type="text" name="member_edit_nickname" class="form-control" placeholder="Éste es tu Nickname actual">
+            <input id="member_edit_nickname" type="text" name="member_edit_nickname" class="form-control">
           </div>
 
-          <div class="mb-4">
-            <label for="member_edit_pic_file" class="form-label">
-              <u><h6>Imagen de usuario</h6></u>
-            </label>
-            <input id="member_edit_pic_file" class="form-control" type="file">
-          </div>
-
-          <div class="input-group mb-5">
+          <div class="input-group mb-4">
             <label for="member_edit_email" class="input-group-text">E-mail</label>
-            <input id="member_edit_email" type="email" name="member_edit_email" class="form-control" placeholder="Éste es tu E-mail actual">
+            <input id="member_edit_email" type="email" name="member_edit_email" class="form-control">
           </div>
-
-          <div class="row mb-5">
-              <div class="col-4 mx-auto">
-            <button id="member_edit_password_button" type="submit" class="btn btn-primary" name="member_edit_password_button">
-              <h5>Cambiar contraseña</h5>
-            </button>
-            </div>
-            <div class="col-4 mx-auto">
-            <button id="member_edit_save_main_button" type="submit" class="btn btn-success" name="member_edit_save_main_button">
-              <h5>Guardar cambios</h5>
-            </button>
-            </div>
-          </div>
-
-          <div class="section-title">
-            Completa los datos de tu Cuenta
-          </div>
-          <!-- Datos Secundarios-->
 
           <div class="input-group mb-4 g-3">
             <label for="member_edit_name" class="input-group-text">Usuario</label>
@@ -82,13 +97,34 @@
             </div>
           </div>
 
-          <div class="input-group">
-            <label for="member_edit_birthday" class="input-group-text">Fecha de nacimiento:</label>
-            <input id="member_edit_birthday" type="date" name="member_edit_birthday" class="form-control">
+          <div class="input-group mb-4">
+            <label for="member_edit_pic_file" class="input-group-text">
+              <i class="fa-brands fa-markdown"></i> Imagen de usuario
+            </label>
+            <input id="member_edit_pic_file" type="text" class="form-control" name="member_edit_pic_file" placeholder="URL de la imagen">
           </div>
 
+          <div class="input-group mb-5">
+            <label for="member_edit_birthday" class="input-group-text">Fecha de nacimiento:</label>
+            <input id="member_edit_birthday" type="date" class="form-control" name="member_edit_birthday">
+          </div>
+
+          <div class="row mb-4">
+              <div class="col-4 mx-auto">
+            <button id="member_edit_password_button" type="submit" class="btn btn-primary" name="member_edit_password_button">
+              <h5>Cambiar contraseña</h5>
+            </button>
+            </div>
+            <div class="col-4 mx-auto">
+            <button id="member_edit_save_main_button" type="submit" class="btn btn-success" name="member_edit_save_main_button">
+              <h5>Guardar cambios</h5>
+            </button>
+            </div>
+          </div>
         </div>
+
       </div>
+      <!-- Fin de la Parte general de la view-->
 
     </div>
     <!-- Footer-->

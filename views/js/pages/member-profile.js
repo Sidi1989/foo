@@ -4,13 +4,13 @@
  * distinguidos por encontrarse la id de cada petición en el tercer segmento, separados por "_", del id del botón,
  * el modal para la dicha edición se cargue con los datos que se conservan sobre la petición correspondiente.
  */
- 
+
 var editPetitionModalListener = function () {
   var editPetitionButtonsNodes = document.querySelectorAll('button.edit-petition-button');
-  editPetitionButtonsNodes.forEach( function (buttonNode) {
+  editPetitionButtonsNodes.forEach(function (buttonNode) {
     buttonNode.addEventListener('click', function () {
       var editPetitionButtonNodeId = buttonNode.id;
-      var petitionId = editPetitionButtonNodeId.split('_')[2]
+      var petitionId = editPetitionButtonNodeId.split('_')[2];
 
       var url = `/api/petitions/${petitionId}`;
       fetch(url)
