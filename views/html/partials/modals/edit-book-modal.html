@@ -50,7 +50,6 @@
             </select>
           </div>
 
-
           <div class="input-group mb-2">
             <label for="edit_book_category" class="input-group-text">Género</label>
             <select id="edit_book_category" name="edit_book_category" class="form-select">
@@ -61,7 +60,7 @@
           </div>
 
           <% categories.forEach(function (category,i) { %>
-            <div class="input-group mb-2" style="display: none">
+            <div class="input-group mb-2">
               <label for="edit_book_subcategory" class="input-group-text"><%= category.name%></label>
               <select id="edit_book_subcategory" name="edit_book_subcategory" class="form-select">
                 <%
@@ -95,6 +94,9 @@
           <div class="input-group">
             <label for="edit_book_format" class="input-group-text">Formato</label>
             <input id="edit_book_format" type="text" name="edit_book_format" class="form-control">
+          </div>
+
+          <div class="input-group">
             <label for="edit_book_dimensions" class="input-group-text">Dimensiones</label>
             <input id="edit_book_dimensions_length" type="number" class="form-control" placeholder="Alto">
             <span class="input-group-text">x</span>
@@ -102,25 +104,26 @@
             <span class="input-group-text">Cms</span>
           </div>
 
-          <div class="input-group">
-            <label for="edit_book_publish_date" class="input-group-text">Año de Publicación</label>
+          <div class="input-group mb-4">
+            <label for="edit_book_publish_date" class="input-group-text">Fecha</label>
             <input id="edit_book_publish_date" type="number" class="form-control">
-            <label for="edit_book_issue" class="input-group-text">Nº de Edición</label>
+            <label for="edit_book_issue" class="input-group-text">Edición</label>
             <input id="edit_book_issue" type="number" class="form-control">
-            <label for="edit_book_pages" class="input-group-text">Nº de Páginas</label>
+            <label for="edit_book_pages" class="input-group-text">Páginas</label>
             <input id="edit_book_pages" type="number" class="form-control">
           </div>
 
-          <div class="input-group mb-3">
+          <div class="input-group mb-2">
             <label for="edit_book_synopsis" class="input-group-text">Sinopsis</label>
-            <textarea id="edit_book_synopsis" class="form-control" rows="4" placeholder="Trata de no superar los 500 caracteres; y haz referencia al libro, no al ejemplar."></textarea>
+            <textarea id="edit_book_synopsis"
+                class="form-control"
+                rows="4"
+                placeholder="Trata de no superar los 500 caracteres; y haz referencia al libro, no al ejemplar."></textarea>
           </div>
 
-          <div class="mb-4">
-            <label for="edit_book_pic_file" class="form-label">
-              <u><h6>Imagen del Libro</h6></u>
-            </label>
-            <input id="edit_book_pic_file" class="form-control" type="file">
+          <div class="input-group mb-4">
+            <label for="edit_book_pic" class="input-group-text">Imagen del Libro</label>
+            <input id="edit_book_pic" type="text" name="edit_book_pic" class="form-control">
           </div>
 
         </form>

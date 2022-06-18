@@ -5,7 +5,7 @@
  */
 
 var memberNewCreatingListener = function () {
-  var createMemberButtonNode = document.getElementById("new_member_create_button");
+  var createMemberButtonNode = document.getElementById("sign_up_button");
   createMemberButtonNode.addEventListener('click', function () {
     var signUpNicknameNode = document.getElementById('sign_up_nickname');
     var nickname = signUpNicknameNode.value;
@@ -13,9 +13,6 @@ var memberNewCreatingListener = function () {
     var email = signUpEmailNode.value;
     var signUpPasswordNode = document.getElementById('sign_up_password');
     var password = signUpPasswordNode.value;
-
-    var signUpPasswordConfirmedNode = document.getElementById('sign_up_password');
-    var passwordConfirmed = signUpPasswordConfirmedNode.value;
 
     var url = '/api/members';
     var details = {

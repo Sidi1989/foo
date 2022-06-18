@@ -45,7 +45,10 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   <span><strong><%=petition.title %></strong> (<%= petition.author.name %>)</span>
                   <!-- Modal para Editar Petición -->
-                  <button id="edit_petition_<%=petition.id%>_button" type="button" class="edit-petition-button btn btn-success" data-bs-toggle="modal" data-bs-target="#edit_petition_modal">
+                  <button id="edit_petition_<%=petition.id%>_button" type="button"
+                        class="edit-petition-button btn btn-success"
+                        data-bs-toggle="modal"
+                        data-bs-target="#edit_petition_modal">
                     <i class="fa-solid fa-file-signature"></i>
                   </button>
                 </li>
@@ -121,6 +124,7 @@
     <%- include('../partials/others/footer.html', {}); %>
 
     <!-- Zona para Modals-->
+    <%- include('../partials/modals/new-book-modal.html', {}); %>
     <%- include('../partials/modals/new-collection-modal.html', {}); %>
     <%- include('../partials/modals/delete-from-collection-modal.html', {}); %>
     <%- include('../partials/modals/move-orphan-book-modal.html', {}); %>

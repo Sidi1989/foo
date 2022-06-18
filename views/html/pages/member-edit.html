@@ -22,17 +22,25 @@
             <div class="col-6">
               <div class="mt-4">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-success">
+                  <button id="new_location_button" type="button"
+                      class="btn btn-success"
+                      data-bs-toggle="modal"
+                      data-bs-target="#new_location_modal">
                     <i class="fa-light fa-plus fa-lg"></i>
                   </button>
                   <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-location-dot fa-lg"></i> Sedes
                   </button>
                   <ul class="dropdown-menu">
-                      <% member.locations.forEach(function (e, i) { %>
+                      <% member.locations.forEach(function (location, i) { %>
                       <li class="list-group-item d-flex align-items-center">
-                        <img class="img-thumbnail" style="width: 60px; height: 60px" src="<%=e.pic%>">
-                        <strong><%=e.name %></strong>
+                        <button id="edit_location_<%=location.id%>_button" type="button"
+                            class="edit-location-button btn btn-light"
+                            data-bs-toggle="modal"
+                            data-bs-target="#edit_location_modal">
+                          <img class="img-thumbnail" style="width: 60px; height: 60px" src="<%=location.pic%>">
+                          <strong><%=location.name %></strong>
+                        </button>
                       </li>
                       <% }); %>
                   </ul>
@@ -50,7 +58,9 @@
                       <% member.reviews.forEach(function (e, i) { %>
                       <li class="list-group-item d-flex align-items-center">
                         <div class="col">
-                          <img class="img-thumbnail" style="width: 75px; height: 75px" src="<%=e.book.pic%>">
+                          <a href="/books/<%=e.book.id%>">
+                            <img class="img-thumbnail" style="width: 75px; height: 75px" src="<%=e.book.pic%>">
+                          </a>
                         </div>
                         <div class="col">
                           <div class="badge bg-primary text-wrap">
@@ -79,39 +89,40 @@
           <!-- Datos Principales-->
           <div class="input-group mb-4">
             <label for="member_edit_nickname" class="input-group-text">Nickname</label>
-            <input id="member_edit_nickname" type="text" name="member_edit_nickname" class="form-control">
+            <input id="member_edit_nickname" type="text" name="member_edit_nickname" value="<%= member.nickname%>" class="form-control">
           </div>
 
           <div class="input-group mb-4">
             <label for="member_edit_email" class="input-group-text">E-mail</label>
-            <input id="member_edit_email" type="email" name="member_edit_email" class="form-control">
+            <input id="member_edit_email" type="email" name="member_edit_email" value="<%=member.email %>" class="form-control">
           </div>
 
           <div class="input-group mb-4 g-3">
             <label for="member_edit_name" class="input-group-text">Usuario</label>
             <div class="col ps-1">
-              <input id="member_edit_name_first" type="text" name="member_edit_name_first" class="form-control" placeholder="Nombre">
+              <input id="member_edit_name_first" type="text" name="member_edit_name_first" value="<%=member.name.first %>" class="form-control">
             </div>
             <div class="col ps-3">
-              <input id="member_edit_name_last" type="text" name="member_edit_name_last" class="form-control" placeholder="Apellidos">
+              <input id="member_edit_name_last" type="text" name="member_edit_name_last" value="<%=member.name.last %>" class="form-control">
             </div>
           </div>
 
           <div class="input-group mb-4">
-            <label for="member_edit_pic_file" class="input-group-text">
-              <i class="fa-brands fa-markdown"></i> Imagen de usuario
-            </label>
-            <input id="member_edit_pic_file" type="text" class="form-control" name="member_edit_pic_file" placeholder="URL de la imagen">
+            <label for="member_edit_pic" class="input-group-text">Imagen de usuario</label>
+            <input id="member_edit_pic" type="text" name="member_edit_pic" value="<%=member.pic %>" class="form-control">
           </div>
 
           <div class="input-group mb-5">
             <label for="member_edit_birthday" class="input-group-text">Fecha de nacimiento:</label>
-            <input id="member_edit_birthday" type="date" class="form-control" name="member_edit_birthday">
+            <input id="member_edit_birthday" type="date" name="member_edit_birthday" value="<%=member.birthday %>" class="form-control">
           </div>
 
           <div class="row mb-4">
               <div class="col-4 mx-auto">
-            <button id="member_edit_password_button" type="submit" class="btn btn-primary" name="member_edit_password_button">
+            <button id="change_password_button" type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#change_password_modal">
               <h5>Cambiar contraseña</h5>
             </button>
             </div>
@@ -129,6 +140,12 @@
     </div>
     <!-- Footer-->
     <%- include('../partials/others/footer.html', {}); %>
+
+    <!-- Zona para Modals-->
+    <%- include('../partials/modals/new-book-modal.html', {}); %>
+    <%- include('../partials/modals/new-location-modal.html', {}); %>
+    <%- include('../partials/modals/edit-location-modal.html', {}); %>
+    <%- include('../partials/modals/change-password-modal.html', {}); %>
 
     <script type="text/javascript" src="/public/js/pages/member-edit.js"></script>
 

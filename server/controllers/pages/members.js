@@ -7,7 +7,7 @@ const {getCollectionById} = require('../../models/collections.js');
 const {getBookById, getRandomBooks} = require('../../models/books.js');
 const {getAuthorById} = require('../../models/authors.js');
 const {getPetitionById} = require('../../models/petitions.js');
-const {getLocationById} = require('../../models/locations.js');
+const {getAllLocations, getLocationById} = require('../../models/locations.js');
 const {getReviewById} = require('../../models/reviews.js');
 
 
@@ -69,6 +69,18 @@ var memberEditHandler= function (req, res) {
     info.member = member;
   }
 
+  var categories = getAllCategories();
+  info.categories = categories;
+
+  var subcategories = getAllSubcategories();
+  info.subcategories = subcategories;
+
+  var languages = getAllLanguages();
+  info.languages = languages;
+
+  var locations = getAllLocations();
+  info.locations = locations;
+
   var locationsMapped = member.locations.map(function (locationId) {
     var location = getLocationById(locationId);
     return location;
@@ -109,6 +121,9 @@ var memberProfileHandler = function (req, res) {
 
   var languages = getAllLanguages();
   info.languages = languages;
+
+  var locations = getAllLocations();
+  info.locations = locations;
 
   var member = getMemberById(req.params.member);
   if (member == null) {
