@@ -4,14 +4,14 @@ var headerUserSearch;
 /**
  * @description
  * listener para que, al aparecer el modal, se recuperen las letras pulsadas
- * en el Header, así como la búsqueda asociada a dichas pulsaciones.
+ * en el buscador del Header, así como la búsqueda asociada a dichas pulsaciones.
  */
 
 var onModalShownListener = function () {
   var headerSearchModalNode = document.getElementById('header_search_modal');
   headerSearchModalNode.addEventListener('shown.bs.modal', function () {
-    var headerModalSearchInputNode = document.getElementById('header_modal_book_searching_input');
-    headerModalSearchInputNode.value = headerUserSearch;
+    var headerModalBookSearchingInputNode = document.getElementById('header_modal_book_searching_input');
+    headerModalBookSearchingInputNode.value = headerUserSearch;
 
     var url = '/api/books';
     fetch(url)
@@ -22,12 +22,17 @@ var onModalShownListener = function () {
           headerModalSearchTableBodyNode.innerHTML = '';
           // Se reducen los posibles resultados de la búsqueda a sólo aquellos
           // libros que pertenecieran al miembro.
-          var headerMemberId = getCookie('member');
+          var headerMemberId = getCookie('session');
           var headerOwnedBooks = info.filter(book => book.owner == headerMemberId);
           // Se va consiguiendo buscar aquellos libros cuyas primeras letras
           // coinciden con las teclas pulsadas.
+          //Y se evita que, al reescribir desde cero, salga toda la lista de libros.
           var headerSearchedBooks = headerOwnedBooks.filter(function (book) {
-            return book.title.toLowerCase().startsWith(headerUserSearch.toLowerCase())
+            if (!headerUserSearch) {
+              return false;
+            } else {
+              return book.title.toLowerCase().startsWith(headerUserSearch.toLowerCase())
+            }
           });
           books = headerSearchedBooks;
           books.forEach(function (book) {
@@ -58,9 +63,9 @@ window.addEventListener('load', onModalShownListener);
  */
 
 var headerModalSearchingListener = function () {
-  var headerModalSearchInputNode = document.getElementById("header_modal_book_searching_input");
-  headerModalSearchInputNode.addEventListener('keyup', function () {
-    headerModalSearchInputNode.value = headerUserSearch;
+  var headerModalBookSearchingInputNode = document.getElementById("header_modal_book_searching_input");
+  headerModalBookSearchingInputNode.addEventListener('keyup', function () {
+    headerModalBookSearchingInputNode.value = headerUserSearch;
 
     var url = '/api/books';
     fetch(url)
@@ -71,12 +76,17 @@ var headerModalSearchingListener = function () {
           headerModalSearchTableBodyNode.innerHTML = '';
           // Se reducen los posibles resultados de la búsqueda a sólo aquellos
           // libros que pertenecieran al miembro.
-          var headerMemberId = getCookie('member');
+          var headerMemberId = getCookie('session');
           var headerOwnedBooks = info.filter(book => book.owner == headerMemberId);
           // Se va consiguiendo buscar aquellos libros cuyas primeras letras
           // coinciden con las teclas pulsadas.
+          //Y se evita que, al reescribir desde cero, salga toda la lista de libros.
           var headerSearchedBooks = headerOwnedBooks.filter(function (book) {
-            return book.title.toLowerCase().startsWith(headerUserSearch.toLowerCase())
+            if (!headerUserSearch) {
+              return false;
+            } else {
+              return book.title.toLowerCase().startsWith(headerUserSearch.toLowerCase())
+            }
           });
           books = headerSearchedBooks;
           books.forEach(function (book) {

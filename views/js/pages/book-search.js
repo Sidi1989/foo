@@ -20,6 +20,7 @@ var bookSearchingListener = function () {
           searchTableBodyNode.innerHTML = '';
           // Se va consiguiendo buscar aquellos libros cuyas primeras letras
           // coinciden con las teclas pulsadas.
+          //Y se evita que, al reescribir desde cero, salga toda la lista de libros.
           var filteredBooks = info.filter(function (book) {
             if (!userSearch) {
               return false;

@@ -7,25 +7,30 @@ var books = [];
  */
 
 var relocateModalSearchingListener = function () {
-  var relocateModalSearchingInputNode = document.getElementById("relocate_book_searching_input");
-  relocateModalSearchingInputNode.addEventListener('keyup', function () {
-    var userSearch = relocateModalSearchingInputNode.value;
+  var relocateBookSearchingInputNode = document.getElementById("relocate_book_searching_input");
+  relocateBookSearchingInputNode.addEventListener('keyup', function () {
+    var relocateUserSearch = relocateBookSearchingInputNode.value;
 
     var url = '/api/books';
     fetch(url)
       .then(response => response.json())
       .then(function (info) {
-          var relocateModalSearchTableBodyNode = document.getElementById('relocate_search_table_body');
+          var relocateSearchTableBodyNode = document.getElementById('relocate_search_table_body');
           // Limpia la Tabla, para reescribir en ella.
-          relocateModalSearchTableBodyNode.innerHTML = '';
+          relocateSearchTableBodyNode.innerHTML = '';
           // Se reducen los posibles resultados de la búsqueda a sólo aquellos
           // libros que pertenecieran al miembro.
-          var memberId = getCookie('member');
+          var memberId = getCookie('session');
           var ownedBooks = info.filter(book => book.owner == memberId);
           // Se va consiguiendo buscar aquellos libros cuyas primeras letras
           // coinciden con las teclas pulsadas.
+          //Y se evita que, al reescribir desde cero, salga toda la lista de libros.
           var searchedBooks = ownedBooks.filter(function (book) {
-            return book.title.toLowerCase().startsWith(userSearch.toLowerCase())
+            if (!relocateUserSearch) {
+              return false;
+            } else {
+              return book.title.toLowerCase().startsWith(relocateUserSearch.toLowerCase())
+            }
           });
           books = searchedBooks;
           books.forEach(function (book) {
@@ -37,7 +42,7 @@ var relocateModalSearchingListener = function () {
             `;
             // Se ha aplicado un operador ternario ante la posibilidad de que
             // el libro no estuviera incluido en una Colección concreta.
-            relocateModalSearchTableBodyNode.appendChild(relocateModalSearchedBookNode);
+            relocateSearchTableBodyNode.appendChild(relocateModalSearchedBookNode);
           });
       });
   });
@@ -54,9 +59,9 @@ window.addEventListener('load', relocateModalSearchingListener);
 var relocateModalOrderingListener = function () {
   var relocateModalOrderingNode = document.getElementById("collection_order_button");
   relocateModalOrderingNode.addEventListener('click', function () {
-      var relocateModalSearchTableBodyNode = document.getElementById('relocate_search_table_body');
+      var relocateSearchTableBodyNode = document.getElementById('relocate_search_table_body');
       // Limpia la Tabla, para reescribir en ella.
-      relocateModalSearchTableBodyNode.innerHTML = '';
+      relocateSearchTableBodyNode.innerHTML = '';
       // Se reordenan los libros en la Tabla, volviendo a "pintarla" según
       // cómo deban disponerse los resultados de acuerdo al criterio.
       var sortedBooks = _.sortBy(books, ['collection']);
@@ -69,7 +74,7 @@ var relocateModalOrderingListener = function () {
         `;
         // Se ha aplicado un operador ternario ante la posibilidad de que
         // el libro no estuviera incluido en una Colección concreta.
-        relocateModalSearchTableBodyNode.appendChild(relocateModalSearchedBookNode);
+        relocateSearchTableBodyNode.appendChild(relocateModalSearchedBookNode);
       });
   });
 };

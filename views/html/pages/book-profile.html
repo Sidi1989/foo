@@ -11,105 +11,108 @@
     <div class="container">
 
       <!-- Parte superior, con los datos del libro-->
-      <div class="row mb-2">
+      <div class="row">
 
-        <!-- Columna de la Foto-->
-        <div class="col-3">
-          <div class="row mb-2">
-            <div class="row mt-3 mb-1 text-center">
-              <h5 id="book_location"><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
-            </div>
-            <div class="text-center">
-              <img src="<%=book.pic%>" id="book_pic_file" class="img-thumbnail" style="width: 240px; height: 320px">
-            </div>
+        <!-- Columna con datos técnicos-->
+        <div class="col-4">
+          <div class="row mb-3">
+            <h5 id="book_title"><strong><%=book.title%></strong></h5>
+            <h6 id="book_author_name"><%=book.author.name%></h6>
+          </div>
+          <div class="row">
+            <%- include('../partials/others/book-tech-info-card.html', {}); %>
           </div>
         </div>
 
-        <!--Columna con Información del libro-->
-        <div class="col-9">
+        <!--Columna con Foto, Sede y Sinopsis-->
+        <div class="col-8">
 
-          <div class="row mb-2">
+          <div class="row">
+            <div class="col-4">
+              <img src="<%=book.pic%>" id="book_pic_file" class="img-thumbnail" style="width: 260px; height: 340px">
+            </div>
+
             <div class="col-8">
-              <h5 id="book_title"><strong><%=book.title%></strong></h5>
-              <h6 id="book_author_name"><%=book.author.name%></h6>
-            </div>
+              <div class="row mb-3">
 
-            <div class="col-4 text-end g-0">
-              <div class="btn-group" role="group">
-                <!-- Sobre la situación actual del libro en Colecciones -->
-                <button id="book_present_collection_dropdown" type="button" class="btn btn-success btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fa-light fa-plus"></i>
-                  <i class="fa-solid fa-bookmark"></i>
-                </button>
-                  <ul class="dropdown-menu">
-                    <h5 class="dropdown-item text-muted">Actualmente en
-                      <% if (book.collection==null) { %>
-                        "Libros sin Colección"
-                      } else {
-                        book.collection.name</h5>
-                      <% } %>
-                    <div class="dropdown-divider"></div>
-                    <form class="my-1">
-                      <div class="form-check">
-                        <input id="relocate_book_to_orphan" type="radio" name="relocate_book_to" value="00" class="form-check-input">
-                        <label for="relocate_book_to_orphan" class="form-check-label">
-                          Libros sin Colección
-                        </label>
-                      </div>
-                      <% member.collections.forEach(function(e,i){ %>
-                      <div class="form-check">
-                        <input id="relocate_book_to_<%=i%>" type="radio" name="relocate_book_to" value="<%=e.id%>" class="form-check-input"
-                          <% if (e.id==book.collection.id) { %>
-                            disabled>
+                <div class="col-3 pt-3 text-center">
+                  <h5 id="book_location"><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
+                </div>
+
+                <div class="col-9 text-end">
+                  <div class="btn-group" role="group">
+
+                    <!-- Sobre la situación actual del libro en Colecciones -->
+                    <button id="book_present_collection_dropdown" type="button" class="btn btn-success btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-light fa-plus"></i>
+                      <i class="fa-solid fa-bookmark"></i>
+                    </button>
+                      <ul class="dropdown-menu">
+                        <h5 class="dropdown-item text-muted">Actualmente en
+                          <% if (book.collection==null) { %>
+                            "Libros sin Colección"
+                          <% } else { %>
+                            "<%=book.collection.name%>"</h5>
                           <% } %>
-                        <label for="relocate_book_to_<%=i%>" class="form-check-label">
-                          <%=e.name%>
-                        </label>
-                      </div>
-                      <% }) %>
-                    </form>
-                    <div class="text-end">
-                      <button id="relocate_save_button" type="submit" class="btn btn-success btn-sm mt-1" name="relocate_save_button">
-                        Mover Libro
-                      </button>
-                    </div>
-                  </ul>
+                        <div class="dropdown-divider"></div>
+                        <form class="p-1">
+                          <div class="form-check">
+                            <input id="relocate_book_to_orphan" type="radio" name="relocate_book_to" value="00" class="form-check-input">
+                            <label for="relocate_book_to_orphan" class="form-check-label">
+                              Libros sin Colección
+                            </label>
+                          </div>
+                          <% member.collections.forEach(function(e,i){ %>
+                          <div class="form-check">
+                            <input id="relocate_book_to_<%=i%>" type="radio" name="relocate_book_to" value="<%=e.id%>" class="form-check-input"
+                              <% if (book.collection.id==e.id) { %>
+                                disabled>
+                                <% } %>
+                            <label for="relocate_book_to_<%=i%>" class="form-check-label">
+                              <%=e.name%>
+                            </label>
+                          </div>
+                          <% }) %>
+                        </form>
+                        <div class="text-end p-1">
+                          <button id="relocate_save_button" type="submit" class="btn btn-success btn-sm mt-1" name="relocate_save_button">
+                            Mover Libro
+                          </button>
+                        </div>
+                      </ul>
 
-                <!-- Modal para Editar Libro -->
-                <button id="edit_book_button" type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#edit_book_modal">
-                  <i class="fa-solid fa-file-signature"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Parte con los datos técnicos -->
-          <div class="row mb-2">
-            <div class="col-7">
-              <div class="d-grid">
-                <div class="p-1 bg-light border">
-                  <div class="row">
-                    <u><h5>Sinopsis:</h5></u>
-                    <span id="book_synopsis"><%=book.synopsis%></span>
+                    <!-- Modal para Editar Libro -->
+                    <button id="edit_book_button" type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#edit_book_modal">
+                      <i class="fa-solid fa-file-signature"></i>
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-5 gx-1">
-              <%- include('../partials/others/book-tech-info-card.html', {}); %>
+
+              <div class="row">
+                <div class="d-grid">
+                  <div class="p-1 bg-light border">
+                    <div class="row">
+                      <u><h5>Sinopsis:</h5></u>
+                      <span id="book_synopsis"><%=book.synopsis%></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
-
         </div>
-      </div>
+
+      <div>
       <!-- Final de la Parte superior-->
 
       <!-- Zona para la valoración del libro -->
-      <div class="row mb-4">
-        <div class="col-5">
+      <div class="row my-4">
+        <div class="col">
           <%- include('../partials/others/list-reviews-navbar.html', {}); %>
         </div>
-        <div class="col-7">
+        <div class="col">
           <%- include('../partials/others/book-rating-card.html', {}); %>
         </div>
       </div>

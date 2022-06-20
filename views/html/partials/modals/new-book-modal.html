@@ -59,13 +59,13 @@
             </select>
           </div>
 
-          <% categories.forEach(function (category,i) { %>
+          <% categories.forEach(function (e,i) { %>
             <div class="input-group mb-2">
-              <label for="new_book_subcategory" class="input-group-text"><%= category.name%></label>
+              <label for="new_book_subcategory" class="input-group-text"><%= e.name%></label>
               <select id="new_book_subcategory" name="new_book_subcategory" class="form-select" required="required">
                 <%
                   var filteredSubcategories = subcategories.filter(function (subcategory,i) {
-                    return (subcategory.parent == category.id)
+                    return (subcategory.parent == e.id)
                   })
                 %>
                 <% filteredSubcategories.forEach(function (subcategory,i) { %>
