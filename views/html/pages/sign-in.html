@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/others/common-head-components.html', {}); %>
+    <title>Pinakes - Sign In</title>
+  </head>
+
+  <body>
+    <!-- Modal previo con el Logo-->
+    <div id="pre_sign_in_modal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <button type="button" data-bs-dismiss="modal">
+              <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/6627/6627472.png">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toda la página, una vez cerrado el Modal-->
+    <div class="container">
+      <div class="row my-5 g-5">
+
+        <div class="col-5">
+          <div class="row">
+            <div id="cite_pic" class="col my-5" name="cite_pic">
+              <img src="<%=quote.pic%>" class="img-thumbnail" style="width: 2750px; height: 300px">
+            </div>
+            <div class="col my-5">
+              <figure>
+                <blockquote id="cite_text" class="blockquote" name="cite_text">
+                  <p><%=quote.text%></p>
+                </blockquote>
+                <figcaption id="cite_author" class="blockquote-footer mt-3" name="cite_author">
+                  <span><%=quote.whose%></span>
+                  <p><cite title="cite_author_data"><%=quote.why%></cite></p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección de registro -->
+        <div class="col-7">
+          <div class="d-grid">
+            <form class="p-3 bg-light border">
+
+              <div class="input-group mb-4">
+                <label for="sign_in_email" class="input-group-text">Usuario</label>
+                <input id="sign_in_email" type="email" name="sign_in_email" class="form-control" placeholder="Introduzca su E-mail">
+              </div>
+
+              <div class="input-group mb-4">
+                <label for="sign_in_password" class="input-group-text">Contraseña</label>
+                <input id="sign_in_password" type="password" name="sign_in_password" class="form-control" placeholder="Introduzca su Contraseña">
+              </div>
+
+              <div class="input-group mb-4">
+                <div class="form-check">
+                  <label for="remember_me_check" class="form-check-label">Recuérdame</label>
+                  <input id="remember_me_check" class="form-check-input" type="checkbox" name="remember_me_check">
+                </div>
+              </div>
+
+              <!-- Botón de SignIn y Recuperaciones de cuenta -->
+              <div class="row">
+              <div class="d-grid col-3 mx-auto">
+                <button id="sign_in_button" type="submit" class="btn btn-success" name="sign_in_button">
+                  <h5>Entrar</h5>
+                </button>
+              </div>
+              <div class="d-grid col-6 mx-auto">
+                <button type="button" class="btn btn-primary" >
+                  <a href="/books/search" class="text-white text-decoration-none">
+                    <h6>Busca un libro como Invitado</h6>
+                  </a>
+                </button>
+              </div>
+              </div>
+
+            </form>
+            <div class="dropdown-divider mt-5"></div>
+
+            <div class="m-1 nav_pop_new_cust nav-flyout-content nav-flyout-accessibility">¿Aún no tienes cuenta?
+              <a href="/auth/signup" rel="nofollow" class="nav-a">Empieza aquí</a>
+            </div>
+            <div class="m-1 nav_pop_new_cust nav-flyout-content nav-flyout-accessibility">¿Olvidaste la contraseña?
+              <a href="#" rel="nofollow" class="nav-a">Contacta aquí</a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/public/js/pages/sign-in.js"></script>
+
+  </body>
+</html>

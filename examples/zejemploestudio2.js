@@ -21,6 +21,4 @@ var livre1 = {
   },
 };
 
-
-
 exports.libro1 = livre1;

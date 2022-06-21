@@ -1,0 +1,46 @@
+<!-- Perfil de usuario-->
+<div class="p-1 bg-light border">
+  <div class="row">
+
+    <div class="col">
+      <a href="/members/<%=member.id%>">
+        <img id="member_pic_file" class="img-thumbnail" name="member_pic_file" style="width: 240px; height: 180px" src="<%=member.pic%>">
+      </a>
+    </div>
+
+    <div class="col mt-2">
+
+      <div class="row">
+        <div class="col">
+          <i class="fa-solid fa-user-pen fa-lg"></i>
+          <p id="member_nickname" class="text-primary" name="member_nickname"><%=member.nickname%></p>
+        </div>
+        <div class="col">
+          <button id="new_book_button" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#new_book_modal">
+            <i class="fa-solid fa-book fa-lg"></i>
+            <span> </span>
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <i class="fa-solid fa-hourglass fa-lg"></i>
+          <p id="member_client_age" class="text-primary" name="member_client_age"><%=member.addingDate%></p>
+        </div>
+      </div>
+      <div class="row gx-0">
+        <div class="col">
+          <i class="fa-solid fa-book-open fa-lg"></i>
+          <p id="member_books_quantity" class="text-primary" name="member_books_quantity"><%=member.books.length%></p>
+        </div>
+        <div class="col">
+          <i class="fa-solid fa-map-pin fa-lg"></i>
+          <p id="member_petitions_quantity" class="text-primary" name="member_petitions_quantity"><%=member.petitions.length%></p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

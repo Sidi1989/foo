@@ -1,22 +1,25 @@
-/*
-const {getAllBooks, getBookById} = require('../models/books.js');
-const {getAllMembers, getMemberById} = require('../models/members.js');
-const {getCategoryById} = require('../models/categories.js');
-const {getSubcategoryById} = require('../models/subcategories.js');
-const {getLanguageById} = require('../models/languages.js');
-const {getAuthorById} = require('../models/authors.js');
-const {getAllCollections, getCollectionById} = require('../models/collections.js');
-const {getAllPetitions, getPetitionById} = require('../models/petitions.js');
-const {getAllReviews, getReviewById} = require('../models/reviews.js');
+const {getAllMembers, getMemberById, createMember, deleteMember} = require('../../models/members.js');
 
 
 
 
 var apiCreateMemberHandler = function (req, res) {
-  var memberId = new Date();
+  var newMemberInfo = {
+    nickname: req.body.nickname,
+    email: req.body.email,
+    password: req.body.password,
+    name: {
+      first: req.body.firstname,
+      last: req.body.lastname
+    },
+    birthday: req.body.birthday,
+    pic: req.body.pic
+  };
+  var newMember = createMember(newMemberInfo);
+
   var info = {
     status: "OK",
-    member: memberId
+    member: newMember
   };
   return res.json(info);
 };
@@ -44,9 +47,13 @@ var apiEditMemberHandler = function (req, res) {
 
 
 var apiDeleteMemberHandler = function (req, res) {
-  var member = getMemberById(req.params.member);
+  deleteMember(req.params.member);
 
-  return res.json(member);
+  var info = {
+    status: "OK",
+    member: req.params.member
+  };
+  return res.json(info);
 };
 
 
@@ -57,4 +64,3 @@ exports.apiListMembersHandler = apiListMembersHandler;
 exports.apiRetrieveMemberHandler = apiRetrieveMemberHandler;
 exports.apiEditMemberHandler = apiEditMemberHandler;
 exports.apiDeleteMemberHandler = apiDeleteMemberHandler;
-*/

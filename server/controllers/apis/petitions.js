@@ -1,31 +1,47 @@
-/*
-const {getAllBooks, getBookById} = require('../models/books.js');
-const {getAllMembers, getMemberById} = require('../models/members.js');
-const {getCategoryById} = require('../models/categories.js');
-const {getSubcategoryById} = require('../models/subcategories.js');
-const {getLanguageById} = require('../models/languages.js');
-const {getAuthorById} = require('../models/authors.js');
-const {getAllCollections, getCollectionById} = require('../models/collections.js');
-const {getAllPetitions, getPetitionById} = require('../models/petitions.js');
-const {getAllReviews, getReviewById} = require('../models/reviews.js');
+const {getPetitionById, createPetition, deletePetition} = require('../../models/petitions.js');
+const {getMemberById} = require('../../models/members.js');
+const {getAuthorById} = require('../../models/authors.js');
+const {getCategoryById} = require('../../models/categories.js');
+const {getSubcategoryById} = require('../../models/subcategories.js');
+const {getLanguageById} = require('../../models/languages.js');
 
 
 
 
 var apiCreatePetitionHandler = function (req, res) {
-  var petitionId = new Date();
+  var newPetitionInfo = {
+    title: req.body.title,
+    author: req.body.author,
+    category: req.body.category,
+    subcategory: req.body.subcategory,
+    language: req.body.language,
+    shoppingLink: req.body.shoppingLink
+  };
+  var newPetition = createPetition(newPetitionInfo);
+
   var info = {
     status: "OK",
-    petition: petitionId
+    petition: newPetition
   };
   return res.json(info);
 };
 
 
 var apiListPetitionsHandler = function (req, res) {
-  var petitions = getAllPetitions();
+  var member = getMemberById(req.params.member);
+  var memberPetitions = member.petitions.map(function (petitionId) {
+    var petition = getPetitionById(petitionId);
+    return petition;
+  });
 
-  return res.json(petitions);
+  memberPetitions.forEach(function (e) {
+    e.author = getAuthorById(e.author);
+    e.category = getCategoryById(e.category);
+    e.subcategory = getSubcategoryById(e.subcategory);
+    e.language = getLanguageById(e.language);
+  });
+
+  return res.json(memberPetitions);
 };
 
 
@@ -44,9 +60,13 @@ var apiEditPetitionHandler = function (req, res) {
 
 
 var apiDeletePetitionHandler = function (req, res) {
-  var petition = getPetitionById(req.params.petition);
+  deletePetition(req.params.petition);
 
-  return res.json(petition);
+  var info = {
+    status: "OK",
+    petition: req.params.petition
+  };
+  return res.json(info);
 };
 
 
@@ -57,4 +77,3 @@ exports.apiListPetitionsHandler = apiListPetitionsHandler;
 exports.apiRetrievePetitionHandler = apiRetrievePetitionHandler;
 exports.apiEditPetitionHandler = apiEditPetitionHandler;
 exports.apiDeletePetitionHandler = apiDeletePetitionHandler;
-*/

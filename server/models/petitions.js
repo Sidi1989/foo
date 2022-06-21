@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-//const petitions = require('../../runtime/db/petitions.json');
+const {v4: uuidv4} = require('uuid');
+
 const petitionsRelativeDirname = '../../runtime/db/petitions';
 const petitionsAbsoluteDirname = path.join(__dirname, petitionsRelativeDirname);
 const petitionsBasenames = fs.readdirSync(petitionsAbsoluteDirname);
@@ -30,9 +31,42 @@ var getPetitionById = function (id) {
     petition = null;
   } else {
     petition = filteredPetitions[0];
-  };
+  }
 
   return petition;
+};
+
+
+var createPetition = function (info) {
+  var petitionId = `pet${uuidv4().slice(0,3)}`;
+  var date = `${new Date().toJSON().split('T')[0]}`
+  var newPetition = {
+    id: petitionId,
+    addingDate: date,
+    title: info.title,
+    author: info.author,
+    category: info.category,
+    subcategory: info.subcategory,
+    language: info.language,
+    shoppingLink: info.shoppingLink
+  };
+  var newPetitionAsJson = JSON.stringify(newPetition, null, 2);
+  var dirname = petitionsAbsoluteDirname;
+  var basename = `${petitionId}.json`;
+  var pathname = path.join(dirname, basename);
+  fs.writeFileSync(pathname, newPetitionAsJson);
+
+  return newPetition;
+};
+
+
+var deletePetition = function (petitionId) {
+  var dirname = petitionsAbsoluteDirname;
+  var basename = `${petitionId}.json`;
+  var pathname = path.join(dirname, basename);
+  fs.unlinkSync(pathname);
+
+  return petitionId
 };
 
 
@@ -40,3 +74,5 @@ var getPetitionById = function (id) {
 
 exports.getAllPetitions = getAllPetitions;
 exports.getPetitionById = getPetitionById;
+exports.createPetition = createPetition;
+exports.deletePetition = deletePetition;

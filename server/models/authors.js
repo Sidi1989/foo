@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-//const authors = require('../../runtime/db/authors.json');
+
 const authorsRelativeDirname = '../../runtime/db/authors';
 const authorsAbsoluteDirname = path.join(__dirname, authorsRelativeDirname);
 const authorsBasenames = fs.readdirSync(authorsAbsoluteDirname);
@@ -19,24 +19,29 @@ var getAllAuthors = function () {
 };
 
 
+/**
+ * @description
+ * Se asume que el Autor 'Anónimo' es aquel con un id nulo
+ */
 var getAuthorById = function (id) {
+  var author;
+
   if (id == null) {
-    var author = {};
+    author = {};
     author.name = "Anónimo";
     return author;
-  };
+  }
 
   var clonedAuthors = _.cloneDeep(authors);
   var filteredAuthors = clonedAuthors.filter(function (e) {
     return (e.id == id);
   });
 
-  var author;
   if (filteredAuthors.length == 0) {
     author = null;
   } else {
     author = filteredAuthors[0];
-  };
+  }
 
   return author;
 };

@@ -1,0 +1,59 @@
+<div class="modal fade" id="relocate_books_in_collections_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Añadir libro desde otra Colección</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body my-3">
+        <div class="row">
+
+          <!--Buscador para la Tabla-->
+          <form class="d-flex" role="search">
+            <input id="relocate_book_searching_input" class="form-control" type="search" placeholder="Encuentra tu libro en su Colección actual...">
+            <button id="collection_order_button" class="btn btn-success" type="button">
+              <i class="fa-solid fa-arrow-down-wide-short"></i>
+            </button>
+          </form>
+
+          <!--Tabla para el Buscador-->
+          <div class="table-wrapper">
+            <table class="table table-borderless"
+              data-toggle="table"
+              data-url="books.json"
+              data-pagination="true"
+              data-search="true">
+
+              <thead>
+                <tr>
+                  <th class="th">Título
+                  </th>
+                  <th class="th">Autor
+                  </th>
+                  <th class="th">Colección
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody id="relocate_search_table_body">
+              </tbody>
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="modal-footer p-1">
+        <button id="relocate_save_button" type="button" class="btn btn-success" name="relocate_save_button">
+          Añadir Libro
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="/public/js/partials/relocate-books-in-collections-modal.js"></script>

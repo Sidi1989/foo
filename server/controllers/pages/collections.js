@@ -1,20 +1,20 @@
 const {getMemberById} = require('../../models/members.js');
-const {getBookById} = require('../../models/books.js')
 const {getCollectionById} = require('../../models/collections.js');
+const {getBookById} = require('../../models/books.js')
 
 
 
 
 /**
  * @description
- * Función destinada a cubrir la petición de Mostrar la Configuración de una Colección concreta
+ * función destinada a cubrir la petición de mostrar las Características de una Colección concreta
  *
- * @param req Contiene la información de la petición
- * @param res Contiene la renderización de la petición para el cliente
+ * @param req contiene la información de la petición
+ * @param res contiene la renderización de la petición para el cliente
  */
-var collectionEditHandler= function (req, res) {
-  var pathname = `${__dirname}/../../../Pinakes/html/views/collection-edit.html`;
 
+var collectionEditHandler= function (req, res) {
+  var pathname = `${__dirname}/../../../views/html/pages/collection-edit.html`;
   var info = {};
 
   var member = getMemberById(req.params.member);
@@ -22,14 +22,15 @@ var collectionEditHandler= function (req, res) {
     info.member = {};
   } else {
     info.member = member;
-  };
+  }
 
   var collectionsMapped = member.collections.map(function (collectionId) {
     var collection = getCollectionById(collectionId);
-    var booksInCollection = collection.books.map(function (bookId) {
+    var booksInEachCollection = collection.books.map(function (bookId) {
       var book = getBookById(bookId);
       return book;
     });
+    collection.books = booksInEachCollection;
     return collection;
   });
   info.member.collections = collectionsMapped;
@@ -39,13 +40,13 @@ var collectionEditHandler= function (req, res) {
     info.collection = {};
   } else {
     info.collection = collection;
-  };
+  }
 
   var booksInCollection = collection.books.map(function (bookId) {
     var book = getBookById(bookId);
     return book;
   });
-  collection.books = booksInCollection;
+  info.collection.books = booksInCollection;
 
 
   res.render(pathname, info);

@@ -1,0 +1,65 @@
+<div class="container-fluid bg-success mb-5 p-2">
+  <div class="row justify-content-evenly">
+
+    <div class="col">
+      <h3>
+        <a href="/auth/signin" class="text-white text-decoration-none">
+          PIN<img src="https://cdn-icons-png.flaticon.com/512/6627/6627472.png" class="img-fluid" style="width: 30px; height: 30px">KES
+        </a>
+      </h3>
+    </div>
+
+    <div class="col">
+      <!--Redirección al Buscador-->
+      <form class="d-flex" role="search">
+        <input id="header_book_searching_input" type="search" class="form-control" placeholder="Busca un libro por su Título o Autor...">
+        <button
+            id="header_book_searching_button" type="button" class="btn btn-success btn-lg"
+            data-bs-toggle="modal" data-bs-target="#header_search_modal">
+          <i class="text-white ms-3 fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
+    </div>
+
+    <div class="col text-end">
+      <div class="btn-group">
+        <button class="btn btn-success btn-lg" type="button">
+          <i class="text-white fa-solid fa-bell fa-lg"></i>
+          <span id="notifications_badge" class="badge rounded-pill bg-success" name="notifications_badge">
+            Nº
+          </span>
+        </button>
+        <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="text-white fa-solid fa-user-large"></i>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item text-center" href="/members/<%=member.id%>">
+              <img id="member_pic_file" class="img-fluid" name="member_pic_file" style="width: 100px; height: 85px" src="<%=member.pic%>">
+            </a>
+            <a class="dropdown-item text-center">
+              <h6><%=member.nickname%></h6>
+            </a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <a class="dropdown-item" href="/members/<%=member.id%>/preferences">
+              <i class="fa-solid fa-user-pen fa-lg"></i> Configuración
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/auth/signin">
+              <i class="fa-solid fa-right-from-bracket fa-lg"></i> Cerrar sesión
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Zona para Modals-->
+<%- include('../modals/header-search-modal.html', {}); %>
+
+<script type="text/javascript" src="/public/js/partials/header.js"></script>

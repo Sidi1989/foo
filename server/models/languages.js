@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-//const languages = require('../../runtime/db/languages.json');
+
 const languagesRelativeDirname = '../../runtime/db/languages';
 const languagesAbsoluteDirname = path.join(__dirname, languagesRelativeDirname);
 const languagesBasenames = fs.readdirSync(languagesAbsoluteDirname);
@@ -30,7 +30,7 @@ var getLanguageById = function (id) {
     language = null;
   } else {
     language = filteredLanguages[0];
-  };
+  }
 
     return language;
 };

@@ -1,31 +1,39 @@
-/*
-const {getAllBooks, getBookById} = require('../models/books.js');
-const {getAllMembers, getMemberById} = require('../models/members.js');
-const {getCategoryById} = require('../models/categories.js');
-const {getSubcategoryById} = require('../models/subcategories.js');
-const {getLanguageById} = require('../models/languages.js');
-const {getAuthorById} = require('../models/authors.js');
-const {getAllCollections, getCollectionById} = require('../models/collections.js');
-const {getAllPetitions, getPetitionById} = require('../models/petitions.js');
-const {getAllReviews, getReviewById} = require('../models/reviews.js');
+const {getCollectionById, createCollection, deleteCollection} = require('../../models/collections.js');
+const {getMemberById} = require('../../models/members.js');
+const {getBookById} = require('../../models/books.js');
 
 
 
 
 var apiCreateCollectionHandler = function (req, res) {
-  var collectionId = new Date();
+  var newCollectionInfo = {
+    owner: req.user.id,
+    name: req.body.name,
+    pic: req.body.pic
+  };
+  var newCollection = createCollection(newCollectionInfo);
+
   var info = {
     status: "OK",
-    collection: collectionId
+    collection: newCollection
   };
   return res.json(info);
 };
 
 
 var apiListCollectionsHandler = function (req, res) {
-  var collections = getAllCollections();
+  var member = getMemberById(req.params.member);
+  var memberCollections = member.collections.map(function (collectionId) {
+    var collection = getCollectionById(collectionId);
+    var booksInEachCollection = collection.books.map(function (bookId) {
+      var book = getBookById(bookId);
+      return book;
+    });
+    collection.books = booksInEachCollection;
+    return collection;
+  });
 
-  return res.json(collections);
+  return res.json(memberCollections);
 };
 
 
@@ -44,9 +52,13 @@ var apiEditCollectionHandler = function (req, res) {
 
 
 var apiDeleteCollectionHandler = function (req, res) {
-  var collection = getCollectionById(req.params.collection);
+  deleteCollection(req.params.collection);
 
-  return res.json(collection);
+  var info = {
+    status: "OK",
+    collection: req.params.collection
+  };
+  return res.json(info);
 };
 
 
@@ -57,4 +69,3 @@ exports.apiListCollectionsHandler = apiListCollectionsHandler;
 exports.apiRetrieveCollectionHandler = apiRetrieveCollectionHandler;
 exports.apiEditCollectionHandler = apiEditCollectionHandler;
 exports.apiDeleteCollectionHandler = apiDeleteCollectionHandler;
-*/
