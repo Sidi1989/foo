@@ -34,9 +34,11 @@
             </div>
             <div class="row m-1">
               <!-- Modal para Editar Colección -->
-              <button type="button" class="btn btn-lg btn-success"
-                  data-bs-toggle="modal"
-                  data-bs-target="#edit_collection_modal">
+              <button id="edit_collection_<%=collection.id%>_button"
+                    type="button"
+                    class="btn edit-collection-button btn-success btn-lg"
+                    data-bs-toggle="modal"
+                    data-bs-target="#edit_collection_modal">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
             </div>

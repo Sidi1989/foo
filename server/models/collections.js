@@ -20,13 +20,24 @@ var getAllCollections = function () {
 };
 
 
+/**
+ * @description
+ * Se asume que la Colección 'Sin Colección' es aquella con un id nulo
+ */
 var getCollectionById = function (id) {
+  var collection;
+
+  if (id == null) {
+    collection = {};
+    collection.name = "Libros sin Colección";
+    return collection;
+  }
+
   var clonedCollections = _.cloneDeep(collections);
   var filteredCollections = clonedCollections.filter(function (e) {
     return (e.id == id);
   });
 
-  var collection;
   if (filteredCollections.length == 0) {
     collection = null;
   } else {

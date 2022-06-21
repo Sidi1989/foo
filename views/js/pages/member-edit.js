@@ -66,7 +66,7 @@ var locationNewCreatingListener = function () {
       .then(response => response.json())
       .then(function (info) {
           if (info.status == 'OK') {
-            window.location = `/members/${info.owner}/preferences`;
+            location.reload();
           } else {
             window.alert('Algo ha salido mal')
           }

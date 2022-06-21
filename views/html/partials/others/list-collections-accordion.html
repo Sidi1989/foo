@@ -21,15 +21,15 @@
           data-bs-target="#accordionCollapser<%= i%>"
           aria-expanded="true"
           aria-controls="accordionCollapser<%= i%>">
-          <span><%= collection.name %></span>
-          <span class="badge bg-success rounded-pill"><%= collection.books.length %></span>
+          <%= collection.name %>
+          <div class="badge bg-success rounded-pill ms-3"><%= collection.books.length %></div>
         </button>
       </div>
 
       <div id="accordionCollapser<%= i%>" class="accordion-collapse collapse">
-        <div class="accordion-body p-1">
+        <div class="accordion-body">
           <% collection.books.forEach(function (book) { %>
-          <div class="row g-0">
+          <div class="row gx-0">
             <div class="col-11">
               <a href="/books/<%=book.id%>" class="list-group-item list-group-item-action">
                 <i id="<%=book.id%>_reviewed_star" class="book-reviewed-star fa-solid fa-star"></i>
@@ -48,7 +48,7 @@
           <% }); %>
         </div>
 
-        <div class="row g-0 text-center">
+        <div class="row p-1 text-center">
           <a href="<%= member.id%>/<%= collection.id%>">
             <button type="button" class="btn btn-success">
               <i class="fa-solid fa-file-signature"></i>
@@ -74,14 +74,14 @@
           aria-expanded="true"
           aria-controls="accordionOtherCollapser">
           Libros sin Colección
-          <span class="badge bg-success rounded-pill"><%= orphanBooks.length %></span>
+          <div class="badge bg-success rounded-pill ms-3"><%= orphanBooks.length %></div>
         </button>
       </div>
 
       <div id="accordionOtherCollapser" class="accordion-collapse collapse">
-        <div class="accordion-body p-1">
+        <div class="accordion-body">
           <% orphanBooks.forEach(function (e) { %>
-          <div class="row g-0">
+          <div class="row gx-0">
             <div class="col-11">
               <a href="/books/<%=e.id%>" class="list-group-item list-group-item-action">
                 <i id="<%=e.id%>_reviewed_star" class="book-reviewed-star fa-solid fa-star"></i>

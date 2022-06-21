@@ -48,20 +48,9 @@
                       <i class="fa-solid fa-bookmark"></i>
                     </button>
                       <ul class="dropdown-menu">
-                        <h5 class="dropdown-item text-muted">Actualmente en
-                          <% if (book.collection==null) { %>
-                            "Libros sin Colección"
-                          <% } else { %>
-                            "<%=book.collection.name%>"</h5>
-                          <% } %>
+                        <h5 class="dropdown-item text-muted">Actualmente en "<%=book.collection.name%>"</h5>
                         <div class="dropdown-divider"></div>
                         <form class="p-1">
-                          <div class="form-check">
-                            <input id="relocate_book_to_orphan" type="radio" name="relocate_book_to" value="00" class="form-check-input">
-                            <label for="relocate_book_to_orphan" class="form-check-label">
-                              Libros sin Colección
-                            </label>
-                          </div>
                           <% member.collections.forEach(function(e,i){ %>
                           <div class="form-check">
                             <input id="relocate_book_to_<%=i%>" type="radio" name="relocate_book_to" value="<%=e.id%>" class="form-check-input"
@@ -82,7 +71,11 @@
                       </ul>
 
                     <!-- Modal para Editar Libro -->
-                    <button id="edit_book_button" type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#edit_book_modal">
+                    <button id="edit_book_<%=book.id%>_button" 
+                          type="button"
+                          class="btn edit-book-button btn-outline-success btn-lg"
+                          data-bs-toggle="modal"
+                          data-bs-target="#edit_book_modal">
                       <i class="fa-solid fa-file-signature"></i>
                     </button>
                   </div>

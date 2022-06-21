@@ -5,10 +5,14 @@
  */
 
 var editCollectionModalListener = function () {
-  var editColectionSaveChangesButtonsNode = document.getElementById('edit_collection_save_button');
-  editColectionSaveChangesButtonsNode.addEventListener('click', function () {
 
-      var url = `/api/members/${ownerId}/${collectionId}`;
+  var editCollectionButtonNode = document.querySelectorAll('button.edit-collection-button');
+  editCollectionButtonNode.forEach(function (buttonNode) {
+    buttonNode.addEventListener('click', function () {
+      var editCollectionButtonNodeId = buttonNode.id;
+      var collectionId = editCollectionButtonNodeId.split('_')[2];
+
+      var url = `/api/collections/${collectionId}`;
       fetch(url)
         .then(res => res.json())
         .then(function (info) {
@@ -18,5 +22,6 @@ var editCollectionModalListener = function () {
             editPicNode.value = info.pic;
         });
     });
+  });
 };
 window.addEventListener('load', editCollectionModalListener);

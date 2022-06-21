@@ -18,9 +18,10 @@ var getAllAuthors = function () {
   return _.cloneDeep(authors);
 };
 
+
 /**
  * @description
- * Se asume que el autor anónimo es un autor cuyo id sería nulo
+ * Se asume que el Autor 'Anónimo' es aquel con un id nulo
  */
 var getAuthorById = function (id) {
   var author;

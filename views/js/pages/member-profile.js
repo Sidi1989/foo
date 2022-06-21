@@ -37,7 +37,7 @@
        .then(response => response.json())
        .then(function (info) {
            if (info.status == 'OK') {
-             window.location = `/members/${info.owner}`;
+             location.reload();
            } else {
              window.alert('Algo ha salido mal')
            }
@@ -98,7 +98,7 @@
        .then(response => response.json())
        .then(function (info) {
            if (info.status == 'OK') {
-             window.location = `/members/${info.owner}`;
+             location.reload();
            } else {
              window.alert('Algo ha salido mal')
            }
