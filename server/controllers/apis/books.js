@@ -1,9 +1,11 @@
-const {getAllBooks, getBookById, createBook, deleteBook} = require('../../models/books.js');
+const {getBookById, createBook, deleteBook} = require('../../models/books.js');
+const {getMemberById} = require('../../models/members.js');
+const {getCollectionById} = require('../../models/collections.js');
+const {getLocationById} = require('../../models/locations.js');
+const {getAuthorById} = require('../../models/authors.js');
 const {getCategoryById} = require('../../models/categories.js');
 const {getSubcategoryById} = require('../../models/subcategories.js');
-const {getAuthorById} = require('../../models/authors.js');
 const {getLanguageById} = require('../../models/languages.js');
-const {getCollectionById} = require('../../models/collections.js');
 
 
 
@@ -43,25 +45,22 @@ var apiCreateBookHandler = function (req, res) {
 
 
 var apiListBooksHandler = function (req, res) {
-  var books = getAllBooks();
+  var member = getMemberById(req.params.member);
+  var memberBooks = member.books.map(function (bookId) {
+    var book = getBookById(bookId);
+    return book;
+  });
 
-  books.forEach(function (e) {
-    e.category = getCategoryById(e.category);
-  });
-  books.forEach(function (e) {
-    e.subcategory = getSubcategoryById(e.subcategory);
-  });
-  books.forEach(function (e) {
+  memberBooks.forEach(function (e) {
+    e.collection = getCollectionById(e.collection);
+    e.location = getLocationById (e.location);
     e.author = getAuthorById(e.author);
-  });
-  books.forEach(function (e) {
+    e.category = getCategoryById(e.category);
+    e.subcategory = getSubcategoryById(e.subcategory);
     e.language = getLanguageById(e.language);
   });
-  books.forEach(function (e) {
-    e.collection = getCollectionById(e.collection);
-  });
 
-  return res.json(books);
+  return res.json(memberBooks);
 };
 
 

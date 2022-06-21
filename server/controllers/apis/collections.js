@@ -1,4 +1,6 @@
-const {getAllCollections, getCollectionById, createCollection, deleteCollection} = require('../../models/collections.js');
+const {getCollectionById, createCollection, deleteCollection} = require('../../models/collections.js');
+const {getMemberById} = require('../../models/members.js');
+const {getBookById} = require('../../models/books.js');
 
 
 
@@ -20,9 +22,18 @@ var apiCreateCollectionHandler = function (req, res) {
 
 
 var apiListCollectionsHandler = function (req, res) {
-  var collections = getAllCollections();
+  var member = getMemberById(req.params.member);
+  var memberCollections = member.collections.map(function (collectionId) {
+    var collection = getCollectionById(collectionId);
+    var booksInEachCollection = collection.books.map(function (bookId) {
+      var book = getBookById(bookId);
+      return book;
+    });
+    collection.books = booksInEachCollection;
+    return collection;
+  });
 
-  return res.json(collections);
+  return res.json(memberCollections);
 };
 
 

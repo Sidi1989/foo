@@ -18,19 +18,24 @@ var getAllAuthors = function () {
   return _.cloneDeep(authors);
 };
 
-
+/**
+ * @description
+ * Se asume que el autor anónimo es un autor cuyo id sería nulo
+ */
 var getAuthorById = function (id) {
+  var author;
+
   if (id == null) {
-    var author = {};
+    author = {};
     author.name = "Anónimo";
     return author;
   }
+
   var clonedAuthors = _.cloneDeep(authors);
   var filteredAuthors = clonedAuthors.filter(function (e) {
     return (e.id == id);
   });
 
-  var author;
   if (filteredAuthors.length == 0) {
     author = null;
   } else {
@@ -39,16 +44,6 @@ var getAuthorById = function (id) {
 
   return author;
 };
-
-/*var getAuthorById = function (id) {
-  var clonedAuthors = _.cloneDeep(authors);
-  var filteredAuthors = clonedAuthors.filter(function (e) {
-    if (e.id == null) {
-      author.name = "Anónimo";
-    }
-    return e.id;
-  });
-  return (e.id == id);*/
 
 
 

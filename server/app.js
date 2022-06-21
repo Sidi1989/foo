@@ -95,37 +95,37 @@ app.get('/members/:member/:collection', collectionEditHandler);
 
 app.post('/api/sessions', apiSignInHandler);
 
+app.post('/api/members', apiCreateMemberHandler);
 app.post('/api/books', apiCreateBookHandler);
 app.post('/api/collections', apiCreateCollectionHandler);
 app.post('/api/locations', apiCreateLocationHandler);
-app.post('/api/members', apiCreateMemberHandler);
 app.post('/api/petitions', apiCreatePetitionHandler);
 app.post('/api/reviews', apiCreateReviewHandler);
 
-app.get('/api/books', apiListBooksHandler);
-app.get('/api/collections', apiListCollectionsHandler);
-app.get('/api/locations', apiListLocationsHandler);
 app.get('/api/members', apiListMembersHandler);
-app.get('/api/petitions', apiListPetitionsHandler);
-app.get('/api/reviews', apiListReviewsHandler);
+app.get('/api/members/:member/books', apiListBooksHandler);
+app.get('/api/members/:member/collections', apiListCollectionsHandler);
+app.get('/api/members/:member/locations', apiListLocationsHandler);
+app.get('/api/members/:member/petitions', apiListPetitionsHandler);
+app.get('/api/members/:member/reviews', apiListReviewsHandler);
 
+app.get('/api/members/:member', apiRetrieveMemberHandler);
 app.get('/api/books/:book', apiRetrieveBookHandler);
 app.get('/api/collections/:collection', apiRetrieveCollectionHandler);
 app.get('/api/locations/:location', apiRetrieveLocationHandler);
-app.get('/api/members/:member', apiRetrieveMemberHandler);
 app.get('/api/petitions/:petition', apiRetrievePetitionHandler);
 app.get('/api/reviews/:review', apiRetrieveReviewHandler);
 
+app.put('/api/members/:member', apiEditMemberHandler);
 app.put('/api/books/:book', apiEditBookHandler);
 app.put('/api/collections/:collection', apiEditCollectionHandler);
 app.put('/api/locations/:location', apiEditLocationHandler);
-app.put('/api/members/:member', apiEditMemberHandler);
 app.put('/api/petitions/:petition', apiEditPetitionHandler);
 app.put('/api/reviews/:review', apiEditReviewHandler);
 
+app.delete('/api/members/:member', apiDeleteMemberHandler);
 app.delete('/api/books/:book', apiDeleteBookHandler);
 app.delete('/api/collections/:collection', apiDeleteCollectionHandler);
 app.delete('/api/locations/:location', apiDeleteLocationHandler);
-app.delete('/api/members/:member', apiDeleteMemberHandler);
 app.delete('/api/petitions/:petition', apiDeletePetitionHandler);
 app.delete('/api/reviews/:review', apiDeleteReviewHandler);

@@ -1,5 +1,6 @@
-const {getAllLocations, getLocationById, createLocation, deleteLocation} = require('../../models/locations.js');
-
+const {getLocationById, createLocation, deleteLocation} = require('../../models/locations.js');
+const {getBookById} = require('../../models/books.js');
+const {getMemberById} = require('../../models/members.js');
 
 
 
@@ -20,9 +21,18 @@ var apiCreateLocationHandler = function (req, res) {
 
 
 var apiListLocationsHandler = function (req, res) {
-  var locations = getAllLocations();
+  var member = getMemberById(req.params.member);
+  var memberLocations = member.locations.map(function (locationId) {
+    var location = getLocationById(locationId);
+    var booksInEachLocation = location.books.map(function (bookId) {
+      var book = getBookById(bookId);
+      return book;
+    });
+    location.books = booksInEachLocation;
+    return location;
+  });
 
-  return res.json(locations);
+  return res.json(memberLocations);
 };
 
 

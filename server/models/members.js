@@ -39,7 +39,10 @@ var getMemberById = function (id) {
   return member;
 };
 
-
+/**
+ * @description
+ * En el supuesto de que el usuario carezca de libros, devuelve undefined
+ **/
 var getLastBookForMember = function (memberId) {
   var books = getAllBooks();
   var memberBooks = books.filter(function (e) {
@@ -47,6 +50,8 @@ var getLastBookForMember = function (memberId) {
   });
   var sortedBooks = _.sortBy(memberBooks, 'addingDate');
   var lastBook = _.head(sortedBooks);
+
+  if (!lastBook) lastBook = null;
 
   return lastBook
 };

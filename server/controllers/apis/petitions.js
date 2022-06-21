@@ -1,4 +1,9 @@
-const {getAllPetitions, getPetitionById, createPetition, deletePetition} = require('../../models/petitions.js');
+const {getPetitionById, createPetition, deletePetition} = require('../../models/petitions.js');
+const {getMemberById} = require('../../models/members.js');
+const {getAuthorById} = require('../../models/authors.js');
+const {getCategoryById} = require('../../models/categories.js');
+const {getSubcategoryById} = require('../../models/subcategories.js');
+const {getLanguageById} = require('../../models/languages.js');
 
 
 
@@ -23,9 +28,20 @@ var apiCreatePetitionHandler = function (req, res) {
 
 
 var apiListPetitionsHandler = function (req, res) {
-  var petitions = getAllPetitions();
+  var member = getMemberById(req.params.member);
+  var memberPetitions = member.petitions.map(function (petitionId) {
+    var petition = getPetitionById(petitionId);
+    return petition;
+  });
 
-  return res.json(petitions);
+  memberPetitions.forEach(function (e) {
+    e.author = getAuthorById(e.author);
+    e.category = getCategoryById(e.category);
+    e.subcategory = getSubcategoryById(e.subcategory);
+    e.language = getLanguageById(e.language);
+  });
+
+  return res.json(memberPetitions);
 };
 
 

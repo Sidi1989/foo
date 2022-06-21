@@ -132,6 +132,7 @@ var memberProfileHandler = function (req, res) {
     info.member = member;
   }
 
+  if (!member.collections) member.collections = [];
   var collectionsMapped = member.collections.map(function (collectionId) {
     var collection = getCollectionById(collectionId);
     var booksInEachCollection = collection.books.map(function (bookId) {
@@ -146,6 +147,7 @@ var memberProfileHandler = function (req, res) {
   });
   info.member.collections = collectionsMapped;
 
+  if (!member.petitions) member.petitions = [];
   var petitionsMapped = member.petitions.map(function (petitionId) {
     var petition = getPetitionById(petitionId);
     return petition;
@@ -155,6 +157,7 @@ var memberProfileHandler = function (req, res) {
   });
   info.member.petitions = petitionsMapped;
 
+  if (!member.books) member.books = [];
   var booksMapped = member.books.map(function (bookId) {
     var book = getBookById(bookId);
     return book;
@@ -168,32 +171,25 @@ var memberProfileHandler = function (req, res) {
   info.orphanBooks = orphanBooks;
 
   var lastBookAdded = getLastBookForMember(member.id);
-  if (lastBookAdded == null) {
-    info.lastBookAdded = {};
-  } else {
-    info.lastBookAdded = lastBookAdded;
-  }
+  if (lastBookAdded == null) lastBookAdded = {};
+  info.lastBookAdded = lastBookAdded;
 
   var lastBookAddedAuthor = getAuthorById(lastBookAdded.author);
-  if (lastBookAddedAuthor == null) {
-    info.lastBookAdded.author = {};
-  } else {
-    info.lastBookAdded.author = lastBookAddedAuthor;
-  }
+  if (lastBookAddedAuthor == null) lastBookAddedAuthor = {};
+  info.lastBookAdded.author = lastBookAddedAuthor;
 
   var lastBookAddedCollection = getCollectionById(lastBookAdded.collection);
-  if (lastBookAddedCollection == null) {
-    info.lastBookAdded.collection = {};
-  } else {
-    info.lastBookAdded.collection = lastBookAddedCollection;
-  }
+  if (lastBookAddedCollection == null) lastBookAddedCollection = {};
+  info.lastBookAdded.collection = lastBookAddedCollection;
 
+  if (!lastBookAddedCollection.books) lastBookAddedCollection.books = [];
   var lastBookAddedCollectionMapped = lastBookAddedCollection.books.map(function (bookId) {
     var book = getBookById(bookId);
     return book;
   });
   info.lastBookAdded.collection.books = lastBookAddedCollectionMapped;
 
+  if (!lastBookAdded.reviews) lastBookAdded.reviews = [];
   var reviewsMapped = lastBookAdded.reviews.map(function (id) {
     var review = getReviewById(id);
     if (review.reviewer == null) {

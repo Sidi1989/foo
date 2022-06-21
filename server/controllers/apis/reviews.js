@@ -1,4 +1,6 @@
-const {getAllReviews, getReviewById, createReview, deleteReview} = require('../../models/reviews.js');
+const {getReviewById, createReview, deleteReview} = require('../../models/reviews.js');
+const {getMemberById} = require('../../models/members.js');
+const {getBookById} = require('../../models/books.js');
 
 
 
@@ -22,9 +24,17 @@ var apiCreateReviewHandler = function (req, res) {
 
 
 var apiListReviewsHandler = function (req, res) {
-  var reviews = getAllReviews();
+  var member = getMemberById(req.params.member);
+  var memberReviews = member.reviews.map(function (reviewId) {
+    var review = getReviewById(reviewId);
+    return review;
+  });
 
-  return res.json(reviews);
+  memberReviews.forEach(function (e) {
+    e.book = getBookById(e.book);
+  });
+
+  return res.json(memberReviews);
 };
 
 
