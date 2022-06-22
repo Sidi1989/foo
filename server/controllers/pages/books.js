@@ -42,8 +42,10 @@ var bookProfileHandler = function (req, res) {
     info.book = book;
   }
 
-  info.member = req.user;
-  var memberCollections = getCollectionsForMember(req.user.id);
+  var member = getMemberById (req.user.id);
+  info.member = member;
+
+  var memberCollections = getCollectionsForMember(member.id);
   info.member.collections = memberCollections;
 
   var location = getLocationById(book.location);

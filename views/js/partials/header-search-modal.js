@@ -13,21 +13,18 @@ var onModalShownListener = function () {
     var headerModalBookSearchingInputNode = document.getElementById('header_modal_book_searching_input');
     headerModalBookSearchingInputNode.value = headerUserSearch;
 
-    var url = '/api/books';
+    var memberId = getCookie('session');
+    var url = `/api/members/${memberId}/books`;
     fetch(url)
       .then(response => response.json())
       .then(function (info) {
           var headerModalSearchTableBodyNode = document.getElementById('header_modal_search_table_body');
           // Limpia la Tabla, para reescribir en ella.
           headerModalSearchTableBodyNode.innerHTML = '';
-          // Se reducen los posibles resultados de la búsqueda a sólo aquellos
-          // libros que pertenecieran al miembro.
-          var headerMemberId = getCookie('session');
-          var headerOwnedBooks = info.filter(book => book.owner == headerMemberId);
           // Se va consiguiendo buscar aquellos libros cuyas primeras letras
           // coinciden con las teclas pulsadas.
           //Y se evita que, al reescribir desde cero, salga toda la lista de libros.
-          var headerSearchedBooks = headerOwnedBooks.filter(function (book) {
+          var headerSearchedBooks = info.filter(function (book) {
             if (!headerUserSearch) {
               return false;
             } else {
@@ -44,10 +41,8 @@ var onModalShownListener = function () {
                   </a>
                 </td>
                 <td>${book.author.name}</td>
-                <td>${(book.collection)? book.collection.name : 'Sin Colección'}</td>
+                <td>${book.collection.name}</td>
             `;
-            // Se ha aplicado un operador ternario ante la posibilidad de que
-            // el libro no estuviera incluido en una Colección concreta.
             headerModalSearchTableBodyNode.appendChild(headerModalSearchedBookNode);
           });
       });
@@ -67,21 +62,18 @@ var headerModalSearchingListener = function () {
   headerModalBookSearchingInputNode.addEventListener('keyup', function () {
     headerModalBookSearchingInputNode.value = headerUserSearch;
 
-    var url = '/api/books';
+    var memberId = getCookie('session');
+    var url = `/api/members/${memberId}/books`;
     fetch(url)
       .then(response => response.json())
       .then(function (info) {
           var headerModalSearchTableBodyNode = document.getElementById('header_modal_search_table_body');
           // Limpia la Tabla, para reescribir en ella.
           headerModalSearchTableBodyNode.innerHTML = '';
-          // Se reducen los posibles resultados de la búsqueda a sólo aquellos
-          // libros que pertenecieran al miembro.
-          var headerMemberId = getCookie('session');
-          var headerOwnedBooks = info.filter(book => book.owner == headerMemberId);
           // Se va consiguiendo buscar aquellos libros cuyas primeras letras
           // coinciden con las teclas pulsadas.
           //Y se evita que, al reescribir desde cero, salga toda la lista de libros.
-          var headerSearchedBooks = headerOwnedBooks.filter(function (book) {
+          var headerSearchedBooks = info.filter(function (book) {
             if (!headerUserSearch) {
               return false;
             } else {
@@ -98,10 +90,8 @@ var headerModalSearchingListener = function () {
                   </a>
                 </td>
                 <td>${book.author.name}</td>
-                <td>${(book.collection)? book.collection.name : 'Sin Colección'}</td>
+                <td>${book.collection.name}</td>
             `;
-            // Se ha aplicado un operador ternario ante la posibilidad de que
-            // el libro no estuviera incluido en una Colección concreta.
             headerModalSearchTableBodyNode.appendChild(headerModalSearchedBookNode);
           });
       });
@@ -134,10 +124,8 @@ var headerModalOrderingListener = function () {
               </a>
             </td>
             <td>${book.author.name}</td>
-            <td>${(book.collection)? book.collection.name : 'Sin Colección'}</td>
+            <td>${book.collection.name}</td>
         `;
-        // Se ha aplicado un operador ternario ante la posibilidad de que
-        // el libro no estuviera incluido en una Colección concreta.
         headerModalSearchTableBodyNode.appendChild(headerModalSearchedBookNode);
       });
   });

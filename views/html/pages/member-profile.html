@@ -44,7 +44,9 @@
                 <% member.petitions.forEach(function (petition, i) { %>
                 <li class="list-group-item d-flex justify-content-between">
                   <span>
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <%if (petition.shoppingLink != null) { %>
+                    <i class="fa-solid fa-cart-shopping me-2"></i>
+                    <% } %>
                     <strong><%=petition.title %></strong> (<%= petition.author.name %>)
                   </span>
                   <!-- Modal para Editar Petición -->
