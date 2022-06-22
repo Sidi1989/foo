@@ -70,6 +70,7 @@ var headerModalSearchingListener = function () {
           var headerModalSearchTableBodyNode = document.getElementById('header_modal_search_table_body');
           // Limpia la Tabla, para reescribir en ella.
           headerModalSearchTableBodyNode.innerHTML = '';
+          
           // Se va consiguiendo buscar aquellos libros cuyas primeras letras
           // coinciden con las teclas pulsadas.
           //Y se evita que, al reescribir desde cero, salga toda la lista de libros.
