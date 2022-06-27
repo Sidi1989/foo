@@ -22,7 +22,7 @@ const {getReviewById} = require('../../models/reviews.js');
 var bookProfileHandler = function (req, res) {
   var pathname = `${__dirname}/../../../views/html/pages/book-profile.html`;
   var info = {};
-
+  
   var locations = getAllLocations();
   info.locations = locations;
 

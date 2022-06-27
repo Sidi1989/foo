@@ -43,36 +43,42 @@
                   <div class="btn-group" role="group">
 
                     <!-- Sobre la situación actual del libro en Colecciones -->
-                    <button id="book_present_collection_dropdown" type="button" class="btn btn-success btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button id="book_present_collection_dropdown" type="button"
+                        class="btn btn-success btn-lg dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      <%if (member.id != book.owner) {%>
+                        style="display:none"
+                      <%} else {%>
+                    >
                       <i class="fa-light fa-plus"></i>
                       <i class="fa-solid fa-bookmark"></i>
                     </button>
-                    <%if (member.id == book.owner) {%>
-                      <ul class="dropdown-menu">
-                        <h5 class="dropdown-item text-muted">Actualmente en "<%=book.collection.name%>"</h5>
-                        <div class="dropdown-divider"></div>
-                        <form class="p-1">
-                          <% member.collections.forEach(function(e,i){ %>
-                          <div class="form-check">
-                            <input id="relocate_book_to_<%=i%>"
-                                type="radio" name="relocate_book_to" value="<%=e.id%>"
-                                class="form-check-input"
-                              <% if (book.collection.id==e.id) { %>
-                                disabled>
-                              <% } %>
-                            <label for="relocate_book_to_<%=i%>" class="form-check-label" >
-                              <%=e.name%>
-                            </label>
-                          </div>
-                          <% }) %>
-                        </form>
-                        <div class="text-end p-1">
-                          <button id="relocate_save_button" type="submit" class="btn btn-success btn-sm mt-1" name="relocate_save_button">
-                            Mover Libro
-                          </button>
+                    <ul class="dropdown-menu">
+                      <h5 class="dropdown-item text-muted">Actualmente en "<%=book.collection.name%>"</h5>
+                      <div class="dropdown-divider"></div>
+                      <form class="p-1">
+                        <% member.collections.forEach(function(e,i){ %>
+                        <div class="form-check">
+                          <input id="relocate_book_to_<%=i%>"
+                              type="radio" name="relocate_book_to" value="<%=e.id%>"
+                              class="form-check-input"
+                            <% if (book.collection.id==e.id) { %>
+                              disabled>
+                            <% } %>
+                          <label for="relocate_book_to_<%=i%>" class="form-check-label" >
+                            <%=e.name%>
+                          </label>
                         </div>
-                      </ul>
-                      <% } %>
+                        <% }) %>
+                      </form>
+                      <div class="text-end p-1">
+                        <button id="relocate_save_button" type="submit" class="btn btn-success btn-sm mt-1" name="relocate_save_button">
+                          Mover Libro
+                        </button>
+                      </div>
+                    </ul>
+                  <% } %>
 
                     <!-- Modal para Editar Libro -->
                     <button id="edit_book_<%=book.id%>_button"
