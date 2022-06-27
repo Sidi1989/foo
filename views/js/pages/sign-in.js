@@ -11,6 +11,33 @@ var onReadyStateChangeListener = function () {
 document.addEventListener('readystatechange', onReadyStateChangeListener);
 
 
+/**
+ * @description
+ * listener para que, al volver a la página, si anteriormente (y en tanto no haya
+ * expirado la cookie de la session) se hubiera marcado la opción de "Remember Me",
+ * se muestren el email y la contraseña con que entró el usuario en aquella
+ * ocasión previa.
+ */
+
+ /*
+ var rememberMeListener = function () {
+   var signInRememberMeNode = document.getElementById('remember_me_check');
+   if ()
+   var preSignInModal = new bootstrap.Modal(document.getElementById("pre_sign_in_modal"));
+
+       var url = `/api/members/${memberId}`;
+       fetch(url)
+         .then(res => res.json())
+         .then(function (info) {
+             var signInEmailNode = document.getElementById('sign_in_email');
+             signInEmailNode.value = info.email;
+             var signInPasswordNode = document.getElementById('sign_in_password');
+             signInPasswordNode.value = info.email;
+         });
+ };
+ window.addEventListener('load', rememberMeListener);
+ */
+
 
 /**
  * @description
@@ -60,26 +87,3 @@ var memberSignInListener = function () {
   });
 };
 window.addEventListener('load', memberSignInListener);
-
-
-/**
- * @description
- * listener para que, al volver al signIn, tras haberse identificado, y mientras
- * persista la cookie, recuerde el email y contraseña del usuario, si se marcó
- * la casilla "Recuérdame".
- */
-
-var rememberMeListener = function () {
-  var signInRememberMeNode = document.getElementById('remember_me_check');
-      
-      var url = `/api/members/${memberId}`;
-      fetch(url)
-        .then(res => res.json())
-        .then(function (info) {
-            var signInEmailNode = document.getElementById('sign_in_email');
-            signInEmailNode.value = info.email;
-            var signInPasswordNode = document.getElementById('sign_in_password');
-            signInPasswordNode.value = info.email;
-        });
-};
-window.addEventListener('load', rememberMeListener);
