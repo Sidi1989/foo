@@ -5,43 +5,43 @@
  * en caso contrario, con un cambio de color en el filler.
  */
 
-var passwordAcceptableListener = function () {
+var passwordPatternListener = function () {
   var pattern = new RegExp("[a-z,A-Z,\\d]{8,20}");
   var password = document.getElementById("sign_up_password");
   password.addEventListener('keyup', function () {
     if (pattern.test(password.value)) {
-      password.style.borderColor = "green";
-      password.style.color = "green";
+      password.classList.remove("erroneous");
+      password.classList.add("successful");
     } else {
-      password.style.borderColor = "red";
-      password.style.color = "red";
-      return false;
+      password.classList.remove("successful");
+      password.classList.add("erroneous");
     }
   })
 };
-window.addEventListener('load', passwordAcceptableListener);
+window.addEventListener('load', passwordPatternListener);
 
 
 /**
  * @description
- * listener para que, al escribir la confirmación de la contraseña, sólo se coloree
- * de verde el campo cuando coincida con la contraseña arriba escrita.
+ * listener para que, al escribir la confirmación de la contraseña, se verifique si
+ * coincide con la antes escrita; alertando de ello en caso contrario, con un cambio
+ * de color en el filler.
  */
 
-var passwordConfirmingListener = function () {
+var passwordMatchListener = function () {
   var password = document.getElementById("sign_up_password");
-  var passwordConfirmed = document.getElementById("sign_up_password_confirmed");
-  passwordConfirmed.addEventListener('keyup', function () {
-    if (password.value != passwordConfirmed.value) {
-      passwordConfirmed.style.borderColor = "red";
-      passwordConfirmed.style.color = "red";
+  var passwordConfirmation = document.getElementById("sign_up_password_confirmation");
+  passwordConfirmation.addEventListener('keyup', function () {
+    if (password.value != passwordConfirmation.value) {
+      passwordConfirmation.classList.remove("successful");
+      passwordConfirmation.classList.add("erroneous");
     } else {
-      passwordConfirmed.style.borderColor = "green";
-      passwordConfirmed.style.color = "green";
+      passwordConfirmation.classList.remove("erroneous");
+      passwordConfirmation.classList.add("successful");
     }
   })
 };
-window.addEventListener('load', passwordConfirmingListener);
+window.addEventListener('load', passwordMatchListener);
 
 
 /**

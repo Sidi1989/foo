@@ -12,3 +12,19 @@ var headerBookSearchingButtonListener = function () {
   });
 };
 window.addEventListener('load', headerBookSearchingButtonListener);
+
+
+/**
+ * @description
+ * listener para que, al hacer click en el botón de cerrar sesión, redirija al
+ * landing, con la eliminación de la cookie "session" existente hasta entonces.
+ */
+
+var signOutButtonListener = function () {
+  var signOutButtonNode = document.getElementById('sign_out_button');
+  signOutButtonNode.addEventListener('click', function () {
+    eraseCookie('session');
+    window.location = '/'
+  });
+};
+window.addEventListener('load', signOutButtonListener);

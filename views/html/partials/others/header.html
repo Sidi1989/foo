@@ -4,7 +4,9 @@
     <div class="col">
       <h3>
         <a href="/auth/signin" class="text-white text-decoration-none">
-          PIN<img src="https://cdn-icons-png.flaticon.com/512/6627/6627472.png" class="img-fluid" style="width: 30px; height: 30px">KES
+          PIN
+          <img src="https://cdn-icons-png.flaticon.com/512/6627/6627472.png" class="img-fluid" style="width: 30px; height: 30px">
+          KES
         </a>
       </h3>
     </div>
@@ -35,22 +37,22 @@
         <ul class="dropdown-menu">
           <li>
             <a class="dropdown-item text-center" href="/members/<%=member.id%>">
-              <img id="member_pic_file" class="img-fluid" name="member_pic_file" style="width: 100px; height: 85px" src="<%=member.pic%>">
-            </a>
-            <a class="dropdown-item text-center">
-              <h6><%=member.nickname%></h6>
+              <img id="member_pic_file" class="img-fluid mb-2" name="member_pic_file" style="width: 100px; height: 85px" src="<%=member.pic%>">
+              <h6>
+                <strong><%=member.nickname%></strong>
+              </h6>
             </a>
           </li>
-          <li><hr class="dropdown-divider"></li>
+          <li><hr class="dropdown-divider mt-0"></li>
           <li>
             <a class="dropdown-item" href="/members/<%=member.id%>/preferences">
               <i class="fa-solid fa-user-pen fa-lg"></i> Configuración
             </a>
           </li>
           <li>
-            <a class="dropdown-item" href="/auth/signin">
+            <button id="sign_out_button" class="dropdown-item mt-1">
               <i class="fa-solid fa-right-from-bracket fa-lg"></i> Cerrar sesión
-            </a>
+            </button>
           </li>
         </ul>
       </div>

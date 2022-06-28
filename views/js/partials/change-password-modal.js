@@ -15,7 +15,6 @@ var newPasswordAcceptableListener = function () {
     } else {
       newPassword.style.borderColor = "red";
       newPassword.style.color = "red";
-      return false;
     }
   })
 };
