@@ -3,7 +3,7 @@ const path = require('path');
 const _ = require('lodash');
 const {v4: uuidv4} = require('uuid');
 
-const booksRelativeDirname = '../../runtime/db/books';
+const booksRelativeDirname = '../../../runtime/db/books';
 const booksAbsoluteDirname = path.join(__dirname, booksRelativeDirname);
 const booksBasenames = fs.readdirSync(booksAbsoluteDirname);
 const books = booksBasenames.map(function (e) {

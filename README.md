@@ -2,7 +2,6 @@
 
 ## To Do
 
-+   Commitear y después, meter en src: views y server
 +   Retocar listener de "remember me" en signIn
 +   Explicar y crear routers
 

@@ -3,7 +3,7 @@ const path = require('path');
 const _ = require('lodash');
 const {v4: uuidv4} = require('uuid');
 
-const reviewsRelativeDirname = '../../runtime/db/reviews';
+const reviewsRelativeDirname = '../../../runtime/db/reviews';
 const reviewsAbsoluteDirname = path.join(__dirname, reviewsRelativeDirname);
 const reviewsBasenames = fs.readdirSync(reviewsAbsoluteDirname);
 const reviews = reviewsBasenames.map(function (e) {

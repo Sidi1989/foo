@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 
-const categoriesRelativeDirname = '../../runtime/db/categories';
+const categoriesRelativeDirname = '../../../runtime/db/categories';
 const categoriesAbsoluteDirname = path.join(__dirname, categoriesRelativeDirname);
 const categoriesBasenames = fs.readdirSync(categoriesAbsoluteDirname);
 const categories = categoriesBasenames.map(function (e) {

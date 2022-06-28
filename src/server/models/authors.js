@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 
-const authorsRelativeDirname = '../../runtime/db/authors';
+const authorsRelativeDirname = '../../../runtime/db/authors';
 const authorsAbsoluteDirname = path.join(__dirname, authorsRelativeDirname);
 const authorsBasenames = fs.readdirSync(authorsAbsoluteDirname);
 const authors = authorsBasenames.map(function (e) {

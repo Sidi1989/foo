@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 
-const subcategoriesRelativeDirname = '../../runtime/db/subcategories';
+const subcategoriesRelativeDirname = '../../../runtime/db/subcategories';
 const subcategoriesAbsoluteDirname = path.join(__dirname, subcategoriesRelativeDirname);
 const subcategoriesBasenames = fs.readdirSync(subcategoriesAbsoluteDirname);
 const subcategories = subcategoriesBasenames.map(function (e) {

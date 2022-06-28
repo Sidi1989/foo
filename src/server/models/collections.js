@@ -3,7 +3,7 @@ const path = require('path');
 const _ = require('lodash');
 const {v4: uuidv4} = require('uuid');
 
-const collectionsRelativeDirname = '../../runtime/db/collections';
+const collectionsRelativeDirname = '../../../runtime/db/collections';
 const collectionsAbsoluteDirname = path.join(__dirname, collectionsRelativeDirname);
 const collectionsBasenames = fs.readdirSync(collectionsAbsoluteDirname);
 const collections = collectionsBasenames.map(function (e) {
