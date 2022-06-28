@@ -2,6 +2,7 @@ const express = require('express');
 const {renderFile} = require('ejs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const {landingHandler} = require('./controllers/pages/landing.js');
 const {bookProfileHandler, bookSearchHandler} = require('./controllers/pages/books.js');
 const {collectionEditHandler} = require('./controllers/pages/collections.js');
 const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = require('./controllers/pages/members.js');
@@ -84,6 +85,16 @@ app.use(function (req, res, next) {
   console.log(req.originalUrl);
   return next();
 });
+
+app.get('/', function (req, res, next) {
+  if (req.user.type == 'guest') {
+    res.redirect('/landing');
+  } else {
+    res.redirect(`/members/${req.user.id}`);
+  }
+});
+
+app.get('/landing', landingHandler);
 
 app.get('/books/search', bookSearchHandler);
 app.get('/books/:book', bookProfileHandler);
