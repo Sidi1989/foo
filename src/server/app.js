@@ -1,12 +1,13 @@
 const express = require('express');
-const {renderFile} = require('ejs');
+const {renderFile: ejsRenderEngine} = require('ejs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+
+const {auth, log} = require('./middleware/index.js');
 const {landingHandler} = require('./controllers/pages/landing.js');
 const {bookProfileHandler, bookSearchHandler} = require('./controllers/pages/books.js');
 const {collectionEditHandler} = require('./controllers/pages/collections.js');
 const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = require('./controllers/pages/members.js');
-
 const {apiSignInHandler} = require('./controllers/apis/sessions.js');
 
 const {
@@ -59,7 +60,7 @@ const {
 
 const app = express();
 const port = process.argv[2] || 3004;
-app.engine('html', renderFile);
+app.engine('html', ejsRenderEngine);
 app.listen(port, function () {
   console.log(`Pinakes se escucha en el puerto ${port}`)
 });
@@ -71,22 +72,10 @@ app.use('/public', express.static(publicDirname, options));
 app.use(cookieParser()); // for parsing cookies
 app.use(express.json()); // for parsing json
 app.use(express.urlencoded({ extended: true })); // for parsing x-www-form-urlencoded
+app.use(auth); // for authenticate users, with cookies
+app.use(log); // fot logging requests
 
-app.use(function (req, res, next) {
-  req.user = {};
-  req.user.type = (req.cookies.session)? 'member' : 'guest';
-  req.user.id = req.cookies.session || null;
-  req.book = {};
-  req.book.id = req.cookies.book;
-  return next();
-});
-
-app.use(function (req, res, next) {
-  console.log(req.originalUrl);
-  return next();
-});
-
-app.get('/', function (req, res, next) {
+app.get('/', function (req, res) {
   if (req.user.type == 'guest') {
     res.redirect('/landing');
   } else {
