@@ -4,7 +4,8 @@ const {
   apiRetrieveLocationHandler,
   apiEditLocationHandler,
   apiDeleteLocationHandler
-} = require('../controllers/apis/locations.js');
+} = require('../controllers/api/locations.js');
+
 
 
 

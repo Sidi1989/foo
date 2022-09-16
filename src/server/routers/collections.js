@@ -4,7 +4,8 @@ const {
   apiRetrieveCollectionHandler,
   apiEditCollectionHandler,
   apiDeleteCollectionHandler
-} = require('../controllers/apis/collections.js');
+} = require('../controllers/api/collections.js');
+
 
 
 

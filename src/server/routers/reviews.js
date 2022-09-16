@@ -4,7 +4,8 @@ const {
   apiRetrieveReviewHandler,
   apiEditReviewHandler,
   apiDeleteReviewHandler
-} = require('../controllers/apis/reviews.js');
+} = require('../controllers/api/reviews.js');
+
 
 
 

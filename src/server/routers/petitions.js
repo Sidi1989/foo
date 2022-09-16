@@ -4,7 +4,8 @@ const {
   apiRetrievePetitionHandler,
   apiEditPetitionHandler,
   apiDeletePetitionHandler
-} = require('../controllers/apis/petitions.js');
+} = require('../controllers/api/petitions.js');
+
 
 
 

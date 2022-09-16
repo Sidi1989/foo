@@ -3,10 +3,10 @@
 ## To Do
 
 +   Depurar listener de "remember me" en signIn (quizás por el value del checkbox)-> mirar páginas de otros
+
 +   Reordenar views: dejar sólo las carpetas pages y partials, y llamar a su extensión ejs; y mover css y js a una carpeta  public en foo/
 +   No funcionan los required -> examinar lo hecho en signUp
 
-+   cambiar controllers/apis por controllers/api
 +   Post de Collections: no se añade a las colecciones del miembro
 +   Post de Petitions: no se añade a las colecciones del miembro
 +   Post de Locations: no se añade a las colecciones del miembro

@@ -5,12 +5,12 @@ const {
   apiRetrieveMemberHandler,
   apiEditMemberHandler,
   apiDeleteMemberHandler
-} = require('../controllers/apis/members.js');
-const {apiListBooksHandler} = require('../controllers/apis/books.js');
-const {apiListCollectionsHandler} = require('../controllers/apis/collections.js');
-const {apiListLocationsHandler} = require('../controllers/apis/locations.js');
-const {apiListPetitionsHandler} = require('../controllers/apis/petitions.js');
-const {apiListReviewsHandler} = require('../controllers/apis/reviews.js');
+} = require('../controllers/api/members.js');
+const {apiListBooksHandler} = require('../controllers/api/books.js');
+const {apiListCollectionsHandler} = require('../controllers/api/collections.js');
+const {apiListLocationsHandler} = require('../controllers/api/locations.js');
+const {apiListPetitionsHandler} = require('../controllers/api/petitions.js');
+const {apiListReviewsHandler} = require('../controllers/api/reviews.js');
 
 
 

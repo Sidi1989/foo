@@ -10,11 +10,11 @@ const {router: locationsRouter} = require ('./routers/locations.js');
 const {router: membersRouter} = require ('./routers/members.js');
 const {router: petitionsRouter} = require ('./routers/petitions.js');
 const {router: reviewsRouter} = require ('./routers/reviews.js');
+const {router: sessionsRouter} = require ('./routers/sessions.js');
 const {landingHandler} = require('./controllers/pages/landing.js');
 const {bookProfileHandler, bookSearchHandler} = require('./controllers/pages/books.js');
 const {collectionEditHandler} = require('./controllers/pages/collections.js');
 const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = require('./controllers/pages/members.js');
-const {apiSignInHandler} = require('./controllers/apis/sessions.js');
 
 
 
@@ -56,11 +56,10 @@ app.get('/members/:member', memberProfileHandler);
 app.get('/members/:member/preferences', memberEditHandler);
 app.get('/members/:member/:collection', collectionEditHandler);
 
-app.post('/api/sessions', apiSignInHandler);
-
 app.use('/api/books', booksRouter);
 app.use('/api/collections', collectionsRouter);
 app.use('/api/locations', locationsRouter);
 app.use('/api/members', membersRouter);
 app.use('/api/petitions', petitionsRouter);
 app.use('/api/reviews', reviewsRouter);
+app.use('/api/sessions', sessionsRouter);
