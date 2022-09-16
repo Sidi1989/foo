@@ -26,7 +26,7 @@ app.listen(port, function () {
   console.log(`Pinakes se escucha en el puerto ${port}`)
 });
 
-const publicDirname = path.join(__dirname, '../views');
+const publicDirname = path.join(__dirname, '../public');
 const options = {};
 app.use('/public', express.static(publicDirname, options));
 

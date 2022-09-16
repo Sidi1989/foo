@@ -81,6 +81,11 @@ var memberNewCreatingListener = function () {
       body: formBodyAsString
     };
 
+    if(!details.nickname || !details.email || !details.password) {
+      window.alert('Falta un campo por rellenar');
+      return
+    }
+
     fetch(url, options)
       .then(response => response.json())
       .then(function (info) {

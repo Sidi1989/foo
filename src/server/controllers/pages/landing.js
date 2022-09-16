@@ -9,7 +9,7 @@
 
 
 var landingHandler = function (req, res) {
-  var pathname = `${__dirname}/../../../views/html/pages/landing.html`;
+  var pathname = `${__dirname}/../../../views/pages/landing.ejs`;
   var info = {};
 
   res.render(pathname, info)

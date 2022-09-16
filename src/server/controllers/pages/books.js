@@ -20,9 +20,9 @@ const {getReviewById} = require('../../models/reviews.js');
  */
 
 var bookProfileHandler = function (req, res) {
-  var pathname = `${__dirname}/../../../views/html/pages/book-profile.html`;
+  var pathname = `${__dirname}/../../../views/pages/book-profile.ejs`;
   var info = {};
-  
+
   var locations = getAllLocations();
   info.locations = locations;
 
@@ -95,7 +95,7 @@ var bookProfileHandler = function (req, res) {
 */
 
 var bookSearchHandler = function (req, res) {
-  var pathname = `${__dirname}/../../../views/html/pages/book-search.html`;
+  var pathname = `${__dirname}/../../../views/pages/book-search.ejs`;
   var info = {};
 
 

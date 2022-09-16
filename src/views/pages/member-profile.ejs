@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('../partials/others/common-head-components.html', {}); %>
+    <%- include('../partials/others/common-head-components.ejs', {}); %>
     <title>Pinakes - <%=member.nickname%></title>
   </head>
 
   <body>
     <!-- Header-->
-    <%- include('../partials/others/header.html', {}); %>
+    <%- include('../partials/others/header.ejs', {}); %>
     <div class="container">
 
       <!-- Parte superior, sobre datos del usuario y su último libro-->
@@ -17,11 +17,11 @@
         <div class="col-4">
 
           <!-- Perfil de usuario-->
-          <%- include('../partials/others/member-basic-info-card.html', {}); %>
+          <%- include('../partials/others/member-basic-info-card.ejs', {}); %>
 
           <!-- Mis Colecciones-->
           <div class="p-1 mt-4 bg-success text-white">
-            <%- include('../partials/others/list-collections-accordion.html', {}); %>
+            <%- include('../partials/others/list-collections-accordion.ejs', {}); %>
           </div>
 
           <div class="p-0 mt-4 bg-success opacity-75 text-white">
@@ -85,11 +85,11 @@
               </div>
             </div>
             <div class="col-7">
-              <%- include('../partials/others/book-rating-card.html', {}); %>
+              <%- include('../partials/others/book-rating-card.ejs', {}); %>
             </div>
           </div>
           <div class="row">
-            <%- include('../partials/others/list-reviews-navbar.html', {}); %>
+            <%- include('../partials/others/list-reviews-navbar.ejs', {}); %>
           </div>
 
         </div>
@@ -121,20 +121,20 @@
       </div>
 
       <div class="row">
-        <%- include('../partials/others/suggested-books-carousel.html', {}); %>
+        <%- include('../partials/others/suggested-books-carousel.ejs', {}); %>
       </div>
 
     </div>
     <!-- Footer-->
-    <%- include('../partials/others/footer.html', {}); %>
+    <%- include('../partials/others/footer.ejs', {}); %>
 
     <!-- Zona para Modals-->
-    <%- include('../partials/modals/new-book-modal.html', {}); %>
-    <%- include('../partials/modals/new-collection-modal.html', {}); %>
-    <%- include('../partials/modals/delete-from-collection-modal.html', {}); %>
-    <%- include('../partials/modals/move-orphan-book-modal.html', {}); %>
-    <%- include('../partials/modals/new-petition-modal.html', {}); %>
-    <%- include('../partials/modals/edit-petition-modal.html', {}); %>
+    <%- include('../partials/modals/new-book-modal.ejs', {}); %>
+    <%- include('../partials/modals/new-collection-modal.ejs', {}); %>
+    <%- include('../partials/modals/delete-from-collection-modal.ejs', {}); %>
+    <%- include('../partials/modals/move-orphan-book-modal.ejs', {}); %>
+    <%- include('../partials/modals/new-petition-modal.ejs', {}); %>
+    <%- include('../partials/modals/edit-petition-modal.ejs', {}); %>
 
     <script type="text/javascript" src="/public/js/pages/member-profile.js"></script>
 

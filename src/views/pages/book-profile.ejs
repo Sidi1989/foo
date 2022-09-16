@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('../partials/others/common-head-components.html', {}); %>
+    <%- include('../partials/others/common-head-components.ejs', {}); %>
     <title>Pinakes - <%=book.title%></title>
   </head>
 
   <body>
     <!-- Header-->
-    <%- include('../partials/others/header.html', {}); %>
+    <%- include('../partials/others/header.ejs', {}); %>
     <div class="container">
 
       <!-- Parte superior, con los datos del libro-->
@@ -20,7 +20,7 @@
             <h6 id="book_author_name"><%=book.author.name%></h6>
           </div>
           <div class="row">
-            <%- include('../partials/others/book-tech-info-card.html', {}); %>
+            <%- include('../partials/others/book-tech-info-card.ejs', {}); %>
           </div>
         </div>
 
@@ -113,23 +113,23 @@
       <!-- Zona para la valoración del libro -->
       <div class="row my-4">
         <div class="col">
-          <%- include('../partials/others/list-reviews-navbar.html', {}); %>
+          <%- include('../partials/others/list-reviews-navbar.ejs', {}); %>
         </div>
         <div class="col">
-          <%- include('../partials/others/book-rating-card.html', {}); %>
+          <%- include('../partials/others/book-rating-card.ejs', {}); %>
         </div>
       </div>
 
       <div class="row">
-        <%- include('../partials/others/suggested-books-carousel.html', {}); %>
+        <%- include('../partials/others/suggested-books-carousel.ejs', {}); %>
       </div>
 
     </div>
     <!-- Footer-->
-    <%- include('../partials/others/footer.html', {}); %>
+    <%- include('../partials/others/footer.ejs', {}); %>
 
     <!-- Zona para Modals-->
-    <%- include('../partials/modals/edit-book-modal.html', {}); %>
+    <%- include('../partials/modals/edit-book-modal.ejs', {}); %>
 
     <script type="text/javascript" src="/public/js/pages/book-profile.js"></script>
 

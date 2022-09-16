@@ -40,6 +40,13 @@ var memberSignInListener = function () {
             window.alert('Algo ha salido mal')
           } else {
             setCookie('session', info.id, 5);
+
+            var rememberMeButtonNode = document.getElementById('remember_me_check');
+            if (rememberMeButtonNode.checked) {
+              localStorage.memberEmail = signInEmailNode.value;
+              localStorage.rememberMeEnabled = rememberMeButtonNode.value;
+            }
+
             window.location = `/members/${info.id}`;
           }
       });
@@ -54,21 +61,14 @@ window.addEventListener('load', memberSignInListener);
  * a la página de SignIn, el dato del email haya quedado guardado y se rellene el
  * campo correspondiente del formulario.
  */
-
 var rememberMeListener = function () {
   var rememberMeButtonNode = document.getElementById('remember_me_check');
-  var emailInputNode = document.getElementById('sign_in_email');
+  var signInEmailNode = document.getElementById('sign_in_email');
 
-  if (localStorage.checkbox) {
+  if (localStorage.rememberMeEnabled) {
     rememberMeButtonNode.setAttribute("checked");
-    emailInputNode.value = localStorage.memberemail;
+    signInEmailNode.value = localStorage.memberEmail;
   }
 
-  rememberMeButtonNode.addEventListener('click', function () {
-    if (rememberMeButtonNode.checked && emailInputNode.value != "") {
-      localStorage.memberemail = emailInputNode.value;
-      localStorage.checkbox = rememberMeButtonNode.value;
-    }
-  });
 };
 window.addEventListener('load', rememberMeListener);

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('../partials/others/common-head-components.html', {}); %>
+    <%- include('../partials/others/common-head-components.ejs', {}); %>
     <title>Pinakes - <%=member.nickname%> - <%=collection.name%></title>
   </head>
 
   <body>
     <!-- Header-->
-    <%- include('../partials/others/header.html', {}); %>
+    <%- include('../partials/others/header.ejs', {}); %>
     <div class="container">
 
       <!-- Parte superior-->
@@ -85,11 +85,11 @@
 
     </div>
     <!-- Footer-->
-    <%- include('../partials/others/footer.html', {}); %>
+    <%- include('../partials/others/footer.ejs', {}); %>
 
     <!-- Zona para Modals-->
-    <%- include('../partials/modals/edit-collection-modal.html', {}); %>
-    <%- include('../partials/modals/relocate-books-in-collections-modal.html', {}); %>
+    <%- include('../partials/modals/edit-collection-modal.ejs', {}); %>
+    <%- include('../partials/modals/relocate-books-in-collections-modal.ejs', {}); %>
 
     <script type="text/javascript" src="/public/js/pages/collection-edit.js"></script>
 

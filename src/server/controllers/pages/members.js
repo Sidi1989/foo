@@ -22,7 +22,7 @@ const {getReviewById} = require('../../models/reviews.js');
 */
 
 var signInHandler= function (req, res) {
-  var pathname = `${__dirname}/../../../views/html/pages/sign-in.html`;
+  var pathname = `${__dirname}/../../../views/pages/sign-in.ejs`;
   var info = {};
 
   var dailyQuote = getRandomQuotes(1)[0];
@@ -42,7 +42,7 @@ var signInHandler= function (req, res) {
  */
 
 var signUpHandler= function (req, res) {
-  var pathname = `${__dirname}/../../../views/html/pages/sign-up.html`;
+  var pathname = `${__dirname}/../../../views/pages/sign-up.ejs`;
   var info = {};
 
 
@@ -59,7 +59,7 @@ var signUpHandler= function (req, res) {
  */
 
 var memberEditHandler= function (req, res) {
-  var pathname = `${__dirname}/../../../views/html/pages/member-edit.html`;
+  var pathname = `${__dirname}/../../../views/pages/member-edit.ejs`;
   var info = {};
 
   var member = getMemberById(req.params.member);
@@ -110,7 +110,7 @@ var memberEditHandler= function (req, res) {
  */
 
 var memberProfileHandler = function (req, res) {
-  var pathname = `${__dirname}/../../../views/html/pages/member-profile.html`;
+  var pathname = `${__dirname}/../../../views/pages/member-profile.ejs`;
   var info = {};
 
   var categories = getAllCategories();

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('../partials/others/common-head-components.html', {}); %>
+    <%- include('../partials/others/common-head-components.ejs', {}); %>
     <title>Pinakes - <%=member.nickname%> - Preferences</title>
   </head>
 
   <body>
     <!-- Header-->
-    <%- include('../partials/others/header.html', {}); %>
+    <%- include('../partials/others/header.ejs', {}); %>
     <div class="container">
 
       <div class="row">
@@ -15,7 +15,7 @@
 
         <div class="col-4">
         <!-- Columna con datos varios del usuario-->
-          <%- include('../partials/others/member-basic-info-card.html', {}); %>
+          <%- include('../partials/others/member-basic-info-card.ejs', {}); %>
 
           <div class="row">
 
@@ -139,13 +139,13 @@
 
     </div>
     <!-- Footer-->
-    <%- include('../partials/others/footer.html', {}); %>
+    <%- include('../partials/others/footer.ejs', {}); %>
 
     <!-- Zona para Modals-->
-    <%- include('../partials/modals/new-book-modal.html', {}); %>
-    <%- include('../partials/modals/new-location-modal.html', {}); %>
-    <%- include('../partials/modals/edit-location-modal.html', {}); %>
-    <%- include('../partials/modals/change-password-modal.html', {}); %>
+    <%- include('../partials/modals/new-book-modal.ejs', {}); %>
+    <%- include('../partials/modals/new-location-modal.ejs', {}); %>
+    <%- include('../partials/modals/edit-location-modal.ejs', {}); %>
+    <%- include('../partials/modals/change-password-modal.ejs', {}); %>
 
     <script type="text/javascript" src="/public/js/pages/member-edit.js"></script>
 

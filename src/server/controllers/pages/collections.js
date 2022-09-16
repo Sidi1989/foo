@@ -14,7 +14,7 @@ const {getBookById} = require('../../models/books.js')
  */
 
 var collectionEditHandler= function (req, res) {
-  var pathname = `${__dirname}/../../../views/html/pages/collection-edit.html`;
+  var pathname = `${__dirname}/../../../views/pages/collection-edit.ejs`;
   var info = {};
 
   var member = getMemberById(req.params.member);
