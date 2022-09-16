@@ -2,61 +2,22 @@ const express = require('express');
 const {renderFile: ejsRenderEngine} = require('ejs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-
 const {auth, log} = require('./middleware/index.js');
+
+const {router: booksRouter} = require ('./routers/books.js');
+const {router: collectionsRouter} = require ('./routers/collections.js');
+const {router: locationsRouter} = require ('./routers/locations.js');
+const {router: membersRouter} = require ('./routers/members.js');
+const {router: petitionsRouter} = require ('./routers/petitions.js');
+const {router: reviewsRouter} = require ('./routers/reviews.js');
 const {landingHandler} = require('./controllers/pages/landing.js');
 const {bookProfileHandler, bookSearchHandler} = require('./controllers/pages/books.js');
 const {collectionEditHandler} = require('./controllers/pages/collections.js');
 const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = require('./controllers/pages/members.js');
 const {apiSignInHandler} = require('./controllers/apis/sessions.js');
 
-const {
-  apiCreateBookHandler,
-  apiListBooksHandler,
-  apiRetrieveBookHandler,
-  apiEditBookHandler,
-  apiDeleteBookHandler
-} = require('./controllers/apis/books.js');
 
-const {
-  apiCreateCollectionHandler,
-  apiListCollectionsHandler,
-  apiRetrieveCollectionHandler,
-  apiEditCollectionHandler,
-  apiDeleteCollectionHandler
-} = require('./controllers/apis/collections.js');
 
-const {
-  apiCreateLocationHandler,
-  apiListLocationsHandler,
-  apiRetrieveLocationHandler,
-  apiEditLocationHandler,
-  apiDeleteLocationHandler
-} = require('./controllers/apis/locations.js');
-
-const {
-  apiCreateMemberHandler,
-  apiListMembersHandler,
-  apiRetrieveMemberHandler,
-  apiEditMemberHandler,
-  apiDeleteMemberHandler
-} = require('./controllers/apis/members.js');
-
-const {
-  apiCreatePetitionHandler,
-  apiListPetitionsHandler,
-  apiRetrievePetitionHandler,
-  apiEditPetitionHandler,
-  apiDeletePetitionHandler
-} = require('./controllers/apis/petitions.js');
-
-const {
-  apiCreateReviewHandler,
-  apiListReviewsHandler,
-  apiRetrieveReviewHandler,
-  apiEditReviewHandler,
-  apiDeleteReviewHandler
-} = require('./controllers/apis/reviews.js');
 
 const app = express();
 const port = process.argv[2] || 3004;
@@ -97,38 +58,9 @@ app.get('/members/:member/:collection', collectionEditHandler);
 
 app.post('/api/sessions', apiSignInHandler);
 
-app.post('/api/members', apiCreateMemberHandler);
-app.get('/api/members', apiListMembersHandler);
-app.get('/api/members/:member/books', apiListBooksHandler);
-app.get('/api/members/:member/collections', apiListCollectionsHandler);
-app.get('/api/members/:member/locations', apiListLocationsHandler);
-app.get('/api/members/:member/petitions', apiListPetitionsHandler);
-app.get('/api/members/:member/reviews', apiListReviewsHandler);
-app.get('/api/members/:member', apiRetrieveMemberHandler);
-app.put('/api/members/:member', apiEditMemberHandler);
-app.delete('/api/members/:member', apiDeleteMemberHandler);
-
-app.post('/api/books', apiCreateBookHandler);
-app.get('/api/books/:book', apiRetrieveBookHandler);
-app.put('/api/books/:book', apiEditBookHandler);
-app.delete('/api/books/:book', apiDeleteBookHandler);
-
-app.post('/api/collections', apiCreateCollectionHandler);
-app.get('/api/collections/:collection', apiRetrieveCollectionHandler);
-app.put('/api/collections/:collection', apiEditCollectionHandler);
-app.delete('/api/collections/:collection', apiDeleteCollectionHandler);
-
-app.post('/api/locations', apiCreateLocationHandler);
-app.get('/api/locations/:location', apiRetrieveLocationHandler);
-app.put('/api/locations/:location', apiEditLocationHandler);
-app.delete('/api/locations/:location', apiDeleteLocationHandler);
-
-app.post('/api/petitions', apiCreatePetitionHandler);
-app.get('/api/petitions/:petition', apiRetrievePetitionHandler);
-app.put('/api/petitions/:petition', apiEditPetitionHandler);
-app.delete('/api/petitions/:petition', apiDeletePetitionHandler);
-
-app.post('/api/reviews', apiCreateReviewHandler);
-app.get('/api/reviews/:review', apiRetrieveReviewHandler);
-app.put('/api/reviews/:review', apiEditReviewHandler);
-app.delete('/api/reviews/:review', apiDeleteReviewHandler);
+app.use('/api/books', booksRouter);
+app.use('/api/collections', collectionsRouter);
+app.use('/api/locations', locationsRouter);
+app.use('/api/members', membersRouter);
+app.use('/api/petitions', petitionsRouter);
+app.use('/api/reviews', reviewsRouter);
