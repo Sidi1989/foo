@@ -33,16 +33,22 @@
         <!-- Sección de registro -->
         <div class="col-7">
           <div class="d-grid">
-            <form class="p-3 bg-light border">
+            <form id="sign_in_form" class="p-3 bg-light border" novalidate>
 
               <div class="input-group mb-4">
                 <label for="sign_in_email" class="input-group-text">Usuario</label>
-                <input id="sign_in_email" type="email" name="sign_in_email" class="form-control" placeholder="Introduzca su E-mail">
+                <input id="sign_in_email" type="email" name="sign_in_email" class="form-control" placeholder="Introduzca su E-mail" required>
+                <div class="invalid-feedback">
+                  Escribe un Email
+                </div>
               </div>
 
               <div class="input-group mb-4">
                 <label for="sign_in_password" class="input-group-text">Contraseña</label>
-                <input id="sign_in_password" type="password" name="sign_in_password" class="form-control" placeholder="Introduzca su Contraseña">
+                <input id="sign_in_password" type="password" name="sign_in_password" class="form-control" placeholder="Introduzca su Contraseña" required>
+                <div class="invalid-feedback">
+                  Escribe una Contraseña
+                </div>
               </div>
 
               <div class="input-group mb-4">

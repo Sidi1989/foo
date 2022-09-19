@@ -53,48 +53,53 @@ window.addEventListener('load', passwordMatchListener);
 var memberNewCreatingListener = function () {
   var createMemberButtonNode = document.getElementById("sign_up_button");
   createMemberButtonNode.addEventListener('click', function () {
-    var signUpNicknameNode = document.getElementById('sign_up_nickname');
-    var nickname = signUpNicknameNode.value;
-    var signUpEmailNode = document.getElementById('sign_up_email');
-    var email = signUpEmailNode.value;
-    var signUpPasswordNode = document.getElementById('sign_up_password');
-    var password = signUpPasswordNode.value;
 
-    var url = '/api/members';
-    var details = {
+    var signUpFormNode = document.getElementById('sign_up_form');
+    if (!signUpFormNode.checkValidity()) {
+      signUpFormNode.classList.add('was-validated');
+      event.preventDefault()
+      //event.stopPropagation()
+    } else {
+      signUpFormNode.classList.add('was-validated');
+
+      var signUpNicknameNode = document.getElementById('sign_up_nickname');
+      var nickname = signUpNicknameNode.value;
+      var signUpEmailNode = document.getElementById('sign_up_email');
+      var email = signUpEmailNode.value;
+      var signUpPasswordNode = document.getElementById('sign_up_password');
+      var password = signUpPasswordNode.value;
+
+      var url = '/api/members';
+      var details = {
         'nickname': nickname,
         'email': email,
         'password': password
-    };
-    var formBody = [];
-    for (var key in details) {
-      var encodedKey = encodeURIComponent(key);
-      var encodedValue = encodeURIComponent(details[key]);
-      formBody.push(encodedKey + "=" + encodedValue);
-    }
-    var formBodyAsString = formBody.join("&");
-    var options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: formBodyAsString
-    };
+      };
+      var formBody = [];
+      for (var key in details) {
+        var encodedKey = encodeURIComponent(key);
+        var encodedValue = encodeURIComponent(details[key]);
+        formBody.push(encodedKey + "=" + encodedValue);
+      }
+      var formBodyAsString = formBody.join("&");
+      var options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formBodyAsString
+      };
 
-    if(!details.nickname || !details.email || !details.password) {
-      window.alert('Falta un campo por rellenar');
-      return
-    }
-
-    fetch(url, options)
-      .then(response => response.json())
-      .then(function (info) {
+      fetch(url, options)
+        .then(response => response.json())
+        .then(function (info) {
           if (info.status == 'OK') {
             window.location = `/members/${info.member.id}`;
           } else {
             window.alert('Algo ha salido mal')
           }
       });
+    }
   });
 };
 window.addEventListener('load', memberNewCreatingListener);
