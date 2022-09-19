@@ -24,6 +24,7 @@ var signOutButtonListener = function () {
   var signOutButtonNode = document.getElementById('sign_out_button');
   signOutButtonNode.addEventListener('click', function () {
     eraseCookie('session');
+    eraseCookie('member_id');
     eraseCookie('remember');
     window.location = '/'
   });

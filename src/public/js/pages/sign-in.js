@@ -48,13 +48,14 @@ var memberSignInListener = function () {
           if (info.status == 'KO') {
             window.alert(`${info.message}`)
           } else {
-            setCookie('session', info.id, 5);
+            setCookie('member_id', info.member.id, 5);
+            setCookie('session', info.session, 5);
 
             var rememberMeButtonNode = document.getElementById('remember_me_check');
             if (rememberMeButtonNode.checked){
-              setCookie('remember', 'true');
+              setCookie('remember', 'true', 5);
             } else {
-              setCookie('remember', 'false');
+              setCookie('remember', 'false', 5);
             }
 
             window.location = `/members/${info.id}`;

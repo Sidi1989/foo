@@ -24,10 +24,16 @@ var apiSignInHandler = function (req, res) {
       message: 'Credenciales inválidas'
     });
   } else {
+    // @TODO
+    //var token = `session${uuidv4().slice(0,3)}`;
+    var token = 'session501';
+    //Almacenar token en base de datos asociada al usuario
     return res.json({
       status: 'OK',
-      id: member.id,
-      session: `session${uuidv4().slice(0,3)}`
+      session: token,
+      member: {
+        id: member.id
+      }
     });
   }
 };

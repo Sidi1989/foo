@@ -23,6 +23,25 @@ var getAllMembers = function () {
 };
 
 
+var getMemberBySession = function (session) {
+  if (!session) return null;
+
+  var clonedMembers = _.cloneDeep(members);
+  var filteredMembers = clonedMembers.filter(function (e) {
+    return (e.session == session);
+  });
+
+  var member;
+  if (filteredMembers.length == 0) {
+    member = null;
+  } else {
+    member = filteredMembers[0];
+  }
+
+  return member;
+};
+
+
 var getMemberById = function (id) {
   var clonedMembers = _.cloneDeep(members);
   var filteredMembers = clonedMembers.filter(function (e) {
@@ -100,8 +119,8 @@ var deleteMember = function (memberId) {
 
 
 
-
 exports.getAllMembers = getAllMembers;
+exports.getMemberBySession = getMemberBySession;
 exports.getMemberById = getMemberById;
 exports.getLastBookForMember = getLastBookForMember;
 exports.getCollectionsForMember = getCollectionsForMember;

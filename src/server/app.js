@@ -22,6 +22,6 @@ app.use('/public', express.static(publicDirname, options));
 app.use(cookieParser()); // for parsing cookies
 app.use(express.json()); // for parsing json
 app.use(express.urlencoded({ extended: true })); // for parsing x-www-form-urlencoded
-app.use(auth); // for authenticate users, with cookies
 app.use(log); // for logging requests
+app.use(auth); // for authenticate users, with cookies
 app.use(dispatch); // for routing
