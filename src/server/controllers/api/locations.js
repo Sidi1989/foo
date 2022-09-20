@@ -4,23 +4,8 @@ const {getMemberById} = require('../../models/members.js');
 
 
 
-var apiCreateLocationHandler = function (req, res) {
-  var newLocationInfo = {
-    owner: req.user.id,
-    name: req.body.name,
-    pic: req.body.pic
-  };
-  var newLocation = createLocation(newLocationInfo);
 
-  var info = {
-    status: "OK",
-    location: newLocation
-  };
-  return res.json(info);
-};
-
-
-var apiListLocationsHandler = function (req, res) {
+var listMemberLocationsHandler = function (req, res) {
   var member = getMemberById(req.params.member);
   var memberLocations = member.locations.map(function (locationId) {
     var location = getLocationById(locationId);
@@ -36,21 +21,37 @@ var apiListLocationsHandler = function (req, res) {
 };
 
 
-var apiRetrieveLocationHandler = function (req, res) {
+var createLocationHandler = function (req, res) {
+  var newLocationInfo = {
+    owner: req.user.id,
+    name: req.body.name,
+    pic: req.body.pic
+  };
+  var newLocation = createLocation(newLocationInfo);
+
+  var info = {
+    status: "OK",
+    location: newLocation
+  };
+  return res.json(info);
+};
+
+
+var retrieveLocationHandler = function (req, res) {
   var location = getLocationById(req.params.location);
 
   return res.json(location);
 };
 
 
-var apiEditLocationHandler = function (req, res) {
+var editLocationHandler = function (req, res) {
   var location = getLocationById(req.params.location);
 
   return res.json(location);
 };
 
 
-var apiDeleteLocationHandler = function (req, res) {
+var deleteLocationHandler = function (req, res) {
   deleteLocation(req.params.location);
 
   var info = {
@@ -63,8 +64,8 @@ var apiDeleteLocationHandler = function (req, res) {
 
 
 
-exports.apiCreateLocationHandler = apiCreateLocationHandler;
-exports.apiListLocationsHandler = apiListLocationsHandler;
-exports.apiRetrieveLocationHandler = apiRetrieveLocationHandler;
-exports.apiEditLocationHandler = apiEditLocationHandler;
-exports.apiDeleteLocationHandler = apiDeleteLocationHandler;
+exports.listMemberLocationsHandler = listMemberLocationsHandler;
+exports.createLocationHandler = createLocationHandler;
+exports.retrieveLocationHandler = retrieveLocationHandler;
+exports.editLocationHandler = editLocationHandler;
+exports.deleteLocationHandler = deleteLocationHandler;

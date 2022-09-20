@@ -1,16 +1,16 @@
 var express = require('express');
 const {
-  apiListMembersHandler,
-  apiCreateMemberHandler,
-  apiRetrieveMemberHandler,
-  apiEditMemberHandler,
-  apiDeleteMemberHandler
+  listMembersHandler,
+  createMemberHandler,
+  retrieveMemberHandler,
+  editMemberHandler,
+  deleteMemberHandler
 } = require('../controllers/api/members.js');
-const {apiListBooksHandler} = require('../controllers/api/books.js');
-const {apiListCollectionsHandler} = require('../controllers/api/collections.js');
-const {apiListLocationsHandler} = require('../controllers/api/locations.js');
-const {apiListPetitionsHandler} = require('../controllers/api/petitions.js');
-const {apiListReviewsHandler} = require('../controllers/api/reviews.js');
+const {listMemberBooksHandler} = require('../controllers/api/books.js');
+const {listMemberCollectionsHandler} = require('../controllers/api/collections.js');
+const {listMemberLocationsHandler} = require('../controllers/api/locations.js');
+const {listMemberPetitionsHandler} = require('../controllers/api/petitions.js');
+const {listMemberReviewsHandler} = require('../controllers/api/reviews.js');
 
 
 
@@ -18,17 +18,16 @@ const {apiListReviewsHandler} = require('../controllers/api/reviews.js');
 var config = {};
 var router = express.Router();
 
-router.post('/', apiCreateMemberHandler);
-router.get('/:member', apiRetrieveMemberHandler);
-router.put('/:member', apiEditMemberHandler);
-router.delete('/:member', apiDeleteMemberHandler);
-
-router.get('/', apiListMembersHandler);
-router.get('/:member/books', apiListBooksHandler);
-router.get('/:member/collections', apiListCollectionsHandler);
-router.get('/:member/locations', apiListLocationsHandler);
-router.get('/:member/petitions', apiListPetitionsHandler);
-router.get('/:member/reviews', apiListReviewsHandler);
+router.get('/', listMembersHandler);
+router.post('/', createMemberHandler);
+router.get('/:member', retrieveMemberHandler);
+router.put('/:member', editMemberHandler);
+router.delete('/:member', deleteMemberHandler);
+router.get('/:member/books', listMemberBooksHandler);
+router.get('/:member/collections', listMemberCollectionsHandler);
+router.get('/:member/locations', listMemberLocationsHandler);
+router.get('/:member/petitions', listMemberPetitionsHandler);
+router.get('/:member/reviews', listMemberReviewsHandler);
 
 
 

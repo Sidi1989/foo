@@ -1,9 +1,9 @@
 var express = require('express');
 const {
-  apiCreatePetitionHandler,
-  apiRetrievePetitionHandler,
-  apiEditPetitionHandler,
-  apiDeletePetitionHandler
+  createPetitionHandler,
+  retrievePetitionHandler,
+  editPetitionHandler,
+  deletePetitionHandler
 } = require('../controllers/api/petitions.js');
 
 
@@ -12,10 +12,10 @@ const {
 var config = {};
 var router = express.Router();
 
-router.post('/', apiCreatePetitionHandler);
-router.get('/:petition', apiRetrievePetitionHandler);
-router.put('/:petition', apiEditPetitionHandler);
-router.delete('/:petition', apiDeletePetitionHandler);
+router.post('/', createPetitionHandler);
+router.get('/:petition', retrievePetitionHandler);
+router.put('/:petition', editPetitionHandler);
+router.delete('/:petition', deletePetitionHandler);
 
 
 

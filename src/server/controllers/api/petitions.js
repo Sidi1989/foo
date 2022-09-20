@@ -8,7 +8,25 @@ const {getLanguageById} = require('../../models/languages.js');
 
 
 
-var apiCreatePetitionHandler = function (req, res) {
+var listMemberPetitionsHandler = function (req, res) {
+  var member = getMemberById(req.params.member);
+  var memberPetitions = member.petitions.map(function (petitionId) {
+    var petition = getPetitionById(petitionId);
+    return petition;
+  });
+
+  memberPetitions.forEach(function (e) {
+    e.author = getAuthorById(e.author);
+    e.category = getCategoryById(e.category);
+    e.subcategory = getSubcategoryById(e.subcategory);
+    e.language = getLanguageById(e.language);
+  });
+
+  return res.json(memberPetitions);
+};
+
+
+var createPetitionHandler = function (req, res) {
   var newPetitionInfo = {
     title: req.body.title,
     author: req.body.author,
@@ -27,39 +45,21 @@ var apiCreatePetitionHandler = function (req, res) {
 };
 
 
-var apiListPetitionsHandler = function (req, res) {
-  var member = getMemberById(req.params.member);
-  var memberPetitions = member.petitions.map(function (petitionId) {
-    var petition = getPetitionById(petitionId);
-    return petition;
-  });
-
-  memberPetitions.forEach(function (e) {
-    e.author = getAuthorById(e.author);
-    e.category = getCategoryById(e.category);
-    e.subcategory = getSubcategoryById(e.subcategory);
-    e.language = getLanguageById(e.language);
-  });
-
-  return res.json(memberPetitions);
-};
-
-
-var apiRetrievePetitionHandler = function (req, res) {
+var retrievePetitionHandler = function (req, res) {
   var petition = getPetitionById(req.params.petition);
 
   return res.json(petition);
 };
 
 
-var apiEditPetitionHandler = function (req, res) {
+var editPetitionHandler = function (req, res) {
   var petition = getPetitionById(req.params.petition);
 
   return res.json(petition);
 };
 
 
-var apiDeletePetitionHandler = function (req, res) {
+var deletePetitionHandler = function (req, res) {
   deletePetition(req.params.petition);
 
   var info = {
@@ -72,8 +72,8 @@ var apiDeletePetitionHandler = function (req, res) {
 
 
 
-exports.apiCreatePetitionHandler = apiCreatePetitionHandler;
-exports.apiListPetitionsHandler = apiListPetitionsHandler;
-exports.apiRetrievePetitionHandler = apiRetrievePetitionHandler;
-exports.apiEditPetitionHandler = apiEditPetitionHandler;
-exports.apiDeletePetitionHandler = apiDeletePetitionHandler;
+exports.listMemberPetitionsHandler = listMemberPetitionsHandler;
+exports.createPetitionHandler = createPetitionHandler;
+exports.retrievePetitionHandler = retrievePetitionHandler;
+exports.editPetitionHandler = editPetitionHandler;
+exports.deletePetitionHandler = deletePetitionHandler;

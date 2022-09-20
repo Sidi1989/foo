@@ -1,9 +1,9 @@
 var express = require('express');
 const {
-  apiCreateReviewHandler,
-  apiRetrieveReviewHandler,
-  apiEditReviewHandler,
-  apiDeleteReviewHandler
+  createReviewHandler,
+  retrieveReviewHandler,
+  editReviewHandler,
+  deleteReviewHandler
 } = require('../controllers/api/reviews.js');
 
 
@@ -12,10 +12,10 @@ const {
 var config = {};
 var router = express.Router();
 
-router.post('/', apiCreateReviewHandler);
-router.get('/:review', apiRetrieveReviewHandler);
-router.put('/:review', apiEditReviewHandler);
-router.delete('/:review', apiDeleteReviewHandler);
+router.post('/', createReviewHandler);
+router.get('/:review', retrieveReviewHandler);
+router.put('/:review', editReviewHandler);
+router.delete('/:review', deleteReviewHandler);
 
 
 

@@ -5,7 +5,22 @@ const {getBookById} = require('../../models/books.js');
 
 
 
-var apiCreateReviewHandler = function (req, res) {
+var listMemberReviewsHandler = function (req, res) {
+  var member = getMemberById(req.params.member);
+  var memberReviews = member.reviews.map(function (reviewId) {
+    var review = getReviewById(reviewId);
+    return review;
+  });
+
+  memberReviews.forEach(function (e) {
+    e.book = getBookById(e.book);
+  });
+
+  return res.json(memberReviews);
+};
+
+
+var createReviewHandler = function (req, res) {
   var newReviewInfo = {
     reviewer: req.user.id,
     book: req.book.id,
@@ -23,36 +38,21 @@ var apiCreateReviewHandler = function (req, res) {
 };
 
 
-var apiListReviewsHandler = function (req, res) {
-  var member = getMemberById(req.params.member);
-  var memberReviews = member.reviews.map(function (reviewId) {
-    var review = getReviewById(reviewId);
-    return review;
-  });
-
-  memberReviews.forEach(function (e) {
-    e.book = getBookById(e.book);
-  });
-
-  return res.json(memberReviews);
-};
-
-
-var apiRetrieveReviewHandler = function (req, res) {
+var retrieveReviewHandler = function (req, res) {
   var review = getReviewById(req.params.review);
 
   return res.json(review);
 };
 
 
-var apiEditReviewHandler = function (req, res) {
+var editReviewHandler = function (req, res) {
   var review = getReviewById(req.params.review);
 
   return res.json(review);
 };
 
 
-var apiDeleteReviewHandler = function (req, res) {
+var deleteReviewHandler = function (req, res) {
   deleteReview(req.params.review);
 
   var info = {
@@ -65,8 +65,8 @@ var apiDeleteReviewHandler = function (req, res) {
 
 
 
-exports.apiCreateReviewHandler = apiCreateReviewHandler;
-exports.apiListReviewsHandler = apiListReviewsHandler;
-exports.apiRetrieveReviewHandler = apiRetrieveReviewHandler;
-exports.apiEditReviewHandler = apiEditReviewHandler;
-exports.apiDeleteReviewHandler = apiDeleteReviewHandler;
+exports.listMemberReviewsHandler = listMemberReviewsHandler;
+exports.createReviewHandler = createReviewHandler;
+exports.retrieveReviewHandler = retrieveReviewHandler;
+exports.editReviewHandler = editReviewHandler;
+exports.deleteReviewHandler = deleteReviewHandler;

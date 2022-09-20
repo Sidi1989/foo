@@ -4,7 +4,7 @@ const {getAllMembers} = require('../../models/members.js');
 
 
 
-var apiSignInHandler = function (req, res) {
+var sessionsHandler = function (req, res) {
   var members = getAllMembers();
   var filteredMembers = members.filter(function (e) {
     return (req.body.email == e.email)
@@ -41,4 +41,4 @@ var apiSignInHandler = function (req, res) {
 
 
 
-exports.apiSignInHandler = apiSignInHandler;
+exports.sessionsHandler = sessionsHandler;

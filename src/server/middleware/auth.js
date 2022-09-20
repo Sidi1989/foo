@@ -23,13 +23,6 @@ var auth = function (req, res, next) {
 };
 
 
-var log = function (req, res, next) {
-  console.log(req.originalUrl);
-  return next();
-};
-
-
 
 
 exports.auth = auth;
-exports.log = log;

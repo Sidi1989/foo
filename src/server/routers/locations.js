@@ -1,9 +1,9 @@
 var express = require('express');
 const {
-  apiCreateLocationHandler,
-  apiRetrieveLocationHandler,
-  apiEditLocationHandler,
-  apiDeleteLocationHandler
+  createLocationHandler,
+  retrieveLocationHandler,
+  editLocationHandler,
+  deleteLocationHandler
 } = require('../controllers/api/locations.js');
 
 
@@ -12,10 +12,10 @@ const {
 var config = {};
 var router = express.Router();
 
-router.post('/', apiCreateLocationHandler);
-router.get('/:location', apiRetrieveLocationHandler);
-router.put('/:location', apiEditLocationHandler);
-router.delete('/:location', apiDeleteLocationHandler);
+router.post('/', createLocationHandler);
+router.get('/:location', retrieveLocationHandler);
+router.put('/:location', editLocationHandler);
+router.delete('/:location', deleteLocationHandler);
 
 
 

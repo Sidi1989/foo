@@ -2,8 +2,9 @@ const express = require('express');
 const {renderFile: ejsRenderEngine} = require('ejs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const {auth, log} = require('./middleware/index.js');
-const {router: dispatch} = require('./middleware/dispatch.js');
+const {log} = require('./middleware/log.js');
+const {auth} = require('./middleware/auth.js');
+const {dispatch} = require('./middleware/dispatch.js');
 
 
 

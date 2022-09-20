@@ -3,7 +3,14 @@ const {getAllMembers, getMemberById, createMember, deleteMember} = require('../.
 
 
 
-var apiCreateMemberHandler = function (req, res) {
+var listMembersHandler = function (req, res) {
+  var members = getAllMembers();
+
+  return res.json(members);
+};
+
+
+var createMemberHandler = function (req, res) {
   var newMemberInfo = {
     nickname: req.body.nickname,
     email: req.body.email,
@@ -25,28 +32,21 @@ var apiCreateMemberHandler = function (req, res) {
 };
 
 
-var apiListMembersHandler = function (req, res) {
-  var members = getAllMembers();
-
-  return res.json(members);
-};
-
-
-var apiRetrieveMemberHandler = function (req, res) {
+var retrieveMemberHandler = function (req, res) {
   var member = getMemberById(req.params.member);
 
   return res.json(member);
 };
 
 
-var apiEditMemberHandler = function (req, res) {
+var editMemberHandler = function (req, res) {
   var member = getMemberById(req.params.member);
 
   return res.json(member);
 };
 
 
-var apiDeleteMemberHandler = function (req, res) {
+var deleteMemberHandler = function (req, res) {
   deleteMember(req.params.member);
 
   var info = {
@@ -59,8 +59,8 @@ var apiDeleteMemberHandler = function (req, res) {
 
 
 
-exports.apiCreateMemberHandler = apiCreateMemberHandler;
-exports.apiListMembersHandler = apiListMembersHandler;
-exports.apiRetrieveMemberHandler = apiRetrieveMemberHandler;
-exports.apiEditMemberHandler = apiEditMemberHandler;
-exports.apiDeleteMemberHandler = apiDeleteMemberHandler;
+exports.listMembersHandler = listMembersHandler;
+exports.createMemberHandler = createMemberHandler;
+exports.retrieveMemberHandler = retrieveMemberHandler;
+exports.editMemberHandler = editMemberHandler;
+exports.deleteMemberHandler = deleteMemberHandler;

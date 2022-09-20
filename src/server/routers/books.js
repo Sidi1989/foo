@@ -1,9 +1,10 @@
 var express = require('express');
 const {
-  apiCreateBookHandler,
-  apiRetrieveBookHandler,
-  apiEditBookHandler,
-  apiDeleteBookHandler
+  listBooksHandler,
+  createBookHandler,
+  retrieveBookHandler,
+  editBookHandler,
+  deleteBookHandler
 } = require('../controllers/api/books.js');
 
 
@@ -12,10 +13,11 @@ const {
 var config = {};
 var router = express.Router();
 
-router.post('/', apiCreateBookHandler);
-router.get('/:book', apiRetrieveBookHandler);
-router.put('/:book', apiEditBookHandler);
-router.delete('/:book', apiDeleteBookHandler);
+router.get('/', listBooksHandler);
+router.post('/', createBookHandler);
+router.get('/:book', retrieveBookHandler);
+router.put('/:book', editBookHandler);
+router.delete('/:book', deleteBookHandler);
 
 
 

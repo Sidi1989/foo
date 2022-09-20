@@ -14,18 +14,18 @@ const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = 
 
 
 
-var config ={};
-var router = express.Router()
+var config = {};
+var dispatch = express.Router()
 
-router.use('/api/books', booksRouter);
-router.use('/api/collections', collectionsRouter);
-router.use('/api/locations', locationsRouter);
-router.use('/api/members', membersRouter);
-router.use('/api/petitions', petitionsRouter);
-router.use('/api/reviews', reviewsRouter);
-router.use('/api/sessions', sessionsRouter);
+dispatch.use('/api/books', booksRouter);
+dispatch.use('/api/collections', collectionsRouter);
+dispatch.use('/api/locations', locationsRouter);
+dispatch.use('/api/members', membersRouter);
+dispatch.use('/api/petitions', petitionsRouter);
+dispatch.use('/api/reviews', reviewsRouter);
+dispatch.use('/api/sessions', sessionsRouter);
 
-router.get('/', function (req, res) {
+dispatch.get('/', function (req, res) {
   if (req.user.type == 'guest') {
     res.redirect('/landing');
   } else {
@@ -33,19 +33,16 @@ router.get('/', function (req, res) {
   }
 });
 
-router.get('/landing', landingHandler);
-
-router.get('/books/search', bookSearchHandler);
-router.get('/books/:book', bookProfileHandler);
-
-router.get('/auth/signin', signInHandler);
-router.get('/auth/signup', signUpHandler);
-
-router.get('/members/:member', memberProfileHandler);
-router.get('/members/:member/preferences', memberEditHandler);
-router.get('/members/:member/:collection', collectionEditHandler);
+dispatch.get('/landing', landingHandler);
+dispatch.get('/books/search', bookSearchHandler);
+dispatch.get('/books/:book', bookProfileHandler);
+dispatch.get('/auth/signin', signInHandler);
+dispatch.get('/auth/signup', signUpHandler);
+dispatch.get('/members/:member', memberProfileHandler);
+dispatch.get('/members/:member/preferences', memberEditHandler);
+dispatch.get('/members/:member/:collection', collectionEditHandler);
 
 
 
 
-exports.router = router;
+exports.dispatch = dispatch;

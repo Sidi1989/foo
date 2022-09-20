@@ -5,23 +5,8 @@ const {getBookById} = require('../../models/books.js');
 
 
 
-var apiCreateCollectionHandler = function (req, res) {
-  var newCollectionInfo = {
-    owner: req.user.id,
-    name: req.body.name,
-    pic: req.body.pic
-  };
-  var newCollection = createCollection(newCollectionInfo);
 
-  var info = {
-    status: "OK",
-    collection: newCollection
-  };
-  return res.json(info);
-};
-
-
-var apiListCollectionsHandler = function (req, res) {
+var listMemberCollectionsHandler = function (req, res) {
   var member = getMemberById(req.params.member);
   var memberCollections = member.collections.map(function (collectionId) {
     var collection = getCollectionById(collectionId);
@@ -37,21 +22,37 @@ var apiListCollectionsHandler = function (req, res) {
 };
 
 
-var apiRetrieveCollectionHandler = function (req, res) {
+var createCollectionHandler = function (req, res) {
+  var newCollectionInfo = {
+    owner: req.user.id,
+    name: req.body.name,
+    pic: req.body.pic
+  };
+  var newCollection = createCollection(newCollectionInfo);
+
+  var info = {
+    status: "OK",
+    collection: newCollection
+  };
+  return res.json(info);
+};
+
+
+var retrieveCollectionHandler = function (req, res) {
   var collection = getCollectionById(req.params.collection);
 
   return res.json(collection);
 };
 
 
-var apiEditCollectionHandler = function (req, res) {
+var editCollectionHandler = function (req, res) {
   var collection = getCollectionById(req.params.collection);
 
   return res.json(collection);
 };
 
 
-var apiDeleteCollectionHandler = function (req, res) {
+var deleteCollectionHandler = function (req, res) {
   deleteCollection(req.params.collection);
 
   var info = {
@@ -64,8 +65,8 @@ var apiDeleteCollectionHandler = function (req, res) {
 
 
 
-exports.apiCreateCollectionHandler = apiCreateCollectionHandler;
-exports.apiListCollectionsHandler = apiListCollectionsHandler;
-exports.apiRetrieveCollectionHandler = apiRetrieveCollectionHandler;
-exports.apiEditCollectionHandler = apiEditCollectionHandler;
-exports.apiDeleteCollectionHandler = apiDeleteCollectionHandler;
+exports.listMemberCollectionsHandler = listMemberCollectionsHandler;
+exports.createCollectionHandler = createCollectionHandler;
+exports.retrieveCollectionHandler = retrieveCollectionHandler;
+exports.editCollectionHandler = editCollectionHandler;
+exports.deleteCollectionHandler = deleteCollectionHandler;

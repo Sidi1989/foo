@@ -1,9 +1,9 @@
 var express = require('express');
 const {
-  apiCreateCollectionHandler,
-  apiRetrieveCollectionHandler,
-  apiEditCollectionHandler,
-  apiDeleteCollectionHandler
+  createCollectionHandler,
+  retrieveCollectionHandler,
+  editCollectionHandler,
+  deleteCollectionHandler
 } = require('../controllers/api/collections.js');
 
 
@@ -12,10 +12,10 @@ const {
 var config = {};
 var router = express.Router();
 
-router.post('/', apiCreateCollectionHandler);
-router.get('/:collection', apiRetrieveCollectionHandler);
-router.put('/:collection', apiEditCollectionHandler);
-router.delete('/:collection', apiDeleteCollectionHandler);
+router.post('/', createCollectionHandler);
+router.get('/:collection', retrieveCollectionHandler);
+router.put('/:collection', editCollectionHandler);
+router.delete('/:collection', deleteCollectionHandler);
 
 
 
