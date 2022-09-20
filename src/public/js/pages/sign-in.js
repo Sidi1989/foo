@@ -1,5 +1,22 @@
 /**
  * @description
+ * listener para que, de haber hecho clck durante una sesión anterior
+ * en el botón de RememberMe, se responda con un autofill de
+ * la contraseña y el nombre de usuario.
+ */
+
+var autoFillListener = function () {
+   var emailFilled = getCookie('email');
+   var passwordFilled = getCookie('password');
+   var signInEmailNode = document.getElementById('sign_in_email');
+   signInEmailNode.value = emailFilled;
+   var signInPasswordNode = document.getElementById('sign_in_password');
+   signInPasswordNode.value = passwordFilled;
+};
+window.addEventListener('load', autoFillListener);
+
+/**
+ * @description
  * listener para que, al hacer click en el botón de entrar, tras haber rellenado
  * los campos de email y contraseña, se compruebe su adecuación con los datos de
  * algún usuario, redirigiendo, en tal caso, a su perfil de miembro.
@@ -48,17 +65,15 @@ var memberSignInListener = function () {
           if (info.status == 'KO') {
             window.alert(`${info.message}`)
           } else {
-            setCookie('member_id', info.member.id, 5);
             setCookie('session', info.session, 5);
-
+            setCookie('member_id', info.member.id, 5);
             var rememberMeButtonNode = document.getElementById('remember_me_check');
             if (rememberMeButtonNode.checked){
-              setCookie('remember', 'true', 5);
-            } else {
-              setCookie('remember', 'false', 5);
+              setCookie('email', email, 5);
+              setCookie('password', password, 5);
             }
 
-            window.location = `/members/${info.id}`;
+            window.location = `/members/${info.member.id}`;
           }
       });
     }

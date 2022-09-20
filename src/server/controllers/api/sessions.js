@@ -27,7 +27,7 @@ var sessionsHandler = function (req, res) {
     // @TODO
     //var token = `session${uuidv4().slice(0,3)}`;
     var token = 'session501';
-    //Almacenar token en base de datos asociada al usuario
+    //Se tendría que almacenar el token en el json del miembro identificado
     return res.json({
       status: 'OK',
       session: token,

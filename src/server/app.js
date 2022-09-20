@@ -16,13 +16,16 @@ app.listen(port, function () {
   console.log(`Pinakes se escucha en el puerto ${port}`)
 });
 
+//Establece la ruta para las llamadas internas a la carpeta "public"
 const publicDirname = path.join(__dirname, '../public');
 const options = {};
 app.use('/public', express.static(publicDirname, options));
 
-app.use(cookieParser()); // for parsing cookies
-app.use(express.json()); // for parsing json
-app.use(express.urlencoded({ extended: true })); // for parsing x-www-form-urlencoded
+//Permiten parsear cookies, jsons y x-www-form-urlencoded
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(log); // for logging requests
-app.use(auth); // for authenticate users, with cookies
+app.use(auth); // for authenticate users, through cookies
 app.use(dispatch); // for routing

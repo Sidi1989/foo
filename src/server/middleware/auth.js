@@ -4,8 +4,8 @@ const {getMemberBySession} = require('../models/members.js');
 
 
 /**
- * Consultar base de datos para encontrar al usuario al que en el pasado
- * (con un signIn) se le asignó dicho token
+ * Consulta la base de datos para encontrar al usuario al que en el pasado
+ * (con un signIn) se le asignó su token identificativo
  */
 var auth = function (req, res, next) {
   req.user = {};
@@ -17,8 +17,6 @@ var auth = function (req, res, next) {
   }
   req.user.type = (member)? 'member' : 'guest';
 
-  req.book = {};
-  req.book.id = req.cookies.book;
   return next();
 };
 
