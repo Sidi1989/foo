@@ -1,5 +1,5 @@
 var express = require('express');
-const {sessionsHandler} = require('../controllers/api/sessions.js');
+const {createSessionHandler, deleteSessionHandler} = require('../controllers/api/sessions.js');
 
 
 
@@ -7,7 +7,8 @@ const {sessionsHandler} = require('../controllers/api/sessions.js');
 var config = {};
 var router = express.Router();
 
-router.post('/', sessionsHandler);
+router.post('/', createSessionHandler);
+router.delete('/', deleteSessionHandler);
 
 
 

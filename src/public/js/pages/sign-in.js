@@ -1,19 +1,21 @@
 /**
  * @description
- * listener para que, de haber hecho clck durante una sesión anterior
- * en el botón de RememberMe, se responda con un autofill de
- * la contraseña y el nombre de usuario.
+ * listener para que, de haber hecho click durante una sesión anterior
+ * en el botón de "Recuerda mi email", se autorrellene el campo de
+ * nombre de usuario.
  */
 
 var autoFillListener = function () {
    var emailFilled = getCookie('email');
-   var passwordFilled = getCookie('password');
    var signInEmailNode = document.getElementById('sign_in_email');
    signInEmailNode.value = emailFilled;
-   var signInPasswordNode = document.getElementById('sign_in_password');
-   signInPasswordNode.value = passwordFilled;
+
+   var rememberMeFilled = getCookie('remember_me');
+   var signInRememberMeNode = document.getElementById('remember_my_email_check');
+   signInRememberMeNode.checked = rememberMeFilled
 };
 window.addEventListener('load', autoFillListener);
+
 
 /**
  * @description
@@ -67,13 +69,16 @@ var memberSignInListener = function () {
           } else {
             setCookie('session', info.session, 5);
             setCookie('member_id', info.member.id, 5);
-            var rememberMeButtonNode = document.getElementById('remember_me_check');
-            if (rememberMeButtonNode.checked){
+            var rememberMyEmailButtonNode = document.getElementById('remember_my_email_check');
+            if (rememberMyEmailButtonNode.checked){
               setCookie('email', email, 5);
-              setCookie('password', password, 5);
+              setCookie('remember_me', true, 5)
+            } else {
+              eraseCookie('email');
+              eraseCookie('remember_me')
             }
 
-            window.location = `/members/${info.member.id}`;
+          window.location = `/members/${info.member.id}`;
           }
       });
     }
