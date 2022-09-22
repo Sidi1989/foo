@@ -1,6 +1,10 @@
 const {getMemberById} = require('../../models/members.js');
 const {getCollectionById} = require('../../models/collections.js');
 const {getBookById} = require('../../models/books.js')
+const {getAllLocations} = require('../../models/locations.js');
+const {getAllCategories} = require('../../models/categories.js');
+const {getAllSubcategories} = require('../../models/subcategories.js');
+const {getAllLanguages} = require('../../models/languages.js');
 
 
 
@@ -13,9 +17,21 @@ const {getBookById} = require('../../models/books.js')
  * @param res contiene la renderización de la petición para el cliente
  */
 
-var collectionEditHandler= function (req, res) {
-  var pathname = `${__dirname}/../../../views/pages/collection-edit.ejs`;
+var collectionProfileHandler= function (req, res) {
+  var pathname = `${__dirname}/../../../views/pages/collection-profile.ejs`;
   var info = {};
+
+  var categories = getAllCategories();
+  info.categories = categories;
+
+  var subcategories = getAllSubcategories();
+  info.subcategories = subcategories;
+
+  var languages = getAllLanguages();
+  info.languages = languages;
+
+  var locations = getAllLocations();
+  info.locations = locations;
 
   var member = getMemberById(req.params.member);
   if (member == null) {
@@ -55,4 +71,4 @@ var collectionEditHandler= function (req, res) {
 
 
 
-exports.collectionEditHandler = collectionEditHandler;
+exports.collectionProfileHandler = collectionProfileHandler;

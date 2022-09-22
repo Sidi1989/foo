@@ -22,6 +22,10 @@ const {getReviewById} = require('../../models/reviews.js');
 */
 
 var signInHandler= function (req, res) {
+  if (req.user.type == 'member') {
+    res.redirect(`/members/${req.user.id}`);
+    return
+  }
   var pathname = `${__dirname}/../../../views/pages/sign-in.ejs`;
   var info = {};
 

@@ -84,41 +84,11 @@
                 </div>
               </div>
             </div>
-            <div class="col-7">
-              <%- include('../partials/others/book-rating-card.ejs', {}); %>
-            </div>
           </div>
-          <div class="row">
-            <%- include('../partials/others/list-reviews-navbar.ejs', {}); %>
-          </div>
-
         </div>
 
       </div>
       <!-- Final de la Parte superior-->
-
-      <!--Sobre los Libros de la Colección-->
-      <div class="row">
-        <div class="section-title">
-          Otros Libros en "<%=lastBookAdded.collection.name%>"
-        </div>
-      </div>
-
-      <div id="last_book_added_collection_others" class="row mb-4" name="last_book_added_collection_others">
-        <% lastBookAdded.collection.books.forEach(function(e,i) { %>
-        <div class="col-3 mb-3 gy-1">
-          <div class="card text-center">
-            <a href="/books/<%=e.id%>">
-              <img class="img-fluid mt-1" style="width: 180px; height: 240px" src="<%=e.pic%>">
-            </a>
-            <div class="card-body">
-              <h6><%=e.title%></h6>
-              <i id="<%=e.id%>_reviewed_star" class="book-reviewed-star fa-solid fa-star"></i>
-            </div>
-          </div>
-        </div>
-        <% }); %>
-      </div>
 
       <div class="row">
         <%- include('../partials/others/suggested-books-carousel.ejs', {}); %>
@@ -129,7 +99,6 @@
     <%- include('../partials/others/footer.ejs', {}); %>
 
     <!-- Zona para Modals-->
-    <%- include('../partials/modals/new-book-modal.ejs', {}); %>
     <%- include('../partials/modals/new-collection-modal.ejs', {}); %>
     <%- include('../partials/modals/delete-from-collection-modal.ejs', {}); %>
     <%- include('../partials/modals/move-orphan-book-modal.ejs', {}); %>

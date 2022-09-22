@@ -60,6 +60,13 @@ var bookProfileHandler = function (req, res) {
   var collection = getCollectionById(book.collection);
   info.book.collection = collection;
 
+  if (!collection.books) collection.books = [];
+  var collectionMapped = collection.books.map(function (bookId) {
+    var book = getBookById(bookId);
+    return book;
+  });
+  info.book.collection.books = collectionMapped;
+
   var reviewsMapped = book.reviews.map(function (id) {
     var review = getReviewById(id);
     if (review.reviewer == null) {
@@ -85,25 +92,6 @@ var bookProfileHandler = function (req, res) {
 };
 
 
-/**
-* @description
-* función destinada a cubrir la petición de Búsqueda de un libro
-* (cualquiera que los miembros no reserven para "sólo vista privada")
-*
-* @param req contiene la información de la petición
-* @param res contiene la renderización de la petición para el cliente
-*/
-
-var bookSearchHandler = function (req, res) {
-  var pathname = `${__dirname}/../../../views/pages/book-search.ejs`;
-  var info = {};
-
-
-  res.render(pathname, info);
-};
-
-
 
 
 exports.bookProfileHandler = bookProfileHandler;
-exports.bookSearchHandler = bookSearchHandler;

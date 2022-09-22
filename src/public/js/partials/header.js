@@ -23,10 +23,39 @@ window.addEventListener('load', headerBookSearchingButtonListener);
 var signOutButtonListener = function () {
   var signOutButtonNode = document.getElementById('sign_out_button');
   signOutButtonNode.addEventListener('click', function () {
-    eraseCookie('session');
-    eraseCookie('member_id');
-    
-    window.location = '/'
+
+    var sessionToDelete = getCookie('session');
+
+    var url = '/api/sessions';
+    var details = {
+        'session': sessionToDelete
+    };
+    var formBody = [];
+    for (var key in details) {
+      var encodedKey = encodeURIComponent(key);
+      var encodedValue = encodeURIComponent(details[key]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    var formBodyAsString = formBody.join("&");
+    var options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formBodyAsString
+    };
+
+    fetch(url, options)
+      .then(response => response.json())
+      .then(function (info) {
+        if (info.status == 'KO') {
+          window.alert('No se pudo borrar la sesión')
+        } else {
+          eraseCookie('session');
+          eraseCookie('member_id');
+          window.location = '/'
+        }
+      });
   });
 };
 window.addEventListener('load', signOutButtonListener);

@@ -1,37 +1,50 @@
 <div class="container-fluid bg-success mb-5 p-2">
-  <div class="row justify-content-evenly">
+  <div class="row">
 
-    <div class="col">
-      <h3>
-        <a href="/auth/signin" class="text-white text-decoration-none">
-          PIN
-          <img src="https://cdn-icons-png.flaticon.com/512/6627/6627472.png" class="img-fluid" style="width: 30px; height: 30px">
-          KES
+    <div class="col-3 text-start">
+        <a href="/" class="d-flex text-white text-decoration-none">
+          <div class="col-auto">
+            <h3>PIN</h3>
+          </div>
+          <div class="col-auto">
+            <img src="https://cdn-icons-png.flaticon.com/512/6627/6627472.png" class="img-fluid" style="width: 33px; height: 33px">
+          </div>
+          <div class="col-auto">
+            <h3>KES</h3>
+          </div>
         </a>
-      </h3>
     </div>
 
-    <div class="col">
+    <div class="col-6">
       <!--Redirección al Buscador-->
-      <form class="d-flex" role="search">
+      <form class="d-flex text-center" role="search">
         <input id="header_book_searching_input" type="search" class="form-control" placeholder="Encuentra el libro que buscas...">
         <button
             id="header_book_searching_button" type="button" class="btn btn-success btn-lg"
             data-bs-toggle="modal" data-bs-target="#header_search_modal">
           <i class="text-white ms-3 fa-solid fa-magnifying-glass"></i>
         </button>
+        <button
+            id="new_book_button" type="button" class="btn btn-success"
+            data-bs-toggle="modal" data-bs-target="#new_book_modal">
+          <span class="fa-stack fa-lg">
+            <i class="fa-solid fa-book fa-lg"></i>
+            <i class="fa-solid fa-plus fa-sm"></i>
+          </span>
+        </button>
       </form>
     </div>
 
-    <div class="col text-end">
+    <div class="col-3 text-end">
       <div class="btn-group">
-        <button class="btn btn-success btn-lg" type="button">
+        <button type="button" class="btn btn-success btn-lg">
           <i class="text-white fa-solid fa-bell fa-lg"></i>
           <span id="notifications_badge" class="badge rounded-pill bg-success" name="notifications_badge">
             Nº
           </span>
         </button>
-        <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn btn-success btn-lg dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false">
           <i class="text-white fa-solid fa-user-large"></i>
         </button>
         <ul class="dropdown-menu">
@@ -63,5 +76,6 @@
 
 <!-- Zona para Modals-->
 <%- include('../modals/header-search-modal.ejs', {}); %>
+<%- include('../modals/new-book-modal.ejs', {}); %>
 
 <script type="text/javascript" src="/public/js/partials/header.js"></script>

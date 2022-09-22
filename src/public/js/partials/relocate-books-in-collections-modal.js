@@ -11,7 +11,7 @@ var relocateModalSearchingListener = function () {
   relocateBookSearchingInputNode.addEventListener('keyup', function () {
     var relocateUserSearch = relocateBookSearchingInputNode.value;
 
-    var memberId = getCookie('session');
+    var memberId = getCookie('member_id');
     var url = `/api/members/${memberId}/books`;
     fetch(url)
       .then(response => response.json())

@@ -13,7 +13,7 @@ var onModalShownListener = function () {
     var headerModalBookSearchingInputNode = document.getElementById('header_modal_book_searching_input');
     headerModalBookSearchingInputNode.value = headerUserSearch;
 
-    var memberId = getCookie('session');
+    var memberId = getCookie('member_id');
     var url = `/api/members/${memberId}/books`;
     fetch(url)
       .then(response => response.json())
@@ -60,9 +60,10 @@ window.addEventListener('load', onModalShownListener);
 var headerModalSearchingListener = function () {
   var headerModalBookSearchingInputNode = document.getElementById("header_modal_book_searching_input");
   headerModalBookSearchingInputNode.addEventListener('keyup', function () {
-    headerModalBookSearchingInputNode.value = headerUserSearch;
+    headerUserSearch = headerModalBookSearchingInputNode.value;
+    console.log(`headerUserSearch: ${headerUserSearch}`);
 
-    var memberId = getCookie('session');
+    var memberId = getCookie('member_id');
     var url = `/api/members/${memberId}/books`;
     fetch(url)
       .then(response => response.json())
@@ -70,7 +71,7 @@ var headerModalSearchingListener = function () {
           var headerModalSearchTableBodyNode = document.getElementById('header_modal_search_table_body');
           // Limpia la Tabla, para reescribir en ella.
           headerModalSearchTableBodyNode.innerHTML = '';
-          
+
           // Se va consiguiendo buscar aquellos libros cuyas primeras letras
           // coinciden con las teclas pulsadas.
           //Y se evita que, al reescribir desde cero, salga toda la lista de libros.

@@ -13,17 +13,6 @@
       <!-- Parte superior, con los datos del libro-->
       <div class="row">
 
-        <!-- Columna con datos técnicos-->
-        <div class="col-4">
-          <div class="row mb-3">
-            <h5 id="book_title"><strong><%=book.title%></strong></h5>
-            <h6 id="book_author_name"><%=book.author.name%></h6>
-          </div>
-          <div class="row">
-            <%- include('../partials/others/book-tech-info-card.ejs', {}); %>
-          </div>
-        </div>
-
         <!--Columna con Foto, Sede y Sinopsis-->
         <div class="col-8">
 
@@ -107,6 +96,17 @@
           </div>
         </div>
 
+        <!-- Columna con datos técnicos-->
+        <div class="col-4">
+          <div class="row mb-3">
+            <h5 id="book_title"><strong><%=book.title%></strong></h5>
+            <h6 id="book_author_name"><%=book.author.name%></h6>
+          </div>
+          <div class="row">
+            <%- include('../partials/others/book-tech-info-card.ejs', {}); %>
+          </div>
+        </div>
+
       <div>
       <!-- Final de la Parte superior-->
 
@@ -118,6 +118,10 @@
         <div class="col">
           <%- include('../partials/others/book-rating-card.ejs', {}); %>
         </div>
+      </div>
+
+      <div class="row">
+        <%- include('../partials/others/collection-books-carousel.ejs', {}); %>
       </div>
 
       <div class="row">

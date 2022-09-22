@@ -5,7 +5,7 @@
  * en la view correspondiente.
  */
 
- var bookNewCreatingListener = function () {
+ var newBookCreatingListener = function () {
    var createBookButtonNode = document.getElementById("new_book_create_button");
    createBookButtonNode.addEventListener('click', function () {
      var newBookTitleNode = document.getElementById('new_book_title');
@@ -86,4 +86,4 @@
        });
    });
  };
- window.addEventListener('load', bookNewCreatingListener);
+ window.addEventListener('load', newBookCreatingListener);
