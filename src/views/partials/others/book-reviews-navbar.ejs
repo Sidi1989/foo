@@ -4,11 +4,11 @@
     <% reviews.forEach(function(e,i){ %>
     <li class="nav-item" role="presentation">
       <button class="nav-link <% if (i==0) { %>active<% } %>"
-          id="book_review<%=i %>_tab"
-          data-bs-toggle="tab" data-bs-target="#book_review<%=i %>"
-          type="button" role="tab"
-          aria-controls="book_review<%=i %>" aria-selected="true">
-          Review <%=i %>
+        id="book_review<%=i %>_tab"
+        data-bs-toggle="tab" data-bs-target="#book_review<%=i %>"
+        type="button" role="tab"
+        aria-controls="book_review<%=i %>" aria-selected="true">
+        Review <%=i %>
       </button>
     </li>
     <% }) %>

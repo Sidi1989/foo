@@ -1,0 +1,26 @@
+<div class="row g-0">
+  <button type="button" class="btn btn-success fw-bold"
+    data-bs-toggle="modal" data-bs-target="#new_location_modal">
+    Añadir Nueva <i class="fa-solid fa-plus"></i>
+  </button>
+</div>
+
+<!-- Mis Sedes-->
+<div class="row g-0">
+  <ul class="list-group">
+    <% member.locations.forEach(function (location, i) { %>
+    <li class="list-group-item d-flex justify-content-between">
+      <span>
+        <img class="img-thumbnail" style="width: 75px; height: 75px" src="<%=location.pic%>">
+        <strong class="ms-3"><%=location.name %></strong>
+      </span>
+      <!-- Modal para editar Sede -->
+      <button id="edit_location_<%=location.id%>_button" type="button"
+        class="edit-location-button btn btn-success"
+        data-bs-toggle="modal" data-bs-target="#edit_location_modal">
+        <i class="fa-solid fa-file-signature"></i>
+      </button>
+    </li>
+    <% }); %>
+  </ul>
+</div>

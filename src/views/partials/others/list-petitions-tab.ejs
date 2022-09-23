@@ -1,0 +1,28 @@
+<div class="row g-0">
+  <button type="button" class="btn btn-success fw-bold"
+    data-bs-toggle="modal" data-bs-target="#new_petition_modal">
+    Añadir Nueva <i class="fa-solid fa-plus"></i>
+  </button>
+</div>
+
+<!-- Mis Peticiones-->
+<div class="row g-0">
+  <ul class="list-group">
+    <% member.petitions.forEach(function (petition, i) { %>
+    <li class="list-group-item d-flex justify-content-between">
+      <span>
+        <%if (petition.shoppingLink != null) { %>
+        <i class="fa-solid fa-cart-shopping"></i>
+        <% } %>
+        <strong class="me-1"><%=petition.title %></strong> (<%= petition.author.name %>)
+      </span>
+      <!-- Modal para editar Petición -->
+      <button id="edit_petition_<%=petition.id%>_button" type="button"
+        class="edit-petition-button btn btn-success"
+        data-bs-toggle="modal" data-bs-target="#edit_petition_modal">
+        <i class="fa-solid fa-file-signature"></i>
+      </button>
+    </li>
+    <% }); %>
+  </ul>
+</div>

@@ -10,140 +10,94 @@
     <%- include('../partials/others/header.ejs', {}); %>
     <div class="container">
 
-      <!-- Parte superior, sobre datos del usuario y su último libro-->
-      <div class="row mb-4">
+      <!-- Parte superior, hasta las Sugerencias-->
+      <div class="row mb-5">
 
-        <!-- Columna Lateral-->
+        <!-- Perfil de usuario-->
         <div class="col-4">
-
-          <!-- Perfil de usuario-->
-          <%- include('../partials/others/member-basic-info-card.ejs', {}); %>
-
-          <!-- Mis Colecciones-->
-          <div class="p-1 mt-4 bg-success text-white">
-            <%- include('../partials/others/list-collections-accordion.ejs', {}); %>
-          </div>
-
-          <div class="p-0 mt-4 bg-success opacity-75 text-white">
-            <!-- Header de Peticiones-->
-            <div class="row g-0">
-              <div class="col-10 text-center">
-                <h4>Mis Peticiones</h4>
-              </div>
-              <div class="col-2 text-end">
-                <!-- Modal para Crear Petición -->
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#new_petition_modal">
-                  <i class="fa-solid fa-plus"></i>
-                </button>
-              </div>
-            </div>
-
-            <!-- Libros en Petición-->
-
-              <ul class="list-group p-1">
-                <% member.petitions.forEach(function (petition, i) { %>
-                <li class="list-group-item d-flex justify-content-between">
-                  <span>
-                    <%if (petition.shoppingLink != null) { %>
-                    <i class="fa-solid fa-cart-shopping me-2"></i>
-                    <% } %>
-                    <strong><%=petition.title %></strong> (<%= petition.author.name %>)
-                  </span>
-                  <!-- Modal para Editar Petición -->
-                  <button id="edit_petition_<%=petition.id%>_button" type="button"
-                        class="edit-petition-button btn btn-success"
-                        data-bs-toggle="modal"
-                        data-bs-target="#edit_petition_modal">
-                    <i class="fa-solid fa-file-signature"></i>
-                  </button>
-
-                </li>
-                <% }); %>
-              </ul>
-          </div>
-
+          <%- include('../partials/others/member-info-card.ejs', {}); %>
         </div>
-        <!-- Fin de la Columna Lateral-->
 
+        <!-- Cuerpo con Nav-Tab-->
+        <div class="col-8">
 
-        <!-- Columna Central-->
-        <div class="col-8 px-3">
-
-          <!--Sobre el último libro añadido-->
-          <div class="row mb-3">
-            <div class="col-4">
-              <div id="last_book_added_card" class="card text-center" name="last_book_added_card">
-                <div class="card-header">
-                  <h5><%=lastBookAdded.title%></h5>
-                  <h8 class="text-black-50"> (<%=lastBookAdded.author.name%>)</h8>
-                </div>
-                <div class="card-body">
-                  <a href="/books/<%=lastBookAdded.id%>">
-                    <img class="img-fluid" style="width: 200px; height: 240px" src="<%=lastBookAdded.pic%>">
-                  </a>
-                </div>
-              </div>
+          <div class="row d-flex">
+            <!-- Fila con las pestañas para abrir cada Tab-->
+            <div class="nav nav-tabs" id="tabs-tab" role="tablist">
+              <button class="nav-link active text-success" id="tabs-lastBook-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-lastBook"
+                type="button" role="tab"
+                aria-controls="tabs-lastBook" aria-selected="true">
+                <i class="fa-solid fa-sort-up"></i><i class="fa-solid fa-book"></i></i> Último Libro
+              </button>
+              <button class="nav-link text-success" id="tabs-collections-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-collections"
+                type="button" role="tab"
+                aria-controls="tabs-collections" aria-selected="false">
+                <i class="fa-solid fa-bookmark"></i> Colecciones
+              </button>
+              <button class="nav-link text-success" id="tabs-petitions-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-petitions"
+                type="button" role="tab"
+                aria-controls="tabs-petitions" aria-selected="false">
+                <i class="fa-solid fa-map-pin fa-lg"></i> Peticiones
+              </button>
+              <button class="nav-link text-success" id="tabs-locations-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-locations"
+                type="button" role="tab"
+                aria-controls="tabs-locations" aria-selected="false">
+                <i class="fa-solid fa-location-dot fa-lg"></i> Sedes
+              </button>
+              <button class="nav-link text-success" id="tabs-reviews-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-reviews"
+                type="button" role="tab"
+                aria-controls="tabs-reviews" aria-selected="false">
+                <i class="fa-solid fa-gavel fa-lg"></i> Reviews
+              </button>
             </div>
-
-            <div class="col-4">
-              <div class="mt-4">
-                <div class="btn-group">
-                  <button id="new_location_button" type="button"
-                      class="btn btn-success"
-                      data-bs-toggle="modal"
-                      data-bs-target="#new_location_modal">
-                    <i class="fa-light fa-plus fa-lg"></i>
-                  </button>
-                  <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-location-dot fa-lg"></i> Sedes
-                  </button>
-                  <ul class="dropdown-menu">
-                      <% member.locations.forEach(function (location, i) { %>
-                      <li class="list-group-item d-flex align-items-center">
-                        <button id="edit_location_<%=location.id%>_button" type="button"
-                            class="edit-location-button btn btn-light"
-                            data-bs-toggle="modal"
-                            data-bs-target="#edit_location_modal">
-                          <img class="img-thumbnail" style="width: 60px; height: 60px" src="<%=location.pic%>">
-                          <strong><%=location.name %></strong>
-                        </button>
-                      </li>
-                      <% }); %>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-4">
-              <div class="mt-4">
-                <div class="btn-group">
-                  <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-gavel fa-lg"></i> Reviews
-                  </button>
-                  <ul class="dropdown-menu">
-                      <% member.reviews.forEach(function (e, i) { %>
-                      <li class="list-group-item d-flex align-items-center">
-                        <div class="col">
-                          <a href="/books/<%=e.book.id%>">
-                            <img class="img-thumbnail" style="width: 75px; height: 75px" src="<%=e.book.pic%>">
-                          </a>
-                        </div>
-                        <div class="col">
-                          <div class="badge bg-primary text-wrap">
-                            <%=e.bookRate %>
-                          </div>
-                          <div class="badge bg-secondary text-wrap">
-                            <%=e.copyRate %>
-                          </div>
-                        </div>
-                      </li>
-                      <% }); %>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
           </div>
+
+          <div class="row d-flex">
+            <div class="tab-content" id="tabs-tabContent">
+
+              <!-- Tab con datos del Último Libro-->
+              <div class="tab-pane fade show active" id="tabs-lastBook" role="tabpanel"
+                aria-labelledby="tabs-lastBook-tab" tabindex="0">
+
+                <%- include('../partials/others/last-book-tab.ejs', {}); %>
+              </div>
+
+              <!-- Tab para la edición de las Colecciones-->
+              <div class="tab-pane fade" id="tabs-collections" role="tabpanel"
+                aria-labelledby="tabs-collections-tab" tabindex="0">
+
+                <%- include('../partials/others/list-collections-tab.ejs', {}); %>
+              </div>
+
+              <!-- Tab para la edición de las Peticiones-->
+              <div class="tab-pane fade" id="tabs-petitions" role="tabpanel"
+                aria-labelledby="tabs-petitions-tab" tabindex="0">
+
+                <%- include('../partials/others/list-petitions-tab.ejs', {}); %>
+              </div>
+
+              <!-- Tab para la edición de las Sedes-->
+              <div class="tab-pane fade" id="tabs-locations" role="tabpanel"
+                aria-labelledby="tabs-locations-tab" tabindex="0">
+
+                <%- include('../partials/others/list-locations-tab.ejs', {}); %>
+              </div>
+
+              <!-- Tab para la edición de las Reviews-->
+              <div class="tab-pane fade" id="tabs-reviews" role="tabpanel"
+                aria-labelledby="tabs-reviews-tab" tabindex="0">
+
+                <%- include('../partials/others/list-reviews-tab.ejs', {}); %>
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
       </div>
