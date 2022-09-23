@@ -1,0 +1,26 @@
+<div class="p-1 bg-light border text-center">
+  <div class="row m-3">
+    <strong class="text-success"><%=collection.name%></strong>
+  </div>
+  <div class="row m-3">
+    <img class="img-fluid" style="width: 240px; height: 180px" src="<%=collection.pic%>">
+  </div>
+  <div class="row m-2">
+    <div class="col-auto">
+      <i class="mx-2 fa-solid fa-hourglass fa-lg"></i>
+      <strong class="text-success"><%=collection.addingDate%></strong>
+    </div>
+    <div class="col-auto">
+      <i class="mx-2 fa-solid fa-book-open fa-lg"></i>
+      <strong class="text-success"><%=collection.books.length%></strong>
+    </div>
+  </div>
+  <div class="row mx-2 mt-3">
+    <!-- Modal para Editar Colección -->
+    <button id="edit_collection_<%=collection.id%>_button"
+      type="button" class="btn edit-collection-button btn-success btn-lg"
+      data-bs-toggle="modal" data-bs-target="#edit_collection_modal">
+      <i class="fa-solid fa-file-signature"></i>
+    </button>
+  </div>
+</div>

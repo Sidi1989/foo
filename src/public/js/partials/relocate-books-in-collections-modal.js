@@ -31,14 +31,15 @@ var relocateModalSearchingListener = function () {
           });
           books = searchedBooks;
           books.forEach(function (book) {
-            const relocateModalSearchedBookNode = document.createElement('tr');
-            relocateModalSearchedBookNode.innerHTML = `
-                <td>${book.title}</td>
-                <td>${book.author.name}</td>
-                <td>${book.collection.name}</td>
-                <td><input type="radio" name="book_to_move"></td>
-            `;
-            relocateSearchTableBodyNode.appendChild(relocateModalSearchedBookNode);
+            //if (book.collection.id != info.collection.id) {}
+              const relocateModalSearchedBookNode = document.createElement('tr');
+              relocateModalSearchedBookNode.innerHTML = `
+                  <td>${book.title}</td>
+                  <td>${book.author.name}</td>
+                  <td>${book.collection.name}</td>
+                  <td><input type="radio" name="book_to_move"></td>
+              `;
+              relocateSearchTableBodyNode.appendChild(relocateModalSearchedBookNode);
           });
       });
   });
@@ -67,7 +68,7 @@ var relocateModalOrderingListener = function () {
             <td>${book.title}</td>
             <td>${book.author.name}</td>
             <td>${book.collection.name}</td>
-            <td><input type="radio" name="radioGroup"></td>
+            <td><input type="radio" name="book_to_move"></td>
         `;
         relocateSearchTableBodyNode.appendChild(relocateModalSearchedBookNode);
       });
