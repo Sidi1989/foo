@@ -174,6 +174,21 @@ var memberProfileHandler = function (req, res) {
   var orphanBooks = booksMapped.filter(e => e.collection == null);
   info.orphanBooks = orphanBooks;
 
+  var locationsMapped = member.locations.map(function (locationId) {
+    var location = getLocationById(locationId);
+    return location;
+  });
+  info.member.locations = locationsMapped;
+
+  var reviewsMapped = member.reviews.map(function (reviewId) {
+    var review = getReviewById(reviewId);
+    return review;
+    });
+    reviewsMapped.forEach(function (e) {
+      e.book = getBookById(e.book);
+  });
+  info.member.reviews = reviewsMapped;
+
   var lastBookAdded = getLastBookForMember(member.id);
   if (lastBookAdded == null) lastBookAdded = {};
   info.lastBookAdded = lastBookAdded;

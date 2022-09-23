@@ -1,0 +1,40 @@
+<div>
+  <form class="row">
+    <div class="input-group mb-4">
+      <label for="member_edit_email" class="input-group-text">E-mail</label>
+      <input id="member_edit_email" type="email" name="member_edit_email" value="<%=member.email %>" class="form-control">
+    </div>
+
+    <div class="input-group mb-4">
+      <label for="member_edit_nickname" class="input-group-text">Nickname</label>
+      <input id="member_edit_nickname" type="text" name="member_edit_nickname" value="<%= member.nickname%>" class="form-control">
+    </div>
+
+    <div class="input-group mb-4">
+      <label for="member_edit_name" class="input-group-text">Usuario</label>
+      <div class="col ps-1">
+        <input id="member_edit_name_first" type="text" name="member_edit_name_first" value="<%=member.name.first %>" class="form-control">
+      </div>
+      <div class="col ps-3">
+        <input id="member_edit_name_last" type="text" name="member_edit_name_last" value="<%=member.name.last %>" class="form-control">
+      </div>
+    </div>
+
+    <div class="input-group mb-4">
+      <label for="member_edit_pic" class="input-group-text">Imagen de usuario</label>
+      <input id="member_edit_pic" type="text" name="member_edit_pic" value="<%=member.pic %>" class="form-control">
+    </div>
+
+    <div class="input-group mb-4">
+      <label for="member_edit_birthday" class="input-group-text">Fecha de nacimiento:</label>
+      <input id="member_edit_birthday" type="date" name="member_edit_birthday" value="<%=member.birthday %>" class="form-control">
+    </div>
+  </form>
+
+  <button id="change_profile_save_button" type="button"
+    class="btn btn-success" name="change_profile_save_button">
+    <h5>Guardar</h5>
+  </button>
+</div>
+
+<script type="text/javascript" src="/public/js/partials/change-profile-tab.js"></script>

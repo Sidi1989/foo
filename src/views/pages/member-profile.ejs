@@ -71,7 +71,7 @@
 
           <!--Sobre el último libro añadido-->
           <div class="row mb-3">
-            <div class="col-5">
+            <div class="col-4">
               <div id="last_book_added_card" class="card text-center" name="last_book_added_card">
                 <div class="card-header">
                   <h5><%=lastBookAdded.title%></h5>
@@ -84,6 +84,65 @@
                 </div>
               </div>
             </div>
+
+            <div class="col-4">
+              <div class="mt-4">
+                <div class="btn-group">
+                  <button id="new_location_button" type="button"
+                      class="btn btn-success"
+                      data-bs-toggle="modal"
+                      data-bs-target="#new_location_modal">
+                    <i class="fa-light fa-plus fa-lg"></i>
+                  </button>
+                  <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-location-dot fa-lg"></i> Sedes
+                  </button>
+                  <ul class="dropdown-menu">
+                      <% member.locations.forEach(function (location, i) { %>
+                      <li class="list-group-item d-flex align-items-center">
+                        <button id="edit_location_<%=location.id%>_button" type="button"
+                            class="edit-location-button btn btn-light"
+                            data-bs-toggle="modal"
+                            data-bs-target="#edit_location_modal">
+                          <img class="img-thumbnail" style="width: 60px; height: 60px" src="<%=location.pic%>">
+                          <strong><%=location.name %></strong>
+                        </button>
+                      </li>
+                      <% }); %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="mt-4">
+                <div class="btn-group">
+                  <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-gavel fa-lg"></i> Reviews
+                  </button>
+                  <ul class="dropdown-menu">
+                      <% member.reviews.forEach(function (e, i) { %>
+                      <li class="list-group-item d-flex align-items-center">
+                        <div class="col">
+                          <a href="/books/<%=e.book.id%>">
+                            <img class="img-thumbnail" style="width: 75px; height: 75px" src="<%=e.book.pic%>">
+                          </a>
+                        </div>
+                        <div class="col">
+                          <div class="badge bg-primary text-wrap">
+                            <%=e.bookRate %>
+                          </div>
+                          <div class="badge bg-secondary text-wrap">
+                            <%=e.copyRate %>
+                          </div>
+                        </div>
+                      </li>
+                      <% }); %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -104,6 +163,8 @@
     <%- include('../partials/modals/move-orphan-book-modal.ejs', {}); %>
     <%- include('../partials/modals/new-petition-modal.ejs', {}); %>
     <%- include('../partials/modals/edit-petition-modal.ejs', {}); %>
+    <%- include('../partials/modals/new-location-modal.ejs', {}); %>
+    <%- include('../partials/modals/edit-location-modal.ejs', {}); %>
 
     <script type="text/javascript" src="/public/js/pages/member-profile.js"></script>
 

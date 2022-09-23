@@ -10,142 +10,87 @@
     <%- include('../partials/others/header.ejs', {}); %>
     <div class="container">
 
-      <div class="row">
-      <!-- Parte general (todo salvo Header y Footer)-->
-
-        <div class="col-4">
-        <!-- Columna con datos varios del usuario-->
-          <%- include('../partials/others/member-basic-info-card.ejs', {}); %>
-
-          <div class="row">
-
-            <div class="col-6">
-              <div class="mt-4">
-                <div class="btn-group">
-                  <button id="new_location_button" type="button"
-                      class="btn btn-success"
-                      data-bs-toggle="modal"
-                      data-bs-target="#new_location_modal">
-                    <i class="fa-light fa-plus fa-lg"></i>
-                  </button>
-                  <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-location-dot fa-lg"></i> Sedes
-                  </button>
-                  <ul class="dropdown-menu">
-                      <% member.locations.forEach(function (location, i) { %>
-                      <li class="list-group-item d-flex align-items-center">
-                        <button id="edit_location_<%=location.id%>_button" type="button"
-                            class="edit-location-button btn btn-light"
-                            data-bs-toggle="modal"
-                            data-bs-target="#edit_location_modal">
-                          <img class="img-thumbnail" style="width: 60px; height: 60px" src="<%=location.pic%>">
-                          <strong><%=location.name %></strong>
-                        </button>
-                      </li>
-                      <% }); %>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6">
-              <div class="mt-4">
-                <div class="btn-group">
-                  <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-gavel fa-lg"></i> Reviews
-                  </button>
-                  <ul class="dropdown-menu">
-                      <% member.reviews.forEach(function (e, i) { %>
-                      <li class="list-group-item d-flex align-items-center">
-                        <div class="col">
-                          <a href="/books/<%=e.book.id%>">
-                            <img class="img-thumbnail" style="width: 75px; height: 75px" src="<%=e.book.pic%>">
-                          </a>
-                        </div>
-                        <div class="col">
-                          <div class="badge bg-primary text-wrap">
-                            <%=e.bookRate %>
-                          </div>
-                          <div class="badge bg-secondary text-wrap">
-                            <%=e.copyRate %>
-                          </div>
-                        </div>
-                      </li>
-                      <% }); %>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
+      <div class="d-flex">
+        <!-- Columna con las pestañas para abrir cada Tab-->
+        <div class="nav flex-column nav-tabs" id="tabs-tab" role="tablist" aria-orientation="vertical">
+          <button class="nav-link active text-success" id="tabs-home-tab"
+            data-bs-toggle="tab" data-bs-target="#tabs-home"
+            type="button" role="tab"
+            aria-controls="tabs-home" aria-selected="true">
+            Home
+          </button>
+          <button class="nav-link text-success" id="tabs-profile-tab"
+            data-bs-toggle="tab" data-bs-target="#tabs-profile"
+            type="button" role="tab"
+            aria-controls="tabs-profile" aria-selected="false">
+            Perfil
+          </button>
+          <button class="nav-link text-success" id="tabs-security-tab"
+            data-bs-toggle="tab" data-bs-target="#tabs-security"
+            type="button" role="tab"
+            aria-controls="tabs-security" aria-selected="false">
+            Seguridad
+          </button>
+          <button class="nav-link text-success" id="tabs-notifications-tab"
+            data-bs-toggle="tab" data-bs-target="#tabs-notifications"
+            type="button" role="tab"
+            aria-controls="tabs-notifications" aria-selected="false">
+            Notificaciones
+          </button>
         </div>
 
-        <div class="col-8">
-        <!-- Columna para la edición de los datos del usuario-->
+        <div class="tab-content" id="tabs-tabContent">
 
-          <div class="section-title">
-            Edita los datos de tu cuenta
-          </div>
-          <!-- Datos Principales-->
-          <div class="input-group mb-4">
-            <label for="member_edit_nickname" class="input-group-text">Nickname</label>
-            <input id="member_edit_nickname" type="text" name="member_edit_nickname" value="<%= member.nickname%>" class="form-control">
-          </div>
+          <!-- Tab con la información básica del usuario-->
+          <div class="tab-pane fade show active" id="tabs-home" role="tabpanel"
+            aria-labelledby="tabs-home-tab" tabindex="0">
 
-          <div class="input-group mb-4">
-            <label for="member_edit_email" class="input-group-text">E-mail</label>
-            <input id="member_edit_email" type="email" name="member_edit_email" value="<%=member.email %>" class="form-control">
-          </div>
-
-          <div class="input-group mb-4 g-3">
-            <label for="member_edit_name" class="input-group-text">Usuario</label>
-            <div class="col ps-1">
-              <input id="member_edit_name_first" type="text" name="member_edit_name_first" value="<%=member.name.first %>" class="form-control">
+            <div class="section-title">
+              Tu perfil público
             </div>
-            <div class="col ps-3">
-              <input id="member_edit_name_last" type="text" name="member_edit_name_last" value="<%=member.name.last %>" class="form-control">
-            </div>
+
+            <%- include('../partials/others/member-basic-info-card.ejs', {}); %>
           </div>
 
-          <div class="input-group mb-4">
-            <label for="member_edit_pic" class="input-group-text">Imagen de usuario</label>
-            <input id="member_edit_pic" type="text" name="member_edit_pic" value="<%=member.pic %>" class="form-control">
+          <!-- Tab para la edición de los datos del usuario-->
+          <div class="tab-pane fade" id="tabs-profile" role="tabpanel"
+            aria-labelledby="tabs-profile-tab" tabindex="0">
+
+            <div class="section-title">
+              Edita tu perfil
+            </div>
+
+            <%- include('../partials/others/change-profile-tab.ejs', {}); %>
           </div>
 
-          <div class="input-group mb-5">
-            <label for="member_edit_birthday" class="input-group-text">Fecha de nacimiento:</label>
-            <input id="member_edit_birthday" type="date" name="member_edit_birthday" value="<%=member.birthday %>" class="form-control">
+          <!-- Tab para la edición de las contraseñas del usuario-->
+          <div class="tab-pane fade" id="tabs-security" role="tabpanel"
+            aria-labelledby="tabs-security-tab" tabindex="0">
+
+            <div class="section-title">
+              Edita tu seguridad
+            </div>
+
+            <%- include('../partials/others/change-password-tab.ejs', {}); %>
           </div>
 
-          <div class="row mb-4">
-              <div class="col-4 mx-auto">
-            <button id="change_password_button" type="button"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#change_password_modal">
-              <h5>Cambiar contraseña</h5>
-            </button>
+          <!-- Tab para la edición de las notificaciones del usuario-->
+          <div class="tab-pane fade" id="tabs-notifications" role="tabpanel"
+            aria-labelledby="tabs-notifications-tab" tabindex="0">
+
+            <div class="section-title">
+              Edita tus notificaciones
             </div>
-            <div class="col-4 mx-auto">
-            <button id="member_edit_save_main_button" type="submit" class="btn btn-success" name="member_edit_save_main_button">
-              <h5>Guardar cambios</h5>
-            </button>
-            </div>
+
+            <%- include('../partials/others/change-notifications-tab.ejs', {}); %>
           </div>
+
         </div>
-
       </div>
-      <!-- Fin de la Parte general de la view-->
-
+      
     </div>
     <!-- Footer-->
     <%- include('../partials/others/footer.ejs', {}); %>
-
-    <!-- Zona para Modals-->
-    <%- include('../partials/modals/new-book-modal.ejs', {}); %>
-    <%- include('../partials/modals/new-location-modal.ejs', {}); %>
-    <%- include('../partials/modals/edit-location-modal.ejs', {}); %>
-    <%- include('../partials/modals/change-password-modal.ejs', {}); %>
 
     <script type="text/javascript" src="/public/js/pages/member-edit.js"></script>
 
