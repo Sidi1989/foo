@@ -10,7 +10,7 @@
     <!-- Modal para editar la situación del libro -->
     <div class="col-auto me-4 mt-1">
       <button id="edit_copy_status_<%=book.id%>_button"
-        type="button" class="btn btn-success btn-lg"
+        type="button" class="edit-copy-status-button btn btn-success btn-lg"
         data-bs-toggle="modal" data-bs-target="#edit_copy_status_modal">
         <i class="fa-solid fa-file-signature"></i>
       </button>
@@ -19,7 +19,7 @@
   </div>
 
   <!-- Otros libros de la colección -->
-  <div id="other_boks_in_collection" class="row my-3 d-flex justify-content-between">
+  <div id="other_books_in_collection" class="row my-3 d-flex justify-content-between">
 
     <% book.collection.books.forEach(function(e,i) { %>
     <div class="col-4 d-flex align-items-stretch">

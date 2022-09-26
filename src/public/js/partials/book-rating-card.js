@@ -1,6 +1,6 @@
 /**
  * @description
- * listener para que, al hacer click en el botón de guardar cambios, se registre
+ * listener para que, al hacer click en el botón de Guardar cambios, se registre
  * la valoración, se le asigne una id a la review, y se refresque con todo ello
  * la view del perfil de miembro.
  */

@@ -38,9 +38,9 @@
                 <i id="<%=book.id%>_reviewed_star" class="book-reviewed-star fa-solid fa-star"></i>
                 <span><strong><%=book.title %></strong> (<%=book.author.name %>)</span>
               </a>
-              <button id="delete_from_collection_<%=book.id%>_button" type="button"
-                class="delete-from-collection-button btn btn-sm btn-outline-success"
-                data-bs-toggle="modal" data-bs-target="#delete_from_collection_modal">
+              <button id="out_of_collection_<%=book.id%>_button" type="button"
+                class="out-of-collection-button btn btn-sm btn-outline-success"
+                data-bs-toggle="modal" data-bs-target="#out_of_collection_modal">
                 <i class="fa-solid fa-square-xmark"></i>
               </button>
             </div>
@@ -70,9 +70,9 @@
                 <i id="<%=e.id%>_reviewed_star" class="book-reviewed-star fa-solid fa-star"></i>
                 <span><strong><%=e.title%></strong> (<%=e.author.name%>)</span>
               </a>
-              <button id="move_orphan_book_<%=e.id%>_button" type="button"
-                  class="move-orphan-book-button btn btn-success"
-                  data-bs-toggle="modal" data-bs-target="#move_orphan_book_modal">
+              <button id="out_of_orphans_<%=e.id%>_button" type="button"
+                  class="out-of-orphans-button btn btn-success"
+                  data-bs-toggle="modal" data-bs-target="#out_of_orphans_modal">
                 <i class="fa-solid fa-file-signature"></i>
               </button>
             </div>
@@ -83,3 +83,8 @@
 
   </div>
 </div>
+
+<!-- Zona para Modals-->
+<%- include('../modals/new-collection-modal.ejs', {}); %>
+<%- include('../modals/out-of-collection-modal.ejs', {}); %>
+<%- include('../modals/out-of-orphans-modal.ejs', {}); %>

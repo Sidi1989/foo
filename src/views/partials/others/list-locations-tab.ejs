@@ -12,7 +12,7 @@
     <li class="list-group-item d-flex justify-content-between">
       <span>
         <img class="img-thumbnail ms-4" style="width: 75px; height: 75px" src="<%=location.pic%>">
-        <strong class="ms-3"><%=location.name %></strong>
+        <strong class="ms-3"><%=location.name%></strong>
       </span>
       <!-- Modal para editar Sede -->
       <button id="edit_location_<%=location.id%>_button" type="button"
@@ -24,3 +24,7 @@
     <% }); %>
   </ul>
 </div>
+
+<!-- Zona para Modals-->
+<%- include('../modals/new-location-modal.ejs', {}); %>
+<%- include('../modals/edit-location-modal.ejs', {}); %>
