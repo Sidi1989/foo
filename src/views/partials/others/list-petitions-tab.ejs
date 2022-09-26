@@ -12,13 +12,13 @@
     <li class="list-group-item d-flex justify-content-between">
       <span>
         <%if (petition.shoppingLink != null) { %>
-        <i class="fa-solid fa-cart-shopping"></i>
+        <i class="fa-solid fa-cart-shopping mx-4"></i>
         <% } %>
         <strong class="me-1"><%=petition.title %></strong> (<%= petition.author.name %>)
       </span>
       <!-- Modal para editar Petición -->
       <button id="edit_petition_<%=petition.id%>_button" type="button"
-        class="edit-petition-button btn btn-success"
+        class="edit-petition-button btn btn-success me-4"
         data-bs-toggle="modal" data-bs-target="#edit_petition_modal">
         <i class="fa-solid fa-file-signature"></i>
       </button>

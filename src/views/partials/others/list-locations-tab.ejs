@@ -11,12 +11,12 @@
     <% member.locations.forEach(function (location, i) { %>
     <li class="list-group-item d-flex justify-content-between">
       <span>
-        <img class="img-thumbnail" style="width: 75px; height: 75px" src="<%=location.pic%>">
+        <img class="img-thumbnail ms-4" style="width: 75px; height: 75px" src="<%=location.pic%>">
         <strong class="ms-3"><%=location.name %></strong>
       </span>
       <!-- Modal para editar Sede -->
       <button id="edit_location_<%=location.id%>_button" type="button"
-        class="edit-location-button btn btn-success"
+        class="edit-location-button btn btn-success me-4"
         data-bs-toggle="modal" data-bs-target="#edit_location_modal">
         <i class="fa-solid fa-file-signature"></i>
       </button>

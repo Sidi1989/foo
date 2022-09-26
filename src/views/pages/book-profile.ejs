@@ -10,119 +10,87 @@
     <%- include('../partials/others/header.ejs', {}); %>
     <div class="container">
 
-      <!-- Parte superior, con los datos del libro-->
-      <div class="row">
+      <!-- Parte superior, hasta las Sugerencias-->
+      <div class="row mb-4">
 
-        <!--Columna con Foto, Sede y Sinopsis-->
-        <div class="col-8">
+        <!-- Perfil del libro-->
+        <div class="col-5">
+          <%- include('../partials/others/book-info-card.ejs', {}); %>
+        </div>
 
+        <!-- Cuerpo con el Nav-Tab-->
+        <div class="col-7">
+
+          <!-- Fila con las pestañas para abrir cada Tab-->
           <div class="row">
-            <div class="col-4">
-              <img src="<%=book.pic%>" id="book_pic_file" class="img-thumbnail" style="width: 260px; height: 340px">
+            <div class="nav nav-tabs" id="tabs-tab" role="tablist">
+              <button class="nav-link active text-success" id="tabs-ratingCard-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-ratingCard"
+                type="button" role="tab"
+                aria-controls="tabs-ratingCard" aria-selected="true">
+                <i class="fa-solid fa-sort-up"></i><i class="fa-solid fa-gavel fa-lg"></i> Valoración
+              </button>
+              <button class="nav-link text-success" id="tabs-reviews-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-reviews"
+                type="button" role="tab"
+                aria-controls="tabs-reviews" aria-selected="false">
+                <i class="fa-solid fa-gavel fa-lg"></i> Reviews
+              </button>
+              <button class="nav-link text-success" id="tabs-copyInfo-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-copyInfo"
+                type="button" role="tab"
+                aria-controls="tabs-copyInfo" aria-selected="false">
+                Datos del Ejemplar
+              </button>
+              <button class="nav-link text-success" id="tabs-copyStatus-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-copyStatus"
+                type="button" role="tab"
+                aria-controls="tabs-copyStatus" aria-selected="false">
+                Situación del Ejemplar
+              </button>
             </div>
+          </div>
 
-            <div class="col-8">
-              <div class="row mb-3">
+          <!-- Fila con el contenido las Tabs-->
+          <div class="row mt-3">
+            <div class="tab-content" id="tabs-tabContent">
 
-                <div class="col-3 pt-3 text-center">
-                  <h5 id="book_location"><i class="fa-solid fa-location-dot"></i><%=book.location.name%></h5>
-                </div>
+              <!-- Tab para la valoración del libro-->
+              <div class="tab-pane fade show active" id="tabs-ratingCard" role="tabpanel"
+                aria-labelledby="tabs-ratingCard-tab" tabindex="0">
 
-                <div class="col-9 text-end">
-                  <div class="btn-group" role="group">
-
-                    <!-- Sobre la situación actual del libro en Colecciones -->
-                    <button id="book_present_collection_dropdown" type="button"
-                        class="btn btn-success btn-lg dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      <%if (member.id != book.owner) {%>
-                        style="display:none"
-                      <%} else {%>
-                    >
-                      <i class="fa-light fa-plus"></i>
-                      <i class="fa-solid fa-bookmark"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <h5 class="dropdown-item text-muted">Actualmente en "<%=book.collection.name%>"</h5>
-                      <div class="dropdown-divider"></div>
-                      <form class="p-1">
-                        <% member.collections.forEach(function(e,i){ %>
-                        <div class="form-check">
-                          <input id="relocate_book_to_<%=i%>"
-                              type="radio" name="relocate_book_to" value="<%=e.id%>"
-                              class="form-check-input"
-                            <% if (book.collection.id==e.id) { %>
-                              disabled>
-                            <% } %>
-                          <label for="relocate_book_to_<%=i%>" class="form-check-label" >
-                            <%=e.name%>
-                          </label>
-                        </div>
-                        <% }) %>
-                      </form>
-                      <div class="text-end p-1">
-                        <button id="relocate_save_button" type="submit" class="btn btn-success btn-sm mt-1" name="relocate_save_button">
-                          Mover Libro
-                        </button>
-                      </div>
-                    </ul>
-                  <% } %>
-
-                    <!-- Modal para Editar Libro -->
-                    <button id="edit_book_<%=book.id%>_button"
-                          type="button"
-                          class="btn edit-book-button btn-outline-success btn-lg"
-                          data-bs-toggle="modal"
-                          data-bs-target="#edit_book_modal">
-                      <i class="fa-solid fa-file-signature"></i>
-                    </button>
-                  </div>
-                </div>
+                <%- include('../partials/others/book-rating-card.ejs', {}); %>
               </div>
 
-              <div class="row">
-                <div class="d-grid">
-                  <div class="p-1 bg-light border">
-                    <div class="row">
-                      <u><h5>Sinopsis:</h5></u>
-                      <span id="book_synopsis"><%=book.synopsis%></span>
-                    </div>
-                  </div>
-                </div>
+              <!-- Tab con las reviews-->
+              <div class="tab-pane fade" id="tabs-reviews" role="tabpanel"
+                aria-labelledby="tabs-reviews-tab" tabindex="0">
+
+                <%- include('../partials/others/book-reviews-navbar.ejs', {}); %>
+              </div>
+
+              <!-- Tab con los datos técnicos del ejemplar-->
+              <div class="tab-pane fade" id="tabs-copyInfo" role="tabpanel"
+                aria-labelledby="tabs-copyInfo-tab" tabindex="0">
+
+                <%- include('../partials/others/copy-info-card.ejs', {}); %>
+              </div>
+
+              <!-- Tab con los datos privados del ejemplar-->
+              <div class="tab-pane fade" id="tabs-copyStatus" role="tabpanel"
+                aria-labelledby="tabs-copyStatus-tab" tabindex="0">
+
+                <%- include('../partials/others/copy-status-card.ejs', {}); %>
               </div>
 
             </div>
           </div>
-        </div>
 
-        <!-- Columna con datos técnicos-->
-        <div class="col-4">
-          <div class="row mb-3">
-            <h5 id="book_title"><strong><%=book.title%></strong></h5>
-            <h6 id="book_author_name"><%=book.author.name%></h6>
-          </div>
-          <div class="row">
-            <%- include('../partials/others/book-info-card.ejs', {}); %>
-          </div>
         </div>
+        <!-- Final del Nav-Tab-->
 
       <div>
       <!-- Final de la Parte superior-->
-
-      <!-- Zona para la valoración del libro -->
-      <div class="row my-4">
-        <div class="col">
-          <%- include('../partials/others/list-reviews-navbar.ejs', {}); %>
-        </div>
-        <div class="col">
-          <%- include('../partials/others/book-rating-card.ejs', {}); %>
-        </div>
-      </div>
-
-      <div class="row">
-        <%- include('../partials/others/collection-books-carousel.ejs', {}); %>
-      </div>
 
       <div class="row">
         <%- include('../partials/others/suggested-books-carousel.ejs', {}); %>

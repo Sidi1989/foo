@@ -9,22 +9,16 @@
 <div class="row g-0">
   <ul class="list-group">
     <% member.reviews.forEach(function (e, i) { %>
-    <li class="list-group-item d-flex justify-content-between">
-      <span>
-        <img class="img-thumbnail" style="width: 75px; height: 100px" src="<%=e.book.pic%>">
-        <div class="ms-1 btn-group-vertical" role="group">
-          <button type="button" class="btn btn-sm btn-primary" disabled><%=e.bookRate %></button>
-          <button type="button" class="btn btn-sm btn-secondary" disabled><%=e.copyRate %></button>
-        </div>
-        <strong class="ms-3"><%=e.book.title %></strong>
-      </span>
-      <!-- Modal para editar Review -->
-      <button id="edit_review_<%=e.id%>_button" type="button"
-        class="edit-review-button btn btn-success"
-        data-bs-toggle="modal" data-bs-target="#edit_review_modal">
-        <i class="fa-solid fa-file-signature"></i>
-      </button>
-    </li>
+      <a href="/books/<%=e.book.id%>" class="text-decoration-none">
+        <li class="list-group-item">
+          <img class="img-thumbnail ms-4" style="width: 75px; height: 100px" src="<%=e.book.pic%>">
+          <div class="ms-5 btn-group-vertical" role="group">
+            <button type="button" class="btn btn-sm btn-primary" disabled><%=e.bookRate %></button>
+            <button type="button" class="btn btn-sm btn-secondary" disabled><%=e.copyRate %></button>
+          </div>
+          <strong class="ms-5 text-success"><%=e.book.title %></strong>
+        </li>
+      </a>
     <% }); %>
   </ul>
 </div>
