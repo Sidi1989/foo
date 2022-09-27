@@ -1,16 +1,8 @@
 const fs = require('fs');
 const path = require('path');
-const _ = require('lodash');
 const {v4: uuidv4} = require('uuid');
-
-const collectionsRelativeDirname = '../../../runtime/db/collections';
-const collectionsAbsoluteDirname = path.join(__dirname, collectionsRelativeDirname);
-const collectionsBasenames = fs.readdirSync(collectionsAbsoluteDirname);
-const collections = collectionsBasenames.map(function (e) {
-  var pathname = path.join(collectionsAbsoluteDirname, e);
-  var collection = require(pathname);
-  return collection;
-});
+const _ = require('lodash');
+const {collections} = require('../connections/rawjson.js');
 
 
 

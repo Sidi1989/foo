@@ -1,15 +1,5 @@
-const fs = require('fs');
-const path = require('path');
 const _ = require('lodash');
-
-const subcategoriesRelativeDirname = '../../../runtime/db/subcategories';
-const subcategoriesAbsoluteDirname = path.join(__dirname, subcategoriesRelativeDirname);
-const subcategoriesBasenames = fs.readdirSync(subcategoriesAbsoluteDirname);
-const subcategories = subcategoriesBasenames.map(function (e) {
-  var pathname = path.join(subcategoriesAbsoluteDirname, e);
-  var subcategory = require(pathname);
-  return subcategory;
-});
+const {subcategories} = require('../connections/rawjson.js');
 
 
 

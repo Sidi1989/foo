@@ -1,16 +1,8 @@
 const fs = require('fs');
 const path = require('path');
-const _ = require('lodash');
 const {v4: uuidv4} = require('uuid');
-
-const booksRelativeDirname = '../../../runtime/db/books';
-const booksAbsoluteDirname = path.join(__dirname, booksRelativeDirname);
-const booksBasenames = fs.readdirSync(booksAbsoluteDirname);
-const books = booksBasenames.map(function (e) {
-  var pathname = path.join(booksAbsoluteDirname, e);
-  var book = require(pathname);
-  return book;
-});
+const _ = require('lodash');
+const {books} = require('../connections/rawjson.js');
 
 
 

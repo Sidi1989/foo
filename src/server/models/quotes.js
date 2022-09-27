@@ -1,15 +1,5 @@
-const fs = require('fs');
-const path = require('path');
 const _ = require('lodash');
-
-const quotesRelativeDirname = '../../../runtime/db/quotes';
-const quotesAbsoluteDirname = path.join(__dirname, quotesRelativeDirname);
-const quotesBasenames = fs.readdirSync(quotesAbsoluteDirname);
-const quotes = quotesBasenames.map(function (e) {
-  var pathname = path.join(quotesAbsoluteDirname, e);
-  var quote = require(pathname);
-  return quote;
-});
+const {quotes} = require('../connections/rawjson.js');
 
 
 
