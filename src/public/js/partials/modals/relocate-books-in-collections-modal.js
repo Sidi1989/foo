@@ -31,14 +31,13 @@ var relocateModalSearchingListener = function () {
           });
           books = searchedBooks;
           books.forEach(function (book) {
-            //if (book.collection.id != collection.id) {}
-            //currentcolection -> desde window.location troceada (no params en frontend)
+            //if (book.collection.id != info.collection.id) {}
               const relocateModalSearchedBookNode = document.createElement('tr');
               relocateModalSearchedBookNode.innerHTML = `
                   <td>${book.title}</td>
                   <td>${book.author.name}</td>
                   <td>${book.collection.name}</td>
-                  <td><input type="radio" name="book_to_move"></td>
+                  <td><input type="checkbox" name="book_to_move"></td>
               `;
               relocateSearchTableBodyNode.appendChild(relocateModalSearchedBookNode);
           });
