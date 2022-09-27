@@ -78,11 +78,14 @@
 
   <!-- Modal para editar la información del libro -->
   <div class="col-auto me-4 mt-1">
-    <button id="edit_book_<%=book.id%>_button"
+    <button id="edit_copy_info_<%=book.id%>_button"
       type="button" class="btn btn-success btn-lg"
-      data-bs-toggle="modal" data-bs-target="#edit_book_modal">
+      data-bs-toggle="modal" data-bs-target="#edit_copy_info_modal">
       <i class="fa-solid fa-file-signature"></i>
     </button>
   </div>
 
 </div>
+
+<!-- Zona para Modals-->
+<%- include('../modals/edit-copy-info-modal.ejs', {}); %>

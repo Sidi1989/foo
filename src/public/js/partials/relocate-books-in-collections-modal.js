@@ -31,7 +31,8 @@ var relocateModalSearchingListener = function () {
           });
           books = searchedBooks;
           books.forEach(function (book) {
-            //if (book.collection.id != info.collection.id) {}
+            //if (book.collection.id != collection.id) {}
+            //currentcolection -> desde window.location troceada (no params en frontend)
               const relocateModalSearchedBookNode = document.createElement('tr');
               relocateModalSearchedBookNode.innerHTML = `
                   <td>${book.title}</td>

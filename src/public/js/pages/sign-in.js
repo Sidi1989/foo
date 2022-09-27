@@ -78,7 +78,7 @@ var memberSignInListener = function () {
               eraseCookie('remember_me')
             }
 
-          window.location = `/members/${info.member.id}`;
+            window.location = `/members/${info.member.id}`;
           }
       });
     }
