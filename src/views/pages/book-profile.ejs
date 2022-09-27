@@ -11,7 +11,7 @@
     <div class="container">
 
       <!-- Parte superior, hasta las Sugerencias-->
-      <div class="row mb-4">
+      <div class="row mb-5">
 
         <!-- Perfil del libro-->
         <div class="col-5">
@@ -24,29 +24,29 @@
           <!-- Fila con las pestañas para abrir cada Tab-->
           <div class="row">
             <div class="nav nav-tabs" id="tabs-tab" role="tablist">
-              <button class="nav-link active text-success" id="tabs-ratingCard-tab"
+              <button class="nav-link active text-success" id="tabs-copyInfo-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-copyInfo"
+                type="button" role="tab"
+                aria-controls="tabs-copyInfo" aria-selected="true">
+                <i class="fa-solid fa-bars"></i> Datos del ejemplar
+              </button>
+              <button class="nav-link text-success" id="tabs-copyStatus-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-copyStatus"
+                type="button" role="tab"
+                aria-controls="tabs-copyStatus" aria-selected="false">
+                <i class="fa-solid fa-location-crosshairs"></i> Ubicación del ejemplar
+              </button>
+              <button class="nav-link text-success" id="tabs-ratingCard-tab"
                 data-bs-toggle="tab" data-bs-target="#tabs-ratingCard"
                 type="button" role="tab"
-                aria-controls="tabs-ratingCard" aria-selected="true">
-                <i class="fa-solid fa-sort-up"></i><i class="fa-solid fa-gavel fa-lg"></i> Valoración
+                aria-controls="tabs-ratingCard" aria-selected="false">
+                <i class="fa-regular fa-star-half-stroke"></i> Rating
               </button>
               <button class="nav-link text-success" id="tabs-reviews-tab"
                 data-bs-toggle="tab" data-bs-target="#tabs-reviews"
                 type="button" role="tab"
                 aria-controls="tabs-reviews" aria-selected="false">
                 <i class="fa-solid fa-gavel fa-lg"></i> Reviews
-              </button>
-              <button class="nav-link text-success" id="tabs-copyInfo-tab"
-                data-bs-toggle="tab" data-bs-target="#tabs-copyInfo"
-                type="button" role="tab"
-                aria-controls="tabs-copyInfo" aria-selected="false">
-                Datos del Ejemplar
-              </button>
-              <button class="nav-link text-success" id="tabs-copyStatus-tab"
-                data-bs-toggle="tab" data-bs-target="#tabs-copyStatus"
-                type="button" role="tab"
-                aria-controls="tabs-copyStatus" aria-selected="false">
-                Situación del Ejemplar
               </button>
             </div>
           </div>
@@ -55,32 +55,28 @@
           <div class="row mt-3">
             <div class="tab-content" id="tabs-tabContent">
 
-              <!-- Tab para la valoración del libro-->
-              <div class="tab-pane fade show active" id="tabs-ratingCard" role="tabpanel"
-                aria-labelledby="tabs-ratingCard-tab" tabindex="0">
+              <!-- Tab con los datos técnicos privados del ejemplar-->
+              <div class="tab-pane fade show active" id="tabs-copyInfo" role="tabpanel"
+                aria-labelledby="tabs-copyInfo-tab" tabindex="0">
+                <%- include('../partials/others/copy-info-card.ejs', {}); %>
+              </div>
 
+              <!-- Tab con los datos de ubicación del ejemplar-->
+              <div class="tab-pane fade" id="tabs-copyStatus" role="tabpanel"
+                aria-labelledby="tabs-copyStatus-tab" tabindex="0">
+                <%- include('../partials/others/copy-status-card.ejs', {}); %>
+              </div>
+
+              <!-- Tab para la valoración de la obra y el ejemplar-->
+              <div class="tab-pane fade" id="tabs-ratingCard" role="tabpanel"
+                aria-labelledby="tabs-ratingCard-tab" tabindex="0">
                 <%- include('../partials/others/book-rating-card.ejs', {}); %>
               </div>
 
               <!-- Tab con las reviews-->
               <div class="tab-pane fade" id="tabs-reviews" role="tabpanel"
                 aria-labelledby="tabs-reviews-tab" tabindex="0">
-
                 <%- include('../partials/others/book-reviews-navbar.ejs', {}); %>
-              </div>
-
-              <!-- Tab con los datos técnicos del ejemplar-->
-              <div class="tab-pane fade" id="tabs-copyInfo" role="tabpanel"
-                aria-labelledby="tabs-copyInfo-tab" tabindex="0">
-
-                <%- include('../partials/others/copy-info-card.ejs', {}); %>
-              </div>
-
-              <!-- Tab con los datos privados del ejemplar-->
-              <div class="tab-pane fade" id="tabs-copyStatus" role="tabpanel"
-                aria-labelledby="tabs-copyStatus-tab" tabindex="0">
-
-                <%- include('../partials/others/copy-status-card.ejs', {}); %>
               </div>
 
             </div>
@@ -92,7 +88,7 @@
       <div>
       <!-- Final de la Parte superior-->
 
-      <div class="row">
+      <div class="row mt-5">
         <%- include('../partials/others/suggested-books-carousel.ejs', {}); %>
       </div>
 

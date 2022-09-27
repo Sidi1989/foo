@@ -12,7 +12,9 @@
     <li class="list-group-item d-flex justify-content-between">
       <span>
         <img class="img-thumbnail ms-4" style="width: 75px; height: 75px" src="<%=location.pic%>">
-        <strong class="ms-3"><%=location.name%></strong>
+        <strong class="mx-3"><%=location.name%></strong>
+        <i class="ms-5 fa-solid fa-book-open fa-lg"></i>
+        <strong class="ms-1 text-success"><%=location.books.length%></strong>
       </span>
       <!-- Modal para editar Sede -->
       <button id="edit_location_<%=location.id%>_button" type="button"

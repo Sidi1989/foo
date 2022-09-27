@@ -24,15 +24,21 @@
             data-bs-toggle="modal" data-bs-target="#header_search_modal">
           <i class="text-white ms-3 fa-solid fa-magnifying-glass"></i>
         </button>
-        <!--Modal para Crear nuevo libro-->
-        <button
-            id="new_book_button" type="button" class="btn btn-success"
-            data-bs-toggle="modal" data-bs-target="#new_book_modal">
-          <span class="fa-stack fa-lg">
-            <i class="fa-solid fa-book fa-lg"></i>
-            <i class="fa-solid fa-plus fa-sm"></i>
-          </span>
-        </button>
+
+        <!--Dropdown para creación múltiple-->
+        <div class="dropdown">
+          <button class="btn btn-success dropdown-toggle" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-plus fa-lg"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Nuevo Libro</a></li>
+            <li><a class="dropdown-item" href="#">Nueva Colección</a></li>
+            <li><a class="dropdown-item" href="#">Nueva Petición</a></li>
+            <li><a class="dropdown-item" href="#">Nueva Sede</a></li>
+          </ul>
+        </div>
+
       </form>
     </div>
 
@@ -77,6 +83,5 @@
 
 <!-- Zona para Modals-->
 <%- include('../modals/header-search-modal.ejs', {}); %>
-<%- include('../modals/new-book-modal.ejs', {}); %>
 
-<script type="text/javascript" src="/public/js/partials/header.js"></script>
+<script type="text/javascript" src="/public/js/partials/others/header.js"></script>
