@@ -7,30 +7,42 @@ const _ = require('lodash');
 
 var readPinakes = function (type) {
   var relativeDirname;
-  if (type == 'author') {
-    relativeDirname = '../../../runtime/db/authors';
-  } else if (type == 'book') {
-    relativeDirname = '../../../runtime/db/books';
-  } else if (type == 'category') {
-    relativeDirname = '../../../runtime/db/categories';
-  } else if (type == 'collection') {
-    relativeDirname = '../../../runtime/db/collections';
-  } else if (type == 'language') {
-    relativeDirname = '../../../runtime/db/languages';
-  } else if (type == 'location') {
-    relativeDirname = '../../../runtime/db/locations';
-  } else if (type == 'member') {
-    relativeDirname = '../../../runtime/db/members';
-  } else if (type == 'petition') {
-    relativeDirname = '../../../runtime/db/petitions';
-  } else if (type == 'quote') {
-    relativeDirname = '../../../runtime/db/quotes';
-  } else if (type == 'review') {
-    relativeDirname = '../../../runtime/db/reviews';
-  } else if (type == 'subcategory') {
-    relativeDirname = '../../../runtime/db/subcategories';
-  } else {
-    return false
+  switch (type) {
+    case 'author':
+      relativeDirname = '../../../runtime/db/authors';
+      break;
+    case 'book':
+      relativeDirname = '../../../runtime/db/books';
+      break;
+    case 'categories':
+      relativeDirname = '../../../runtime/db/categories';
+      break;
+    case 'collections':
+      relativeDirname = '../../../runtime/db/collections';
+      break;
+    case 'language':
+      relativeDirname = '../../../runtime/db/languages';
+      break;
+    case 'locations':
+      relativeDirname = '../../../runtime/db/locations';
+      break;
+    case 'members':
+      relativeDirname = '../../../runtime/db/members';
+      break;
+    case 'petitions':
+      relativeDirname = '../../../runtime/db/petitions';
+      break;
+    case 'quotes':
+      relativeDirname = '../../../runtime/db/quotes';
+      break;
+    case 'reviews':
+      relativeDirname = '../../../runtime/db/reviews';
+      break;
+    case 'subcategories':
+      relativeDirname = '../../../runtime/db/subcategories';
+      break;
+    default:
+      throw new Error('not recognized');
   }
   const absoluteDirname = path.join(__dirname, relativeDirname);
   const basenames = fs.readdirSync(absoluteDirname);
