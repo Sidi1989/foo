@@ -68,7 +68,7 @@ var writePinakes = function (type, id, info) {
   } else if (type == 'petition') {
     relativeDirname = '../../../runtime/db/petitions';
   } else if (type == 'review') {
-    relativeDirname = '../../../runtime/db/review';
+    relativeDirname = '../../../runtime/db/reviews';
   } else {
     return false
   }
@@ -94,7 +94,7 @@ var erasePinakes = function (type, id) {
   } else if (type == 'petition') {
     relativeDirname = '../../../runtime/db/petitions';
   } else if (type == 'review') {
-    relativeDirname = '../../../runtime/db/review';
+    relativeDirname = '../../../runtime/db/reviews';
   } else {
     return false
   }
