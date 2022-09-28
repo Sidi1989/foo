@@ -1,20 +1,20 @@
-const fs = require('fs');
-const path = require('path');
 const {v4: uuidv4} = require('uuid');
-const _ = require('lodash');
-const {petitions} = require('../connections/rawjson.js');
+const {db} = require('../connections/rawjson.js');
 
 
 
 
 var getAllPetitions = function () {
-  return _.cloneDeep(petitions);
+  var type = 'petition';
+  var petitions = db.readPinakes(type);
+  return petitions;
 };
 
 
 var getPetitionById = function (id) {
-  var clonedPetitions = _.cloneDeep(petitions);
-  var filteredPetitions = clonedPetitions.filter(function (e) {
+  var type = 'petition';
+  var petitions = db.readPinakes(type);
+  var filteredPetitions = petitions.filter(function (e) {
     return (e.id == id);
   });
 
@@ -30,6 +30,7 @@ var getPetitionById = function (id) {
 
 
 var createPetition = function (info) {
+  var type = 'petition';
   var petitionId = `pet${uuidv4().slice(0,3)}`;
   var date = `${new Date().toJSON().split('T')[0]}`
   var newPetition = {
@@ -42,22 +43,14 @@ var createPetition = function (info) {
     language: info.language,
     shoppingLink: info.shoppingLink
   };
-  var newPetitionAsJson = JSON.stringify(newPetition, null, 2);
-  var dirname = petitionsAbsoluteDirname;
-  var basename = `${petitionId}.json`;
-  var pathname = path.join(dirname, basename);
-  fs.writeFileSync(pathname, newPetitionAsJson);
-
+  db.writePinakes(type, petitionId, newPetition);
   return newPetition;
 };
 
 
 var deletePetition = function (petitionId) {
-  var dirname = petitionsAbsoluteDirname;
-  var basename = `${petitionId}.json`;
-  var pathname = path.join(dirname, basename);
-  fs.unlinkSync(pathname);
-
+  var type = 'petition';
+  db.erasePinakes(type, petitionId)
   return petitionId
 };
 

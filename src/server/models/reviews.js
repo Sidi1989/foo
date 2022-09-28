@@ -1,20 +1,20 @@
-const fs = require('fs');
-const path = require('path');
 const {v4: uuidv4} = require('uuid');
-const _ = require('lodash');
-const {reviews} = require('../connections/rawjson.js');
+const {db} = require('../connections/rawjson.js');
 
 
 
 
 var getAllReviews = function () {
-  return _.cloneDeep(reviews);
+  var type = 'review';
+  var reviews = db.readPinakes(type);
+  return reviews;
 };
 
 
 var getReviewById = function (id) {
-  var clonedReviews = _.cloneDeep(reviews);
-  var filteredReviews = clonedReviews.filter(function (e) {
+  var type = 'review';
+  var reviews = db.readPinakes(type);
+  var filteredReviews = reviews.filter(function (e) {
     return (e.id == id);
   });
 
@@ -30,6 +30,7 @@ var getReviewById = function (id) {
 
 
 var createReview = function (info) {
+  var type = 'review';
   var reviewId = `rev${uuidv4().slice(0,3)}`;
   var date = `${new Date().toJSON().split('T')[0]}`
   var newReview = {
@@ -41,22 +42,14 @@ var createReview = function (info) {
     copyRate: info.copyRate,
     comment: info.comment
   };
-  var newReviewAsJson = JSON.stringify(newReview, null, 2);
-  var dirname = reviewsAbsoluteDirname;
-  var basename = `${reviewId}.json`;
-  var pathname = path.join(dirname, basename);
-  fs.writeFileSync(pathname, newReviewAsJson);
-
+  db.writePinakes(type, reviewId, newReview);
   return newReview;
 };
 
 
 var deleteReview = function (reviewId) {
-  var dirname = reviewsAbsoluteDirname;
-  var basename = `${reviewId}.json`;
-  var pathname = path.join(dirname, basename);
-  fs.unlinkSync(pathname);
-
+  var type = 'review';
+  db.erasePinakes(type, reviewId)
   return reviewId
 };
 

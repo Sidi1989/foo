@@ -1,20 +1,21 @@
-const fs = require('fs');
-const path = require('path');
 const {v4: uuidv4} = require('uuid');
 const _ = require('lodash');
-const {books} = require('../connections/rawjson.js');
+const {db} = require('../connections/rawjson.js');
 
 
 
 
 var getAllBooks = function () {
-  return _.cloneDeep(books);
+  var type = 'book';
+  const books = db.readPinakes(type);
+  return books;
 };
 
 
 var getBookById = function (id) {
-  var clonedBooks = _.cloneDeep(books);
-  var filteredBooks = clonedBooks.filter(function (e) {
+  var type = 'book';
+  var books = db.readPinakes(type);
+  var filteredBooks = books.filter(function (e) {
     return (e.id == id);
   });
 
@@ -30,8 +31,9 @@ var getBookById = function (id) {
 
 
 var getRandomBooks = function (quantity, size) {
-  var clonedBooks = _.cloneDeep(books);
-  var shuffledBooks = _.shuffle(clonedBooks);
+  var type = 'book';
+  var books = db.readPinakes(type);
+  var shuffledBooks = _.shuffle(books);
   var takenBooks = _.take(shuffledBooks, quantity);
   var chunkBooks = _.chunk(takenBooks, size);
   return chunkBooks;
@@ -39,6 +41,7 @@ var getRandomBooks = function (quantity, size) {
 
 
 var createBook = function (info) {
+  var type = 'book';
   var bookId = `b${uuidv4().slice(0,3)}`;
   var date = `${new Date().toJSON().split('T')[0]}`
   var newBook = {
@@ -62,22 +65,14 @@ var createBook = function (info) {
     language: info.language,
     pic: info.pic
   };
-  var newBookAsJson = JSON.stringify(newBook, null, 2);
-  var dirname = booksAbsoluteDirname;
-  var basename = `${bookId}.json`;
-  var pathname = path.join(dirname, basename);
-  fs.writeFileSync(pathname, newBookAsJson);
-
+  db.writePinakes(type, bookId, newBook);
   return newBook;
 };
 
 
 var deleteBook = function (bookId) {
-  var dirname = booksAbsoluteDirname;
-  var basename = `${bookId}.json`;
-  var pathname = path.join(dirname, basename);
-  fs.unlinkSync(pathname);
-
+  var type = 'book';
+  db.erasePinakes(type, bookId)
   return bookId
 };
 

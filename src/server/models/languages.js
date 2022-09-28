@@ -1,17 +1,19 @@
-const _ = require('lodash');
-const {languages} = require('../connections/rawjson.js');
+const {db} = require('../connections/rawjson.js');
 
 
 
 
 var getAllLanguages = function () {
-  return _.cloneDeep(languages);
+  var type = 'language';
+  var languages = db.readPinakes(type);
+  return languages;
 };
 
 
 var getLanguageById = function (id) {
-  var clonedLanguages= _.cloneDeep(languages);
-  var filteredLanguages = clonedLanguages.filter(function (e) {
+  var type = 'language';
+  var languages = db.readPinakes(type);
+  var filteredLanguages = languages.filter(function (e) {
     return (e.id == id);
   });
 

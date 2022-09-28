@@ -1,17 +1,19 @@
-const _ = require('lodash');
-const {subcategories} = require('../connections/rawjson.js');
+const {db} = require('../connections/rawjson.js');
 
 
 
 
 var getAllSubcategories = function () {
-  return _.cloneDeep(subcategories);
+  var type = 'subcategory';
+  var subcategories = db.readPinakes(type);
+  return subcategories;
 };
 
 
 var getSubcategoryById = function (id) {
-  var clonedSubcategories = _.cloneDeep(subcategories);
-  var filteredSubcategories = clonedSubcategories.filter(function (e) {
+  var type = 'subcategory';
+  var subcategories = db.readPinakes(type);
+  var filteredSubcategories = subcategories.filter(function (e) {
     return (e.id == id);
   });
 

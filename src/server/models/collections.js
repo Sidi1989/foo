@@ -1,14 +1,13 @@
-const fs = require('fs');
-const path = require('path');
 const {v4: uuidv4} = require('uuid');
-const _ = require('lodash');
-const {collections} = require('../connections/rawjson.js');
+const {db} = require('../connections/rawjson.js');
 
 
 
 
 var getAllCollections = function () {
-  return _.cloneDeep(collections);
+  var type = 'collection';
+  var collections = db.readPinakes(type);
+  return collections;
 };
 
 
@@ -25,8 +24,9 @@ var getCollectionById = function (id) {
     return collection;
   }
 
-  var clonedCollections = _.cloneDeep(collections);
-  var filteredCollections = clonedCollections.filter(function (e) {
+  var type = 'collection';
+  var collections = db.readPinakes(type);
+  var filteredCollections = collections.filter(function (e) {
     return (e.id == id);
   });
 
@@ -41,6 +41,7 @@ var getCollectionById = function (id) {
 
 
 var createCollection = function (info) {
+  var type = 'collection';
   var collectionId = `col${uuidv4().slice(0,3)}`;
   var date = `${new Date().toJSON().split('T')[0]}`
   var newCollection = {
@@ -50,23 +51,15 @@ var createCollection = function (info) {
     name: info.name,
     pic: info.pic
   };
-  var newCollectionAsJson = JSON.stringify(newCollection, null, 2);
-  var dirname = collectionsAbsoluteDirname;
-  var basename = `${collectionId}.json`;
-  var pathname = path.join(dirname, basename);
-  fs.writeFileSync(pathname, newCollectionAsJson);
-
+  db.writePinakes(type, collectionId, newCollection);
   return newCollection;
 };
 
 
-var deleteCollection = function (colectionId) {
-  var dirname = collectionsAbsoluteDirname;
-  var basename = `${colectionId}.json`;
-  var pathname = path.join(dirname, basename);
-  fs.unlinkSync(pathname);
-
-  return colectionId
+var deleteCollection = function (collectionId) {
+  var type = 'collection';
+  db.erasePinakes(type, collectionId)
+  return collectionId
 };
 
 

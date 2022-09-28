@@ -1,9 +1,6 @@
-const fs = require('fs');
-const path = require('path');
 const {v4: uuidv4} = require('uuid');
 const _ = require('lodash');
-const {members} = require('../connections/rawjson.js');
-
+const {db} = require('../connections/rawjson.js');
 const {getAllBooks} = require('./books');
 const {getAllCollections} = require('./collections');
 
@@ -11,15 +8,18 @@ const {getAllCollections} = require('./collections');
 
 
 var getAllMembers = function () {
-  return _.cloneDeep(members);
+  var type = 'member';
+  const members = db.readPinakes(type);
+  return members;
 };
 
 
 var getMemberBySession = function (session) {
   if (!session) return null;
 
-  var clonedMembers = _.cloneDeep(members);
-  var filteredMembers = clonedMembers.filter(function (e) {
+  var type = 'member';
+  const members = db.readPinakes(type);
+  var filteredMembers = members.filter(function (e) {
     return (e.session == session);
   });
 
@@ -35,8 +35,9 @@ var getMemberBySession = function (session) {
 
 
 var getMemberById = function (id) {
-  var clonedMembers = _.cloneDeep(members);
-  var filteredMembers = clonedMembers.filter(function (e) {
+  var type = 'member';
+  const members = db.readPinakes(type);
+  var filteredMembers = members.filter(function (e) {
     return (e.id == id);
   });
 
@@ -78,6 +79,7 @@ var getCollectionsForMember = function (memberId) {
 
 
 var createMember = function (info) {
+  var type = 'member';
   var memberId = `m${uuidv4().slice(0,3)}`;
   var date = `${new Date().toJSON().split('T')[0]}`
   var newMember = {
@@ -90,24 +92,17 @@ var createMember = function (info) {
     birthday: info.birthday,
     pic: info.pic
   };
-  var newMemberAsJson = JSON.stringify(newMember, null, 2);
-  var dirname = membersAbsoluteDirname;
-  var basename = `${memberId}.json`;
-  var pathname = path.join(dirname, basename);
-  fs.writeFileSync(pathname, newMemberAsJson);
-
+  db.writePinakes(type, memberId, newMember);
   return newMember;
 };
 
 
 var deleteMember = function (memberId) {
-  var dirname = membersAbsoluteDirname;
-  var basename = `${memberId}.json`;
-  var pathname = path.join(dirname, basename);
-  fs.unlinkSync(pathname);
-
+  var type = 'member';
+  db.erasePinakes(type, memberId)
   return memberId
 };
+
 
 
 

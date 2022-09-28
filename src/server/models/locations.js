@@ -1,20 +1,20 @@
-const fs = require('fs');
-const path = require('path');
 const {v4: uuidv4} = require('uuid');
-const _ = require('lodash');
-const {locations} = require('../connections/rawjson.js');
+const {db} = require('../connections/rawjson.js');
 
 
 
 
 var getAllLocations = function () {
-  return _.cloneDeep(locations);
+  var type = 'location';
+  var locations = db.readPinakes(type);
+  return locations;
 };
 
 
 var getLocationById = function (id) {
-  var clonedLocations = _.cloneDeep(locations);
-  var filteredLocations = clonedLocations.filter(function (e) {
+  var type = 'location';
+  var locations = db.readPinakes(type);
+  var filteredLocations = locations.filter(function (e) {
     return (e.id == id);
   });
 
@@ -30,6 +30,7 @@ var getLocationById = function (id) {
 
 
 var createLocation = function (info) {
+  var type = 'location';
   var locationId = `loc${uuidv4().slice(0,3)}`;
   var date = `${new Date().toJSON().split('T')[0]}`
   var newLocation = {
@@ -39,22 +40,14 @@ var createLocation = function (info) {
     name: info.name,
     pic: info.pic
   };
-  var newLocationAsJson = JSON.stringify(newLocation, null, 2);
-  var dirname = locationsAbsoluteDirname;
-  var basename = `${locationId}.json`;
-  var pathname = path.join(dirname, basename);
-  fs.writeFileSync(pathname, newLocationAsJson);
-
+  db.writePinakes(type, locationId, newLocation);
   return newLocation;
 };
 
 
 var deleteLocation = function (locationId) {
-  var dirname = locationsAbsoluteDirname;
-  var basename = `${locationId}.json`;
-  var pathname = path.join(dirname, basename);
-  fs.unlinkSync(pathname);
-
+  var type = 'location';
+  db.erasePinakes(type, locationId)
   return locationId
 };
 

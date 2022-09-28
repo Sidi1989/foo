@@ -1,17 +1,19 @@
-const _ = require('lodash');
-const {categories} = require('../connections/rawjson.js');
+const {db} = require('../connections/rawjson.js');
 
 
 
 
 var getAllCategories = function () {
-  return _.cloneDeep(categories);
+  var type = 'category';
+  var categories = db.readPinakes(type);
+  return categories;
 };
 
 
 var getCategoryById = function (id) {
-  var clonedCategories = _.cloneDeep(categories);
-  var filteredCategories = clonedCategories.filter(function (e) {
+  var type = 'category';
+  var categories = db.readPinakes(type);
+  var filteredCategories = categories.filter(function (e) {
     return (e.id == id);
   });
 

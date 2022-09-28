@@ -67,7 +67,8 @@ var bookProfileHandler = function (req, res) {
   });
   info.book.collection.books = collectionMapped;
 
-  var reviewsMapped = book.reviews.map(function (id) {
+  if (!info.book.reviews) info.book.reviews = [];
+  var reviewsMapped = info.book.reviews.map(function (id) {
     var review = getReviewById(id);
     if (review.reviewer == null) {
       review.reviewer = {}

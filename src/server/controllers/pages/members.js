@@ -136,7 +136,6 @@ var memberProfileHandler = function (req, res) {
     info.member = member;
   }
 
-  if (!member.collections) member.collections = [];
   var collectionsMapped = member.collections.map(function (collectionId) {
     var collection = getCollectionById(collectionId);
     var booksInEachCollection = collection.books.map(function (bookId) {
@@ -208,8 +207,7 @@ var memberProfileHandler = function (req, res) {
   });
   info.lastBookAdded.collection.books = lastBookAddedCollectionMapped;
 
-  if (!lastBookAdded.reviews) lastBookAdded.reviews = [];
-  var reviewsMapped = lastBookAdded.reviews.map(function (id) {
+  var lastBookReviewsMapped = lastBookAdded.reviews.map(function (id) {
     var review = getReviewById(id);
     if (review.reviewer == null) {
       review.reviewer = {}
@@ -219,7 +217,7 @@ var memberProfileHandler = function (req, res) {
     }
     return review;
   });
-  info.reviews = reviewsMapped;
+  info.reviews = lastBookReviewsMapped;
 
   var suggestedBooksChunks = getRandomBooks(6, 3);
   suggestedBooksChunks.forEach(function (chunk) {

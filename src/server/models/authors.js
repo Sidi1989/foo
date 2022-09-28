@@ -1,11 +1,12 @@
-const _ = require('lodash');
-const {authors} = require('../connections/rawjson.js');
+const {db} = require('../connections/rawjson.js');
 
 
 
 
 var getAllAuthors = function () {
-  return _.cloneDeep(authors);
+  var type = 'author';
+  var authors = db.readPinakes(type);
+  return authors;
 };
 
 
@@ -22,8 +23,9 @@ var getAuthorById = function (id) {
     return author;
   }
 
-  var clonedAuthors = _.cloneDeep(authors);
-  var filteredAuthors = clonedAuthors.filter(function (e) {
+  var type = 'author';
+  var authors = db.readPinakes(type);
+  var filteredAuthors = authors.filter(function (e) {
     return (e.id == id);
   });
 
