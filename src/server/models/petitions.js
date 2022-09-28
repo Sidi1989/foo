@@ -6,14 +6,14 @@ const {db} = require('../connections/rawjson.js');
 
 var getAllPetitions = function () {
   var type = 'petition';
-  var petitions = db.readPinakes(type);
+  var petitions = db.read(type);
   return petitions;
 };
 
 
 var getPetitionById = function (id) {
   var type = 'petition';
-  var petitions = db.readPinakes(type);
+  var petitions = db.read(type);
   var filteredPetitions = petitions.filter(function (e) {
     return (e.id == id);
   });
@@ -43,14 +43,14 @@ var createPetition = function (info) {
     language: info.language,
     shoppingLink: info.shoppingLink
   };
-  db.writePinakes(type, petitionId, newPetition);
+  db.write(type, petitionId, newPetition);
   return newPetition;
 };
 
 
 var deletePetition = function (petitionId) {
   var type = 'petition';
-  db.erasePinakes(type, petitionId)
+  db.erase(type, petitionId)
   return petitionId
 };
 

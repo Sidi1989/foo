@@ -9,7 +9,7 @@ const {getAllCollections} = require('./collections');
 
 var getAllMembers = function () {
   var type = 'member';
-  const members = db.readPinakes(type);
+  const members = db.read(type);
   return members;
 };
 
@@ -18,7 +18,7 @@ var getMemberBySession = function (session) {
   if (!session) return null;
 
   var type = 'member';
-  const members = db.readPinakes(type);
+  const members = db.read(type);
   var filteredMembers = members.filter(function (e) {
     return (e.session == session);
   });
@@ -36,7 +36,7 @@ var getMemberBySession = function (session) {
 
 var getMemberById = function (id) {
   var type = 'member';
-  const members = db.readPinakes(type);
+  const members = db.read(type);
   var filteredMembers = members.filter(function (e) {
     return (e.id == id);
   });
@@ -92,14 +92,14 @@ var createMember = function (info) {
     birthday: info.birthday,
     pic: info.pic
   };
-  db.writePinakes(type, memberId, newMember);
+  db.write(type, memberId, newMember);
   return newMember;
 };
 
 
 var deleteMember = function (memberId) {
   var type = 'member';
-  db.erasePinakes(type, memberId)
+  db.erase(type, memberId)
   return memberId
 };
 

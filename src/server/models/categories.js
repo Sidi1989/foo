@@ -5,14 +5,14 @@ const {db} = require('../connections/rawjson.js');
 
 var getAllCategories = function () {
   var type = 'category';
-  var categories = db.readPinakes(type);
+  var categories = db.read(type);
   return categories;
 };
 
 
 var getCategoryById = function (id) {
   var type = 'category';
-  var categories = db.readPinakes(type);
+  var categories = db.read(type);
   var filteredCategories = categories.filter(function (e) {
     return (e.id == id);
   });

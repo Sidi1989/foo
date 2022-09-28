@@ -5,14 +5,14 @@ const {db} = require('../connections/rawjson.js');
 
 var getAllLanguages = function () {
   var type = 'language';
-  var languages = db.readPinakes(type);
+  var languages = db.read(type);
   return languages;
 };
 
 
 var getLanguageById = function (id) {
   var type = 'language';
-  var languages = db.readPinakes(type);
+  var languages = db.read(type);
   var filteredLanguages = languages.filter(function (e) {
     return (e.id == id);
   });

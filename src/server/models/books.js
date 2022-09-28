@@ -7,14 +7,14 @@ const {db} = require('../connections/rawjson.js');
 
 var getAllBooks = function () {
   var type = 'book';
-  const books = db.readPinakes(type);
+  const books = db.read(type);
   return books;
 };
 
 
 var getBookById = function (id) {
   var type = 'book';
-  var books = db.readPinakes(type);
+  var books = db.read(type);
   var filteredBooks = books.filter(function (e) {
     return (e.id == id);
   });
@@ -32,7 +32,7 @@ var getBookById = function (id) {
 
 var getRandomBooks = function (quantity, size) {
   var type = 'book';
-  var books = db.readPinakes(type);
+  var books = db.read(type);
   var shuffledBooks = _.shuffle(books);
   var takenBooks = _.take(shuffledBooks, quantity);
   var chunkBooks = _.chunk(takenBooks, size);
@@ -65,14 +65,14 @@ var createBook = function (info) {
     language: info.language,
     pic: info.pic
   };
-  db.writePinakes(type, bookId, newBook);
+  db.write(type, bookId, newBook);
   return newBook;
 };
 
 
 var deleteBook = function (bookId) {
   var type = 'book';
-  db.erasePinakes(type, bookId)
+  db.erase(type, bookId)
   return bookId
 };
 

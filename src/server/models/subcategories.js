@@ -5,14 +5,14 @@ const {db} = require('../connections/rawjson.js');
 
 var getAllSubcategories = function () {
   var type = 'subcategory';
-  var subcategories = db.readPinakes(type);
+  var subcategories = db.read(type);
   return subcategories;
 };
 
 
 var getSubcategoryById = function (id) {
   var type = 'subcategory';
-  var subcategories = db.readPinakes(type);
+  var subcategories = db.read(type);
   var filteredSubcategories = subcategories.filter(function (e) {
     return (e.id == id);
   });

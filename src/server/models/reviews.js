@@ -6,14 +6,14 @@ const {db} = require('../connections/rawjson.js');
 
 var getAllReviews = function () {
   var type = 'review';
-  var reviews = db.readPinakes(type);
+  var reviews = db.read(type);
   return reviews;
 };
 
 
 var getReviewById = function (id) {
   var type = 'review';
-  var reviews = db.readPinakes(type);
+  var reviews = db.read(type);
   var filteredReviews = reviews.filter(function (e) {
     return (e.id == id);
   });
@@ -42,14 +42,14 @@ var createReview = function (info) {
     copyRate: info.copyRate,
     comment: info.comment
   };
-  db.writePinakes(type, reviewId, newReview);
+  db.write(type, reviewId, newReview);
   return newReview;
 };
 
 
 var deleteReview = function (reviewId) {
   var type = 'review';
-  db.erasePinakes(type, reviewId)
+  db.erase(type, reviewId)
   return reviewId
 };
 

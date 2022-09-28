@@ -6,14 +6,14 @@ const {db} = require('../connections/rawjson.js');
 
 var getAllQuotes = function () {
   var type = 'quote';
-  var quotes = db.readPinakes(type);
+  var quotes = db.read(type);
   return quotes;
 };
 
 
 var getQuoteById = function (id) {
   var type = 'quote';
-  var quotes = db.readPinakes(type);
+  var quotes = db.read(type);
   var filteredQuotes = quotes.filter(function (e) {
     return (e.id == id);
   });
@@ -31,7 +31,7 @@ var getQuoteById = function (id) {
 
 var getRandomQuotes = function (quantity) {
   var type = 'quote';
-  var quotes = db.readPinakes(type);
+  var quotes = db.read(type);
   var shuffledQuotes = _.shuffle(quotes);
   var takenQuotes = _.take(shuffledQuotes, quantity);
   return takenQuotes;

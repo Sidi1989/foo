@@ -6,7 +6,7 @@ const {db} = require('../connections/rawjson.js');
 
 var getAllCollections = function () {
   var type = 'collection';
-  var collections = db.readPinakes(type);
+  var collections = db.read(type);
   return collections;
 };
 
@@ -25,7 +25,7 @@ var getCollectionById = function (id) {
   }
 
   var type = 'collection';
-  var collections = db.readPinakes(type);
+  var collections = db.read(type);
   var filteredCollections = collections.filter(function (e) {
     return (e.id == id);
   });
@@ -51,14 +51,14 @@ var createCollection = function (info) {
     name: info.name,
     pic: info.pic
   };
-  db.writePinakes(type, collectionId, newCollection);
+  db.write(type, collectionId, newCollection);
   return newCollection;
 };
 
 
 var deleteCollection = function (collectionId) {
   var type = 'collection';
-  db.erasePinakes(type, collectionId)
+  db.erase(type, collectionId)
   return collectionId
 };
 

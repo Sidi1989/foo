@@ -6,14 +6,14 @@ const {db} = require('../connections/rawjson.js');
 
 var getAllLocations = function () {
   var type = 'location';
-  var locations = db.readPinakes(type);
+  var locations = db.read(type);
   return locations;
 };
 
 
 var getLocationById = function (id) {
   var type = 'location';
-  var locations = db.readPinakes(type);
+  var locations = db.read(type);
   var filteredLocations = locations.filter(function (e) {
     return (e.id == id);
   });
@@ -40,14 +40,14 @@ var createLocation = function (info) {
     name: info.name,
     pic: info.pic
   };
-  db.writePinakes(type, locationId, newLocation);
+  db.write(type, locationId, newLocation);
   return newLocation;
 };
 
 
 var deleteLocation = function (locationId) {
   var type = 'location';
-  db.erasePinakes(type, locationId)
+  db.erase(type, locationId)
   return locationId
 };
 

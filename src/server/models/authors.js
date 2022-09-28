@@ -5,7 +5,7 @@ const {db} = require('../connections/rawjson.js');
 
 var getAllAuthors = function () {
   var type = 'author';
-  var authors = db.readPinakes(type);
+  var authors = db.read(type);
   return authors;
 };
 
@@ -24,7 +24,7 @@ var getAuthorById = function (id) {
   }
 
   var type = 'author';
-  var authors = db.readPinakes(type);
+  var authors = db.read(type);
   var filteredAuthors = authors.filter(function (e) {
     return (e.id == id);
   });

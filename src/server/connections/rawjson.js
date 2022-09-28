@@ -5,7 +5,7 @@ const _ = require('lodash');
 
 
 
-var readPinakes = function (type) {
+var read = function (type) {
   var relativeDirname;
   switch (type) {
     case 'author':
@@ -14,35 +14,35 @@ var readPinakes = function (type) {
     case 'book':
       relativeDirname = '../../../runtime/db/books';
       break;
-    case 'categories':
+    case 'category':
       relativeDirname = '../../../runtime/db/categories';
       break;
-    case 'collections':
+    case 'collection':
       relativeDirname = '../../../runtime/db/collections';
       break;
     case 'language':
       relativeDirname = '../../../runtime/db/languages';
       break;
-    case 'locations':
+    case 'location':
       relativeDirname = '../../../runtime/db/locations';
       break;
-    case 'members':
+    case 'member':
       relativeDirname = '../../../runtime/db/members';
       break;
-    case 'petitions':
+    case 'petition':
       relativeDirname = '../../../runtime/db/petitions';
       break;
-    case 'quotes':
+    case 'quote':
       relativeDirname = '../../../runtime/db/quotes';
       break;
-    case 'reviews':
+    case 'review':
       relativeDirname = '../../../runtime/db/reviews';
       break;
-    case 'subcategories':
+    case 'subcategory':
       relativeDirname = '../../../runtime/db/subcategories';
       break;
     default:
-      throw new Error('not recognized');
+      throw new Error(`type ${type} not recognized`);
   }
   const absoluteDirname = path.join(__dirname, relativeDirname);
   const basenames = fs.readdirSync(absoluteDirname);
@@ -55,7 +55,7 @@ var readPinakes = function (type) {
 };
 
 
-var writePinakes = function (type, id, info) {
+var write = function (type, id, info) {
   var relativeDirname;
   if (type == 'book') {
     relativeDirname = '../../../runtime/db/books';
@@ -81,7 +81,7 @@ var writePinakes = function (type, id, info) {
 };
 
 
-var erasePinakes = function (type, id) {
+var erase = function (type, id) {
   var relativeDirname;
   if (type == 'book') {
     relativeDirname = '../../../runtime/db/books';
@@ -107,9 +107,9 @@ var erasePinakes = function (type, id) {
 
 
 const db = {
-  writePinakes: writePinakes,
-  erasePinakes: erasePinakes,
-  readPinakes: readPinakes,
+  write: write,
+  erase: erase,
+  read: read,
 };
 
 
