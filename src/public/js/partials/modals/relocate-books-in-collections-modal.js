@@ -31,7 +31,8 @@ var relocateModalSearchingListener = function () {
           });
           books = searchedBooks;
           books.forEach(function (book) {
-            //if (book.collection.id != info.collection.id) {}
+              var currentCollection = window.location.href.split('/')[5];
+              if (book.collection.id != currentCollection) {
               const relocateModalSearchedBookNode = document.createElement('tr');
               relocateModalSearchedBookNode.innerHTML = `
                   <td>${book.title}</td>
@@ -40,6 +41,7 @@ var relocateModalSearchingListener = function () {
                   <td><input type="checkbox" name="book_to_move"></td>
               `;
               relocateSearchTableBodyNode.appendChild(relocateModalSearchedBookNode);
+              }
           });
       });
   });
