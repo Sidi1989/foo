@@ -1,0 +1,8 @@
+{
+   "ignore": [
+     ".git/*",
+     "examples/*",
+     "node_modules/*",
+     "runtime/*"
+   ]
+}
