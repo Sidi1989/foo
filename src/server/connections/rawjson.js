@@ -57,20 +57,27 @@ var read = function (type) {
 
 var write = function (type, id, info) {
   var relativeDirname;
-  if (type == 'book') {
-    relativeDirname = '../../../runtime/db/books';
-  } else if (type == 'collection') {
-    relativeDirname = '../../../runtime/db/collections';
-  } else if (type == 'location') {
-    relativeDirname = '../../../runtime/db/locations';
-  } else if (type == 'member') {
-    relativeDirname = '../../../runtime/db/members';
-  } else if (type == 'petition') {
-    relativeDirname = '../../../runtime/db/petitions';
-  } else if (type == 'review') {
-    relativeDirname = '../../../runtime/db/reviews';
-  } else {
-    return false
+  switch (type) {
+    case 'book':
+      relativeDirname = '../../../runtime/db/books';
+      break;
+    case 'collection':
+      relativeDirname = '../../../runtime/db/collections';
+      break;
+    case 'location':
+      relativeDirname = '../../../runtime/db/locations';
+      break;
+    case 'member':
+      relativeDirname = '../../../runtime/db/members';
+      break;
+    case 'petition':
+      relativeDirname = '../../../runtime/db/petitions';
+      break;
+    case 'review':
+      relativeDirname = '../../../runtime/db/reviews';
+      break;
+    default:
+      throw new Error(`type ${type} not recognized`);
   }
   const absoluteDirname = path.join(__dirname, relativeDirname);
   var basename = `${id}.json`;
@@ -83,20 +90,27 @@ var write = function (type, id, info) {
 
 var erase = function (type, id) {
   var relativeDirname;
-  if (type == 'book') {
-    relativeDirname = '../../../runtime/db/books';
-  } else if (type == 'collection') {
-    relativeDirname = '../../../runtime/db/collections';
-  } else if (type == 'location') {
-    relativeDirname = '../../../runtime/db/locations';
-  } else if (type == 'member') {
-    relativeDirname = '../../../runtime/db/members';
-  } else if (type == 'petition') {
-    relativeDirname = '../../../runtime/db/petitions';
-  } else if (type == 'review') {
-    relativeDirname = '../../../runtime/db/reviews';
-  } else {
-    return false
+  switch (type) {
+    case 'book':
+      relativeDirname = '../../../runtime/db/books';
+      break;
+    case 'collection':
+      relativeDirname = '../../../runtime/db/collections';
+      break;
+    case 'location':
+      relativeDirname = '../../../runtime/db/locations';
+      break;
+    case 'member':
+      relativeDirname = '../../../runtime/db/members';
+      break;
+    case 'petition':
+      relativeDirname = '../../../runtime/db/petitions';
+      break;
+    case 'review':
+      relativeDirname = '../../../runtime/db/reviews';
+      break;
+    default:
+      throw new Error(`type ${type} not recognized`);
   }
   const absoluteDirname = path.join(__dirname, relativeDirname);
   var basename = `${id}.json`;
