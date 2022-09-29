@@ -1,7 +1,9 @@
 #! /bin/sh
 
 # Ejecutar siempre desde la carpeta Scripts
+
 echo "beginning"
+
 cat ../runtime/db/authors/*.json | jq -c "." > ../runtime/db-export/authors.jsonl
 cat ../runtime/db/books/*.json | jq -c "." > ../runtime/db-export/books.jsonl
 cat ../runtime/db/categories/*.json | jq -c "." > ../runtime/db-export/categories.jsonl
@@ -13,4 +15,5 @@ cat ../runtime/db/petitions/*.json | jq -c "." > ../runtime/db-export/petitions.
 cat ../runtime/db/quotes/*.json | jq -c "." > ../runtime/db-export/quotes.jsonl
 cat ../runtime/db/reviews/*.json | jq -c "." > ../runtime/db-export/reviews.jsonl
 cat ../runtime/db/subcategories/*.json | jq -c "." > ../runtime/db-export/subcategories.jsonl
+
 echo "ending"
