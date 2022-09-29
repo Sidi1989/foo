@@ -31,7 +31,7 @@
             <div class="col-3 my-3">
               <button id="relocate_books_in_collections_button"
                 type="button" class="btn btn-outline-success"
-                style="width: 180px; height: 320px;"
+                style="width: 180px; height: 320px"
                 data-bs-toggle="modal" data-bs-target="#relocate_books_in_collections_modal">
                 <i class="fa-solid fa-plus fa-4x"></i>
               </button>
@@ -41,7 +41,8 @@
             <div class="col-3 my-3 d-flex align-items-stretch">
               <div class="card text-center">
                 <a href="/books/<%=book.id%>">
-                 <img class="img-fluid" style="width: 180px; height: 240px" src="<%=book.pic%>">
+                 <img class="img-fluid" src="<%=book.pic%>"
+                 style="width: 180px; height: 240px">
                  </a>
                  <div class="card-body">
                    <h6><%=book.title%></h6>
