@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const {log} = require('./middleware/log.js');
 const {auth} = require('./middleware/auth.js');
 const {dispatch} = require('./middleware/dispatch.js');
+const {db} = require('./connections/nodejsondb.js');
 
 
 
