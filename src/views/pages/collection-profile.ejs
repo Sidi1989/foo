@@ -28,20 +28,20 @@
 
           <div class="row bg-light border text-center mb-3">
             <!-- Modal para añadir libro desde otras Colecciones -->
-            <div class="col-4 my-3">
+            <div class="col-3 my-3">
               <button id="relocate_books_in_collections_button"
                 type="button" class="btn btn-outline-success"
-                style="width: 240px; height: 380px;"
+                style="width: 180px; height: 320px;"
                 data-bs-toggle="modal" data-bs-target="#relocate_books_in_collections_modal">
                 <i class="fa-solid fa-plus fa-4x"></i>
               </button>
             </div>
 
             <% collection.books.forEach(function (book, i) { %>
-            <div class="col-4 my-3">
+            <div class="col-3 my-3 d-flex align-items-stretch">
               <div class="card text-center">
                 <a href="/books/<%=book.id%>">
-                 <img class="img-fluid" style="width: 240px; height: 320px" src="<%=book.pic%>">
+                 <img class="img-fluid" style="width: 180px; height: 240px" src="<%=book.pic%>">
                  </a>
                  <div class="card-body">
                    <h6><%=book.title%></h6>

@@ -32,10 +32,26 @@
             <i class="fa-solid fa-plus fa-lg"></i>
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Nuevo Libro</a></li>
-            <li><a class="dropdown-item" href="#">Nueva Colección</a></li>
-            <li><a class="dropdown-item" href="#">Nueva Petición</a></li>
-            <li><a class="dropdown-item" href="#">Nueva Sede</a></li>
+            <li>
+              <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#new_book_modal">
+                Nuevo Libro
+              </button>
+            </li>
+            <li>
+              <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#new_collection_modal">
+                Nueva Colección
+              </button>
+            </li>
+            <li>
+              <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#new_petition_modal">
+                Nueva Petición
+              </button>
+            </li>
+            <li>
+              <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#new_location_modal">
+                Nueva Sede
+              </button>
+            </li>
           </ul>
         </div>
 
@@ -44,12 +60,14 @@
 
     <div class="col-3 text-end">
       <div class="btn-group">
+        <!--Botón para las Notificaciones-->
         <button type="button" class="btn btn-success btn-lg">
           <i class="text-white fa-solid fa-bell fa-lg"></i>
           <span id="notifications_badge" class="badge rounded-pill bg-success" name="notifications_badge">
             Nº
           </span>
         </button>
+        <!--Dropdown para Member-Edit y Cerrar Sesión -->
         <button type="button" class="btn btn-success btn-lg dropdown-toggle"
             data-bs-toggle="dropdown" aria-expanded="false">
           <i class="text-white fa-solid fa-user-large"></i>
@@ -83,5 +101,9 @@
 
 <!-- Zona para Modals-->
 <%- include('../modals/header-search-modal.ejs', {}); %>
+<%- include('../modals/new-book-modal.ejs', {}); %>
+<%- include('../modals/new-collection-modal.ejs', {}); %>
+<%- include('../modals/new-petition-modal.ejs', {}); %>
+<%- include('../modals/new-location-modal.ejs', {}); %>
 
 <script type="text/javascript" src="/public/js/partials/others/header.js"></script>

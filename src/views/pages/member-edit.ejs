@@ -14,17 +14,17 @@
         <!-- Columna con las pestañas para abrir cada Tab-->
         <div class="col-3">
           <div class="nav flex-column nav-tabs" id="tabs-tab" role="tablist" aria-orientation="vertical">
-            <button class="nav-link active text-success" id="tabs-home-tab"
-              data-bs-toggle="tab" data-bs-target="#tabs-home"
-              type="button" role="tab"
-              aria-controls="tabs-home" aria-selected="true">
-              Home
-            </button>
-            <button class="nav-link text-success" id="tabs-profile-tab"
+            <button class="nav-link active text-success" id="tabs-profile-tab"
               data-bs-toggle="tab" data-bs-target="#tabs-profile"
               type="button" role="tab"
-              aria-controls="tabs-profile" aria-selected="false">
+              aria-controls="tabs-profile" aria-selected="true">
               Perfil
+            </button>
+            <button class="nav-link text-success" id="tabs-account-tab"
+              data-bs-toggle="tab" data-bs-target="#tabs-account"
+              type="button" role="tab"
+              aria-controls="tabs-account" aria-selected="false">
+              Cuenta
             </button>
             <button class="nav-link text-success" id="tabs-security-tab"
               data-bs-toggle="tab" data-bs-target="#tabs-security"
@@ -46,8 +46,8 @@
           <div class="tab-content" id="tabs-tabContent">
 
             <!-- Tab con la información básica del usuario-->
-            <div class="tab-pane fade show active" id="tabs-home" role="tabpanel"
-              aria-labelledby="tabs-home-tab" tabindex="0">
+            <div class="tab-pane fade show active" id="tabs-profile" role="tabpanel"
+              aria-labelledby="tabs-profile-tab" tabindex="0">
 
               <div class="section-title">
                 Tu perfil público
@@ -57,14 +57,14 @@
             </div>
 
             <!-- Tab para la edición de los datos del usuario-->
-            <div class="tab-pane fade" id="tabs-profile" role="tabpanel"
-              aria-labelledby="tabs-profile-tab" tabindex="0">
+            <div class="tab-pane fade" id="tabs-account" role="tabpanel"
+              aria-labelledby="tabs-account-tab" tabindex="0">
 
               <div class="section-title">
-                Edita tu perfil
+                Edita tus datos
               </div>
 
-              <%- include('../partials/others/change-profile-tab.ejs', {}); %>
+              <%- include('../partials/others/change-account-tab.ejs', {}); %>
             </div>
 
             <!-- Tab para la edición de las contraseñas del usuario-->
