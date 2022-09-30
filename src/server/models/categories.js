@@ -3,6 +3,10 @@ const {db} = require('../connections/rawjson.js');
 
 
 
+/**
+ * @description
+ * función con que se obtiene desde la DB todo el objeto "categories"
+ */
 var getAllCategories = function () {
   var type = 'category';
   var categories = db.read(type);
@@ -10,6 +14,11 @@ var getAllCategories = function () {
 };
 
 
+/**
+ * @description
+ * función con que se filtra y obtiene la información de la DB sobre una "category"
+ * específica a partir de la identificación de su atributo "id"
+ */
 var getCategoryById = function (id) {
   var type = 'category';
   var categories = db.read(type);

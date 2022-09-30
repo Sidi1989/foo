@@ -3,6 +3,10 @@ const {db} = require('../connections/rawjson.js');
 
 
 
+/**
+ * @description
+ * función con que se obtiene desde la DB todo el objeto "languages"
+ */
 var getAllLanguages = function () {
   var type = 'language';
   var languages = db.read(type);
@@ -10,6 +14,12 @@ var getAllLanguages = function () {
 };
 
 
+
+/**
+ * @description
+ * función con que se filtra y obtiene la información de la DB sobre un "language"
+ * específico a partir de la identificación de su atributo "id"
+ */
 var getLanguageById = function (id) {
   var type = 'language';
   var languages = db.read(type);

@@ -4,6 +4,10 @@ const {db} = require('../connections/rawjson.js');
 
 
 
+/**
+ * @description
+ * función con que se obtiene desde la DB todo el objeto "collections"
+ */
 var getAllCollections = function () {
   var type = 'collection';
   var collections = db.read(type);
@@ -12,8 +16,10 @@ var getAllCollections = function () {
 
 
 /**
- * @description
- * Se asume que la Colección 'Sin Colección' es aquella con un id nulo
+  * @description
+  * función con que se filtra y obtiene la información de la DB sobre una "collection"
+  * específica a partir de la identificación de su atributo "id".
+  * Previéndose además que el collection.name sea 'Sin Colección' cuando (id == null)
  */
 var getCollectionById = function (id) {
   var collection;
@@ -40,6 +46,13 @@ var getCollectionById = function (id) {
 };
 
 
+/**
+ * @description
+ * función para añadir un nuevo elemento al objeto "collections" de la DB,
+ * asignándole: un atributo "id" cuasialeatorio, un atributo "addingDate"
+ * en función del momento en que tenga lugar la llamada de la función, y los demás
+ * atributos en función de la información proporcionada al momento de dicha llamada
+ */
 var createCollection = function (info) {
   var type = 'collection';
   var collectionId = `col${uuidv4().slice(0,3)}`;
@@ -56,6 +69,11 @@ var createCollection = function (info) {
 };
 
 
+/**
+ * @description
+ * función para eliminar un elemento del objeto "collections" de la DB, identificado
+ * por su atributo "id" (que es el parámetro de la función)
+ */
 var deleteCollection = function (collectionId) {
   var type = 'collection';
   db.erase(type, collectionId)

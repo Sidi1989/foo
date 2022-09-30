@@ -4,6 +4,10 @@ const {db} = require('../connections/rawjson.js');
 
 
 
+/**
+ * @description
+ * función con que se obtiene desde la DB todo el objeto "locations"
+ */
 var getAllLocations = function () {
   var type = 'location';
   var locations = db.read(type);
@@ -11,6 +15,11 @@ var getAllLocations = function () {
 };
 
 
+/**
+ * @description
+ * función con que se filtra y obtiene la información de la DB sobre una "location"
+ * específica a partir de la identificación de su atributo "id"
+ */
 var getLocationById = function (id) {
   var type = 'location';
   var locations = db.read(type);
@@ -29,6 +38,13 @@ var getLocationById = function (id) {
 };
 
 
+/**
+ * @description
+ * función para añadir un nuevo elemento al objeto "locations" de la DB,
+ * asignándole: un atributo "id" cuasialeatorio, un atributo "addingDate"
+ * en función del momento en que tenga lugar la llamada de la función, y los demás
+ * atributos en función de la información proporcionada al momento de dicha llamada
+ */
 var createLocation = function (info) {
   var type = 'location';
   var locationId = `loc${uuidv4().slice(0,3)}`;
@@ -45,6 +61,11 @@ var createLocation = function (info) {
 };
 
 
+/**
+ * @description
+ * función para eliminar un elemento del objeto "locations" de la DB, identificado
+ * por su atributo "id" (que es el parámetro de la función)
+ */
 var deleteLocation = function (locationId) {
   var type = 'location';
   db.erase(type, locationId)

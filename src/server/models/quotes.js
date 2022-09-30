@@ -4,6 +4,10 @@ const {db} = require('../connections/rawjson.js');
 
 
 
+/**
+ * @description
+ * función con que se obtiene desde la DB todo el objeto "quotes"
+ */
 var getAllQuotes = function () {
   var type = 'quote';
   var quotes = db.read(type);
@@ -11,6 +15,11 @@ var getAllQuotes = function () {
 };
 
 
+/**
+ * @description
+ * función con que se filtra y obtiene la información de la DB sobre una "quote" específica
+ * a partir de la identificación de su atributo "id"
+ */
 var getQuoteById = function (id) {
   var type = 'quote';
   var quotes = db.read(type);
@@ -29,6 +38,12 @@ var getQuoteById = function (id) {
 };
 
 
+/**
+ * @description
+ * función con que se obtiene desde la DB todo el objeto "quotes", para a continuación
+ * aleatorizar el listado de sus elementos y quedarse con sólo un número
+ * específico de ellos (que es el parámetro de la función)
+ */
 var getRandomQuotes = function (quantity) {
   var type = 'quote';
   var quotes = db.read(type);

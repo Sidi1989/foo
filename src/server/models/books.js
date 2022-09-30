@@ -5,6 +5,10 @@ const {db} = require('../connections/rawjson.js');
 
 
 
+/**
+ * @description
+ * función con que se obtiene desde la DB todo el objeto "books"
+ */
 var getAllBooks = function () {
   var type = 'book';
   const books = db.read(type);
@@ -12,6 +16,11 @@ var getAllBooks = function () {
 };
 
 
+/**
+ * @description
+ * función con que se filtra y obtiene la información de la DB sobre un "book"
+ * específico a partir de la identificación de su atributo "id"
+ */
 var getBookById = function (id) {
   var type = 'book';
   var books = db.read(type);
@@ -30,6 +39,12 @@ var getBookById = function (id) {
 };
 
 
+/**
+ * @description
+ * función con que se obtiene desde la DB todo el objeto "books", para a continuación
+ * aleatorizar el listado de sus elementos y quedarse con sólo un número
+ * específico de ellos, en grupos de varios (ambas opciones siendo los parámetros de la función)
+ */
 var getRandomBooks = function (quantity, size) {
   var type = 'book';
   var books = db.read(type);
@@ -40,6 +55,13 @@ var getRandomBooks = function (quantity, size) {
 };
 
 
+/**
+ * @description
+ * función para añadir un nuevo elemento al objeto "books" de la DB,
+ * asignándole: un atributo "id" cuasialeatorio, un atributo "addingDate"
+ * en función del momento en que tenga lugar la llamada de la función, y los demás
+ * atributos en función de la información proporcionada al momento de dicha llamada
+ */
 var createBook = function (info) {
   var type = 'book';
   var bookId = `b${uuidv4().slice(0,3)}`;
@@ -70,6 +92,11 @@ var createBook = function (info) {
 };
 
 
+/**
+ * @description
+ * función para eliminar un elemento del objeto "books" de la DB, identificado
+ * por su atributo "id" (que es el parámetro de la función)
+ */
 var deleteBook = function (bookId) {
   var type = 'book';
   db.erase(type, bookId)
