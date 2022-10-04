@@ -2,6 +2,7 @@ const {db} = require('../connections/rawjson.js');
 
 
 
+const CATEGORIES = []
 
 /**
  * @description

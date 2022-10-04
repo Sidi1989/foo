@@ -13,7 +13,7 @@ const {getAllCollections} = require('./collections');
  * función con que se obtiene desde la DB todo el objeto "members"
  */
 var getAllMembers = async function () {
-  const members = await nodeDB.getData('.members');
+  const members = await nodeDB.read('member');
   return members;
 };
 
@@ -26,7 +26,7 @@ var getAllMembers = async function () {
 var getMemberBySession = async function (session) {
   if (!session) return null;
 
-  const members = await nodeDB.getData('.members');
+  const members = await nodeDB.read('member');
   var filteredMembers = members.filter(function (e) {
     return (e.session == session);
   });
@@ -48,7 +48,7 @@ var getMemberBySession = async function (session) {
  * específico a partir de la identificación de su atributo "id"
  */
 var getMemberById = async function (id) {
-  const members = await nodeDB.getData('.members');
+  const members = await nodeDB.read('member');
   var filteredMembers = members.filter(function (e) {
     return (e.id == id);
   });
