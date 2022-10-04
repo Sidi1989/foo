@@ -60,18 +60,18 @@ var bookProfileHandler = async function (req, res) {
   info.book.collection.books = collectionMapped;
 
   if (!info.book.reviews) info.book.reviews = [];
-  var reviewsMapped = info.book.reviews.map(async function (id) {
+  var reviewsMapped = [];
+  for (var id of info.book.reviews) {
     var review = getReviewById(id);
     if (review.reviewer == null) {
-      review.reviewer = {}
+      review.reviewer = {};
     } else {
       var reviewer = await getMemberById(review.reviewer);
       review.reviewer = reviewer;
     }
-    return review;
-  });
+    reviewsMapped.push(review);
+  }
   info.reviews = reviewsMapped;
-  console.log(reviewsMapped);
 
   var suggestedBooksChunks = getRandomBooks(6, 3);
   suggestedBooksChunks.forEach(function (chunk) {
