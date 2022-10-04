@@ -2,9 +2,8 @@ const {getAllMembers, getMemberById, createMember, deleteMember} = require('../.
 
 
 
-
-var listMembersHandler = function (req, res) {
-  var members = getAllMembers();
+var listMembersHandler = async function (req, res) {
+  var members = await getAllMembers();
 
   return res.json(members);
 };
@@ -32,8 +31,8 @@ var createMemberHandler = function (req, res) {
 };
 
 
-var retrieveMemberHandler = function (req, res) {
-  var member = getMemberById(req.params.member);
+var retrieveMemberHandler = async function (req, res) {
+  var member = await getMemberById(req.params.member);
 
   return res.json(member);
 };

@@ -4,8 +4,8 @@ const {getAllMembers, getMemberBySession} = require('../../models/members.js');
 
 
 
-var createSessionHandler = function (req, res) {
-  var members = getAllMembers();
+var createSessionHandler = async function (req, res) {
+  var members = await getAllMembers();
   var filteredMembers = members.filter(function (e) {
     return (req.body.email == e.email)
   });
@@ -44,8 +44,8 @@ var createSessionHandler = function (req, res) {
  * en la DB del miembro.
  * Habría que eliminar de la base de datos la información de la sesión del member
  */
-var deleteSessionHandler = function (req, res) {
-  var member = getMemberBySession(req.body.session);
+var deleteSessionHandler = async function (req, res) {
+  var member = await getMemberBySession(req.body.session);
   var info;
   if (!member) {
     info = {

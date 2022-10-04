@@ -113,7 +113,7 @@ var memberEditHandler= function (req, res) {
  * @param res contiene la renderización de la petición para el cliente
  */
 
-var memberProfileHandler = function (req, res) {
+var memberProfileHandler = async function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/member-profile.ejs`;
   var info = {};
 
@@ -126,16 +126,13 @@ var memberProfileHandler = function (req, res) {
   var languages = getAllLanguages();
   info.languages = languages;
 
-  var locations = getAllLocations();
-  info.locations = locations;
-
-  var member = getMemberById(req.params.member);
+  var member = await getMemberById(req.params.member);
   if (member == null) {
-    info.member = {};
+    res.status(404).send('Algo ha salido mal');
   } else {
     info.member = member;
   }
-
+  if (!member.collections) member.collections = [];
   var collectionsMapped = member.collections.map(function (collectionId) {
     var collection = getCollectionById(collectionId);
     var booksInEachCollection = collection.books.map(function (bookId) {
@@ -207,12 +204,12 @@ var memberProfileHandler = function (req, res) {
   });
   info.lastBookAdded.collection.books = lastBookAddedCollectionMapped;
 
-  var lastBookReviewsMapped = lastBookAdded.reviews.map(function (id) {
+  var lastBookReviewsMapped = lastBookAdded.reviews.map(async function (id) {
     var review = getReviewById(id);
     if (review.reviewer == null) {
       review.reviewer = {}
     } else {
-      var reviewer = getMemberById(review.reviewer);
+      var reviewer = await getMemberById(review.reviewer);
       review.reviewer = reviewer;
     }
     return review;
