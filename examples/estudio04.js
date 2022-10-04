@@ -1,19 +1,14 @@
 //Callback Hell
 
-/* Con GM para tratamiento de imágenes: gm('/path/to/image.jpg')
- * Con .bind que crea una nueva función, que cuando es llamada, asigna
- * a su operador 'this' el valor entregado, con una secuencia de argumentos dados
- * precediendo a cualquiera entregados cuando la función es llamada.
- */
-
-var files = fs.readdir(dirname, function (err, basenames) {
+fs.readdir(dirname, function (err, basenames) {
 
   if (err) {
     console.log(`Error finding files: ${err}`);
   } else {
 
     var filesSized = basenames.forEach(function (basename) {
-      gm(dirname + basename).size(function (err, size) {
+      var pathname = dirname + basename;
+      gm(pathname).size(function (err, size) {
 
         if (err) {
           console.log(`Error identifying file size: ${err}`);
@@ -37,13 +32,13 @@ var files = fs.readdir(dirname, function (err, basenames) {
   }
 });
 
-
 //Promises
 
-var files = fs.readdir(dirname)
+fs.readdir(dirname)
   .then(function (basenames) {
     var filesSized = basenames.forEach(function (basename) {
-      gm(dirname + basename).size()
+      var pathname = dirname + basename;
+      gm(pathname).size()
     })
   })
   .then(function (size) {
@@ -56,19 +51,15 @@ var files = fs.readdir(dirname)
     bind(write)
   }
 
+var foo = fs.readdir(dirname);
+var bar = foo.then(blabla);
+var baz = bar.then(bloblo)
+baz.forEach()
+// No dará ningún resultado satisfactorio, porque baz dependerá
+// de que termine bar, que dependerá a su vez de que termine foo.
+
 
 //Await
-
-var files = async fs.readdir(dirname) {
-  await
-    var filesSized = basenames.forEach(function (basename) {
-      gm(dirname + basename).size()
-    });
-  await
-    widths.forEach(function (width) {
-      var aspect = (size.width / size.height);
-      var height = Math.round(width / aspect);
-      resize(width, height).write(basename)
-    });
-    bind(write);
-}
+var foo = await fs.readdir(dirname);
+var bar = await gm(foo).size();
+// y...
