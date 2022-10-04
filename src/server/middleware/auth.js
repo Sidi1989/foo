@@ -2,11 +2,12 @@ const {getMemberBySession} = require('../models/members.js');
 
 
 
-
 /**
- * Consulta la base de datos para encontrar al usuario al que en el pasado
- * (con un signIn) se le asignó su token identificativo
- */
+  * @description
+  * función asíncrona con que se consulta la DB para encontrar al usuario al que,
+  * a través de su SignIn, se le asignó un token identificativo de la sesión;
+  * discriminando en función de ello entre miembros e invitados (sin dicho token).
+  */
 var auth = async function (req, res, next) {
   req.user = {};
   var member = await getMemberBySession(req.cookies.session);

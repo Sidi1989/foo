@@ -14,6 +14,12 @@ const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = 
 
 
 
+/**
+  * @description
+  * función con que se configura una instancia de express destinada a distribuir
+  * las diferentes llamadas a que obliga la app en cada caso, según la ruta
+  * y el modo en que tienen lugar.
+  */
 var config = {};
 var dispatch = express.Router()
 
