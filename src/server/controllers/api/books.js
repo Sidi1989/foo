@@ -10,6 +10,11 @@ const {getLanguageById} = require('../../models/languages.js');
 
 
 
+/**
+ * @description
+ * función para listar todos los libros, obteniendo además el valor concreto de
+ * sus distintos atributos, y respondiendo a través de un json con los mismos.
+ */
 var listBooksHandler = function (req, res) {
   var books = getAllBooks();
 
@@ -25,6 +30,12 @@ var listBooksHandler = function (req, res) {
 };
 
 
+/**
+ * @description
+ * función para listar todos los libros de un miembro determinado (conocido a partir
+ * de su id en req.params.member), obteniendo además el valor concreto de
+ * sus distintos atributos, y respondiendo a través de un json con los mismos.
+ */
 var listMemberBooksHandler = function (req, res) {
   var member = getMemberById(req.params.member);
   var memberBooks = member.books.map(function (bookId) {
@@ -45,6 +56,11 @@ var listMemberBooksHandler = function (req, res) {
 };
 
 
+/**
+ * @description
+ * handler para responder a la petición de la creación de un nuevo libro,
+ * a partir de los datos proporcionados en el req.body.
+ */
 var createBookHandler = function (req, res) {
   var newBookInfo = {
     owner: req.user.id,
@@ -79,6 +95,11 @@ var createBookHandler = function (req, res) {
 };
 
 
+/**
+ * @description
+ * handler para responder a la petición de recuperar la información almacenada
+ * sobre un libro concreto (conocido a partir de su id en req.params.book).
+ */
 var retrieveBookHandler = function (req, res) {
   var book = getBookById(req.params.book);
 
@@ -86,6 +107,11 @@ var retrieveBookHandler = function (req, res) {
 };
 
 
+/**
+ * @description
+ * handler para responder a la petición de modificar la información almacenada
+ * sobre un libro concreto (conocido a partir de su id en req.params.book).
+ */
 var editBookHandler = function (req, res) {
   var book = getBookById(req.params.book);
 
@@ -93,6 +119,11 @@ var editBookHandler = function (req, res) {
 };
 
 
+/**
+ * @description
+ * handler para responder a la petición de eliminar la información almacenada
+ * sobre un libro concreto (conocido a partir de su id en req.params.book).
+ */
 var deleteBookHandler = function (req, res) {
   deleteBook(req.params.book);
 
@@ -102,6 +133,7 @@ var deleteBookHandler = function (req, res) {
   };
   return res.json(info);
 };
+
 
 
 

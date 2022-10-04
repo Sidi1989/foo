@@ -1,4 +1,4 @@
-const {getAllLocations, getLocationById} = require('../../models/locations.js');
+const {getLocationById} = require('../../models/locations.js');
 const {getAllCategories} = require('../../models/categories.js');
 const {getAllSubcategories} = require('../../models/subcategories.js');
 const {getAllLanguages, getLanguageById} = require('../../models/languages.js');
@@ -13,7 +13,9 @@ const {getReviewById} = require('../../models/reviews.js');
 
 /**
  * @description
- * función destinada a cubrir la petición de mostrar la Página Principal de un libro
+ * handler destinado a cubrir la petición de mostrar la Página Principal de
+ * un Libro concreto (identificado desde req.params.book); y que recupera además
+ * información transversal sobre su poseedor (identificado desde req.user.id)
  *
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
@@ -22,9 +24,6 @@ const {getReviewById} = require('../../models/reviews.js');
 var bookProfileHandler = function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/book-profile.ejs`;
   var info = {};
-
-  var locations = getAllLocations();
-  info.locations = locations;
 
   var categories = getAllCategories();
   info.categories = categories;

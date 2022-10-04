@@ -1,7 +1,6 @@
 const {getMemberById} = require('../../models/members.js');
 const {getCollectionById} = require('../../models/collections.js');
 const {getBookById} = require('../../models/books.js')
-const {getAllLocations} = require('../../models/locations.js');
 const {getAllCategories} = require('../../models/categories.js');
 const {getAllSubcategories} = require('../../models/subcategories.js');
 const {getAllLanguages} = require('../../models/languages.js');
@@ -11,7 +10,10 @@ const {getAllLanguages} = require('../../models/languages.js');
 
 /**
  * @description
- * función destinada a cubrir la petición de mostrar las Características de una Colección concreta
+ * handler destinado a cubrir la petición de mostrar la Página Principal de
+ * una Colección concreta, identificada a partir de su miembro poseedor (desde
+ * req.params.member), y en concreto como ella misma de entre las colecciones
+ * de dicho miembro (desde req.params.collection)
  *
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
@@ -29,9 +31,6 @@ var collectionProfileHandler= function (req, res) {
 
   var languages = getAllLanguages();
   info.languages = languages;
-
-  var locations = getAllLocations();
-  info.locations = locations;
 
   var member = getMemberById(req.params.member);
   if (member == null) {

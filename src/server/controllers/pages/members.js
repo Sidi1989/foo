@@ -7,7 +7,7 @@ const {getCollectionById} = require('../../models/collections.js');
 const {getBookById, getRandomBooks} = require('../../models/books.js');
 const {getAuthorById} = require('../../models/authors.js');
 const {getPetitionById} = require('../../models/petitions.js');
-const {getAllLocations, getLocationById} = require('../../models/locations.js');
+const {getLocationById} = require('../../models/locations.js');
 const {getReviewById} = require('../../models/reviews.js');
 
 
@@ -15,7 +15,10 @@ const {getReviewById} = require('../../models/reviews.js');
 
 /**
 * @description
-* función destinada a cubrir la petición del login de un usuario
+* handler destinado a cubrir la petición del SignIn de un usuario; pero de manera
+* que si su req.user.type (conocido desde el middleware "auth") corresponde al de
+* un miembro, se le redirigirá directamente a su página de perfil, y no se
+* renderizará la view de SignIn común a todos los usuarios.
 *
 * @param req contiene la información de la petición
 * @param res contiene la renderización de la petición para el cliente
@@ -39,7 +42,9 @@ var signInHandler= function (req, res) {
 
 /**
  * @description
- * función destinada a cubrir la petición de Creación de un nuevo miembro
+ * handler destinado a cubrir la petición del SignUp de un nuevo miembro,
+ * renderizando la view en que deberá introducir sus datos para ser incluido como
+ * tal en la DB.
  *
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
@@ -56,7 +61,9 @@ var signUpHandler= function (req, res) {
 
 /**
  * @description
- * función destinada a cubrir la petición de mostrar las Características de la cuenta de un miembro
+ * handler destinado a cubrir la petición de mostrar la Configuración de la Cuenta
+ * de un Miembro concreto(identificado desde req.params.member), recuperando así
+ * la información del mismo que podrá ser examinada y alterada en dicha página.
  *
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
@@ -82,9 +89,6 @@ var memberEditHandler= function (req, res) {
   var languages = getAllLanguages();
   info.languages = languages;
 
-  var locations = getAllLocations();
-  info.locations = locations;
-
   var locationsMapped = member.locations.map(function (locationId) {
     var location = getLocationById(locationId);
     return location;
@@ -107,7 +111,10 @@ var memberEditHandler= function (req, res) {
 
 /**
  * @description
- * función destinada a cubrir la petición de mostrar la Página Principal de un miembro
+ * handler destinado a cubrir la petición de mostrar la Página Principal de
+ * un Miembro concreto (identificado desde req.params.member), recuperando así
+ * la información del mismo que podrá ser examinada y alterada en dicha página.
+ *
  *
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente

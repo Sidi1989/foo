@@ -5,7 +5,13 @@ const {getBookById} = require('../../models/books.js');
 
 
 
-
+/**
+ * @description
+ * función para listar todas las colecciones de un miembro determinado (conocido
+ * a partir de su id en req.params.member), obteniendo además el valor concreto de
+ * los distintos atributos de los libros en ellas incluidos; y respondiendo a través
+ * de un json con las mismas.
+ */
 var listMemberCollectionsHandler = function (req, res) {
   var member = getMemberById(req.params.member);
   var memberCollections = member.collections.map(function (collectionId) {
@@ -22,6 +28,11 @@ var listMemberCollectionsHandler = function (req, res) {
 };
 
 
+/**
+ * @description
+ * handler para responder a la petición de la creación de una nueva colección,
+ * a partir de los datos proporcionados en el req.body.
+ */
 var createCollectionHandler = function (req, res) {
   var newCollectionInfo = {
     owner: req.user.id,
@@ -38,6 +49,11 @@ var createCollectionHandler = function (req, res) {
 };
 
 
+/**
+ * @description
+ * handler para responder a la petición de recuperar la información almacenada
+ * sobre una colección concreta (conocida a partir de su id en req.params.collection).
+ */
 var retrieveCollectionHandler = function (req, res) {
   var collection = getCollectionById(req.params.collection);
 
@@ -45,6 +61,11 @@ var retrieveCollectionHandler = function (req, res) {
 };
 
 
+/**
+ * @description
+ * handler para responder a la petición de modificar la información almacenada
+ * sobre una colección concreta (conocida a partir de su id en req.params.collection).
+ */
 var editCollectionHandler = function (req, res) {
   var collection = getCollectionById(req.params.collection);
 
@@ -52,6 +73,11 @@ var editCollectionHandler = function (req, res) {
 };
 
 
+/**
+ * @description
+ * handler para responder a la petición de eliminar la información almacenada
+ * sobre una colección concreta (conocida a partir de su id en req.params.collection).
+ */
 var deleteCollectionHandler = function (req, res) {
   deleteCollection(req.params.collection);
 
