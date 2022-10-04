@@ -3,9 +3,9 @@ const {renderFile: ejsRenderEngine} = require('ejs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const {log} = require('./middleware/log.js');
+const {categorization} = require('./middleware/categorization.js');
 const {auth} = require('./middleware/auth.js');
 const {dispatch} = require('./middleware/dispatch.js');
-const {db} = require('./connections/nodejsondb.js');
 
 
 
@@ -28,5 +28,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(log); // for logging requests
+app.use(categorization); // for getting Categories, Subcategories & Languages, from out of DB
 app.use(auth); // for authenticate users, through cookies
 app.use(dispatch); // for routing

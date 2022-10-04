@@ -1,9 +1,6 @@
 const {getMemberById} = require('../../models/members.js');
 const {getCollectionById} = require('../../models/collections.js');
-const {getBookById} = require('../../models/books.js')
-const {getAllCategories} = require('../../models/categories.js');
-const {getAllSubcategories} = require('../../models/subcategories.js');
-const {getAllLanguages} = require('../../models/languages.js');
+const {getBookById} = require('../../models/books.js');
 
 
 
@@ -19,20 +16,15 @@ const {getAllLanguages} = require('../../models/languages.js');
  * @param res contiene la renderización de la petición para el cliente
  */
 
-var collectionProfileHandler= function (req, res) {
+var collectionProfileHandler = async function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/collection-profile.ejs`;
   var info = {};
 
-  var categories = getAllCategories();
-  info.categories = categories;
+  info.categories = req.categories;
+  info.subcategories = req.subcategories;
+  info.languages = req.languages;
 
-  var subcategories = getAllSubcategories();
-  info.subcategories = subcategories;
-
-  var languages = getAllLanguages();
-  info.languages = languages;
-
-  var member = getMemberById(req.params.member);
+  var member = await getMemberById(req.params.member);
   if (member == null) {
     info.member = {};
   } else {

@@ -1,7 +1,5 @@
 const {getLocationById} = require('../../models/locations.js');
-const {getAllCategories} = require('../../models/categories.js');
-const {getAllSubcategories} = require('../../models/subcategories.js');
-const {getAllLanguages, getLanguageById} = require('../../models/languages.js');
+const {getLanguageById} = require('../../models/languages.js');
 const {getBookById, getRandomBooks} = require('../../models/books.js');
 const {getMemberById, getCollectionsForMember} = require('../../models/members.js');
 const {getAuthorById} = require('../../models/authors.js');
@@ -21,18 +19,13 @@ const {getReviewById} = require('../../models/reviews.js');
  * @param res contiene la renderización de la petición para el cliente
  */
 
-var bookProfileHandler = function (req, res) {
+var bookProfileHandler = async function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/book-profile.ejs`;
   var info = {};
 
-  var categories = getAllCategories();
-  info.categories = categories;
-
-  var subcategories = getAllSubcategories();
-  info.subcategories = subcategories;
-
-  var languages = getAllLanguages();
-  info.languages = languages;
+  info.categories = req.categories;
+  info.subcategories = req.subcategories;
+  info.languages = req.languages;
 
   var book = getBookById(req.params.book);
   if (book == null) {
@@ -41,7 +34,7 @@ var bookProfileHandler = function (req, res) {
     info.book = book;
   }
 
-  var member = getMemberById (req.user.id);
+  var member = await getMemberById (req.user.id);
   info.member = member;
 
   var memberCollections = getCollectionsForMember(member.id);
@@ -67,17 +60,18 @@ var bookProfileHandler = function (req, res) {
   info.book.collection.books = collectionMapped;
 
   if (!info.book.reviews) info.book.reviews = [];
-  var reviewsMapped = info.book.reviews.map(function (id) {
+  var reviewsMapped = info.book.reviews.map(async function (id) {
     var review = getReviewById(id);
     if (review.reviewer == null) {
       review.reviewer = {}
     } else {
-      var reviewer = getMemberById(review.reviewer);
+      var reviewer = await getMemberById(review.reviewer);
       review.reviewer = reviewer;
     }
     return review;
   });
   info.reviews = reviewsMapped;
+  console.log(reviewsMapped);
 
   var suggestedBooksChunks = getRandomBooks(6, 3);
   suggestedBooksChunks.forEach(function (chunk) {

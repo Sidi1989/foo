@@ -26,14 +26,8 @@ var read = async function (type) {
     case 'book':
       relativeRoute = '.books';
       break;
-    case 'category':
-      relativeRoute = '.categories';
-      break;
     case 'collection':
       relativeRoute = '.collections';
-      break;
-    case 'language':
-      relativeRoute = '.languages';
       break;
     case 'location':
       relativeRoute = '.locations';
@@ -49,9 +43,6 @@ var read = async function (type) {
       break;
     case 'review':
       relativeRoute = '.reviews';
-      break;
-    case 'subcategory':
-      relativeRoute = '.subcategories';
       break;
     default:
       throw new Error(`type ${type} not recognized`);

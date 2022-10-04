@@ -14,14 +14,8 @@ var read = function (type) {
     case 'book':
       relativeDirname = '../../../runtime/db/books';
       break;
-    case 'category':
-      relativeDirname = '../../../runtime/db/categories';
-      break;
     case 'collection':
       relativeDirname = '../../../runtime/db/collections';
-      break;
-    case 'language':
-      relativeDirname = '../../../runtime/db/languages';
       break;
     case 'location':
       relativeDirname = '../../../runtime/db/locations';
@@ -37,9 +31,6 @@ var read = function (type) {
       break;
     case 'review':
       relativeDirname = '../../../runtime/db/reviews';
-      break;
-    case 'subcategory':
-      relativeDirname = '../../../runtime/db/subcategories';
       break;
     default:
       throw new Error(`type ${type} not recognized`);

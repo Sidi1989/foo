@@ -1,8 +1,5 @@
 const {getRandomQuotes} = require('../../models/quotes.js');
 const {getMemberById, getLastBookForMember} = require('../../models/members.js');
-const {getAllCategories} = require('../../models/categories.js');
-const {getAllSubcategories} = require('../../models/subcategories.js');
-const {getAllLanguages} = require('../../models/languages.js');
 const {getCollectionById} = require('../../models/collections.js');
 const {getBookById, getRandomBooks} = require('../../models/books.js');
 const {getAuthorById} = require('../../models/authors.js');
@@ -69,25 +66,20 @@ var signUpHandler= function (req, res) {
  * @param res contiene la renderización de la petición para el cliente
  */
 
-var memberEditHandler= function (req, res) {
+var memberEditHandler = async function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/member-edit.ejs`;
   var info = {};
 
-  var member = getMemberById(req.params.member);
+  var member = await getMemberById(req.params.member);
   if (member == null) {
     info.member = {};
   } else {
     info.member = member;
   }
 
-  var categories = getAllCategories();
-  info.categories = categories;
-
-  var subcategories = getAllSubcategories();
-  info.subcategories = subcategories;
-
-  var languages = getAllLanguages();
-  info.languages = languages;
+  info.categories = req.categories;
+  info.subcategories = req.subcategories;
+  info.languages = req.languages;
 
   var locationsMapped = member.locations.map(function (locationId) {
     var location = getLocationById(locationId);
@@ -124,14 +116,9 @@ var memberProfileHandler = async function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/member-profile.ejs`;
   var info = {};
 
-  var categories = getAllCategories();
-  info.categories = categories;
-
-  var subcategories = getAllSubcategories();
-  info.subcategories = subcategories;
-
-  var languages = getAllLanguages();
-  info.languages = languages;
+  info.categories = req.categories;
+  info.subcategories = req.subcategories;
+  info.languages = req.languages;
 
   var member = await getMemberById(req.params.member);
   if (member == null) {
