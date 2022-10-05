@@ -19,7 +19,7 @@ var relativeDirname = '../../../runtime/db-migration';
 var absoluteDirname = path.join(__dirname, relativeDirname);
 var basename = 'PinakesDB.json';
 var pathname = path.join(absoluteDirname, basename);
-const configuration = new Config(pathname, false, false, '.');
+const configuration = new Config(pathname, true, false, '.');
 var jsonDb = new JsonDB(configuration);
 
 
@@ -82,8 +82,38 @@ var write = async function (type, id, info) {
     default:
       throw new Error(`type ${type} not recognized`);
   }
-  const elements = await jsonDb.push(relativeRoute, id, info);
-  return _.cloneDeep(elements);
+  await jsonDb.push(relativeRoute, id, info);
+  return
+};
+
+var append = async function (type, info) {
+  var relativeRoute;
+  switch (type) {
+    case 'book':
+      relativeRoute = '.books';
+      break;
+    case 'collection':
+      relativeRoute = '.collections';
+      break;
+    case 'location':
+      relativeRoute = '.locations';
+      break;
+    case 'member':
+      relativeRoute = '.members';
+      break;
+    case 'petition':
+      relativeRoute = '.petitions';
+      break;
+    case 'review':
+      relativeRoute = '.reviews';
+      break;
+    default:
+      throw new Error(`type ${type} not recognized`);
+  }
+  var typeLength = (await jsonDb.getData(relativeRoute)).length;
+
+  await jsonDb.push(`${relativeRoute}[${typeLength}]`, info);
+  return
 };
 
 
@@ -119,6 +149,7 @@ var erase = async function (type, id) {
 const db = {
   read: read,
   write: write,
+  append: append,
   erase: erase,
 
   getData: jsonDb.getData.bind(jsonDb),
