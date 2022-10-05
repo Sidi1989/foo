@@ -44,7 +44,7 @@
           <div class="input-group mb-4">
             <label for="edit_book_location" class="input-group-text">Sede de depósito</label>
             <select id="edit_book_location" name="edit_book_location" class="form-select">
-              <% locations.forEach(function (location,i) { %>
+              <% member.locations.forEach(function (location,i) { %>
                 <option <% if (i==0) { %> selected <% }%> value="<%=location.id%>"><%= location.name%></option>
               <% }) %>
             </select>
