@@ -7,9 +7,14 @@ const {router: petitionsRouter} = require ('../routers/petitions.js');
 const {router: reviewsRouter} = require ('../routers/reviews.js');
 const {router: sessionsRouter} = require ('../routers/sessions.js');
 const {bookProfileHandler} = require('../controllers/pages/books.js');
-const {landingHandler} = require('../controllers/pages/landing.js');
 const {collectionProfileHandler} = require('../controllers/pages/collections.js');
-const {signInHandler, signUpHandler, memberProfileHandler, memberEditHandler} = require('../controllers/pages/members.js');
+const {landingHandler} = require('../controllers/pages/landing.js');
+const {
+  signInHandler,
+  signUpHandler,
+  memberEditHandler,
+  memberProfileHandler 
+} = require('../controllers/pages/members.js');
 
 
 

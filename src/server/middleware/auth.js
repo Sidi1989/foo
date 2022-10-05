@@ -2,6 +2,7 @@ const {getMemberBySession} = require('../models/members.js');
 
 
 
+
 /**
   * @description
   * función asíncrona con que se consulta la DB para encontrar al usuario al que,

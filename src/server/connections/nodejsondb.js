@@ -5,10 +5,16 @@ const {JsonDB, Config} = require('node-json-db');
 
 
 
-// 1st argument is database filename (If no extension: '.json').
-// 2nd argument is telling the DB to save after each push (If 'false': you must call the 'save()' method)
-// 3rd argument is asking JsonDB to save the database in an human readable format ('False' by default)
-// 4th argument is the separator ('slash (/)' by default)
+/**
+  * @description
+  * respecto de la configuración de la DB como una instancia de JsonDB, se tiene que
+  * emplea 4 parámetros:
+  *
+  * @param first database filename (if no extension: '.json').
+  * @param second telling the DB to save after each push (if 'false': must call the 'save()' method)
+  * @param third asking JsonDB to save the database in an human readable format ('false' by default)
+  * @param fourth inside separator (by default: 'slash (/)', but in this instance: '.')
+  */
 var relativeDirname = '../../../runtime/db-migration';
 var absoluteDirname = path.join(__dirname, relativeDirname);
 var basename = 'PinakesDB.json';
@@ -76,7 +82,7 @@ var write = async function (type, id, info) {
     default:
       throw new Error(`type ${type} not recognized`);
   }
-  const elements = await jsonDb.push(relativeRoute, id, 'info que escribe');
+  const elements = await jsonDb.push(relativeRoute, id, info);
   return _.cloneDeep(elements);
 };
 

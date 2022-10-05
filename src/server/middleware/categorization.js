@@ -15,7 +15,6 @@ var categorization = function (req, res, next) {
   req.subcategories = getAllSubcategories();
   req.languages = getAllLanguages();
 
-
   return next();
 };
 
