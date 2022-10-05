@@ -10,6 +10,7 @@ const {db} = require('../connections/rawjson.js');
 var getAllAuthors = function () {
   var type = 'author';
   var authors = db.read(type);
+
   return authors;
 };
 

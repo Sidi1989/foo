@@ -45,6 +45,7 @@ var createLocationHandler = function (req, res) {
     status: "OK",
     location: newLocation
   };
+
   return res.json(info);
 };
 
@@ -85,6 +86,7 @@ var deleteLocationHandler = function (req, res) {
     status: "OK",
     location: req.params.location
   };
+
   return res.json(info);
 };
 

@@ -38,6 +38,7 @@ var createMemberHandler = function (req, res) {
     status: "OK",
     member: newMember
   };
+
   return res.json(info);
 };
 
@@ -78,6 +79,7 @@ var deleteMemberHandler = function (req, res) {
     status: "OK",
     member: req.params.member
   };
+  
   return res.json(info);
 };
 

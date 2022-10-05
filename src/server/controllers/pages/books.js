@@ -18,7 +18,6 @@ const {getReviewById} = require('../../models/reviews.js');
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
  */
-
 var bookProfileHandler = async function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/book-profile.ejs`;
   var info = {};
@@ -80,7 +79,6 @@ var bookProfileHandler = async function (req, res) {
     });
   });
   info.suggestedBooks = suggestedBooksChunks;
-
 
   res.render(pathname, info);
 };

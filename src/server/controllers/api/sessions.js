@@ -1,4 +1,4 @@
-const {v4: uuidv4} = require('uuid');
+//const {v4: uuidv4} = require('uuid');
 const {getAllMembers, getMemberBySession} = require('../../models/members.js');
 
 
@@ -56,18 +56,16 @@ var createSessionHandler = async function (req, res) {
  */
 var deleteSessionHandler = async function (req, res) {
   var member = await getMemberBySession(req.body.session);
-  var info;
+
   if (!member) {
-    info = {
-      status: "KO"
-    };
-    return res.json(info);
+    return res.json({
+      status: 'KO'
+    });
   } else {
-    member.session = null
-    info = {
-      status: "OK"
-    };
-    return res.json(info);
+    member.session = null;
+    return res.json({
+      status: 'OK'
+    });
   }
 };
 

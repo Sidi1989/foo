@@ -11,6 +11,7 @@ const {db} = require('../connections/rawjson.js');
 var getAllPetitions = function () {
   var type = 'petition';
   var petitions = db.read(type);
+
   return petitions;
 };
 
@@ -60,6 +61,7 @@ var createPetition = function (info) {
     shoppingLink: info.shoppingLink
   };
   db.write(type, petitionId, newPetition);
+
   return newPetition;
 };
 
@@ -71,8 +73,9 @@ var createPetition = function (info) {
  */
 var deletePetition = function (petitionId) {
   var type = 'petition';
-  db.erase(type, petitionId)
-  return petitionId
+  db.erase(type, petitionId);
+
+  return petitionId;
 };
 
 

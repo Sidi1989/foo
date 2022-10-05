@@ -124,7 +124,7 @@ const SUBCATEGORIES = [
     "name": "De traducción",
     "parent": "cat6f"
   }
-]
+];
 
 
 /**
@@ -155,6 +155,7 @@ var getSubcategoryById = function (id) {
 
   return subcategory;
 };
+
 
 
 

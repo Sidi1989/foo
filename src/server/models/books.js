@@ -1,5 +1,5 @@
-const {v4: uuidv4} = require('uuid');
 const _ = require('lodash');
+const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
 
 
@@ -12,6 +12,7 @@ const {db} = require('../connections/rawjson.js');
 var getAllBooks = function () {
   var type = 'book';
   const books = db.read(type);
+
   return books;
 };
 
@@ -51,6 +52,7 @@ var getRandomBooks = function (quantity, size) {
   var shuffledBooks = _.shuffle(books);
   var takenBooks = _.take(shuffledBooks, quantity);
   var chunkBooks = _.chunk(takenBooks, size);
+
   return chunkBooks;
 };
 
@@ -88,6 +90,7 @@ var createBook = function (info) {
     pic: info.pic
   };
   db.write(type, bookId, newBook);
+
   return newBook;
 };
 
@@ -99,8 +102,9 @@ var createBook = function (info) {
  */
 var deleteBook = function (bookId) {
   var type = 'book';
-  db.erase(type, bookId)
-  return bookId
+  db.erase(type, bookId);
+
+  return bookId;
 };
 
 

@@ -23,7 +23,8 @@ const CATEGORIES = [
     "id": "cat6f",
     "name": "Enciclopedias y diccionarios"
   }
-]
+];
+
 
 /**
  * @description

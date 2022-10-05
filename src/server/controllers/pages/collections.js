@@ -15,7 +15,6 @@ const {getBookById} = require('../../models/books.js');
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
  */
-
 var collectionProfileHandler = async function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/collection-profile.ejs`;
   var info = {};
@@ -54,7 +53,6 @@ var collectionProfileHandler = async function (req, res) {
     return book;
   });
   info.collection.books = booksInCollection;
-
 
   res.render(pathname, info);
 };

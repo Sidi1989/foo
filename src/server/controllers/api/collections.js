@@ -1,6 +1,6 @@
 const {getCollectionById, createCollection, deleteCollection} = require('../../models/collections.js');
-const {getMemberById} = require('../../models/members.js');
 const {getBookById} = require('../../models/books.js');
+const {getMemberById} = require('../../models/members.js');
 
 
 
@@ -45,6 +45,7 @@ var createCollectionHandler = function (req, res) {
     status: "OK",
     collection: newCollection
   };
+
   return res.json(info);
 };
 
@@ -85,6 +86,7 @@ var deleteCollectionHandler = function (req, res) {
     status: "OK",
     collection: req.params.collection
   };
+
   return res.json(info);
 };
 

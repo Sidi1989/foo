@@ -11,6 +11,7 @@ const {db} = require('../connections/rawjson.js');
 var getAllLocations = function () {
   var type = 'location';
   var locations = db.read(type);
+
   return locations;
 };
 
@@ -57,6 +58,7 @@ var createLocation = function (info) {
     pic: info.pic
   };
   db.write(type, locationId, newLocation);
+
   return newLocation;
 };
 
@@ -68,8 +70,9 @@ var createLocation = function (info) {
  */
 var deleteLocation = function (locationId) {
   var type = 'location';
-  db.erase(type, locationId)
-  return locationId
+  db.erase(type, locationId);
+
+  return locationId;
 };
 
 

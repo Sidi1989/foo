@@ -1,6 +1,6 @@
 const {getReviewById, createReview, deleteReview} = require('../../models/reviews.js');
-const {getMemberById} = require('../../models/members.js');
 const {getBookById} = require('../../models/books.js');
+const {getMemberById} = require('../../models/members.js');
 
 
 
@@ -46,6 +46,7 @@ var createReviewHandler = function (req, res) {
     status: "OK",
     review: newReview
   };
+
   return res.json(info);
 };
 
@@ -86,6 +87,7 @@ var deleteReviewHandler = function (req, res) {
     status: "OK",
     review: req.params.review
   };
+  
   return res.json(info);
 };
 

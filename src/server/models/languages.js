@@ -83,7 +83,7 @@ const LANGUAGES = [
     "code": "JPN",
     "flag": "https://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/256/Japan-Flag-icon.png"
   }
-]
+];
 
 
 /**
@@ -112,8 +112,9 @@ var getLanguageById = function (id) {
     language = filteredLanguages[0];
   }
 
-    return language;
+  return language;
 };
+
 
 
 

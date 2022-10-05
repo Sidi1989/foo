@@ -11,6 +11,7 @@ const {db} = require('../connections/rawjson.js');
 var getAllReviews = function () {
   var type = 'review';
   var reviews = db.read(type);
+
   return reviews;
 };
 
@@ -20,13 +21,17 @@ var getAllReviews = function () {
  * función con que se filtra y obtiene la información de la DB sobre una "review"
  * específica a partir de la identificación de su atributo "id"
  */
-var getReviewById = function (id) {
+var getReviewById = function (id, populate=false) {
   var type = 'review';
   var reviews = db.read(type);
   var filteredReviews = reviews.filter(function (e) {
     return (e.id == id);
   });
 
+/*memberReviews.forEach(function (e) {
+  e.book = getBookById(e.book);
+});
+*/
   var review;
   if (filteredReviews.length == 0) {
     review = null;
@@ -59,6 +64,7 @@ var createReview = function (info) {
     comment: info.comment
   };
   db.write(type, reviewId, newReview);
+
   return newReview;
 };
 
@@ -70,8 +76,9 @@ var createReview = function (info) {
  */
 var deleteReview = function (reviewId) {
   var type = 'review';
-  db.erase(type, reviewId)
-  return reviewId
+  db.erase(type, reviewId);
+
+  return reviewId;
 };
 
 

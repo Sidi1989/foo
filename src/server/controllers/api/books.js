@@ -26,6 +26,7 @@ var listBooksHandler = function (req, res) {
     e.subcategory = getSubcategoryById(e.subcategory);
     e.language = getLanguageById(e.language);
   });
+
   return res.json(books);
 };
 
@@ -131,6 +132,7 @@ var deleteBookHandler = function (req, res) {
     status: "OK",
     book: req.params.book
   };
+  
   return res.json(info);
 };
 

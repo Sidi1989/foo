@@ -1,5 +1,5 @@
-const {v4: uuidv4} = require('uuid');
 const _ = require('lodash');
+const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
 const {db: nodeDB} = require('../connections/nodejsondb.js');
 const {getAllBooks} = require('./books');
@@ -14,6 +14,7 @@ const {getAllCollections} = require('./collections');
  */
 var getAllMembers = async function () {
   const members = await nodeDB.read('member');
+
   return members;
 };
 
@@ -80,10 +81,9 @@ var getLastBookForMember = function (memberId) {
   });
   var sortedBooks = _.sortBy(memberBooks, 'addingDate');
   var lastBook = _.head(sortedBooks);
-
   if (!lastBook) lastBook = null;
 
-  return lastBook
+  return lastBook;
 };
 
 
@@ -98,6 +98,7 @@ var getCollectionsForMember = function (memberId) {
   var memberCollections = collections.filter(function (e) {
     return e.owner == memberId;
   });
+
   return memberCollections;
 };
 
@@ -124,6 +125,7 @@ var createMember = function (info) {
     pic: info.pic
   };
   db.write(type, memberId, newMember);
+
   return newMember;
 };
 
@@ -135,8 +137,9 @@ var createMember = function (info) {
  */
 var deleteMember = function (memberId) {
   var type = 'member';
-  db.erase(type, memberId)
-  return memberId
+  db.erase(type, memberId);
+
+  return memberId;
 };
 
 

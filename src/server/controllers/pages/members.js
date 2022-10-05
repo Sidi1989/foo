@@ -20,7 +20,6 @@ const {getReviewById} = require('../../models/reviews.js');
 * @param req contiene la información de la petición
 * @param res contiene la renderización de la petición para el cliente
 */
-
 var signInHandler= function (req, res) {
   if (req.user.type == 'member') {
     res.redirect(`/members/${req.user.id}`);
@@ -31,7 +30,6 @@ var signInHandler= function (req, res) {
 
   var dailyQuote = getRandomQuotes(1)[0];
   info.quote = dailyQuote;
-
 
   res.render(pathname, info);
 };
@@ -46,11 +44,9 @@ var signInHandler= function (req, res) {
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
  */
-
 var signUpHandler= function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/sign-up.ejs`;
   var info = {};
-
 
   res.render(pathname, info);
 };
@@ -65,7 +61,6 @@ var signUpHandler= function (req, res) {
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
  */
-
 var memberEditHandler = async function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/member-edit.ejs`;
   var info = {};
@@ -96,7 +91,6 @@ var memberEditHandler = async function (req, res) {
   });
   info.member.reviews = reviewsMapped;
 
-
   res.render(pathname, info);
 };
 
@@ -107,11 +101,9 @@ var memberEditHandler = async function (req, res) {
  * un Miembro concreto (identificado desde req.params.member), recuperando así
  * la información del mismo que podrá ser examinada y alterada en dicha página.
  *
- *
  * @param req contiene la información de la petición
  * @param res contiene la renderización de la petición para el cliente
  */
-
 var memberProfileHandler = async function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/member-profile.ejs`;
   var info = {};
@@ -217,7 +209,6 @@ var memberProfileHandler = async function (req, res) {
     });
   });
   info.suggestedBooks = suggestedBooksChunks;
-
 
   res.render(pathname, info);
 };

@@ -11,6 +11,7 @@ const {db} = require('../connections/rawjson.js');
 var getAllCollections = function () {
   var type = 'collection';
   var collections = db.read(type);
+
   return collections;
 };
 
@@ -65,6 +66,7 @@ var createCollection = function (info) {
     pic: info.pic
   };
   db.write(type, collectionId, newCollection);
+
   return newCollection;
 };
 
@@ -76,8 +78,9 @@ var createCollection = function (info) {
  */
 var deleteCollection = function (collectionId) {
   var type = 'collection';
-  db.erase(type, collectionId)
-  return collectionId
+  db.erase(type, collectionId);
+
+  return collectionId;
 };
 
 

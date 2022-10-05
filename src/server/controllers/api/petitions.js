@@ -52,6 +52,7 @@ var createPetitionHandler = function (req, res) {
     status: "OK",
     petition: newPetition
   };
+
   return res.json(info);
 };
 
@@ -92,6 +93,7 @@ var deletePetitionHandler = function (req, res) {
     status: "OK",
     petition: req.params.petition
   };
+
   return res.json(info);
 };
 
