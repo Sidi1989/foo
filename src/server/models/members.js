@@ -83,23 +83,35 @@ var getLastBookForMember = function (memberId) {
   var lastBook = _.head(sortedBooks);
   if (!lastBook) lastBook = null;
 
+  if (populate == true) {
+    lastBook.author = getAuthorById(lastBook.author);
+    if (lastBook.author == null) lastBook.author = {};
+
+    lastBook.collection = getCollectionById(lastBook.collection);
+    if (lastBook.collection == null) lastBook.collection = {};
+
+    if (!lastBook.collection.books) lastBook.collection.books = [];
+    var lastBookCollectionMapped = lastBook.collection.books.map(function (bookId) {
+      var book = getBookById(bookId);
+      return book;
+    });
+    lastBook.collection.books = lastBookCollectionMapped;
+
+    if (!lastBook.reviews) lastBook.reviews = [];
+    var lastBookReviewsMapped = lastBook.reviews.map(async function (reviewId) {
+      var review = getReviewById(reviewId);
+      if (review.reviewer == null) {
+        review.reviewer = {}
+      } else {
+        var reviewer = await getMemberById(review.reviewer);
+        review.reviewer = reviewer;
+      }
+      return review;
+    });
+    lastBook.reviews = lastBookReviewsMapped;
+  }
+
   return lastBook;
-};
-
-
-/**
- * @description
- * función con que se obtiene de la DB la información sobre todas las colecciones,
- * para filtrar a continuación sólo aquellas cuyo atributo "owner" coincida con
- * el atributo "id" del miembro correspondiente (que es el parámetro de la función)
- */
-var getCollectionsForMember = function (memberId) {
-  var collections = getAllCollections();
-  var memberCollections = collections.filter(function (e) {
-    return e.owner == memberId;
-  });
-
-  return memberCollections;
 };
 
 
@@ -149,6 +161,5 @@ exports.getAllMembers = getAllMembers;
 exports.getMemberBySession = getMemberBySession;
 exports.getMemberById = getMemberById;
 exports.getLastBookForMember = getLastBookForMember;
-exports.getCollectionsForMember = getCollectionsForMember;
 exports.createMember = createMember;
 exports.deleteMember = deleteMember;
