@@ -23,17 +23,18 @@ var collectionProfileHandler = async function (req, res) {
   info.subcategories = req.subcategories;
   info.languages = req.languages;
 
-  var collection = getCollectionById(req.params.collection);
+  var collection = await getCollectionById(req.params.collection);
   if (collection == null) {
     info.collection = {};
   } else {
     info.collection = collection;
   }
 
-  var booksInCollection = collection.books.map(function (bookId) {
-    var book = getBookById(bookId);
-    return book;
-  });
+  var booksInCollection = [];
+  for (var bookId of collection.books) {
+    var book = await getBookById(bookId);
+    booksInCollection.push(book);
+  }
   info.collection.books = booksInCollection;
 
   var member = await getMemberById(req.params.member, true);

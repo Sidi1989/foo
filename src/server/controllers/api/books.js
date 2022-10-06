@@ -15,17 +15,17 @@ const {getLanguageById} = require('../../models/languages.js');
   * función para listar todos los libros, obteniendo además el valor concreto de
   * sus distintos atributos, y respondiendo a través de un json con los mismos.
   */
-var listBooksHandler = function (req, res) {
-  var books = getAllBooks();
+var listBooksHandler = async function (req, res) {
+  var books = await getAllBooks();
 
-  books.forEach(function (e) {
-    e.collection = getCollectionById(e.collection);
-    e.location = getLocationById (e.location);
-    e.author = getAuthorById(e.author);
+  for (var e of books) {
+    e.collection = await getCollectionById(e.collection);
+    e.location = await getLocationById (e.location);
+    e.author = await getAuthorById(e.author);
     e.category = getCategoryById(e.category);
     e.subcategory = getSubcategoryById(e.subcategory);
     e.language = getLanguageById(e.language);
-  });
+  }
 
   return res.json(books);
 };
@@ -37,21 +37,23 @@ var listBooksHandler = function (req, res) {
   * de su id en req.params.member), obteniendo además el valor concreto de
   * sus distintos atributos, y respondiendo a través de un json con los mismos.
   */
-var listMemberBooksHandler = function (req, res) {
-  var member = getMemberById(req.params.member);
-  var memberBooks = member.books.map(function (bookId) {
-    var book = getBookById(bookId);
-    return book;
-  });
+var listMemberBooksHandler = async function (req, res) {
+  var member = await getMemberById(req.params.member);
 
-  memberBooks.forEach(function (e) {
-    e.collection = getCollectionById(e.collection);
-    e.location = getLocationById (e.location);
-    e.author = getAuthorById(e.author);
+  var memberBooks = [];
+  for (var bookId of member.books) {
+    var book = await getBookById(bookId);
+    memberBooks.push(book);
+  }
+
+  for (var e of memberBooks) {
+    e.collection = await getCollectionById(e.collection);
+    e.location = await getLocationById (e.location);
+    e.author = await getAuthorById(e.author);
     e.category = getCategoryById(e.category);
     e.subcategory = getSubcategoryById(e.subcategory);
     e.language = getLanguageById(e.language);
-  });
+  }
 
   return res.json(memberBooks);
 };

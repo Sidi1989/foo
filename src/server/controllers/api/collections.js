@@ -12,17 +12,22 @@ const {getMemberById} = require('../../models/members.js');
   * los distintos atributos de los libros en ellas incluidos; y respondiendo a través
   * de un json con las mismas.
   */
-var listMemberCollectionsHandler = function (req, res) {
-  var member = getMemberById(req.params.member);
-  var memberCollections = member.collections.map(function (collectionId) {
-    var collection = getCollectionById(collectionId);
-    var booksInEachCollection = collection.books.map(function (bookId) {
-      var book = getBookById(bookId);
-      return book;
-    });
+var listMemberCollectionsHandler = async function (req, res) {
+  var member = await getMemberById(req.params.member);
+
+  var memberCollections = [];
+  for (var collectionId of member.collections) {
+    var collection = await getCollectionById(collectionId);
+
+    var booksInEachCollection = [];
+    for (var bookId of collection.books) {
+      var book = await getBookById(bookId);
+      booksInEachCollection.push(book);
+    }
     collection.books = booksInEachCollection;
-    return collection;
-  });
+
+    memberCollections.push(collection);
+  }
 
   return res.json(memberCollections);
 };

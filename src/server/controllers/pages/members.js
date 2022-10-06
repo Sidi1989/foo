@@ -16,7 +16,7 @@ const {getRandomQuotes} = require('../../models/quotes.js');
   * @param req contiene la información de la petición
   * @param res contiene la renderización de la petición para el cliente
   */
-var signInHandler= function (req, res) {
+var signInHandler = async function (req, res) {
   if (req.user.type == 'member') {
     res.redirect(`/members/${req.user.id}`);
     return
@@ -24,7 +24,7 @@ var signInHandler= function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/sign-in.ejs`;
   var info = {};
 
-  var dailyQuote = getRandomQuotes(1)[0];
+  var dailyQuote = await getRandomQuotes(1)[0];
   info.quote = dailyQuote;
 
   res.render(pathname, info);
@@ -103,16 +103,16 @@ var memberProfileHandler = async function (req, res) {
   var orphanBooks = member.books.filter(e => e.collection == null);
   info.orphanBooks = orphanBooks;
 
-  var lastBookAdded = getLastBookForMember(member.id, true);
+  var lastBookAdded = await getLastBookForMember(member.id, true);
   if (lastBookAdded == null) lastBookAdded = {};
   info.lastBookAdded = lastBookAdded;
 
-  var suggestedBooksChunks = getRandomBooks(6, 3);
-  suggestedBooksChunks.forEach(function (chunk) {
-    chunk.forEach(function (book) {
-      book.author = getAuthorById(book.author);
-    });
-  });
+  var suggestedBooksChunks = await getRandomBooks(6, 3);
+  for (var chunk of suggestedBooksChunks) {
+    for (var e of chunk) {
+    e.author = await getAuthorById(e.author);
+    }
+  }
   info.suggestedBooks = suggestedBooksChunks;
 
   res.render(pathname, info);

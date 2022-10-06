@@ -14,19 +14,21 @@ const {getLanguageById} = require('../../models/languages.js');
   * a partir de su id en req.params.member), obteniendo además el valor concreto de
   * sus distintos atributos, y respondiendo a través de un json con las mismos.
   */
-var listMemberPetitionsHandler = function (req, res) {
-  var member = getMemberById(req.params.member);
-  var memberPetitions = member.petitions.map(function (petitionId) {
-    var petition = getPetitionById(petitionId);
-    return petition;
-  });
+var listMemberPetitionsHandler = async function (req, res) {
+  var member = await getMemberById(req.params.member);
 
-  memberPetitions.forEach(function (e) {
-    e.author = getAuthorById(e.author);
+  var memberPetitions = [];
+  for (var petitionId of member.petitions) {
+    var petition = await getPetitionById(petitionId);
+    memberPetitions.push(petition);
+  }
+
+  for (var e of memberPetitions) {
+    e.author = await getAuthorById(e.author);
     e.category = getCategoryById(e.category);
     e.subcategory = getSubcategoryById(e.subcategory);
     e.language = getLanguageById(e.language);
-  });
+  }
 
   return res.json(memberPetitions);
 };

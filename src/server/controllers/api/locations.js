@@ -12,17 +12,22 @@ const {getMemberById} = require('../../models/members.js');
   * los distintos atributos de los libros en ellas incluidos; y respondiendo a través
   * de un json con las mismas.
   */
-var listMemberLocationsHandler = function (req, res) {
-  var member = getMemberById(req.params.member);
-  var memberLocations = member.locations.map(function (locationId) {
-    var location = getLocationById(locationId);
-    var booksInEachLocation = location.books.map(function (bookId) {
-      var book = getBookById(bookId);
-      return book;
-    });
+var listMemberLocationsHandler = async function (req, res) {
+  var member = await getMemberById(req.params.member);
+
+  var memberLocations = [];
+  for (var locationId of member.locations) {
+    var location = await getLocationById(locationId);
+
+    var booksInEachLocation = [];
+    for (var bookId of location.books) {
+      var book = await getBookById(bookId);
+      booksInEachLocation.push(book);
+    }
     location.books = booksInEachLocation;
-    return location;
-  });
+
+    memberLocations.push(location);
+  }
 
   return res.json(memberLocations);
 };

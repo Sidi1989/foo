@@ -30,7 +30,7 @@ var bookProfileHandler = async function (req, res) {
     info.member = member;
   }
 
-  var book = getBookById(req.params.book, true);
+  var book = await getBookById(req.params.book, true);
   if (book == null) {
     res.status(404).send('Algo ha salido mal');
   } else {
@@ -40,7 +40,7 @@ var bookProfileHandler = async function (req, res) {
   if (!info.book.reviews) info.book.reviews = [];
   var reviewsMapped = [];
   for (var id of info.book.reviews) {
-    var review = getReviewById(id);
+    var review = await getReviewById(id);
     if (review.reviewer == null) {
       review.reviewer = {};
     } else {
@@ -51,12 +51,12 @@ var bookProfileHandler = async function (req, res) {
   }
   info.reviews = reviewsMapped;
 
-  var suggestedBooksChunks = getRandomBooks(6, 3);
-  suggestedBooksChunks.forEach(function (chunk) {
-    chunk.forEach(function (book) {
-      book.author = getAuthorById(book.author);
-    });
-  });
+  var suggestedBooksChunks = await getRandomBooks(6, 3);
+  for (var chunk of suggestedBooksChunks) {
+    for (var e of chunk) {
+    e.author = await getAuthorById(e.author);
+    }
+  }
   info.suggestedBooks = suggestedBooksChunks;
 
   res.render(pathname, info);

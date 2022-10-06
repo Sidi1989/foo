@@ -12,16 +12,18 @@ const {getMemberById} = require('../../models/members.js');
   * los distintos atributos del libro en cada una referido; y respondiendo a través
   * de un json con las mismas.
   */
-var listMemberReviewsHandler = function (req, res) {
-  var member = getMemberById(req.params.member);
-  var memberReviews = member.reviews.map(function (reviewId) {
-    var review = getReviewById(reviewId);
-    return review;
-  });
+var listMemberReviewsHandler = async function (req, res) {
+  var member = await getMemberById(req.params.member);
 
-  memberReviews.forEach(function (e) {
-    e.book = getBookById(e.book);
-  });
+  var memberReviews = [];
+  for (var reviewId of member.reviews) {
+    var review = await getReviewById(reviewId);
+    memberReviews.push(review);
+  }
+
+  for (var e of memberReviews) {
+    e.book = await getBookById(e.book);
+  }
 
   return res.json(memberReviews);
 };
