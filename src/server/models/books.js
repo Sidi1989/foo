@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
+const {db: nodeDB} = require('../connections/nodejsondb.js');
 const {getAuthorById} = require('./authors');
 const {getCollectionById} = require('./collections');
 const {getLanguageById} = require('./languages');
@@ -13,9 +14,8 @@ const {getLocationById} = require('./locations');
   * @description
   * función con que se obtiene desde la DB todo el objeto "books"
   */
-var getAllBooks = function () {
-  var type = 'book';
-  const books = db.read(type);
+var getAllBooks = async function () {
+  const books = await nodeDB.read('book');
 
   return books;
 };
@@ -29,9 +29,8 @@ var getAllBooks = function () {
   * el libro será o no más completa, por recuperar en detalle el valor de sus
   * distintos atributos.
   */
-var getBookById = function (id, populate) {
-  var type = 'book';
-  var books = db.read(type);
+var getBookById = async function (id, populate) {
+  const books = await nodeDB.read('book');
   var filteredBooks = books.filter(function (e) {
     return (e.id == id);
   });
@@ -44,23 +43,24 @@ var getBookById = function (id, populate) {
   }
 
   if (populate == true) {
-    var location = getLocationById(book.location);
-    book.location = location;
-
     var language = getLanguageById(book.language);
     book.language = language;
 
-    var author = getAuthorById(book.author);
+    var location = await getLocationById(book.location);
+    book.location = location;
+
+    var author = await getAuthorById(book.author);
     book.author = author;
 
-    var collection = getCollectionById(book.collection);
+    var collection = await getCollectionById(book.collection);
     book.collection = collection;
 
     if (!collection.books) collection.books = [];
-    var collectionMapped = collection.books.map(function (bookId) {
-      var book = getBookById(bookId);
-      return book;
-    });
+    var collectionMapped = [];
+    for (var bookId of collection.books) {
+      var bookInCollection = await getBookById(bookId);
+      collectionMapped.push(bookInCollection);
+    }
     book.collection.books = collectionMapped;
   }
 
@@ -74,9 +74,8 @@ var getBookById = function (id, populate) {
   * aleatorizar el listado de sus elementos y quedarse con sólo un número
   * específico de ellos, en grupos de varios (ambas opciones siendo los parámetros de la función)
   */
-var getRandomBooks = function (quantity, size) {
-  var type = 'book';
-  var books = db.read(type);
+var getRandomBooks = async function (quantity, size) {
+  const books = await nodeDB.read('book');
 
   var shuffledBooks = _.shuffle(books);
   var takenBooks = _.take(shuffledBooks, quantity);

@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const {db} = require('../connections/rawjson.js');
+const {db: nodeDB} = require('../connections/nodejsondb.js');
 
 
 
@@ -8,9 +8,8 @@ const {db} = require('../connections/rawjson.js');
   * @description
   * función con que se obtiene desde la DB todo el objeto "quotes"
   */
-var getAllQuotes = function () {
-  var type = 'quote';
-  var quotes = db.read(type);
+var getAllQuotes = async function () {
+  const quotes = await nodeDB.read('quote');
 
   return quotes;
 };
@@ -21,10 +20,8 @@ var getAllQuotes = function () {
   * función con que se filtra y obtiene la información de la DB sobre una "quote"
   * específica a partir de la identificación de su atributo "id"
   */
-var getQuoteById = function (id) {
-  var type = 'quote';
-  var quotes = db.read(type);
-
+var getQuoteById = async function (id) {
+  const quotes = await nodeDB.read('quote');
   var filteredQuotes = quotes.filter(function (e) {
     return (e.id == id);
   });
@@ -35,7 +32,6 @@ var getQuoteById = function (id) {
   } else {
     quote = filteredQuotes[0];
   }
-
   return quote;
 };
 
@@ -46,9 +42,8 @@ var getQuoteById = function (id) {
   * aleatorizar el listado de sus elementos y quedarse con sólo un número
   * específico de ellos (que es el parámetro de la función)
   */
-var getRandomQuotes = function (quantity) {
-  var type = 'quote';
-  var quotes = db.read(type);
+var getRandomQuotes = async function (quantity) {
+  const quotes = await nodeDB.read('quote');
 
   var shuffledQuotes = _.shuffle(quotes);
   var takenQuotes = _.take(shuffledQuotes, quantity);

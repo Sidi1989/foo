@@ -1,5 +1,6 @@
 const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
+const {db: nodeDB} = require('../connections/nodejsondb.js');
 
 
 
@@ -8,9 +9,8 @@ const {db} = require('../connections/rawjson.js');
   * @description
   * función con que se obtiene desde la DB todo el objeto "petitions"
   */
-var getAllPetitions = function () {
-  var type = 'petition';
-  var petitions = db.read(type);
+var getAllPetitions = async function () {
+  const petitions = await nodeDB.read('petition');
 
   return petitions;
 };
@@ -21,9 +21,8 @@ var getAllPetitions = function () {
   * función con que se filtra y obtiene la información de la DB sobre una "petition"
   * específica a partir de la identificación de su atributo "id"
   */
-var getPetitionById = function (id) {
-  var type = 'petition';
-  var petitions = db.read(type);
+var getPetitionById = async function (id) {
+  const petitions = await nodeDB.read('petition');
   var filteredPetitions = petitions.filter(function (e) {
     return (e.id == id);
   });

@@ -1,5 +1,6 @@
 const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
+const {db: nodeDB} = require('../connections/nodejsondb.js');
 
 
 
@@ -8,9 +9,8 @@ const {db} = require('../connections/rawjson.js');
   * @description
   * función con que se obtiene desde la DB todo el objeto "locations"
   */
-var getAllLocations = function () {
-  var type = 'location';
-  var locations = db.read(type);
+var getAllLocations = async function () {
+  const locations = await nodeDB.read('location');
 
   return locations;
 };
@@ -21,9 +21,8 @@ var getAllLocations = function () {
   * función con que se filtra y obtiene la información de la DB sobre una "location"
   * específica a partir de la identificación de su atributo "id"
   */
-var getLocationById = function (id) {
-  var type = 'location';
-  var locations = db.read(type);
+var getLocationById = async function (id) {
+  const locations = await nodeDB.read('location');
   var filteredLocations = locations.filter(function (e) {
     return (e.id == id);
   });

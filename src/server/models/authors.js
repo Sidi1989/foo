@@ -1,4 +1,4 @@
-const {db} = require('../connections/rawjson.js');
+const {db: nodeDB} = require('../connections/nodejsondb.js');
 
 
 
@@ -7,9 +7,8 @@ const {db} = require('../connections/rawjson.js');
   * @description
   * función con que se obtiene desde la DB todo el objeto "authors"
   */
-var getAllAuthors = function () {
-  var type = 'author';
-  var authors = db.read(type);
+var getAllAuthors = async function () {
+  const authors = await nodeDB.read('author');
 
   return authors;
 };
@@ -21,7 +20,7 @@ var getAllAuthors = function () {
   * específico a partir de la identificación de su atributo "id".
   * Previéndose además que el author.name sea 'Anónimo' cuando (id == null)
   */
-var getAuthorById = function (id) {
+var getAuthorById = async function (id) {
   var author;
 
   if (id == null) {
@@ -30,8 +29,7 @@ var getAuthorById = function (id) {
     return author;
   }
 
-  var type = 'author';
-  var authors = db.read(type);
+  const authors = await nodeDB.read('author');
   var filteredAuthors = authors.filter(function (e) {
     return (e.id == id);
   });

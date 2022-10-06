@@ -1,16 +1,16 @@
 const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
+const {db: nodeDB} = require('../connections/nodejsondb.js');
 
 
 
 
 /**
- * @description
- * función con que se obtiene desde la DB todo el objeto "collections"
- */
-var getAllCollections = function () {
-  var type = 'collection';
-  var collections = db.read(type);
+  * @description
+  * función con que se obtiene desde la DB todo el objeto "collections"
+  */
+var getAllCollections = async function () {
+  const collections = await nodeDB.read('collection');
 
   return collections;
 };
@@ -21,8 +21,8 @@ var getAllCollections = function () {
   * función con que se filtra y obtiene la información de la DB sobre una "collection"
   * específica a partir de la identificación de su atributo "id".
   * Previéndose además que el collection.name sea 'Sin Colección' cuando (id == null)
- */
-var getCollectionById = function (id) {
+  */
+var getCollectionById = async function (id) {
   var collection;
 
   if (id == null) {
@@ -31,8 +31,7 @@ var getCollectionById = function (id) {
     return collection;
   }
 
-  var type = 'collection';
-  var collections = db.read(type);
+  const collections = await nodeDB.read('collection');
   var filteredCollections = collections.filter(function (e) {
     return (e.id == id);
   });
@@ -48,13 +47,15 @@ var getCollectionById = function (id) {
 
 
 /**
- * @description
- * función para añadir un nuevo elemento al objeto "collections" de la DB,
- * asignándole: un atributo "id" cuasialeatorio, un atributo "addingDate"
- * en función del momento en que tenga lugar la llamada de la función, y los demás
- * atributos en función de la información proporcionada al momento de dicha llamada
- */
-var createCollection = function (info) {
+  * @description
+  * función para añadir un nuevo elemento al objeto "collections" de la DB,
+  * asignándole: un atributo "id" cuasialeatorio, un atributo "addingDate"
+  * en función del momento en que tenga lugar la llamada de la función, y los demás
+  * atributos en función de la información proporcionada al momento de dicha llamada
+  */
+var createCollection = async function (info) {
+
+  // Creación de la nueva Colección
   var type = 'collection';
   var collectionId = `col${uuidv4().slice(0,3)}`;
   var date = `${new Date().toJSON().split('T')[0]}`
@@ -65,17 +66,24 @@ var createCollection = function (info) {
     name: info.name,
     pic: info.pic
   };
-  db.write(type, collectionId, newCollection);
+  await nodeDB.append(type, newCollection);
 
+  /* Asignación al miembro
+  var allMembers = db.read('member');
+  var memberIndex = allMembers.findIndex(function(e) {
+    return e.id == newCollection.owner;
+  })
+  await nodeDB.write('member', `${memberIndex}`, newCollection);
+*/
   return newCollection;
 };
 
 
 /**
- * @description
- * función para eliminar un elemento del objeto "collections" de la DB, identificado
- * por su atributo "id" (que es el parámetro de la función)
- */
+  * @description
+  * función para eliminar un elemento del objeto "collections" de la DB, identificado
+  * por su atributo "id" (que es el parámetro de la función)
+  */
 var deleteCollection = function (collectionId) {
   var type = 'collection';
   db.erase(type, collectionId);

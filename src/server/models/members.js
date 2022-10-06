@@ -69,55 +69,64 @@ var getMemberById = async function (id, populate) {
   }
 
   if (populate == true) {
-    var locationsMapped = member.locations.map(function (locationId) {
-      var location = getLocationById(locationId);
-      return location;
-    });
-    member.locations = locationsMapped;
-
-    var reviewsMapped = member.reviews.map(function (reviewId) {
-      var review = getReviewById(reviewId);
-      return review;
-      });
-      reviewsMapped.forEach(function (e) {
-        e.book = getBookById(e.book);
-    });
-    member.reviews = reviewsMapped;
-
     if (!member.collections) member.collections = [];
-    var collectionsMapped = member.collections.map(function (collectionId) {
-      var collection = getCollectionById(collectionId);
-      var booksInEachCollection = collection.books.map(function (bookId) {
-        var book = getBookById(bookId);
-        return book;
-      });
+    var collectionsMapped = [];
+    for (var collectionId of member.collections) {
+      var collection = await getCollectionById(collectionId);
+
+      var booksInEachCollection = [];
+      for (var bookInCollectionId of collection.books) {
+        var bookInCollection = await getBookById(bookInCollectionId);
+        booksInEachCollection.push(bookInCollection);
+
+        for (var e of booksInEachCollection) {
+          e.author = await getAuthorById(e.author);
+        }
+      }
       collection.books = booksInEachCollection;
-      booksInEachCollection.forEach(function (e) {
-        e.author = getAuthorById(e.author);
-      });
-      return collection;
-    });
+
+      collectionsMapped.push(collection);
+    }
     member.collections = collectionsMapped;
 
+    if (!member.books) member.books = [];
+    var booksMapped = [];
+    for (var bookId of member.books) {
+      var book = await getBookById(bookId);
+      booksMapped.push(book);
+    }
+    for (var b of booksMapped) {
+      b.author = await getAuthorById(b.author);
+    }
+    member.books = booksMapped;
+
     if (!member.petitions) member.petitions = [];
-    var petitionsMapped = member.petitions.map(function (petitionId) {
-      var petition = getPetitionById(petitionId);
-      return petition;
-      });
-      petitionsMapped.forEach(function (e) {
-        e.author = getAuthorById(e.author);
-    });
+    var petitionsMapped = [];
+    for (var petitionId of member.petitions) {
+      var petition = await getPetitionById(petitionId);
+      petitionsMapped.push(petition);
+    }
+    for (var pet of petitionsMapped) {
+      pet.author = await getAuthorById(pet.author);
+    }
     member.petitions = petitionsMapped;
 
-    if (!member.books) member.books = [];
-    var booksMapped = member.books.map(function (bookId) {
-      var book = getBookById(bookId);
-      return book;
-    });
-    booksMapped.forEach(function (e) {
-      e.author = getAuthorById(e.author);
-    });
-    member.books = booksMapped;
+    var reviewsMapped = [];
+    for (var reviewId of member.reviews) {
+      var review = await getReviewById(reviewId);
+      reviewsMapped.push(review);
+    }
+    for (var rev of reviewsMapped) {
+        rev.book = await getBookById(rev.book);
+    }
+    member.reviews = reviewsMapped;
+
+    var locationsMapped = [];
+    for (var locationId of member.locations) {
+      var location = await getLocationById(locationId);
+      locationsMapped.push(location);
+    }
+    member.locations = locationsMapped;
   }
 
   return member;
@@ -134,40 +143,43 @@ var getMemberById = async function (id, populate) {
   * segundo parámetro booleano, en función del cual la información sobre el mismo
   * será o no más completa, por recuperar en detalle el valor de sus distintos atributos.
   */
-var getLastBookForMember = function (memberId, populate) {
-  var books = getAllBooks();
+var getLastBookForMember = async function (memberId, populate) {
+  var books = await getAllBooks();
   var memberBooks = books.filter(function (e) {
     return e.owner == memberId;
   });
+
   var sortedBooks = _.sortBy(memberBooks, 'addingDate');
   var lastBook = _.head(sortedBooks);
   if (!lastBook) lastBook = null;
 
   if (populate == true) {
-    lastBook.author = getAuthorById(lastBook.author);
+    lastBook.author = await getAuthorById(lastBook.author);
     if (lastBook.author == null) lastBook.author = {};
 
-    lastBook.collection = getCollectionById(lastBook.collection);
+    lastBook.collection = await getCollectionById(lastBook.collection);
     if (lastBook.collection == null) lastBook.collection = {};
 
     if (!lastBook.collection.books) lastBook.collection.books = [];
-    var lastBookCollectionMapped = lastBook.collection.books.map(function (bookId) {
-      var book = getBookById(bookId);
-      return book;
-    });
+    var lastBookCollectionMapped = [];
+    for (var bookId of lastBook.collection.books) {
+      var book = await getBookById(bookId);
+      lastBookCollectionMapped.push(book)
+    }
     lastBook.collection.books = lastBookCollectionMapped;
 
     if (!lastBook.reviews) lastBook.reviews = [];
-    var lastBookReviewsMapped = lastBook.reviews.map(async function (reviewId) {
-      var review = getReviewById(reviewId);
+    var lastBookReviewsMapped = [];
+    for (var reviewId of lastBook.reviews) {
+      var review = await getReviewById(reviewId);
       if (review.reviewer == null) {
         review.reviewer = {}
       } else {
         var reviewer = await getMemberById(review.reviewer);
         review.reviewer = reviewer;
       }
-      return review;
-    });
+      lastBookReviewsMapped.push(review);
+    }
     lastBook.reviews = lastBookReviewsMapped;
   }
 

@@ -1,5 +1,6 @@
 const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
+const {db: nodeDB} = require('../connections/nodejsondb.js');
 
 
 
@@ -8,9 +9,8 @@ const {db} = require('../connections/rawjson.js');
   * @description
   * función con que se obtiene desde la DB todo el objeto "reviews"
   */
-var getAllReviews = function () {
-  var type = 'review';
-  var reviews = db.read(type);
+var getAllReviews = async function () {
+  const reviews = await nodeDB.read('review');
 
   return reviews;
 };
@@ -21,10 +21,8 @@ var getAllReviews = function () {
   * función con que se filtra y obtiene la información de la DB sobre una "review"
   * específica a partir de la identificación de su atributo "id"
   */
-var getReviewById = function (id) {
-  var type = 'review';
-  var reviews = db.read(type);
-
+var getReviewById = async function (id) {
+  const reviews = await nodeDB.read('review');
   var filteredReviews = reviews.filter(function (e) {
     return (e.id == id);
   });
