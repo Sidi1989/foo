@@ -128,19 +128,20 @@ const SUBCATEGORIES = [
 
 
 /**
- * @description
- * función con que se obtiene desde la DB todo el objeto "categories"
- */
+  * @description
+  * función con que se obtiene desde la DB todo el objeto "categories"
+  */
 var getAllSubcategories = function () {
+
   return SUBCATEGORIES;
 };
 
 
 /**
- * @description
- * función con que se filtra y obtiene la información de la DB sobre una "subcategory"
- * específica a partir de la identificación de su atributo "id"
- */
+  * @description
+  * función con que se filtra y obtiene la información de la DB sobre una "subcategory"
+  * específica a partir de la identificación de su atributo "id"
+  */
 var getSubcategoryById = function (id) {
   var filteredSubcategories = SUBCATEGORIES.filter(function (e) {
     return (e.id == id);

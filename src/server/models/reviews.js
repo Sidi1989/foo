@@ -5,9 +5,9 @@ const {db} = require('../connections/rawjson.js');
 
 
 /**
- * @description
- * función con que se obtiene desde la DB todo el objeto "reviews"
- */
+  * @description
+  * función con que se obtiene desde la DB todo el objeto "reviews"
+  */
 var getAllReviews = function () {
   var type = 'review';
   var reviews = db.read(type);
@@ -17,21 +17,18 @@ var getAllReviews = function () {
 
 
 /**
- * @description
- * función con que se filtra y obtiene la información de la DB sobre una "review"
- * específica a partir de la identificación de su atributo "id"
- */
-var getReviewById = function (id, populate=false) {
+  * @description
+  * función con que se filtra y obtiene la información de la DB sobre una "review"
+  * específica a partir de la identificación de su atributo "id"
+  */
+var getReviewById = function (id) {
   var type = 'review';
   var reviews = db.read(type);
+
   var filteredReviews = reviews.filter(function (e) {
     return (e.id == id);
   });
 
-/*memberReviews.forEach(function (e) {
-  e.book = getBookById(e.book);
-});
-*/
   var review;
   if (filteredReviews.length == 0) {
     review = null;
@@ -42,14 +39,13 @@ var getReviewById = function (id, populate=false) {
   return review;
 };
 
-
 /**
- * @description
- * función para añadir un nuevo elemento al objeto "reviews" de la DB,
- * asignándole: un atributo "id" cuasialeatorio, un atributo "addingDate"
- * en función del momento en que tenga lugar la llamada de la función, y los demás
- * atributos en función de la información proporcionada al momento de dicha llamada
- */
+  * @description
+  * función para añadir un nuevo elemento al objeto "reviews" de la DB,
+  * asignándole: un atributo "id" cuasialeatorio, un atributo "addingDate"
+  * en función del momento en que tenga lugar la llamada de la función, y los demás
+  * atributos en función de la información proporcionada al momento de dicha llamada
+  */
 var createReview = function (info) {
   var type = 'review';
   var reviewId = `rev${uuidv4().slice(0,3)}`;
@@ -70,10 +66,10 @@ var createReview = function (info) {
 
 
 /**
- * @description
- * función para eliminar un elemento del objeto "reviews" de la DB, identificado
- * por su atributo "id" (que es el parámetro de la función)
- */
+  * @description
+  * función para eliminar un elemento del objeto "reviews" de la DB, identificado
+  * por su atributo "id" (que es el parámetro de la función)
+  */
 var deleteReview = function (reviewId) {
   var type = 'review';
   db.erase(type, reviewId);

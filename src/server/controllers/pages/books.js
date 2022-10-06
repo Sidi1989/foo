@@ -1,23 +1,20 @@
-const {getLocationById} = require('../../models/locations.js');
-const {getLanguageById} = require('../../models/languages.js');
-const {getBookById, getRandomBooks} = require('../../models/books.js');
-const {getMemberById, getCollectionsForMember} = require('../../models/members.js');
 const {getAuthorById} = require('../../models/authors.js');
-const {getCollectionById} = require('../../models/collections.js');
+const {getBookById, getRandomBooks} = require('../../models/books.js');
+const {getMemberById} = require('../../models/members.js');
 const {getReviewById} = require('../../models/reviews.js');
 
 
 
 
 /**
- * @description
- * handler destinado a cubrir la petición de mostrar la Página Principal de
- * un Libro concreto (identificado desde req.params.book); y que recupera además
- * información transversal sobre su poseedor (identificado desde req.user.id)
- *
- * @param req contiene la información de la petición
- * @param res contiene la renderización de la petición para el cliente
- */
+  * @description
+  * handler destinado a cubrir la petición de mostrar la Página Principal de
+  * un Libro concreto (identificado desde req.params.book); y que recupera además
+  * información transversal sobre su poseedor (identificado desde req.user.id)
+  *
+  * @param req contiene la información de la petición
+  * @param res contiene la renderización de la petición para el cliente
+  */
 var bookProfileHandler = async function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/book-profile.ejs`;
   var info = {};
@@ -26,37 +23,19 @@ var bookProfileHandler = async function (req, res) {
   info.subcategories = req.subcategories;
   info.languages = req.languages;
 
-  var book = getBookById(req.params.book);
+  var member = await getMemberById(req.user.id, true);
+  if (member == null) {
+    res.status(404).send('Algo ha salido mal');
+  } else {
+    info.member = member;
+  }
+
+  var book = getBookById(req.params.book, true);
   if (book == null) {
-    info.book = {};
+    res.status(404).send('Algo ha salido mal');
   } else {
     info.book = book;
   }
-
-  var member = await getMemberById (req.user.id);
-  info.member = member;
-
-  var memberCollections = getCollectionsForMember(member.id);
-  info.member.collections = memberCollections;
-
-  var location = getLocationById(book.location);
-  info.book.location = location;
-
-  var language = getLanguageById(book.language);
-  info.book.language = language;
-
-  var author = getAuthorById(book.author);
-  info.book.author = author;
-
-  var collection = getCollectionById(book.collection);
-  info.book.collection = collection;
-
-  if (!collection.books) collection.books = [];
-  var collectionMapped = collection.books.map(function (bookId) {
-    var book = getBookById(bookId);
-    return book;
-  });
-  info.book.collection.books = collectionMapped;
 
   if (!info.book.reviews) info.book.reviews = [];
   var reviewsMapped = [];

@@ -2,16 +2,20 @@ const _ = require('lodash');
 const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
 const {db: nodeDB} = require('../connections/nodejsondb.js');
-const {getAllBooks} = require('./books');
-const {getAllCollections} = require('./collections');
+const {getAuthorById} = require('./authors');
+const {getAllBooks, getBookById} = require('./books');
+const {getCollectionById} = require('./collections');
+const {getLocationById} = require('./locations');
+const {getPetitionById} = require('./petitions');
+const {getReviewById} = require('./reviews');
 
 
 
 
 /**
- * @description
- * función con que se obtiene desde la DB todo el objeto "members"
- */
+  * @description
+  * función con que se obtiene desde la DB todo el objeto "members"
+  */
 var getAllMembers = async function () {
   const members = await nodeDB.read('member');
 
@@ -20,10 +24,10 @@ var getAllMembers = async function () {
 
 
 /**
- * @description
- * función con que se filtra y obtiene la información de la DB sobre un "member"
- * específico a partir de la identificación de su atributo "session"
- */
+  * @description
+  * función con que se filtra y obtiene la información de la DB sobre un "member"
+  * específico a partir de la identificación de su atributo "session"
+  */
 var getMemberBySession = async function (session) {
   if (!session) return null;
 
@@ -44,11 +48,14 @@ var getMemberBySession = async function (session) {
 
 
 /**
- * @description
- * función con que se filtra y obtiene la información de la DB sobre un "member"
- * específico a partir de la identificación de su atributo "id"
- */
-var getMemberById = async function (id) {
+  * @description
+  * función con que se filtra y obtiene la información de la DB sobre un "member"
+  * específico a partir de la identificación de su atributo "id"; contando además
+  * con un segundo parámetro booleano, en función del cual la información sobre
+  * el miembro será o no más completa, por recuperar en detalle el valor de sus
+  * distintos atributos.
+  */
+var getMemberById = async function (id, populate) {
   const members = await nodeDB.read('member');
   var filteredMembers = members.filter(function (e) {
     return (e.id == id);
@@ -61,20 +68,73 @@ var getMemberById = async function (id) {
     member = filteredMembers[0];
   }
 
+  if (populate == true) {
+    var locationsMapped = member.locations.map(function (locationId) {
+      var location = getLocationById(locationId);
+      return location;
+    });
+    member.locations = locationsMapped;
+
+    var reviewsMapped = member.reviews.map(function (reviewId) {
+      var review = getReviewById(reviewId);
+      return review;
+      });
+      reviewsMapped.forEach(function (e) {
+        e.book = getBookById(e.book);
+    });
+    member.reviews = reviewsMapped;
+
+    if (!member.collections) member.collections = [];
+    var collectionsMapped = member.collections.map(function (collectionId) {
+      var collection = getCollectionById(collectionId);
+      var booksInEachCollection = collection.books.map(function (bookId) {
+        var book = getBookById(bookId);
+        return book;
+      });
+      collection.books = booksInEachCollection;
+      booksInEachCollection.forEach(function (e) {
+        e.author = getAuthorById(e.author);
+      });
+      return collection;
+    });
+    member.collections = collectionsMapped;
+
+    if (!member.petitions) member.petitions = [];
+    var petitionsMapped = member.petitions.map(function (petitionId) {
+      var petition = getPetitionById(petitionId);
+      return petition;
+      });
+      petitionsMapped.forEach(function (e) {
+        e.author = getAuthorById(e.author);
+    });
+    member.petitions = petitionsMapped;
+
+    if (!member.books) member.books = [];
+    var booksMapped = member.books.map(function (bookId) {
+      var book = getBookById(bookId);
+      return book;
+    });
+    booksMapped.forEach(function (e) {
+      e.author = getAuthorById(e.author);
+    });
+    member.books = booksMapped;
+  }
+
   return member;
 };
 
 
 /**
- * @description
- * función con que se obtiene de la DB la información sobre todos los libros,
- * para filtrar a continuación sólo aquellos cuyo atributo "owner" coincida con
- * el atributo "id" del miembro correspondiente (que es el parámetro de la función).
- * Y por último, de entre todos los posibles libros obtenidos, se obtiene su
- * ordenación en función de la fecha, devolviendo únicamente el último de ellos
- * según tal criterio
- */
-var getLastBookForMember = function (memberId) {
+  * @description
+  * función con que se obtiene de la DB la información sobre todos los libros,
+  * para filtrar a continuación sólo aquellos cuyo atributo "owner" coincida con
+  * el atributo "id" del miembro correspondiente (primer parámetro de la función).
+  * Después, y de entre todos los posibles libros obtenidos, devolverá sólo el
+  * último de ellos (ordenados en función de la fecha); contando además con un
+  * segundo parámetro booleano, en función del cual la información sobre el mismo
+  * será o no más completa, por recuperar en detalle el valor de sus distintos atributos.
+  */
+var getLastBookForMember = function (memberId, populate) {
   var books = getAllBooks();
   var memberBooks = books.filter(function (e) {
     return e.owner == memberId;
@@ -116,12 +176,12 @@ var getLastBookForMember = function (memberId) {
 
 
 /**
- * @description
- * función para añadir un nuevo elemento al objeto "members" de la DB,
- * asignándole: un atributo "id" cuasialeatorio, un atributo "addingDate"
- * en función del momento en que tenga lugar la llamada de la función, y los demás
- * atributos en función de la información proporcionada al momento de dicha llamada
- */
+  * @description
+  * función para añadir un nuevo elemento al objeto "members" de la DB,
+  * asignándole: un atributo "id" cuasialeatorio, un atributo "addingDate"
+  * en función del momento en que tenga lugar la llamada de la función, y los demás
+  * atributos en función de la información proporcionada al momento de dicha llamada
+  */
 var createMember = function (info) {
   var type = 'member';
   var memberId = `m${uuidv4().slice(0,3)}`;
@@ -143,10 +203,10 @@ var createMember = function (info) {
 
 
 /**
- * @description
- * función para eliminar un elemento del objeto "members" de la DB, identificado
- * por su atributo "id" (que es el parámetro de la función)
- */
+  * @description
+  * función para eliminar un elemento del objeto "members" de la DB, identificado
+  * por su atributo "id" (que es el parámetro de la función)
+  */
 var deleteMember = function (memberId) {
   var type = 'member';
   db.erase(type, memberId);

@@ -27,19 +27,20 @@ const CATEGORIES = [
 
 
 /**
- * @description
- * función con que se obtiene desde la DB todo el objeto "categories"
- */
+  * @description
+  * función con que se obtiene desde la DB todo el objeto "categories"
+  */
 var getAllCategories = function () {
+
   return CATEGORIES;
 };
 
 
 /**
- * @description
- * función con que se filtra y obtiene la información de la DB sobre una "category"
- * específica a partir de la identificación de su atributo "id"
- */
+  * @description
+  * función con que se filtra y obtiene la información de la DB sobre una "category"
+  * específica a partir de la identificación de su atributo "id"
+  */
 var getCategoryById = function (id) {
   var filteredCategories = CATEGORIES.filter(function (e) {
     return (e.id == id);
