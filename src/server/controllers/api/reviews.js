@@ -6,12 +6,12 @@ const {getMemberById} = require('../../models/members.js');
 
 
 /**
- * @description
- * función para listar todas las reviews de un miembro determinado (conocido
- * a partir de su id en req.params.member), obteniendo además el valor concreto de
- * los distintos atributos del libro en cada una referido; y respondiendo a través
- * de un json con las mismas.
- */
+  * @description
+  * función para listar todas las reviews de un miembro determinado (conocido
+  * a partir de su id en req.params.member), obteniendo además el valor concreto de
+  * los distintos atributos del libro en cada una referido; y respondiendo a través
+  * de un json con las mismas.
+  */
 var listMemberReviewsHandler = function (req, res) {
   var member = getMemberById(req.params.member);
   var memberReviews = member.reviews.map(function (reviewId) {
@@ -28,10 +28,10 @@ var listMemberReviewsHandler = function (req, res) {
 
 
 /**
- * @description
- * handler para responder a la petición de la creación de una nueva review,
- * a partir de los datos proporcionados en el req.body.
- */
+  * @description
+  * handler para responder a la petición de la creación de una nueva review,
+  * a partir de los datos proporcionados en el req.body.
+  */
 var createReviewHandler = function (req, res) {
   var newReviewInfo = {
     reviewer: req.user.id,
@@ -52,10 +52,10 @@ var createReviewHandler = function (req, res) {
 
 
 /**
- * @description
- * handler para responder a la petición de recuperar la información almacenada
- * sobre una review concreta (conocida a partir de su id en req.params.review).
- */
+  * @description
+  * handler para responder a la petición de recuperar la información almacenada
+  * sobre una review concreta (conocida a partir de su id en req.params.review).
+  */
 var retrieveReviewHandler = function (req, res) {
   var review = getReviewById(req.params.review);
 
@@ -64,10 +64,10 @@ var retrieveReviewHandler = function (req, res) {
 
 
 /**
- * @description
- * handler para responder a la petición de modificar la información almacenada
- * sobre una review concreta (conocida a partir de su id en req.params.review).
- */
+  * @description
+  * handler para responder a la petición de modificar la información almacenada
+  * sobre una review concreta (conocida a partir de su id en req.params.review).
+  */
 var editReviewHandler = function (req, res) {
   var review = getReviewById(req.params.review);
 
@@ -76,10 +76,10 @@ var editReviewHandler = function (req, res) {
 
 
 /**
- * @description
- * handler para responder a la petición de eliminar la información almacenada
- * sobre una review concreta (conocida a partir de su id en req.params.review).
- */
+  * @description
+  * handler para responder a la petición de eliminar la información almacenada
+  * sobre una review concreta (conocida a partir de su id en req.params.review).
+  */
 var deleteReviewHandler = function (req, res) {
   deleteReview(req.params.review);
 
@@ -87,7 +87,7 @@ var deleteReviewHandler = function (req, res) {
     status: "OK",
     review: req.params.review
   };
-  
+
   return res.json(info);
 };
 

@@ -9,11 +9,11 @@ const {getLanguageById} = require('../../models/languages.js');
 
 
 /**
- * @description
- * función para listar todas las peticiones de un miembro determinado (conocido
- * a partir de su id en req.params.member), obteniendo además el valor concreto de
- * sus distintos atributos, y respondiendo a través de un json con las mismos.
- */
+  * @description
+  * función para listar todas las peticiones de un miembro determinado (conocido
+  * a partir de su id en req.params.member), obteniendo además el valor concreto de
+  * sus distintos atributos, y respondiendo a través de un json con las mismos.
+  */
 var listMemberPetitionsHandler = function (req, res) {
   var member = getMemberById(req.params.member);
   var memberPetitions = member.petitions.map(function (petitionId) {
@@ -33,10 +33,10 @@ var listMemberPetitionsHandler = function (req, res) {
 
 
 /**
- * @description
- * handler para responder a la petición de la creación de una nueva petición,
- * a partir de los datos proporcionados en el req.body.
- */
+  * @description
+  * handler para responder a la petición de la creación de una nueva petición,
+  * a partir de los datos proporcionados en el req.body.
+  */
 var createPetitionHandler = function (req, res) {
   var newPetitionInfo = {
     title: req.body.title,
@@ -58,10 +58,10 @@ var createPetitionHandler = function (req, res) {
 
 
 /**
- * @description
- * handler para responder a la petición de recuperar la información almacenada
- * sobre una petición concreta (conocida a partir de su id en req.params.petition).
- */
+  * @description
+  * handler para responder a la petición de recuperar la información almacenada
+  * sobre una petición concreta (conocida a partir de su id en req.params.petition).
+  */
 var retrievePetitionHandler = function (req, res) {
   var petition = getPetitionById(req.params.petition);
 
@@ -70,10 +70,10 @@ var retrievePetitionHandler = function (req, res) {
 
 
 /**
- * @description
- * handler para responder a la petición de modificar la información almacenada
- * sobre una petición concreta (conocida a partir de su id en req.params.petition).
- */
+  * @description
+  * handler para responder a la petición de modificar la información almacenada
+  * sobre una petición concreta (conocida a partir de su id en req.params.petition).
+  */
 var editPetitionHandler = function (req, res) {
   var petition = getPetitionById(req.params.petition);
 
@@ -82,10 +82,10 @@ var editPetitionHandler = function (req, res) {
 
 
 /**
- * @description
- * handler para responder a la petición de eliminar la información almacenada
- * sobre una petición concreta (conocida a partir de su id en req.params.petition).
- */
+  * @description
+  * handler para responder a la petición de eliminar la información almacenada
+  * sobre una petición concreta (conocida a partir de su id en req.params.petition).
+  */
 var deletePetitionHandler = function (req, res) {
   deletePetition(req.params.petition);
 

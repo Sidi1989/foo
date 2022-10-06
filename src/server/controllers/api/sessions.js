@@ -5,14 +5,14 @@ const {getAllMembers, getMemberBySession} = require('../../models/members.js');
 
 
 /**
- * @description
- * handler para responder a la petición de crear una nueva sesión entre los
- * atributos de un miembro, una vez que el email y la contraseña proporcinados
- * en req.body se confirmen coincidentes con los datos de algún miembro; y de
- * manera que no sólo se identificará así al miembro para esa sesión, sino que
- * se actuará también en su información de la DB, almacenando el token que
- * hará referencia a la sesión concreta.
- */
+  * @description
+  * handler para responder a la petición de crear una nueva sesión entre los
+  * atributos de un miembro, una vez que el email y la contraseña proporcinados
+  * en req.body se confirmen coincidentes con los datos de algún miembro; y de
+  * manera que no sólo se identificará así al miembro para esa sesión, sino que
+  * se actuará también en su información de la DB, almacenando el token que
+  * hará referencia a la sesión concreta.
+  */
 var createSessionHandler = async function (req, res) {
   var members = await getAllMembers();
   var filteredMembers = members.filter(function (e) {
@@ -48,12 +48,12 @@ var createSessionHandler = async function (req, res) {
 
 
 /**
- * @description
- * handler para responder a la petición de eliminar la información sobre una sesión
- * de un miembro (conocido a partir de su atributo session, recuperado desde
- * req.body.session); y de manera que el SignOut no sólo borrará las cookies,
- * sino que actuará también en la información de la DB sobre el miembro.
- */
+  * @description
+  * handler para responder a la petición de eliminar la información sobre una sesión
+  * de un miembro (conocido a partir de su atributo session, recuperado desde
+  * req.body.session); y de manera que el SignOut no sólo borrará las cookies,
+  * sino que actuará también en la información de la DB sobre el miembro.
+  */
 var deleteSessionHandler = async function (req, res) {
   var member = await getMemberBySession(req.body.session);
 
