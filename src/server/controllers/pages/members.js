@@ -24,7 +24,7 @@ var signInHandler = async function (req, res) {
   var pathname = `${__dirname}/../../../views/pages/sign-in.ejs`;
   var info = {};
 
-  var dailyQuote = await getRandomQuotes(1)[0];
+  var dailyQuote = (await getRandomQuotes(1))[0];
   info.quote = dailyQuote;
 
   res.render(pathname, info);
