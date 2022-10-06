@@ -76,7 +76,7 @@ var getMemberById = async function (id, populate) {
 
       var booksInEachCollection = [];
       for (var bookInCollectionId of collection.books) {
-        var bookInCollection = await getBookById(bookInCollectionId);
+        var bookInCollection = await getBookById(bookInCollectionId, true);
         booksInEachCollection.push(bookInCollection);
 
         for (var e of booksInEachCollection) {
@@ -92,7 +92,7 @@ var getMemberById = async function (id, populate) {
     if (!member.books) member.books = [];
     var booksMapped = [];
     for (var bookId of member.books) {
-      var book = await getBookById(bookId);
+      var book = await getBookById(bookId, true);
       booksMapped.push(book);
     }
     for (var b of booksMapped) {
@@ -117,7 +117,7 @@ var getMemberById = async function (id, populate) {
       reviewsMapped.push(review);
     }
     for (var rev of reviewsMapped) {
-        rev.book = await getBookById(rev.book);
+        rev.book = await getBookById(rev.book, true);
     }
     member.reviews = reviewsMapped;
 
@@ -163,7 +163,7 @@ var getLastBookForMember = async function (memberId, populate) {
     if (!lastBook.collection.books) lastBook.collection.books = [];
     var lastBookCollectionMapped = [];
     for (var bookId of lastBook.collection.books) {
-      var book = await getBookById(bookId);
+      var book = await getBookById(bookId, true);
       lastBookCollectionMapped.push(book)
     }
     lastBook.collection.books = lastBookCollectionMapped;
@@ -175,7 +175,7 @@ var getLastBookForMember = async function (memberId, populate) {
       if (review.reviewer == null) {
         review.reviewer = {}
       } else {
-        var reviewer = await getMemberById(review.reviewer);
+        var reviewer = await getMemberById(review.reviewer, true);
         review.reviewer = reviewer;
       }
       lastBookReviewsMapped.push(review);

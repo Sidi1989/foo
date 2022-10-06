@@ -44,7 +44,7 @@ var bookProfileHandler = async function (req, res) {
     if (review.reviewer == null) {
       review.reviewer = {};
     } else {
-      var reviewer = await getMemberById(review.reviewer);
+      var reviewer = await getMemberById(review.reviewer, true);
       review.reviewer = reviewer;
     }
     reviewsMapped.push(review);

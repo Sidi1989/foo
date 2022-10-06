@@ -15,7 +15,7 @@ const {getLanguageById} = require('../../models/languages.js');
   * sus distintos atributos, y respondiendo a través de un json con las mismos.
   */
 var listMemberPetitionsHandler = async function (req, res) {
-  var member = await getMemberById(req.params.member);
+  var member = await getMemberById(req.params.member, true);
 
   var memberPetitions = [];
   for (var petitionId of member.petitions) {

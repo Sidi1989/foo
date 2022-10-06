@@ -38,11 +38,11 @@ var listBooksHandler = async function (req, res) {
   * sus distintos atributos, y respondiendo a través de un json con los mismos.
   */
 var listMemberBooksHandler = async function (req, res) {
-  var member = await getMemberById(req.params.member);
+  var member = await getMemberById(req.params.member, true);
 
   var memberBooks = [];
   for (var bookId of member.books) {
-    var book = await getBookById(bookId);
+    var book = await getBookById(bookId, true);
     memberBooks.push(book);
   }
 

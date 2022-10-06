@@ -13,7 +13,7 @@ const {getMemberById} = require('../../models/members.js');
   * de un json con las mismas.
   */
 var listMemberCollectionsHandler = async function (req, res) {
-  var member = await getMemberById(req.params.member);
+  var member = await getMemberById(req.params.member, true);
 
   var memberCollections = [];
   for (var collectionId of member.collections) {
@@ -21,7 +21,7 @@ var listMemberCollectionsHandler = async function (req, res) {
 
     var booksInEachCollection = [];
     for (var bookId of collection.books) {
-      var book = await getBookById(bookId);
+      var book = await getBookById(bookId, true);
       booksInEachCollection.push(book);
     }
     collection.books = booksInEachCollection;

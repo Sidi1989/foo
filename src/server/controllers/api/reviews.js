@@ -13,7 +13,7 @@ const {getMemberById} = require('../../models/members.js');
   * de un json con las mismas.
   */
 var listMemberReviewsHandler = async function (req, res) {
-  var member = await getMemberById(req.params.member);
+  var member = await getMemberById(req.params.member, true);
 
   var memberReviews = [];
   for (var reviewId of member.reviews) {
@@ -22,7 +22,7 @@ var listMemberReviewsHandler = async function (req, res) {
   }
 
   for (var e of memberReviews) {
-    e.book = await getBookById(e.book);
+    e.book = await getBookById(e.book, true);
   }
 
   return res.json(memberReviews);

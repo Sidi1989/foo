@@ -32,7 +32,7 @@ var collectionProfileHandler = async function (req, res) {
 
   var booksInCollection = [];
   for (var bookId of collection.books) {
-    var book = await getBookById(bookId);
+    var book = await getBookById(bookId, true);
     booksInCollection.push(book);
   }
   info.collection.books = booksInCollection;

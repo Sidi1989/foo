@@ -58,7 +58,7 @@ var getBookById = async function (id, populate) {
     if (!collection.books) collection.books = [];
     var collectionMapped = [];
     for (var bookId of collection.books) {
-      var bookInCollection = await getBookById(bookId);
+      var bookInCollection = await getBookById(bookId, true);
       collectionMapped.push(bookInCollection);
     }
     book.collection.books = collectionMapped;

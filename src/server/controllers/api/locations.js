@@ -13,7 +13,7 @@ const {getMemberById} = require('../../models/members.js');
   * de un json con las mismas.
   */
 var listMemberLocationsHandler = async function (req, res) {
-  var member = await getMemberById(req.params.member);
+  var member = await getMemberById(req.params.member, true);
 
   var memberLocations = [];
   for (var locationId of member.locations) {
@@ -21,7 +21,7 @@ var listMemberLocationsHandler = async function (req, res) {
 
     var booksInEachLocation = [];
     for (var bookId of location.books) {
-      var book = await getBookById(bookId);
+      var book = await getBookById(bookId, true);
       booksInEachLocation.push(book);
     }
     location.books = booksInEachLocation;
