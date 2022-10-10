@@ -21,15 +21,15 @@ var getAllAuthors = async function () {
   * Previéndose además que el author.name sea 'Anónimo' cuando (id == null)
   */
 var getAuthorById = async function (id) {
-  var author;
+const authors = await nodeDB.read('author');
 
+  var author;
   if (id == null) {
     author = {};
     author.name = "Anónimo";
     return author;
   }
 
-  const authors = await nodeDB.read('author');
   var filteredAuthors = authors.filter(function (e) {
     return (e.id == id);
   });
