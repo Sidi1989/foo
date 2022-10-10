@@ -1,11 +1,5 @@
 const {getAllBooks, getBookById, createBook, deleteBook} = require('../../models/books.js');
 const {getMemberById} = require('../../models/members.js');
-const {getCollectionById} = require('../../models/collections.js');
-const {getLocationById} = require('../../models/locations.js');
-const {getAuthorById} = require('../../models/authors.js');
-const {getCategoryById} = require('../../models/categories.js');
-const {getSubcategoryById} = require('../../models/subcategories.js');
-const {getLanguageById} = require('../../models/languages.js');
 
 
 
@@ -16,16 +10,7 @@ const {getLanguageById} = require('../../models/languages.js');
   * sus distintos atributos, y respondiendo a través de un json con los mismos.
   */
 var listBooksHandler = async function (req, res) {
-  var books = await getAllBooks();
-
-  for (var e of books) {
-    e.collection = await getCollectionById(e.collection);
-    e.location = await getLocationById (e.location);
-    e.author = await getAuthorById(e.author);
-    e.category = getCategoryById(e.category);
-    e.subcategory = getSubcategoryById(e.subcategory);
-    e.language = getLanguageById(e.language);
-  }
+  var books = await getAllBooks(true);
 
   return res.json(books);
 };
@@ -39,23 +24,11 @@ var listBooksHandler = async function (req, res) {
   */
 var listMemberBooksHandler = async function (req, res) {
   var member = await getMemberById(req.params.member, true);
-
-  var memberBooks = [];
-  for (var bookId of member.books) {
-    var book = await getBookById(bookId, true);
-    memberBooks.push(book);
+  if (member == null) {
+    res.status(404).send('Algo ha salido mal');
   }
 
-  for (var e of memberBooks) {
-    e.collection = await getCollectionById(e.collection);
-    e.location = await getLocationById (e.location);
-    e.author = await getAuthorById(e.author);
-    e.category = getCategoryById(e.category);
-    e.subcategory = getSubcategoryById(e.subcategory);
-    e.language = getLanguageById(e.language);
-  }
-
-  return res.json(memberBooks);
+  return res.json(member.books);
 };
 
 

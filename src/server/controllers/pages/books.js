@@ -37,24 +37,10 @@ var bookProfileHandler = async function (req, res) {
     info.book = book;
   }
 
-  if (!info.book.reviews) info.book.reviews = [];
-  var reviewsMapped = [];
-  for (var id of info.book.reviews) {
-    var review = await getReviewById(id);
-    if (review.reviewer == null) {
-      review.reviewer = {};
-    } else {
-      var reviewer = await getMemberById(review.reviewer, true);
-      review.reviewer = reviewer;
-    }
-    reviewsMapped.push(review);
-  }
-  info.reviews = reviewsMapped;
-
   var suggestedBooksChunks = await getRandomBooks(6, 3);
-  for (var chunk of suggestedBooksChunks) {
-    for (var e of chunk) {
-    e.author = await getAuthorById(e.author);
+  for (let chunk of suggestedBooksChunks) {
+    for (let randomBook of chunk) {
+    randomBook.author = await getAuthorById(randomBook.author);
     }
   }
   info.suggestedBooks = suggestedBooksChunks;
