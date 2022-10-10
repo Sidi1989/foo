@@ -1,5 +1,4 @@
 const {getLocationById, createLocation, deleteLocation} = require('../../models/locations.js');
-const {getBookById} = require('../../models/books.js');
 const {getMemberById} = require('../../models/members.js');
 
 
@@ -9,27 +8,15 @@ const {getMemberById} = require('../../models/members.js');
   * @description
   * función para listar todas las sedes de un miembro determinado (conocido
   * a partir de su id en req.params.member), obteniendo además el valor concreto de
-  * los distintos atributos de los libros en ellas incluidos; y respondiendo a través
-  * de un json con las mismas.
+  * sus distintos atributos, y respondiendo a través de un json con las mismas.
   */
 var listMemberLocationsHandler = async function (req, res) {
   var member = await getMemberById(req.params.member, true);
-
-  var memberLocations = [];
-  for (var locationId of member.locations) {
-    var location = await getLocationById(locationId);
-
-    var booksInEachLocation = [];
-    for (var bookId of location.books) {
-      var book = await getBookById(bookId, true);
-      booksInEachLocation.push(book);
-    }
-    location.books = booksInEachLocation;
-
-    memberLocations.push(location);
+  if (member == null) {
+    res.status(404).send('Algo ha salido mal');
   }
 
-  return res.json(memberLocations);
+  return res.json(member.locations);
 };
 
 
