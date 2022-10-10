@@ -58,13 +58,13 @@
           data-bs-toggle="collapse" data-bs-target="#accordionOtherCollapser"
           aria-expanded="false" aria-controls="accordionOtherCollapser">
           Libros sin Colección
-          <div class="badge bg-success rounded-pill ms-3"><%= orphanBooks.length %></div>
+          <div class="badge bg-success rounded-pill ms-3"><%= member.orphanBooks.length %></div>
         </button>
       </div>
 
       <div id="accordionOtherCollapser" class="accordion-collapse collapse">
         <div class="accordion-body">
-          <% orphanBooks.forEach(function (e) { %>
+          <% member.orphanBooks.forEach(function (e) { %>
             <div class="list-group-item list-group-item-action d-flex justify-content-between">
               <a href="/books/<%=e.id%>" class="text-black text-decoration-none">
                 <i id="<%=e.id%>_reviewed_star" class="book-reviewed-star fa-solid fa-star"></i>
