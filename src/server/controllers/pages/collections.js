@@ -23,19 +23,12 @@ var collectionProfileHandler = async function (req, res) {
   info.subcategories = req.subcategories;
   info.languages = req.languages;
 
-  var collection = await getCollectionById(req.params.collection);
+  var collection = await getCollectionById(req.params.collection, true);
   if (collection == null) {
     info.collection = {};
   } else {
     info.collection = collection;
   }
-
-  var booksInCollection = [];
-  for (var bookId of collection.books) {
-    var book = await getBookById(bookId, true);
-    booksInCollection.push(book);
-  }
-  info.collection.books = booksInCollection;
 
   var member = await getMemberById(req.params.member, true);
   if (member == null) {

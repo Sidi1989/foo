@@ -1,5 +1,4 @@
 const {getCollectionById, createCollection, deleteCollection} = require('../../models/collections.js');
-const {getBookById} = require('../../models/books.js');
 const {getMemberById} = require('../../models/members.js');
 
 
@@ -14,22 +13,11 @@ const {getMemberById} = require('../../models/members.js');
   */
 var listMemberCollectionsHandler = async function (req, res) {
   var member = await getMemberById(req.params.member, true);
-
-  var memberCollections = [];
-  for (var collectionId of member.collections) {
-    var collection = await getCollectionById(collectionId);
-
-    var booksInEachCollection = [];
-    for (var bookId of collection.books) {
-      var book = await getBookById(bookId, true);
-      booksInEachCollection.push(book);
-    }
-    collection.books = booksInEachCollection;
-
-    memberCollections.push(collection);
+  if (member == null) {
+    res.status(404).send('Algo ha salido mal');
   }
 
-  return res.json(memberCollections);
+  return res.json(member.collections);
 };
 
 
