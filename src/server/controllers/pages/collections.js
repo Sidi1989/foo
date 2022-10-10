@@ -1,4 +1,3 @@
-const {getBookById} = require('../../models/books.js');
 const {getCollectionById} = require('../../models/collections.js');
 const {getMemberById} = require('../../models/members.js');
 

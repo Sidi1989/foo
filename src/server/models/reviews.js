@@ -1,8 +1,8 @@
 const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
 const {db: nodeDB} = require('../connections/nodejsondb.js');
-const {getMemberById} = require('./members');
 const {getBookById} = require('./books');
+const {getMemberById} = require('./members');
 
 
 

@@ -1,6 +1,6 @@
+const {getMemberById, getLastBookForMember} = require('../../models/members.js');
 const {getAuthorById} = require('../../models/authors.js');
 const {getRandomBooks} = require('../../models/books.js');
-const {getMemberById, getLastBookForMember} = require('../../models/members.js');
 const {getRandomQuotes} = require('../../models/quotes.js');
 
 

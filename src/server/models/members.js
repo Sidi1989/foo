@@ -2,7 +2,6 @@ const _ = require('lodash');
 const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
 const {db: nodeDB} = require('../connections/nodejsondb.js');
-const {getAuthorById} = require('./authors');
 const {getAllBooks, getBookById} = require('./books');
 const {getCollectionById} = require('./collections');
 const {getLocationById} = require('./locations');
