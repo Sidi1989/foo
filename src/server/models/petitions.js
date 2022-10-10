@@ -25,7 +25,7 @@ var getAllPetitions = async function () {
   * función con que se filtra y obtiene la información de la DB sobre una "petition"
   * específica a partir de la identificación de su atributo "id"
   */
-var getPetitionById = async function (id, populate) {
+var getPetitionById = async function (id) {
   const petitions = await nodeDB.read('petition');
   var filteredPetitions = petitions.filter(function (e) {
     return (e.id == id);
@@ -38,23 +38,21 @@ var getPetitionById = async function (id, populate) {
     petition = filteredPetitions[0];
   }
 
-  if (populate == true) {
-    // Autor de la Petición
-    petition.author = await getAuthorById(petition.author);
-    if (petition.author == null) petition.author = {};
+  // Autor de la Petición
+  petition.author = await getAuthorById(petition.author);
+  if (petition.author == null) petition.author = {};
 
-    // Categoría de la Petición
-    petition.category = getCategoryById(petition.category);
-    if (petition.category == null) petition.category = {};
+  // Categoría de la Petición
+  petition.category = getCategoryById(petition.category);
+  if (petition.category == null) petition.category = {};
 
-    // Subcategoría dela Petición
-    petition.subcategory = getSubcategoryById(petition.subcategory);
-    if (petition.subcategory == null) petition.subcategory = {};
+  // Subcategoría dela Petición
+  petition.subcategory = getSubcategoryById(petition.subcategory);
+  if (petition.subcategory == null) petition.subcategory = {};
 
-    // Idioma de la Petición
-    petition.language = getLanguageById(petition.language);
-    if (petition.language == null) petition.language = {};
-  }
+  // Idioma de la Petición
+  petition.language = getLanguageById(petition.language);
+  if (petition.language == null) petition.language = {};
 
   return petition;
 };

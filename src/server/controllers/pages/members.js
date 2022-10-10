@@ -100,7 +100,7 @@ var memberProfileHandler = async function (req, res) {
     info.member = member;
   }
 
-  var lastBookAdded = await getLastBookForMember(member.id, true);
+  var lastBookAdded = await getLastBookForMember(member.id, false);
   if (lastBookAdded == null) lastBookAdded = {};
   info.lastBookAdded = lastBookAdded;
 

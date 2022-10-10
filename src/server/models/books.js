@@ -20,40 +20,42 @@ const {getLanguageById} = require('./languages');
 var getAllBooks = async function (populate) {
   const books = await nodeDB.read('book');
 
+  for (let e of books) {
+    // Autor del Libro
+    e.author = await getAuthorById(e.author);
+    if (e.author == null) e.author = {};
+
+    // Categoría del Libro
+    e.category = getCategoryById(e.category);
+    if (e.category == null) e.category = {};
+
+    // Subcategoría del Libro
+    e.subcategory = getSubcategoryById(e.subcategory);
+    if (e.subcategory == null) e.subcategory = {};
+
+    // Idioma del Libro
+    e.language = getLanguageById(e.language);
+    if (e.language == null) e.language = {};
+  }
+
   if (populate == true) {
     for (let e of books) {
       // Colección del Libro
-      e.collection = await getCollectionById(e.collection, true);
+      e.collection = await getCollectionById(e.collection, false);
       if (e.collection == null) e.collection = {};
 
       // Sede del Libro
-      e.location = await getLocationById(e.location, true);
+      e.location = await getLocationById(e.location, false);
       if (e.location == null) e.location = {};
 
       // Reviews del Libro
       if (!e.reviews) e.reviews = [];
       var reviewsPopulated = [];
       for (let reviewId of e.reviews) {
-        let review = await getReviewById(reviewId, true);
+        let review = await getReviewById(reviewId, false);
         reviewsPopulated.push(review);
       }
       e.reviews = reviewsPopulated;
-
-      // Autor del Libro
-      e.author = await getAuthorById(e.author);
-      if (e.author == null) e.author = {};
-
-      // Categoría del Libro
-      e.category = getCategoryById(e.category);
-      if (e.category == null) e.category = {};
-
-      // Subcategoría del Libro
-      e.subcategory = getSubcategoryById(e.subcategory);
-      if (e.subcategory == null) e.subcategory = {};
-
-      // Idioma del Libro
-      e.language = getLanguageById(e.language);
-      if (e.language == null) e.language = {};
     }
   }
 
@@ -82,39 +84,41 @@ var getBookById = async function (id, populate) {
     book = filteredBooks[0];
   }
 
+  for (let e of books) {
+    // Autor del Libro
+    e.author = await getAuthorById(e.author);
+    if (e.author == null) e.author = {};
+
+    // Categoría del Libro
+    e.category = getCategoryById(e.category);
+    if (e.category == null) e.category = {};
+
+    // Subcategoría del Libro
+    e.subcategory = getSubcategoryById(e.subcategory);
+    if (e.subcategory == null) e.subcategory = {};
+
+    // Idioma del Libro
+    e.language = getLanguageById(e.language);
+    if (e.language == null) e.language = {};
+  }
+
   if (populate == true) {
     // Colección del Libro
-    book.collection = await getCollectionById(book.collection, true);
+    book.collection = await getCollectionById(book.collection, false);
     if (book.collection == null) book.collection = {};
 
     // Sede del Libro
-    book.location = await getLocationById(book.location, true);
+    book.location = await getLocationById(book.location, false);
     if (book.location == null) book.location = {};
 
     // Reviews del Libro
     if (!book.reviews) books.reviews = [];
     var reviewsPopulated = [];
     for (let reviewId of book.reviews) {
-      let review = await getReviewById(reviewId, true);
+      let review = await getReviewById(reviewId, false);
       reviewsPopulated.push(review);
     }
     book.reviews = reviewsPopulated;
-
-    // Autor del Libro
-    book.author = await getAuthorById(book.author);
-    if (book.author == null) book.author = {};
-
-    // Categoría del Libro
-    book.category = getCategoryById(book.category);
-    if (book.category == null) book.category = {};
-
-    // Subcategoría del Libro
-    book.subcategory = getSubcategoryById(book.subcategory);
-    if (book.subcategory == null) book.subcategory = {};
-
-    // Idioma del Libro
-    book.language = getLanguageById(book.language);
-    if (book.language == null) book.language = {};
   }
 
   return book;

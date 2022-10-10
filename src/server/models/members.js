@@ -87,7 +87,7 @@ var getMemberById = async function (id, populate) {
     if (!member.collections) member.collections = [];
     var collectionsPopulated = [];
     for (let collectionId of member.collections) {
-      let collection = await getCollectionById(collectionId, true);
+      let collection = await getCollectionById(collectionId, false);
       collectionsPopulated.push(collection);
     }
     member.collections = collectionsPopulated;
@@ -96,28 +96,28 @@ var getMemberById = async function (id, populate) {
     if (!member.locations) member.locations = [];
     var locationsPopulated = [];
     for (let locationId of member.locations) {
-      let location = await getLocationById(locationId, true);
+      let location = await getLocationById(locationId, false);
       locationsPopulated.push(location);
     }
     member.locations = locationsPopulated;
-
-    // Peticiones del Miembro
-    if (!member.petitions) member.petitions = [];
-    var petitionsPopulated = [];
-    for (let petitionId of member.petitions) {
-      let petition = await getPetitionById(petitionId, true);
-      petitionsPopulated.push(petition);
-    }
-    member.petitions = petitionsPopulated;
 
     // Reviews del Miembro
     if (!member.reviews) member.reviews = [];
     var reviewsPopulated = [];
     for (let reviewId of member.reviews) {
-      let review = await getReviewById(reviewId, true);
+      let review = await getReviewById(reviewId, false);
       reviewsPopulated.push(review);
     }
     member.reviews = reviewsPopulated;
+    
+    // Peticiones del Miembro
+    if (!member.petitions) member.petitions = [];
+    var petitionsPopulated = [];
+    for (let petitionId of member.petitions) {
+      let petition = await getPetitionById(petitionId);
+      petitionsPopulated.push(petition);
+    }
+    member.petitions = petitionsPopulated;
   }
 
   return member;
