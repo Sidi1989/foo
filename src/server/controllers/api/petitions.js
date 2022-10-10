@@ -1,9 +1,5 @@
 const {getPetitionById, createPetition, deletePetition} = require('../../models/petitions.js');
 const {getMemberById} = require('../../models/members.js');
-const {getAuthorById} = require('../../models/authors.js');
-const {getCategoryById} = require('../../models/categories.js');
-const {getSubcategoryById} = require('../../models/subcategories.js');
-const {getLanguageById} = require('../../models/languages.js');
 
 
 
@@ -16,21 +12,11 @@ const {getLanguageById} = require('../../models/languages.js');
   */
 var listMemberPetitionsHandler = async function (req, res) {
   var member = await getMemberById(req.params.member, true);
-
-  var memberPetitions = [];
-  for (var petitionId of member.petitions) {
-    var petition = await getPetitionById(petitionId);
-    memberPetitions.push(petition);
+  if (member == null) {
+    res.status(404).send('Algo ha salido mal');
   }
 
-  for (var e of memberPetitions) {
-    e.author = await getAuthorById(e.author);
-    e.category = getCategoryById(e.category);
-    e.subcategory = getSubcategoryById(e.subcategory);
-    e.language = getLanguageById(e.language);
-  }
-
-  return res.json(memberPetitions);
+  return res.json(member.petitions);
 };
 
 
