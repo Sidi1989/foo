@@ -1,5 +1,4 @@
 const {getReviewById, createReview, deleteReview} = require('../../models/reviews.js');
-const {getBookById} = require('../../models/books.js');
 const {getMemberById} = require('../../models/members.js');
 
 
@@ -9,23 +8,15 @@ const {getMemberById} = require('../../models/members.js');
   * @description
   * función para listar todas las reviews de un miembro determinado (conocido
   * a partir de su id en req.params.member), obteniendo además el valor concreto de
-  * los distintos atributos del libro en cada una referido; y respondiendo a través
-  * de un json con las mismas.
+  * sus distintos atributos, y respondiendo a través de un json con las mismas.
   */
 var listMemberReviewsHandler = async function (req, res) {
   var member = await getMemberById(req.params.member, true);
-
-  var memberReviews = [];
-  for (var reviewId of member.reviews) {
-    var review = await getReviewById(reviewId);
-    memberReviews.push(review);
+  if (member == null) {
+    res.status(404).send('Algo ha salido mal');
   }
 
-  for (var e of memberReviews) {
-    e.book = await getBookById(e.book, true);
-  }
-
-  return res.json(memberReviews);
+  return res.json(member.reviews);
 };
 
 
