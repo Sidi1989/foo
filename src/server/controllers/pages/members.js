@@ -100,17 +100,14 @@ var memberProfileHandler = async function (req, res) {
     info.member = member;
   }
 
-  var orphanBooks = member.books.filter(e => e.collection == null);
-  info.orphanBooks = orphanBooks;
-
   var lastBookAdded = await getLastBookForMember(member.id, true);
   if (lastBookAdded == null) lastBookAdded = {};
   info.lastBookAdded = lastBookAdded;
 
   var suggestedBooksChunks = await getRandomBooks(6, 3);
-  for (var chunk of suggestedBooksChunks) {
-    for (var e of chunk) {
-    e.author = await getAuthorById(e.author);
+  for (let chunk of suggestedBooksChunks) {
+    for (let randomBook of chunk) {
+    randomBook.author = await getAuthorById(randomBook.author);
     }
   }
   info.suggestedBooks = suggestedBooksChunks;

@@ -69,64 +69,56 @@ var getMemberById = async function (id, populate) {
   }
 
   if (populate == true) {
-    if (!member.collections) member.collections = [];
-    var collectionsMapped = [];
-    for (var collectionId of member.collections) {
-      var collection = await getCollectionById(collectionId);
 
-      var booksInEachCollection = [];
-      for (var bookInCollectionId of collection.books) {
-        var bookInCollection = await getBookById(bookInCollectionId, true);
-        booksInEachCollection.push(bookInCollection);
-
-        for (var e of booksInEachCollection) {
-          e.author = await getAuthorById(e.author);
-        }
-      }
-      collection.books = booksInEachCollection;
-
-      collectionsMapped.push(collection);
-    }
-    member.collections = collectionsMapped;
-
+    // Libros del Miembro
     if (!member.books) member.books = [];
-    var booksMapped = [];
-    for (var bookId of member.books) {
-      var book = await getBookById(bookId, true);
-      booksMapped.push(book);
+    var booksPopulated = [];
+    for (let bookId of member.books) {
+      let book = await getBookById(bookId, true);
+      booksPopulated.push(book);
     }
-    for (var b of booksMapped) {
-      b.author = await getAuthorById(b.author);
-    }
-    member.books = booksMapped;
+    member.books = booksPopulated;
 
+    // Libros del Miembro "sin colección"
+    member.orphanBooks = member.books.filter(function (e) {
+      return (e.collection.name == "Libros sin Colección")
+    });
+
+    // Colecciones del Miembro
+    if (!member.collections) member.collections = [];
+    var collectionsPopulated = [];
+    for (let collectionId of member.collections) {
+      let collection = await getCollectionById(collectionId, true);
+      collectionsPopulated.push(collection);
+    }
+    member.collections = collectionsPopulated;
+
+    // Sedes del Miembro
+    if (!member.locations) member.locations = [];
+    var locationsPopulated = [];
+    for (let locationId of member.locations) {
+      let location = await getLocationById(locationId, true);
+      locationsPopulated.push(location);
+    }
+    member.locations = locationsPopulated;
+
+    // Peticiones del Miembro
     if (!member.petitions) member.petitions = [];
-    var petitionsMapped = [];
-    for (var petitionId of member.petitions) {
-      var petition = await getPetitionById(petitionId);
-      petitionsMapped.push(petition);
+    var petitionsPopulated = [];
+    for (let petitionId of member.petitions) {
+      let petition = await getPetitionById(petitionId, true);
+      petitionsPopulated.push(petition);
     }
-    for (var pet of petitionsMapped) {
-      pet.author = await getAuthorById(pet.author);
-    }
-    member.petitions = petitionsMapped;
+    member.petitions = petitionsPopulated;
 
-    var reviewsMapped = [];
-    for (var reviewId of member.reviews) {
-      var review = await getReviewById(reviewId);
-      reviewsMapped.push(review);
+    // Reviews del Miembro
+    if (!member.reviews) member.reviews = [];
+    var reviewsPopulated = [];
+    for (let reviewId of member.reviews) {
+      let review = await getReviewById(reviewId, true);
+      reviewsPopulated.push(review);
     }
-    for (var rev of reviewsMapped) {
-        rev.book = await getBookById(rev.book, true);
-    }
-    member.reviews = reviewsMapped;
-
-    var locationsMapped = [];
-    for (var locationId of member.locations) {
-      var location = await getLocationById(locationId);
-      locationsMapped.push(location);
-    }
-    member.locations = locationsMapped;
+    member.reviews = reviewsPopulated;
   }
 
   return member;
@@ -144,7 +136,7 @@ var getMemberById = async function (id, populate) {
   * será o no más completa, por recuperar en detalle el valor de sus distintos atributos.
   */
 var getLastBookForMember = async function (memberId, populate) {
-  var books = await getAllBooks();
+  var books = await getAllBooks(true);
   var memberBooks = books.filter(function (e) {
     return e.owner == memberId;
   });
@@ -154,33 +146,7 @@ var getLastBookForMember = async function (memberId, populate) {
   if (!lastBook) lastBook = null;
 
   if (populate == true) {
-    lastBook.author = await getAuthorById(lastBook.author);
-    if (lastBook.author == null) lastBook.author = {};
-
-    lastBook.collection = await getCollectionById(lastBook.collection);
-    if (lastBook.collection == null) lastBook.collection = {};
-
-    if (!lastBook.collection.books) lastBook.collection.books = [];
-    var lastBookCollectionMapped = [];
-    for (var bookId of lastBook.collection.books) {
-      var book = await getBookById(bookId, true);
-      lastBookCollectionMapped.push(book)
-    }
-    lastBook.collection.books = lastBookCollectionMapped;
-
-    if (!lastBook.reviews) lastBook.reviews = [];
-    var lastBookReviewsMapped = [];
-    for (var reviewId of lastBook.reviews) {
-      var review = await getReviewById(reviewId);
-      if (review.reviewer == null) {
-        review.reviewer = {}
-      } else {
-        var reviewer = await getMemberById(review.reviewer, true);
-        review.reviewer = reviewer;
-      }
-      lastBookReviewsMapped.push(review);
-    }
-    lastBook.reviews = lastBookReviewsMapped;
+    let lastBook = await getBookById(lastBook.id, true);
   }
 
   return lastBook;
