@@ -1,5 +1,4 @@
-//const {v4: uuidv4} = require('uuid');
-const {getAllMembers, getMemberBySession} = require('../../models/members.js');
+const {getAllMembers, getMemberBySession} = require('../../models/transfers.js');
 
 
 

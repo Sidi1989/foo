@@ -1,5 +1,4 @@
-const {getCollectionById, createCollection, deleteCollection} = require('../../models/collections.js');
-const {getMemberById} = require('../../models/members.js');
+const {getCollectionById, createCollection, deleteCollection, getMemberById} = require('../../models/transfers.js');
 
 
 
@@ -8,8 +7,7 @@ const {getMemberById} = require('../../models/members.js');
   * @description
   * función para listar todas las colecciones de un miembro determinado (conocido
   * a partir de su id en req.params.member), obteniendo además el valor concreto de
-  * los distintos atributos de los libros en ellas incluidos; y respondiendo a través
-  * de un json con las mismas.
+  * sus distintos atributos, y respondiendo a través de un json con las mismas.
   */
 var listMemberCollectionsHandler = async function (req, res) {
   var member = await getMemberById(req.params.member, true);

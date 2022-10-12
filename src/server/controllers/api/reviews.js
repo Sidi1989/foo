@@ -1,5 +1,4 @@
-const {getReviewById, createReview, deleteReview} = require('../../models/reviews.js');
-const {getMemberById} = require('../../models/members.js');
+const {getReviewById, createReview, deleteReview, getMemberById} = require('../../models/transfers.js');
 
 
 

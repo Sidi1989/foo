@@ -1,4 +1,4 @@
-const {getAllMembers, getMemberById, createMember, deleteMember} = require('../../models/members.js');
+const {getAllMembers, getMemberById, createMember, deleteMember} = require('../../models/transfers.js');
 
 
 
@@ -49,7 +49,7 @@ var createMemberHandler = function (req, res) {
   * sobre un miembro concreto (conocido a partir de su id en req.params.member).
   */
 var retrieveMemberHandler = async function (req, res) {
-  var member = await getMemberById(req.params.member);
+  var member = await getMemberById(req.params.member, true);
 
   return res.json(member);
 };
@@ -61,7 +61,7 @@ var retrieveMemberHandler = async function (req, res) {
   * sobre un miembro concreto (conocido a partir de su id en req.params.member).
   */
 var editMemberHandler = function (req, res) {
-  var member = getMemberById(req.params.member);
+  var member = getMemberById(req.params.member, true);
 
   return res.json(member);
 };

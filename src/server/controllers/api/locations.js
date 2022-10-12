@@ -1,5 +1,4 @@
-const {getLocationById, createLocation, deleteLocation} = require('../../models/locations.js');
-const {getMemberById} = require('../../models/members.js');
+const {getLocationById, createLocation, deleteLocation, getMemberById} = require('../../models/transfers.js');
 
 
 

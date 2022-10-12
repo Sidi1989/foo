@@ -1,16 +1,15 @@
-const {getAllBooks, getBookById, createBook, deleteBook} = require('../../models/books.js');
-const {getMemberById} = require('../../models/members.js');
+const {getAllBooks, getBookById, createBook, deleteBook, getMemberById} = require('../../models/transfers.js');
 
 
 
 
 /**
   * @description
-  * función para listar todos los libros, obteniendo además el valor concreto de
-  * sus distintos atributos, y respondiendo a través de un json con los mismos.
+  * función para listar todos los libros, respondiendo a través de un json
+  * con los mismos.
   */
 var listBooksHandler = async function (req, res) {
-  var books = await getAllBooks(true);
+  var books = await getAllBooks();
 
   return res.json(books);
 };
@@ -77,7 +76,7 @@ var createBookHandler = function (req, res) {
   * sobre un libro concreto (conocido a partir de su id en req.params.book).
   */
 var retrieveBookHandler = function (req, res) {
-  var book = getBookById(req.params.book);
+  var book = getBookById(req.params.book, true);
 
   return res.json(book);
 };
@@ -89,7 +88,7 @@ var retrieveBookHandler = function (req, res) {
   * sobre un libro concreto (conocido a partir de su id en req.params.book).
   */
 var editBookHandler = function (req, res) {
-  var book = getBookById(req.params.book);
+  var book = getBookById(req.params.book, true);
 
   return res.json(book);
 };

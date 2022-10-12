@@ -1,5 +1,4 @@
-const {getPetitionById, createPetition, deletePetition} = require('../../models/petitions.js');
-const {getMemberById} = require('../../models/members.js');
+const {getPetitionById, createPetition, deletePetition, getMemberById} = require('../../models/transfers.js');
 
 
 
