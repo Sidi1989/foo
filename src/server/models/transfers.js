@@ -5,9 +5,9 @@ const {getRandomQuotes} = require('./quotes.js');
 const {getAuthorById} = require('./authors');
 
 const {getPetitionById, createPetition, deletePetition} = require('./petitions');
-const {getAllBooks, getBookById, getRandomBooks, createBook, deleteBook} = require('./books');
 const {getLocationById, createLocation, deleteLocation} = require('./locations');
 const {getCollectionById, createCollection, deleteCollection} = require('./collections');
+const {getAllBooks, getBookById, getRandomBooks, createBook, deleteBook} = require('./books');
 const {getMemberById, getLastBookForMember, getAllMembers, getMemberBySession, createMember, deleteMember} = require('./members');
 const {getReviewById, createReview, deleteReview} = require('./reviews');
 
@@ -24,12 +24,6 @@ exports.getPetitionById = getPetitionById;
 exports.createPetition = createPetition;
 exports.deletePetition = deletePetition;
 
-exports.getAllBooks = getAllBooks;
-exports.getBookById = getBookById;
-exports.getRandomBooks = getRandomBooks;
-exports.createBook = createBook;
-exports.deleteBook = deleteBook;
-
 exports.getLocationById = getLocationById;
 exports.createLocation = createLocation;
 exports.deleteLocation = deleteLocation;
@@ -37,6 +31,12 @@ exports.deleteLocation = deleteLocation;
 exports.getCollectionById = getCollectionById;
 exports.createCollection = createCollection;
 exports.deleteCollection = deleteCollection;
+
+exports.getAllBooks = getAllBooks;
+exports.getBookById = getBookById;
+exports.getRandomBooks = getRandomBooks;
+exports.createBook = createBook;
+exports.deleteBook = deleteBook;
 
 exports.getMemberById = getMemberById;
 exports.getLastBookForMember = getLastBookForMember;

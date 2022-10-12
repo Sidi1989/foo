@@ -1,5 +1,4 @@
-const {getCollectionById} = require('../../models/collections.js');
-const {getMemberById} = require('../../models/members.js');
+const {getCollectionById, getMemberById} = require('../../models/transfers.js');
 
 
 
@@ -22,7 +21,7 @@ var collectionProfileHandler = async function (req, res) {
   info.subcategories = req.subcategories;
   info.languages = req.languages;
 
-  var collection = await getCollectionById(req.params.collection, true);
+  var collection = await getCollectionById(req.params.collection);
   if (collection == null) {
     info.collection = {};
   } else {
