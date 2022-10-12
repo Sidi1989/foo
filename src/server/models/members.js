@@ -2,11 +2,12 @@ const _ = require('lodash');
 const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
 const {db: nodeDB} = require('../connections/nodejsondb.js');
-const {getAllBooks, getBookById} = require('./books');
-const {getCollectionById} = require('./collections');
-const {getLocationById} = require('./locations');
 const {getPetitionById} = require('./petitions');
+const {getLocationById} = require('./locations');
+
+const {getCollectionById} = require('./collections');
 const {getReviewById} = require('./reviews');
+const {getAllBooks, getBookById} = require('./books');
 
 
 
@@ -78,38 +79,47 @@ var getMemberById = async function (id, populate) {
     }
     member.books = booksPopulated;
 
-    // Libros del Miembro "sin colección"
-    member.orphanBooks = member.books.filter(function (e) {
-      return (e.collection.name == "Libros sin Colección")
-    });
-
     // Colecciones del Miembro
     if (!member.collections) member.collections = [];
     var collectionsPopulated = [];
+        // Paso 1: Se define el contenido de cada collection
     for (let collectionId of member.collections) {
-      let collection = await getCollectionById(collectionId, false);
+      let collection = await getCollectionById(collectionId);
+      var booksInCollection = member.books.filter(function (b) {
+          (b.collection == collection.id)
+        });
+      collection.books = booksInCollection;
+        // Paso 2: Se sobreescribe cada collection populada en el array de member.collections
       collectionsPopulated.push(collection);
     }
     member.collections = collectionsPopulated;
+
+    // Libros del Miembro sin Colección
+    var orphanCollections = member.collections.filter(function (c) {
+        (c.name == "Libros sin Colección")
+    });
+      // Se asegura de que exista una sólo collection que sea "Libros sin Colección"
+      var orphanCollection;
+      if (orphanCollections.length == 0) {
+        orphanCollection = null;
+      } else {
+        orphanCollection = orphanCollections[0];
+      }
+      // Se filtran los libros que formarán parte de esa orphanCOllection
+      var orphanBooks = member.books.filter(function (b) {
+          (b.collection == orphanCollection)
+      });
+    member.orphanBooks = orphanBooks;
 
     // Sedes del Miembro
     if (!member.locations) member.locations = [];
     var locationsPopulated = [];
     for (let locationId of member.locations) {
-      let location = await getLocationById(locationId, false);
+      let location = await getLocationById(locationId);
       locationsPopulated.push(location);
     }
     member.locations = locationsPopulated;
 
-    // Reviews del Miembro
-    if (!member.reviews) member.reviews = [];
-    var reviewsPopulated = [];
-    for (let reviewId of member.reviews) {
-      let review = await getReviewById(reviewId, false);
-      reviewsPopulated.push(review);
-    }
-    member.reviews = reviewsPopulated;
-    
     // Peticiones del Miembro
     if (!member.petitions) member.petitions = [];
     var petitionsPopulated = [];
@@ -118,6 +128,15 @@ var getMemberById = async function (id, populate) {
       petitionsPopulated.push(petition);
     }
     member.petitions = petitionsPopulated;
+
+    // Reviews del Miembro
+    if (!member.reviews) member.reviews = [];
+    var reviewsPopulated = [];
+    for (let reviewId of member.reviews) {
+      let review = await getReviewById(reviewId);
+      reviewsPopulated.push(review);
+    }
+    member.reviews = reviewsPopulated;
   }
 
   return member;
@@ -126,16 +145,14 @@ var getMemberById = async function (id, populate) {
 
 /**
   * @description
-  * función con que se obtiene de la DB la información sobre todos los libros,
-  * para filtrar a continuación sólo aquellos cuyo atributo "owner" coincida con
-  * el atributo "id" del miembro correspondiente (primer parámetro de la función).
-  * Después, y de entre todos los posibles libros obtenidos, devolverá sólo el
-  * último de ellos (ordenados en función de la fecha); contando además con un
-  * segundo parámetro booleano, en función del cual la información sobre el mismo
-  * será o no más completa, por recuperar en detalle el valor de sus distintos atributos.
+  * función con que se filtran, de entre todos los libros, aquellos cuyo "owner"
+  * coincida con el "id" del miembro correspondiente (primer parámetro de la función).
+  * A continuación, se asegura que devuelva sólo el último de ellos (ordenados según
+  * su fecha); contando además con un segundo parámetro booleano, en función del cual
+  * la información sobre el libro será o no más detallada.
   */
 var getLastBookForMember = async function (memberId, populate) {
-  var books = await getAllBooks(true);
+  var books = await getAllBooks();
   var memberBooks = books.filter(function (e) {
     return e.owner == memberId;
   });

@@ -1,7 +1,6 @@
 const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
 const {db: nodeDB} = require('../connections/nodejsondb.js');
-const {getBookById} = require('./books');
 
 
 
@@ -23,7 +22,7 @@ var getAllCollections = async function () {
   * específica a partir de la identificación de su atributo "id".
   * Previéndose además que el collection.name sea 'Sin Colección' cuando (id == null)
   */
-var getCollectionById = async function (id, populate) {
+var getCollectionById = async function (id) {
   const collections = await nodeDB.read('collection');
 
   var collection;
@@ -41,17 +40,6 @@ var getCollectionById = async function (id, populate) {
     collection = null;
   } else {
     collection = filteredCollections[0];
-  }
-
-  if (populate == true) {
-    // Libros de la Colección
-    if (!collection.books) collection.books = [];
-    var booksInCollection = [];
-    for (let bookId of collection.books) {
-      let book = await getBookById(bookId, true);
-      booksInCollection.push(book);
-    }
-    collection.books = booksInCollection;
   }
 
   return collection;

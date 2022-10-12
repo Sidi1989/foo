@@ -1,7 +1,6 @@
 const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
 const {db: nodeDB} = require('../connections/nodejsondb.js');
-const {getBookById} = require('./books');
 
 
 
@@ -22,7 +21,7 @@ var getAllLocations = async function () {
   * función con que se filtra y obtiene la información de la DB sobre una "location"
   * específica a partir de la identificación de su atributo "id"
   */
-var getLocationById = async function (id, populate) {
+var getLocationById = async function (id) {
   const locations = await nodeDB.read('location');
   var filteredLocations = locations.filter(function (e) {
     return (e.id == id);
@@ -33,17 +32,6 @@ var getLocationById = async function (id, populate) {
     location = null;
   } else {
     location = filteredLocations[0];
-  }
-
-  if (populate == true) {
-    // Libros de la Sede
-    if (!location.books) location.books = [];
-    var booksInLocation = [];
-    for (let bookId of location.books) {
-      let book = await getBookById(bookId, true);
-      booksInLocation.push(book);
-    }
-    location.books = booksInLocation;
   }
 
   return location;

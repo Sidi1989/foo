@@ -1,8 +1,8 @@
 const {v4: uuidv4} = require('uuid');
 const {db} = require('../connections/rawjson.js');
 const {db: nodeDB} = require('../connections/nodejsondb.js');
-const {getBookById} = require('./books');
-const {getMemberById} = require('./members');
+//const {getBookById} = require('./books');
+//const {getMemberById} = require('./members');
 
 
 
@@ -23,7 +23,7 @@ var getAllReviews = async function () {
   * función con que se filtra y obtiene la información de la DB sobre una "review"
   * específica a partir de la identificación de su atributo "id"
   */
-var getReviewById = async function (id, populate) {
+var getReviewById = async function (id) {
   const reviews = await nodeDB.read('review');
   var filteredReviews = reviews.filter(function (e) {
     return (e.id == id);
@@ -36,16 +36,17 @@ var getReviewById = async function (id, populate) {
     review = filteredReviews[0];
   }
 
+/*
   if (populate == true) {
-    // Reviewer de la Review
-    review.reviewer = await getMemberById(review.reviewer, true);
-    if (review.reviewer == null) review.reviewer = {};
-
     // Libro de la Review
-    review.book = await getBookById(review.book, true);
+    review.book = await getBookById(review.book, false);
     if (review.book == null) review.book = {};
-  }
 
+    // Reviewer de la Review
+    review.reviewer = await getMemberById(review.reviewer, false);
+    if (review.reviewer == null) review.reviewer = {};
+  }
+*/
   return review;
 };
 
