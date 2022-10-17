@@ -28,7 +28,7 @@ var getQuoteById = async function (id) {
 
   var quote;
   if (filteredQuotes.length == 0) {
-    quote = null;
+    quote = {};
   } else {
     quote = filteredQuotes[0];
   }
@@ -44,7 +44,7 @@ var getQuoteById = async function (id) {
   */
 var getRandomQuotes = async function (quantity) {
   const quotes = await nodeDB.read('quote');
-  
+
   var shuffledQuotes = _.shuffle(quotes);
   var takenQuotes = _.take(shuffledQuotes, quantity);
 

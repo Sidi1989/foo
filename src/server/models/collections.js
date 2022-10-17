@@ -30,19 +30,18 @@ var getCollectionById = async function (id) {
     collection = {};
     collection.name = "Libros sin Colección";
     return collection;
-  }
-
-  var filteredCollections = collections.filter(function (e) {
-    return (e.id == id);
-  });
-
-  if (filteredCollections.length == 0) {
-    collection = null;
+    // Si la colección no es "Libros sin colección":
   } else {
-    collection = filteredCollections[0];
+    var filteredCollections = collections.filter(function (e) {
+      return (e.id == id);
+    });
+    if (filteredCollections.length == 0) {
+      collection = {};
+    } else {
+      collection = filteredCollections[0];
+    }
+    return collection;
   }
-
-  return collection;
 };
 
 

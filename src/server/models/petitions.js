@@ -33,7 +33,7 @@ var getPetitionById = async function (id) {
 
   var petition;
   if (filteredPetitions.length == 0) {
-    petition = null;
+    petition = {};
   } else {
     petition = filteredPetitions[0];
   }
@@ -41,15 +41,12 @@ var getPetitionById = async function (id) {
   // Autor de la Petición
   petition.author = await getAuthorById(petition.author);
   if (petition.author == null) petition.author = {};
-
   // Idioma de la Petición
   petition.language = getLanguageById(petition.language);
   if (petition.language == null) petition.language = {};
-
   // Categoría de la Petición
   petition.category = getCategoryById(petition.category);
   if (petition.category == null) petition.category = {};
-
   // Subcategoría dela Petición
   petition.subcategory = getSubcategoryById(petition.subcategory);
   if (petition.subcategory == null) petition.subcategory = {};

@@ -29,7 +29,7 @@ var getLocationById = async function (id) {
 
   var location;
   if (filteredLocations.length == 0) {
-    location = null;
+    location = {};
   } else {
     location = filteredLocations[0];
   }

@@ -28,7 +28,7 @@ var collectionProfileHandler = async function (req, res) {
     info.collection = collection;
   }
 
-  var member = await getMemberById(req.params.member, true);
+  var member = await getMemberById(req.params.member, false);
   if (member == null) {
     res.status(404).send('Algo ha salido mal');
   } else {

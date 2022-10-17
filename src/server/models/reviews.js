@@ -31,18 +31,18 @@ var getReviewById = async function (id) {
 
   var review;
   if (filteredReviews.length == 0) {
-    review = null;
+    review = {};
   } else {
     review = filteredReviews[0];
   }
 
 /*
   if (populate == true) {
-    // Libro de la Review
+    // Libro populado
     review.book = await getBookById(review.book, false);
     if (review.book == null) review.book = {};
 
-    // Reviewer de la Review
+    // Reviewer populado
     review.reviewer = await getMemberById(review.reviewer, false);
     if (review.reviewer == null) review.reviewer = {};
   }
