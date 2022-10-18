@@ -28,12 +28,18 @@ var collectionProfileHandler = async function (req, res) {
     info.collection = collection;
   }
 
-  var member = await getMemberById(req.params.member, false);
+  var member = await getMemberById(req.params.member, true);
   if (member == null) {
     res.status(404).send('Algo ha salido mal');
   } else {
     info.member = member;
   }
+
+  var collectionPopulated = member.collections.filter(function (c) {
+    return (c.id == collection.id);
+  });
+  var booksInCollection = collectionPopulated[0].books;
+  info.collection.books = booksInCollection;
 
   res.render(pathname, info);
 };
