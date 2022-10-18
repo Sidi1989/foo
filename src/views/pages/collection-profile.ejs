@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/others/common-head-components.ejs', {}); %>
+    <title>Pinakes - <%=member.nickname%> - <%=collection.name%></title>
+  </head>
+
+  <body>
+    <!-- Header-->
+    <%- include('../partials/others/header.ejs', {}); %>
+    <div class="container">
+
+      <!-- Parte superior-->
+      <div class="row">
+
+        <!-- Columna lateral con información de la Colección-->
+        <div class="col-3">
+          <%- include('../partials/others/collection-info-card.ejs', {}); %>
+        </div>
+
+        <!-- Cuerpo con los libros de la Colección seleccionada-->
+        <div class="col-9">
+          <div class="row">
+            <div class="section-title">
+              Libros de la Colección
+            </div>
+          </div>
+
+          <div class="row bg-light border text-center mb-3">
+            <!-- Modal para añadir libro desde otras Colecciones -->
+            <div class="col-3 my-3">
+              <button id="relocate_books_in_collections_button"
+                type="button" class="btn btn-outline-success"
+                style="width: 180px; height: 320px"
+                data-bs-toggle="modal" data-bs-target="#relocate_books_in_collections_modal">
+                <i class="fa-solid fa-plus fa-4x"></i>
+              </button>
+            </div>
+
+            <% collection.books.forEach(function (book) { %>
+            <div class="col-3 my-3 d-flex align-items-stretch">
+              <div class="card text-center">
+                <a href="/books/<%=book.id%>">
+                 <img class="img-fluid" src="<%=book.pic%>"
+                 style="width: 180px; height: 240px">
+                 </a>
+                 <div class="card-body">
+                   <h6><%=book.title%></h6>
+                 </div>
+              </div>
+            </div>
+            <% }); %>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- Footer-->
+    <%- include('../partials/others/footer.ejs', {}); %>
+
+    <!-- Zona para Modals-->
+    <%- include('../partials/modals/edit-collection-modal.ejs', {}); %>
+    <%- include('../partials/modals/relocate-books-in-collections-modal.ejs', {}); %>
+
+    <script type="text/javascript" src="/public/js/pages/collection-profile.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<div class="container-fluid bg-success mb-5 p-2">
+  <div class="row">
+
+    <div class="col-3 text-start">
+        <a href="/" class="d-flex text-white text-decoration-none">
+          <div class="col-auto">
+            <h3>PIN</h3>
+          </div>
+          <div class="col-auto">
+            <img src="https://cdn-icons-png.flaticon.com/512/6627/6627472.png" class="img-fluid" style="width: 33px; height: 33px">
+          </div>
+          <div class="col-auto">
+            <h3>KES</h3>
+          </div>
+        </a>
+    </div>
+
+    <div class="col-6">
+      <form class="d-flex text-center" role="search">
+        <!--Redirección al Buscador-->
+        <input id="header_book_searching_input" type="search" class="form-control" placeholder="Encuentra el libro que buscas...">
+        <button
+            id="header_book_searching_button" type="button" class="btn btn-success btn-lg"
+            data-bs-toggle="modal" data-bs-target="#header_search_modal">
+          <i class="text-white ms-3 fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <!--Dropdown para creación múltiple-->
+        <div class="dropdown">
+          <button class="btn btn-success dropdown-toggle" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-plus fa-lg"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#new_book_modal">
+                Nuevo Libro
+              </button>
+            </li>
+            <li>
+              <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#new_collection_modal">
+                Nueva Colección
+              </button>
+            </li>
+            <li>
+              <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#new_petition_modal">
+                Nueva Petición
+              </button>
+            </li>
+            <li>
+              <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#new_location_modal">
+                Nueva Sede
+              </button>
+            </li>
+          </ul>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="col-3 text-end">
+      <div class="btn-group">
+        <!--Botón para las Notificaciones-->
+        <button type="button" class="btn btn-success btn-lg">
+          <i class="text-white fa-solid fa-bell fa-lg"></i>
+          <span id="notifications_badge" class="badge rounded-pill bg-success" name="notifications_badge">
+            Nº
+          </span>
+        </button>
+        <!--Dropdown para Member-Edit y Cerrar Sesión -->
+        <button type="button" class="btn btn-success btn-lg dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="text-white fa-solid fa-user-large"></i>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item text-center" href="/members/<%=member.id%>">
+              <img id="member_pic_file" class="img-fluid mb-2" name="member_pic_file" style="width: 100px; height: 85px" src="<%=member.pic%>">
+              <h6>
+                <strong><%=member.nickname%></strong>
+              </h6>
+            </a>
+          </li>
+          <li><hr class="dropdown-divider mt-0"></li>
+          <li>
+            <a class="dropdown-item" href="/members/<%=member.id%>/preferences">
+              <i class="fa-solid fa-user-pen fa-lg"></i> Configuración
+            </a>
+          </li>
+          <li>
+            <button id="sign_out_button" class="dropdown-item mt-1">
+              <i class="fa-solid fa-right-from-bracket fa-lg"></i> Cerrar sesión
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Zona para Modals-->
+<%- include('../modals/header-search-modal.ejs', {}); %>
+<%- include('../modals/new-book-modal.ejs', {}); %>
+<%- include('../modals/new-collection-modal.ejs', {}); %>
+<%- include('../modals/new-petition-modal.ejs', {}); %>
+<%- include('../modals/new-location-modal.ejs', {}); %>
+
+<script type="text/javascript" src="/public/js/partials/others/header.js"></script>

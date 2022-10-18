@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/others/common-head-components.ejs', {}); %>
+    <title>Pinakes - <%=member.nickname%></title>
+  </head>
+
+  <body>
+    <!-- Header-->
+    <%- include('../partials/others/header.ejs', {}); %>
+    <div class="container">
+
+      <!-- Parte superior, hasta las Sugerencias-->
+      <div class="row mb-5">
+
+        <!-- Perfil de usuario-->
+        <div class="col-4">
+          <%- include('../partials/others/member-info-card.ejs', {}); %>
+        </div>
+
+        <!-- Cuerpo con el Nav-Tab-->
+        <div class="col-8">
+
+          <!-- Fila con las pestañas para abrir cada Tab-->
+          <div class="row">
+            <div class="nav nav-tabs" id="tabs-tab" role="tablist">
+              <button class="nav-link active text-success" id="tabs-lastBook-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-lastBook"
+                type="button" role="tab"
+                aria-controls="tabs-lastBook" aria-selected="true">
+                <i class="fa-solid fa-sort-up"></i><i class="fa-solid fa-book"></i></i> Último Libro
+              </button>
+              <button class="nav-link text-success" id="tabs-collections-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-collections"
+                type="button" role="tab"
+                aria-controls="tabs-collections" aria-selected="false">
+                <i class="fa-solid fa-bookmark"></i> Colecciones
+              </button>
+              <button class="nav-link text-success" id="tabs-petitions-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-petitions"
+                type="button" role="tab"
+                aria-controls="tabs-petitions" aria-selected="false">
+                <i class="fa-solid fa-map-pin"></i> Peticiones
+              </button>
+              <button class="nav-link text-success" id="tabs-locations-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-locations"
+                type="button" role="tab"
+                aria-controls="tabs-locations" aria-selected="false">
+                <i class="fa-solid fa-location-dot"></i> Sedes
+              </button>
+              <button class="nav-link text-success" id="tabs-reviews-tab"
+                data-bs-toggle="tab" data-bs-target="#tabs-reviews"
+                type="button" role="tab"
+                aria-controls="tabs-reviews" aria-selected="false">
+                <i class="fa-solid fa-gavel"></i> Reviews
+              </button>
+            </div>
+          </div>
+
+          <!-- Fila con el contenido las Tabs-->
+          <div class="row mt-3">
+            <div class="tab-content" id="tabs-tabContent">
+
+              <!-- Tab con datos del Último Libro-->
+              <div class="tab-pane fade show active" id="tabs-lastBook" role="tabpanel"
+                aria-labelledby="tabs-lastBook-tab" tabindex="0">
+
+                <%- include('../partials/others/last-book-tab.ejs', {}); %>
+              </div>
+
+              <!-- Tab para la edición de las Colecciones-->
+              <div class="tab-pane fade" id="tabs-collections" role="tabpanel"
+                aria-labelledby="tabs-collections-tab" tabindex="0">
+
+                <%- include('../partials/others/list-collections-tab.ejs', {}); %>
+              </div>
+
+              <!-- Tab para la edición de las Peticiones-->
+              <div class="tab-pane fade" id="tabs-petitions" role="tabpanel"
+                aria-labelledby="tabs-petitions-tab" tabindex="0">
+
+                <%- include('../partials/others/list-petitions-tab.ejs', {}); %>
+              </div>
+
+              <!-- Tab para la edición de las Sedes-->
+              <div class="tab-pane fade" id="tabs-locations" role="tabpanel"
+                aria-labelledby="tabs-locations-tab" tabindex="0">
+
+                <%- include('../partials/others/list-locations-tab.ejs', {}); %>
+              </div>
+
+              <!-- Tab para la edición de las Reviews-->
+              <div class="tab-pane fade" id="tabs-reviews" role="tabpanel"
+                aria-labelledby="tabs-reviews-tab" tabindex="0">
+
+                <%- include('../partials/others/list-reviews-tab.ejs', {}); %>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <!-- Final del Nav-Tab-->
+      </div>
+      <!-- Final de la Parte superior-->
+
+      <div class="row mt-5">
+        <%- include('../partials/others/suggested-books-carousel.ejs', {}); %>
+      </div>
+
+    </div>
+    <!-- Footer-->
+    <%- include('../partials/others/footer.ejs', {}); %>
+
+    <script type="text/javascript" src="/public/js/pages/member-profile.js"></script>
+
+  </body>
+</html>

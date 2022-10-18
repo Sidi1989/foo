@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/others/common-head-components.ejs', {}); %>
+    <title>Pinakes - <%=member.nickname%> - Settings</title>
+  </head>
+
+  <body>
+    <!-- Header-->
+    <%- include('../partials/others/header.ejs', {}); %>
+    <div class="container">
+      <div class="row mb-3 d-flex">
+
+        <!-- Columna con las pestañas para abrir cada Tab-->
+        <div class="col-3">
+          <div class="nav flex-column nav-tabs" id="tabs-tab" role="tablist" aria-orientation="vertical">
+            <button class="nav-link active text-success" id="tabs-profile-tab"
+              data-bs-toggle="tab" data-bs-target="#tabs-profile"
+              type="button" role="tab"
+              aria-controls="tabs-profile" aria-selected="true">
+              Perfil
+            </button>
+            <button class="nav-link text-success" id="tabs-account-tab"
+              data-bs-toggle="tab" data-bs-target="#tabs-account"
+              type="button" role="tab"
+              aria-controls="tabs-account" aria-selected="false">
+              Cuenta
+            </button>
+            <button class="nav-link text-success" id="tabs-security-tab"
+              data-bs-toggle="tab" data-bs-target="#tabs-security"
+              type="button" role="tab"
+              aria-controls="tabs-security" aria-selected="false">
+              Seguridad
+            </button>
+            <button class="nav-link text-success" id="tabs-notifications-tab"
+              data-bs-toggle="tab" data-bs-target="#tabs-notifications"
+              type="button" role="tab"
+              aria-controls="tabs-notifications" aria-selected="false">
+              Notificaciones
+            </button>
+          </div>
+        </div>
+
+        <!-- Columna con el contenido de las Tabs-->
+        <div class="col-9">
+          <div class="tab-content" id="tabs-tabContent">
+
+            <!-- Tab con la información básica del usuario-->
+            <div class="tab-pane fade show active" id="tabs-profile" role="tabpanel"
+              aria-labelledby="tabs-profile-tab" tabindex="0">
+
+              <div class="section-title">
+                Tu perfil público
+              </div>
+
+              <%- include('../partials/others/member-info-card.ejs', {}); %>
+            </div>
+
+            <!-- Tab para la edición de los datos del usuario-->
+            <div class="tab-pane fade" id="tabs-account" role="tabpanel"
+              aria-labelledby="tabs-account-tab" tabindex="0">
+
+              <div class="section-title">
+                Edita tus datos
+              </div>
+
+              <%- include('../partials/others/change-account-tab.ejs', {}); %>
+            </div>
+
+            <!-- Tab para la edición de las contraseñas del usuario-->
+            <div class="tab-pane fade" id="tabs-security" role="tabpanel"
+              aria-labelledby="tabs-security-tab" tabindex="0">
+
+              <div class="section-title">
+                Edita tu seguridad
+              </div>
+
+              <%- include('../partials/others/change-password-tab.ejs', {}); %>
+            </div>
+
+            <!-- Tab para la edición de las notificaciones del usuario-->
+            <div class="tab-pane fade" id="tabs-notifications" role="tabpanel"
+              aria-labelledby="tabs-notifications-tab" tabindex="0">
+
+              <div class="section-title">
+                Edita tus notificaciones
+              </div>
+
+              <%- include('../partials/others/change-notifications-tab.ejs', {}); %>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Footer-->
+    <%- include('../partials/others/footer.ejs', {}); %>
+
+    <script type="text/javascript" src="/public/js/pages/member-edit.js"></script>
+
+  </body>
+</html>

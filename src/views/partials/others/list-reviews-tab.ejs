@@ -1,0 +1,18 @@
+
+<!-- Mis Reviews-->
+<div class="row g-0">
+  <ul class="list-group">
+    <% member.reviews.forEach(function (e, i) { %>
+      <a href="/books/<%=e.book.id%>" class="text-decoration-none">
+        <li class="list-group-item">
+          <img class="img-thumbnail ms-4" style="width: 75px; height: 100px" src="<%=e.book.pic%>">
+          <div class="ms-5 btn-group-vertical" role="group">
+            <button type="button" class="btn btn-sm btn-primary" disabled><%=e.bookRate %></button>
+            <button type="button" class="btn btn-sm btn-secondary" disabled><%=e.copyRate %></button>
+          </div>
+          <strong class="ms-5 text-success"><%=e.book.title %></strong>
+        </li>
+      </a>
+    <% }); %>
+  </ul>
+</div>

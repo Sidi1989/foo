@@ -2,20 +2,20 @@
 
 ## To Do
 
-+   Hacer el display none del modal de peticiones
-+   Varios problemas en el buscador del header
-+   Reordenar el botón de perfil de usuario
-+   Reescribirlas funciones según la gramática de fer
-+   Locations con atributo owner
-+   apiSignInHandleren Auth.js
-+   Colecciones con un null igual a lo de autor anónimo (para evitar problemas de en las búsquedas)
-+   Ajustar "actualmente en colección", a partir de getMemberById de la cookie
-+   Terminar de ordenar controllers
++   Llamar "obra" al "libro" en abstracto
++   Seguir con unificación de modals (y separar su carpeta en .js)
++   Reformar "situación (mejor ubicación) del ejemplar" y cambiar iconos
++   ¿Mi línea 34 de "relocate-books-in collections-modal-js"
++   Replicar requireds de sign-up, donde sean necesarios
++   Aplicar cambios por reformar getCollectionById con la opción de los "sin colección" (en bookprofile y memberprofile)
++   Display none de autores y subgéneros, y los bloques if-else según qué información se quiera dar
++   Cambiar disposición de reviews y decidir quién puede hacerlas y sobre qué libros
++   Desharcodear estrellas (en función de las reviews = libros comentados)
++   Establecer los PATCH o POST necesarios en la nueva configuración de modals
++   Reflexionar sobre si eliminar "owners" para evitar duplicidad (usando funciones getXbymember para compensar)
+
 
 ## Migración:
 
-+   Renombrar carpeta Pinakes como "views"... y entonces las views actuales pasan a llamarse "pages"
-+   Duplicar carpeta foo;
-+   Borrar todo lo que no tenga que ver con Pinakes (sólo Pinakes y server, y otros pocos);
-+   Comitear por primera vez (¿branch? ¿git push previo?);
-+   "Traslada ficheros procedentes de la revisión (id del último commit de foo) de foo"
++   Duplicar carpeta "Foo" a otra que sea "Pinakes" (quizás dejar sólo Foo/examples... por su valor histórico)
++   git push, git merge y primer commit para Pinakes:"Traslada ficheros procedentes de la revisión (last commit id) de Foo"
