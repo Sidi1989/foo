@@ -1,6 +1,6 @@
 const path = require('path');
-const _ = require('lodash');
 const {JsonDB, Config} = require('node-json-db');
+const _ = require('lodash');
 
 
 
@@ -58,6 +58,13 @@ var read = async function (type) {
 };
 
 
+/**
+  * @description
+  * función asíncrona que escribe info dentro de un elemento de la DB
+  * @param type String Tipo de datos en que escribir
+  * @param id String Elemento i-ésimo dentro de la colección en que se escribe
+  * @param info Object Información que se escribe
+  */
 var write = async function (type, id, info) {
   var relativeRoute;
   switch (type) {
@@ -82,10 +89,16 @@ var write = async function (type, id, info) {
     default:
       throw new Error(`type ${type} not recognized`);
   }
-  await jsonDb.push(relativeRoute, id, info);
+  await jsonDb.push(`${relativeRoute}[${id}]`, info);
   return
 };
 
+
+/**
+  * @description
+  * función asíncrona que añade a la DB un nuevo elemento dentro de su correspondiente array
+  * @param type:
+  */
 var append = async function (type, info) {
   var relativeRoute;
   switch (type) {
@@ -111,12 +124,16 @@ var append = async function (type, info) {
       throw new Error(`type ${type} not recognized`);
   }
   var typeLength = (await jsonDb.getData(relativeRoute)).length;
-
   await jsonDb.push(`${relativeRoute}[${typeLength}]`, info);
   return
 };
 
 
+/**
+  * @description
+  * función asíncrona que elimina de la DB un nuevo elemento dentro de su correspondiente array
+  * @param type:
+  */
 var erase = async function (type, id) {
   var relativeRoute;
   switch (type) {
