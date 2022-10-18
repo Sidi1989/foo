@@ -6,7 +6,6 @@ const {getSubcategoryById} = require('./subcategories');
 const {getCategoryById} = require('./categories');
 const {getLanguageById} = require('./languages');
 const {getAuthorById} = require('./authors');
-
 const {getLocationById} = require('./locations');
 const {getCollectionById} = require('./collections');
 const {getReviewById} = require('./reviews');
@@ -59,27 +58,29 @@ var getBookById = async function (id, populate) {
 
   var book;
   if (filteredBooks.length == 0) {
-    book = null;
+    book = {};
   } else {
     book = filteredBooks[0];
   }
 
-  for (let e of books) {
+  // Todos los libros del mismo Miembro
+  var memberBooks = (await getAllBooks()).filter(function (b) {
+    return (b.owner == book.owner)
+  });
+
+  for (let b of books) {
     // Autor del Libro
-    e.author = await getAuthorById(e.author);
-    if (e.author == null) e.author = {};
-
+    b.author = await getAuthorById(b.author);
+    if (b.author == null) b.author = {};
     // Idioma del Libro
-    e.language = getLanguageById(e.language);
-    if (e.language == null) e.language = {};
-
+    b.language = getLanguageById(b.language);
+    if (b.language == null) b.language = {};
     // Categoría del Libro
-    e.category = getCategoryById(e.category);
-    if (e.category == null) e.category = {};
-
+    b.category = getCategoryById(b.category);
+    if (b.category == null) b.category = {};
     // Subcategoría del Libro
-    e.subcategory = getSubcategoryById(e.subcategory);
-    if (e.subcategory == null) e.subcategory = {};
+    b.subcategory = getSubcategoryById(b.subcategory);
+    if (b.subcategory == null) b.subcategory = {};
   }
 
   if (populate == true) {
@@ -90,14 +91,19 @@ var getBookById = async function (id, populate) {
 
     // Colección del Libro
     book.collection = await getCollectionById(book.collection);
-    if (book.collection == null) book.collection = {};
-        // Paso 1: Se define el contenido en libros de la collection
-    var allBooks = await getAllBooks();
-    var booksInCollection = allBooks.filter(function (b) {
-        (b.collection == book.collection.id)
-      });
-        // Paso 2: Se sobreescriben los libros populados en el array de book.collections.books
-    book.collection.books = booksInCollection;
+      // Opción 1: Si el libro no es un 'sin colección', se comparan los ids del resto con el suyo
+    if (book.collection.name != "Libros sin Colección") {
+      var booksInCollection = memberBooks.filter(function (b) {
+        return (b.collection == book.collection.id)
+        });
+      book.collection.books = booksInCollection;
+    // Opción 2: Si el libro es un 'sin colección', se buscan los otros libros con colección 'null'
+    } else {
+      var booksInOrphanCollection = memberBooks.filter(function (b) {
+        return (b.collection == null)
+        });
+      book.collection.books = booksInOrphanCollection
+    }
 
     // Reviews del Libro
     if (!book.reviews) books.reviews = [];

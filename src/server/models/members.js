@@ -4,7 +4,6 @@ const {db} = require('../connections/rawjson.js');
 const {db: nodeDB} = require('../connections/nodejsondb.js');
 const {getPetitionById} = require('./petitions');
 const {getLocationById} = require('./locations');
-
 const {getCollectionById} = require('./collections');
 const {getReviewById} = require('./reviews');
 const {getAllBooks, getBookById} = require('./books');
@@ -38,7 +37,7 @@ var getMemberBySession = async function (session) {
 
   var member;
   if (filteredMembers.length == 0) {
-    member = null;
+    member = {};
   } else {
     member = filteredMembers[0];
   }
@@ -63,7 +62,7 @@ var getMemberById = async function (id, populate) {
 
   var member;
   if (filteredMembers.length == 0) {
-    member = null;
+    member = {};
   } else {
     member = filteredMembers[0];
   }
@@ -82,34 +81,20 @@ var getMemberById = async function (id, populate) {
     // Colecciones del Miembro
     if (!member.collections) member.collections = [];
     var collectionsPopulated = [];
-        // Paso 1: Se define el contenido de cada collection
     for (let collectionId of member.collections) {
       let collection = await getCollectionById(collectionId);
-      var booksInCollection = member.books.filter(function (b) {
-          (b.collection == collection.id)
-        });
-      collection.books = booksInCollection;
-        // Paso 2: Se sobreescribe cada collection populada en el array de member.collections
+      collection.books = member.books.filter(function (b) {
+        return (b.collection.id == collection.id);
+      });
       collectionsPopulated.push(collection);
     }
     member.collections = collectionsPopulated;
-
-    // Libros del Miembro sin Colección
-    var orphanCollections = member.collections.filter(function (c) {
-        (c.name == "Libros sin Colección")
+    
+    // Libros sin Colección
+    var orphanBooks = member.books.filter(function (b) {
+      return (b.collection.id == null);
     });
-      // Se asegura de que exista una sólo collection que sea "Libros sin Colección"
-      var orphanCollection;
-      if (orphanCollections.length == 0) {
-        orphanCollection = null;
-      } else {
-        orphanCollection = orphanCollections[0];
-      }
-      // Se filtran los libros que formarán parte de esa orphanCOllection
-      var orphanBooks = member.books.filter(function (b) {
-          (b.collection == orphanCollection)
-      });
-    member.orphanBooks = orphanBooks;
+    member.orphanBooks = orphanBooks
 
     // Sedes del Miembro
     if (!member.locations) member.locations = [];
@@ -152,8 +137,7 @@ var getMemberById = async function (id, populate) {
   * la información sobre el libro será o no más detallada.
   */
 var getLastBookForMember = async function (memberId, populate) {
-  var books = await getAllBooks();
-  var memberBooks = books.filter(function (e) {
+  var memberBooks = (await getAllBooks()).filter(function (e) {
     return e.owner == memberId;
   });
 
