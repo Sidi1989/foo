@@ -1,3 +1,4 @@
+// Ejemplo de Objeto, y su exportación (hacia 'estudio01.js')
 var livre1 = {
   title: 'El corazón de las tinieblas',
   publishDate: 1902,

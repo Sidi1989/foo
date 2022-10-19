@@ -1,39 +1,43 @@
 const _ = require('lodash');
 
+// Formas básicas de desestructuración
 const {
   libro1: book1
 } = require('./books');
 
 const {libro1} = require('./books');
 
-//var book1 = booklist.book1;
+var book1 = booklist.book1;
 
+// Meter elemento dentro de un array
 var books = [];
 books.push(book1);
 
+// Funciones y parámetros
 book1.saludar();
 book1.presentarse();
 book1.presentarseAnte(name);
 
 
-//Parsing de los parámetros de entrada al programa. Mirar el bucle de abajo
+// Parsing de los parámetros de entrada al programa. Mirar el bucle de abajo
 var limit = parseInt(process.argv[2]);
 var name = process.argv[3];
 
-//Función Map
+// Función Map
 var titles = books.map(function (e, i, a) {
     return e.title;
   }
 );
 console.log(`Los títulos son: ${titles}`);
 
-//Función Filter
+// Función Filter
 var availableBooks = books.filter(function (e, i, a) {
     return e.isAvailable;
   }
 );
 availableBooks = books.filter(e => e.isAvailable)
 
+// Mapeo de un array ya filtrado
 var availableTitles = availableBooks.map(function (e) {
     return {
       title: e.title,
@@ -43,9 +47,7 @@ var availableTitles = availableBooks.map(function (e) {
 );
 console.log(availableTitles);
 
-
-
-//Bucle en console.log
+// Bucle básico y console.log()
 for (var a=1; a<limit; a++) {
   if (a<5) {
     console.log("Hola Mundo", name);
@@ -54,4 +56,4 @@ for (var a=1; a<limit; a++) {
   } else {
     console.log("Hola Madrid", name);
   }
-};
+}

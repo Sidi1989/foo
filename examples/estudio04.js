@@ -1,5 +1,4 @@
-//Callback Hell
-
+// Ejemplo de Callback Hell; sabiendo que su signatura de función es "error-respuesta"
 fs.readdir(dirname, function (err, basenames) {
 
   if (err) {
@@ -32,7 +31,7 @@ fs.readdir(dirname, function (err, basenames) {
   }
 });
 
-//Promises
+// Tratando de superar el Callback Hell con "Promises" (.then)
 
 fs.readdir(dirname)
   .then(function (basenames) {
@@ -59,7 +58,7 @@ baz.forEach()
 // de que termine bar, que dependerá a su vez de que termine foo.
 
 
-//Await
+// Solución final con "Await" (ya no devuelve una promesa, sino lo que inicialmente se buscaba)
+// Pero await sólo sirve con funciones asíncronas 'async function() {}'
 var foo = await fs.readdir(dirname);
 var bar = await gm(foo).size();
-// y...
